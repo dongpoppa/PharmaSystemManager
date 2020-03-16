@@ -28,7 +28,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         pnlToolBar = new javax.swing.JPanel();
@@ -52,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("Pharma4U");
         setAlwaysOnTop(true);
         setAutoRequestFocus(false);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jDesktopPane1.setLayout(new java.awt.BorderLayout());
 
@@ -106,7 +107,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jDesktopPane1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jPanel4.setLayout(new java.awt.GridLayout());
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
