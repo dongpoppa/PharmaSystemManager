@@ -94,16 +94,6 @@
                                               <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
                                               <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                              <Component id="btnFirst" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnPrev" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnNext" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnLast" min="-2" max="-2" attributes="0"/>
-                                          </Group>
                                       </Group>
                                   </Group>
                                   <Component id="txtID" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
@@ -120,11 +110,19 @@
                                       <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnNew" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnFirst" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnPrev" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnNext" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnLast" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="lblConfirmPassword" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtFullName" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -201,8 +199,8 @@
                           <Component id="btnNew" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnFirst" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnPrev" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnNext" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLast" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnNext" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLast" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -355,22 +353,30 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnFirst">
               <Properties>
-                <Property name="text" type="java.lang.String" value="|&lt;"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/don_top.png"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnPrev">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/don_up.png"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnNext">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/don_down.png"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnLast">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&gt;|"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/don_bottom.png"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

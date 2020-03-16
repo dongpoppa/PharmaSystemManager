@@ -9,6 +9,7 @@ import helper.ShareHelper;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 /**
@@ -68,7 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 969, Short.MAX_VALUE)
+            .addGap(0, 871, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,9 +79,13 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         pnlMenu.setPreferredSize(new java.awt.Dimension(150, 551));
-        pnlMenu.setLayout(new java.awt.GridLayout(9, 1));
+        pnlMenu.setLayout(new java.awt.GridLayout(9, 1, 0, 10));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Purchase Invoices");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton1);
 
         jButton2.setText("Sale Invoices");
@@ -113,11 +118,11 @@ public class MainFrame extends javax.swing.JFrame {
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 819, Short.MAX_VALUE)
+            .addGap(0, 721, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addGap(0, 692, Short.MAX_VALUE)
         );
 
         getContentPane().add(desktop, java.awt.BorderLayout.CENTER);
@@ -132,6 +137,24 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    //--------------------------------------------------------------------//
+    //--------------------------------------------------------------------//
+    //----------------------------FUNCTION--------------------------------//
+    //--------------------------------------------------------------------//
+    //--------------------------------------------------------------------//
+
+    void init() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        setIconImage(ShareHelper.APP_ICON.getImage());
+        this.setVisible(true);
+        this.login();
+    }
+
+    void login() {
+        new LoginJDialog(this, true).setVisible(true);
+    }
 
     void openEmployee() {
 //        if (ShareHelper.authenticated()) {
@@ -208,15 +231,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
-
-    //--------------------------------------------------------------------//
-    //--------------------------------------------------------------------//
-    //----------------------------FUNCTION--------------------------------//
-    //--------------------------------------------------------------------//
-    //--------------------------------------------------------------------//
-    void init() {
-        this.setLocationRelativeTo(null);
-        setIconImage(ShareHelper.APP_ICON.getImage());
-    }
 
 }
