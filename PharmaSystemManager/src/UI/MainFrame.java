@@ -5,7 +5,6 @@
  */
 package UI;
 
-import helper.DialogHelper;
 import helper.ShareHelper;
 import javax.swing.JInternalFrame;
 
@@ -15,8 +14,8 @@ import javax.swing.JInternalFrame;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    
     EmployeeJInternalFrame Eployeefrm;
+
     /**
      * Creates new form MainFrame
      */
@@ -156,42 +155,32 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    //--------------------------------------------------------------------//
-    //--------------------------------------------------------------------//
-    //----------------------------FUNCTION--------------------------------//
-    //--------------------------------------------------------------------//
-    //--------------------------------------------------------------------//
-    
-    void init(){
-        this.setLocationRelativeTo(null);
-        setIconImage(ShareHelper.APP_ICON);
-    }
-    
     void openEmployee() {
 //        if (ShareHelper.authenticated()) {
-            new EmployeeJInternalFrame().setVisible(true);
-            Eployeefrm = new EmployeeJInternalFrame();
-            openJFrameIternal(Eployeefrm);
+        new EmployeeJInternalFrame().setVisible(true);
+        Eployeefrm = new EmployeeJInternalFrame();
+        openJFrameIternal(Eployeefrm);
 //        } else {
 //            DialogHelper.alert(this, "Please login to use this feature!");
 //        }
     }
-    
+
     void openJFrameIternal(JInternalFrame frame) {
 //        if (ShareHelper.authenticated()) {
-            for (JInternalFrame fr : jDesktopPane1.getAllFrames()) {
-                fr.dispose();
-            }
-            jDesktopPane1.add(frame);
-            frame.setLocation(this.getWidth() / 2 - frame.getWidth() / 2, this.getHeight() / 3 - frame.getHeight() / 2);
-            frame.setVisible(true);
+        for (JInternalFrame fr : jDesktopPane1.getAllFrames()) {
+            fr.dispose();
+        }
+        jDesktopPane1.add(frame);
+        frame.setLocation(this.getWidth() / 2 - frame.getWidth() / 2, this.getHeight() / 3 - frame.getHeight() / 2);
+        frame.setVisible(true);
 //        } else {
 //            DialogHelper.alert(this, "Xin vui lòng đăng nhập!");
 //        }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -246,4 +235,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel pnlToolBar;
     // End of variables declaration//GEN-END:variables
+
+    //--------------------------------------------------------------------//
+    //--------------------------------------------------------------------//
+    //----------------------------FUNCTION--------------------------------//
+    //--------------------------------------------------------------------//
+    //--------------------------------------------------------------------//
+    void init() {
+        this.setLocationRelativeTo(null);
+        setIconImage(ShareHelper.APP_ICON.getImage());
+    }
+
 }

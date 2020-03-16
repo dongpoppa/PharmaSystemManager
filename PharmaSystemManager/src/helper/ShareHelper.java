@@ -6,7 +6,6 @@
 package helper;
 
 import model.Employee;
-import java.awt.Image;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,17 +19,14 @@ import javax.swing.ImageIcon;
  */
 public class ShareHelper {
 
-    public static final Image APP_ICON;
-    public static final ImageIcon APP_ICON_1;
+    public static final ImageIcon APP_ICON;
 
     static {
-        String file = "/icon/logo.png";
-        APP_ICON = new ImageIcon(ShareHelper.class.getResource(file)).getImage();
-        APP_ICON_1 = new ImageIcon(ShareHelper.class.getResource(file));
+        APP_ICON = new ImageIcon("src\\icon\\logo.png");
     }
 
     public static boolean saveLogo(File file) {
-        File dir = new File("logos");
+        File dir = new File("icon");
         if (!dir.exists()) {
             dir.mkdirs();
         }
