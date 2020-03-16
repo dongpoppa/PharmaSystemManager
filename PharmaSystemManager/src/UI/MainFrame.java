@@ -28,12 +28,10 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         pnlToolBar = new javax.swing.JPanel();
-        btnLogin = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
@@ -42,6 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -63,9 +62,6 @@ public class MainFrame extends javax.swing.JFrame {
         pnlToolBar.setRequestFocusEnabled(false);
         pnlToolBar.setVerifyInputWhenFocusTarget(false);
         pnlToolBar.setLayout(new java.awt.GridLayout(9, 1, 2, 0));
-
-        btnLogin.setText("LOGIN");
-        pnlToolBar.add(btnLogin);
 
         jButton12.setText("Purchase invoice");
         pnlToolBar.add(jButton12);
@@ -91,6 +87,9 @@ public class MainFrame extends javax.swing.JFrame {
         jButton18.setText("report");
         jButton18.setFocusCycleRoot(true);
         pnlToolBar.add(jButton18);
+
+        btnLogin.setText("Logout");
+        pnlToolBar.add(btnLogin);
 
         jDesktopPane1.add(pnlToolBar, java.awt.BorderLayout.WEST);
 
