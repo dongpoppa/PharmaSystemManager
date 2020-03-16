@@ -5,11 +5,21 @@
  */
 package UI;
 
+import DAO.EmployeeDAO;
+import helper.DialogHelper;
+import helper.ShareHelper;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Employee;
+
 /**
  *
  * @author Long
  */
 public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
+
+    int index = 0; // vị trí của nhân viên đang hiển thị trên form
+    EmployeeDAO dao = new EmployeeDAO();
 
     /**
      * Creates new form NhanVienJInternalFrame
@@ -60,12 +70,12 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnDelete = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
+        btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         pnlList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblGridView = new javax.swing.JTable();
 
         lblID.setText("Employee ID");
 
@@ -117,7 +127,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         btnFirst.setText("|<");
 
-        btnBack.setText("<<");
+        btnPrev.setText("<<");
 
         btnNext.setText(">>");
 
@@ -166,7 +176,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                                         .addGap(26, 26, 26)
                                         .addComponent(btnFirst)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnBack)
+                                        .addComponent(btnPrev)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnNext)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -245,7 +255,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(btnDelete)
                     .addComponent(btnNew)
                     .addComponent(btnFirst)
-                    .addComponent(btnBack)
+                    .addComponent(btnPrev)
                     .addComponent(btnNext)
                     .addComponent(btnLast))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -253,7 +263,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         tabs.addTab("EDIT", pnlEdit);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -272,7 +282,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblGridView);
 
         javax.swing.GroupLayout pnlListLayout = new javax.swing.GroupLayout(pnlList);
         pnlList.setLayout(pnlListLayout);
@@ -291,7 +301,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26))
         );
 
-        tabs.addTab("List", pnlList);
+        tabs.addTab("LIST", pnlList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -313,18 +323,17 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblDateOfBirth;
@@ -342,6 +351,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rdoManager;
     private javax.swing.JRadioButton rdoPharmacist;
     private javax.swing.JTabbedPane tabs;
+    private javax.swing.JTable tblGridView;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JFormattedTextField txtDateOfBirth;
@@ -353,4 +363,91 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField txtPhone;
     private javax.swing.JTextArea txtStatus;
     // End of variables declaration//GEN-END:variables
+
+    void init() {
+        setFrameIcon(ShareHelper.APP_ICON);
+    }
+
+    void load() {
+        DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
+        model.setRowCount(0);
+        String vaiTro = "";
+        try {
+            List<Employee> list = dao.select();
+            for (Employee nv : list) {
+                if (nv.isRole() && (nv.getStoreID() == null || nv.getStoreID().equals(""))) {
+                    vaiTro = "Boss";
+                } else if (nv.isRole() && (nv.getStoreID().length() > 0)) {
+                    vaiTro = "Manager";
+                } else {
+                    vaiTro = "Pharmacist";
+                }
+                Object[] row = {
+                    nv.getEmployeeID(),
+                    nv.getPassword(),
+                    vaiTro,
+                    nv.getName(),
+                    nv.getDateOfBirth(),
+                    nv.getStartDate(),
+                    nv.getPhone(),
+                    nv.getEmail(),
+                    nv.getAddress(),
+                    nv.getStatus(),
+                    nv.getStoreID()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+
+//    void edit() {
+//        try {
+//            String manv = (String) tblGridView.getValueAt(this.index, 0);
+//            Employee model = dao.findById(manv);
+//            if (model != null) {
+//                this.setModel(model);
+//                this.setStatus(false);
+//            }
+//        } catch (Exception e) {
+//            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+//        }
+//    }
+//
+//    void clear() {
+//        this.setModel(new Employee());
+//        this.setStatus(true);
+//    }
+//
+//    void setModel(Employee model) {
+//        txtMaNV.setText(model.getMaNV());
+//        txtHoTen.setText(model.getHoTen());
+//        txtMatKhau.setText(model.getMatKhau());
+//        txtXacNhanMK.setText(model.getMatKhau());
+//        rdoTruongPhong.setSelected(model.isVaiTro());
+//        rdoNhanVien.setSelected(!model.isVaiTro());
+//    }
+//
+//    Employee getModel() {
+//        Employee model = new Employee();
+//        model.setMaNV(txtMaNV.getText());
+//        model.setHoTen(txtHoTen.getText());
+//        model.setMatKhau(new String(txtMatKhau.getPassword()));
+//        model.setVaiTro(rdoTruongPhong.isSelected());
+//        return model;
+//    }
+
+    void setStatus(boolean insertable) {
+        txtID.setEditable(insertable);
+        btnInsert.setEnabled(insertable);
+        btnUpdate.setEnabled(!insertable);
+        btnDelete.setEnabled(!insertable);
+        boolean first = this.index > 0;
+        boolean last = this.index < tblGridView.getRowCount() - 1;
+        btnFirst.setEnabled(!insertable && first);
+        btnPrev.setEnabled(!insertable && first);
+        btnNext.setEnabled(!insertable && last);
+        btnLast.setEnabled(!insertable && last);
+    }
 }
