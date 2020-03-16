@@ -5,7 +5,9 @@
  */
 package UI;
 
+import helper.DialogHelper;
 import helper.ShareHelper;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -13,6 +15,8 @@ import helper.ShareHelper;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    
+    EmployeeJInternalFrame Eployeefrm;
     /**
      * Creates new form MainFrame
      */
@@ -54,7 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jDesktopPane1.setLayout(new java.awt.BorderLayout());
+        jDesktopPane1.setDoubleBuffered(true);
 
         pnlToolBar.setDoubleBuffered(false);
         pnlToolBar.setMaximumSize(new java.awt.Dimension(181, 296));
@@ -64,6 +68,11 @@ public class MainFrame extends javax.swing.JFrame {
         pnlToolBar.setLayout(new java.awt.GridLayout(9, 1, 2, 0));
 
         jButton12.setText("Purchase invoice");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
         pnlToolBar.add(jButton12);
 
         jButton11.setText("Sale invoice");
@@ -91,8 +100,6 @@ public class MainFrame extends javax.swing.JFrame {
         btnLogin.setText("Logout");
         pnlToolBar.add(btnLogin);
 
-        jDesktopPane1.add(pnlToolBar, java.awt.BorderLayout.WEST);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -104,8 +111,6 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 31, Short.MAX_VALUE)
         );
 
-        jDesktopPane1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
-
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -113,7 +118,28 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo_background.png"))); // NOI18N
         jPanel4.add(jLabel1);
 
-        jDesktopPane1.add(jPanel4, java.awt.BorderLayout.CENTER);
+        jDesktopPane1.setLayer(pnlToolBar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(pnlToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         getContentPane().add(jDesktopPane1);
 
@@ -128,6 +154,11 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
     //----------------------------FUNCTION--------------------------------//
@@ -139,7 +170,28 @@ public class MainFrame extends javax.swing.JFrame {
         setIconImage(ShareHelper.APP_ICON);
     }
     
+    void openEmployee() {
+//        if (ShareHelper.authenticated()) {
+            new EmployeeJInternalFrame().setVisible(true);
+            Eployeefrm = new EmployeeJInternalFrame();
+            openJFrameIternal(Eployeefrm);
+//        } else {
+//            DialogHelper.alert(this, "Please login to use this feature!");
+//        }
+    }
     
+    void openJFrameIternal(JInternalFrame frame) {
+//        if (ShareHelper.authenticated()) {
+            for (JInternalFrame fr : jDesktopPane1.getAllFrames()) {
+                fr.dispose();
+            }
+            jDesktopPane1.add(frame);
+            frame.setLocation(this.getWidth() / 2 - frame.getWidth() / 2, this.getHeight() / 3 - frame.getHeight() / 2);
+            frame.setVisible(true);
+//        } else {
+//            DialogHelper.alert(this, "Xin vui lòng đăng nhập!");
+//        }
+    }
     /**
      * @param args the command line arguments
      */
