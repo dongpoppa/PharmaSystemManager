@@ -7,7 +7,6 @@ package UI;
 
 import helper.DialogHelper;
 import helper.ShareHelper;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -51,7 +50,7 @@ public class MainFrame extends javax.swing.JFrame
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         Image img = new ImageIcon("src\\icon\\logo_background.png").getImage();
         desktop = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -138,15 +137,15 @@ public class MainFrame extends javax.swing.JFrame
         jButton8.setText("Report");
         pnlMenu.add(jButton8);
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
-        jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setText("Logout");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogout.setForeground(new java.awt.Color(0, 0, 0));
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
-        pnlMenu.add(jButton9);
+        pnlMenu.add(btnLogout);
 
         getContentPane().add(pnlMenu, java.awt.BorderLayout.LINE_START);
 
@@ -179,14 +178,15 @@ public class MainFrame extends javax.swing.JFrame
         this.openEmployee();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton9ActionPerformed
-    {//GEN-HEADEREND:event_jButton9ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLogoutActionPerformed
+    {//GEN-HEADEREND:event_btnLogoutActionPerformed
         for (JInternalFrame c : desktop.getAllFrames())
         {
             c.dispose();
         }
+        ShareHelper.logoff();
         new LoginJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -276,6 +276,7 @@ public class MainFrame extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -285,7 +286,6 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
