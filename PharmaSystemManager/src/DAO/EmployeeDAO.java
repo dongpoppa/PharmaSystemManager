@@ -30,6 +30,11 @@ public class EmployeeDAO {
                 model.getStartDate(), model.getPhone(), model.getEmail(), model.getAddress(), model.getStatus(), model.getStoreID(), model.getEmployeeID());
     }
 
+    public void updateStatus(Employee model) {
+        String sql = "UPDATE NhanVien SET TrangThaiNV = ? Where MaNV = ?";
+        JdbcHelper.executeUpdate(sql, model.getEmployeeID());
+    }
+
     public void delete(String MaNV) {
         String sql = "DELETE FROM NhanVien WHERE MaNV = ?";
         JdbcHelper.executeUpdate(sql, MaNV);

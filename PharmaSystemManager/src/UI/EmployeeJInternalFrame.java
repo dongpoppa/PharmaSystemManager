@@ -650,6 +650,15 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
     void delete() {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
-
+        if (ShareHelper.status != null) {
+            Employee model = dao.findById(txtID.getText());
+            try {
+                dao.update(model);
+                this.load();
+                DialogHelper.alert(this, "Update successfull");
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Update failed");
+            }
+        }
     }
 }
