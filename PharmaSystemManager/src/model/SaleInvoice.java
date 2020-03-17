@@ -17,11 +17,11 @@ public class SaleInvoice {
     private Date saleDate;
     private int discount;
 
-    public String getSaleInvoiceID() {
+    public String getID() {
         return ID;
     }
 
-    public void setSaleInvoiceID(String saleInvoiceID) {
+    public void setID(String saleInvoiceID) {
         this.ID = saleInvoiceID;
     }
 
@@ -49,11 +49,11 @@ public class SaleInvoice {
         this.discount = discount;
     }
 
-    public String getInvoiceStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setInvoiceStatus(String invoiceStatus) {
+    public void setStatus(String invoiceStatus) {
         this.status = invoiceStatus;
     }
 
