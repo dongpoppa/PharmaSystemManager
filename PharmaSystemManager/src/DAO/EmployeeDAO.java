@@ -52,6 +52,12 @@ public class EmployeeDAO {
         return list.size() > 0 ? list.get(0) : null;
     }
 
+    public List<Employee> findByBranch(String maDaiLy) {
+        String sql = "SELECT * FROM NhanVien WHERE MaDaiLy = ?";
+        List<Employee> list = select(sql, maDaiLy);
+        return list;
+    }
+
     private List<Employee> select(String sql, Object... args) {
         List<Employee> list = new ArrayList<>();
         try {
