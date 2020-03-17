@@ -21,13 +21,23 @@ import model.Branch;
  */
 public class ShareHelper {
 
+    /**
+     * Ảnh biểu tượng của ứng dụng, xuất hiện trên mọi cửa sổ
+     */
     public static final ImageIcon APP_ICON;
     public static String status = null;
 
     static {
+        // Tải biểu tượng ứng dụng
         APP_ICON = new ImageIcon("src\\icon\\logo.png");
     }
 
+    /**
+     * Sao chép file logo chuyên đề vào thư mục logo
+     *
+     * @param file là đối tượng file ảnh
+     * @return chép được hay không
+     */
     public static boolean saveLogo(File file) {
         File dir = new File("icon");
         if (!dir.exists()) {
@@ -35,6 +45,7 @@ public class ShareHelper {
         }
         File newFile = new File(dir, file.getName());
         try {
+            // Copy vào thư mục logos (đè nếu đã tồn tại)
             Path source = Paths.get(file.getAbsolutePath());
             Path destination = Paths.get(newFile.getAbsolutePath());
             Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
@@ -48,7 +59,9 @@ public class ShareHelper {
         File path = new File("logos", fileName);
         return new ImageIcon(path.getAbsolutePath());
     }
-
+    /**
+     * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
+     */
     public static Employee USER = null;
     public static Branch Branch = null;
     public static JFrame frame = null;
@@ -57,10 +70,18 @@ public class ShareHelper {
         return ShareHelper.USER.getEmployeeID() + " - " + DateHelper.now().toString() + " - " + ShareHelper.status;
     }
 
+    /**
+     * Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất
+     */
     public static void logoff() {
         ShareHelper.USER = null;
     }
 
+    /**
+     * Kiểm tra xem đăng nhập hay chưa
+     *
+     * @return đăng nhập hay chưa
+     */
     public static boolean authenticated() {
         return ShareHelper.USER != null;
     }
