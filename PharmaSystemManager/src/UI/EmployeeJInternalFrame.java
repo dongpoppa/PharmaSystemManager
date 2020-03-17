@@ -46,22 +46,20 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblGridView = new javax.swing.JTable();
         pnlEdit = new javax.swing.JPanel();
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        lblDateOfBirth = new javax.swing.JLabel();
-        txtDateOfBirth = new javax.swing.JFormattedTextField();
-        lblDateStartWork = new javax.swing.JLabel();
-        txtDateOfWork = new javax.swing.JFormattedTextField();
-        lblAddress = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
-        lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        lblPhone = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnPrev = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
@@ -77,16 +75,21 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         rdoManager = new javax.swing.JRadioButton();
         rdoPharmacist = new javax.swing.JRadioButton();
         lblRole = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        cboDaiLy = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        lblDateOfBirth = new javax.swing.JLabel();
+        txtDateOfBirth = new javax.swing.JFormattedTextField();
+        lblDateStartWork = new javax.swing.JLabel();
+        txtDateOfWork = new javax.swing.JFormattedTextField();
+        lblAddress = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblPhone = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
         lblDaiLy = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblGridView = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        btnFirst = new javax.swing.JButton();
-        btnPrev = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
-        btnLast = new javax.swing.JButton();
+        cboDaiLy = new javax.swing.JComboBox();
+
+        jTextField1.setText("jTextField1");
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -106,166 +109,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 formInternalFrameOpened(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
-        pnlEdit.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+        jScrollPane2.setBorder(null);
 
-        btnInsert.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnInsert.setText("Insert");
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
-            }
-        });
-        pnlEdit.add(btnInsert);
-
-        btnUpdate.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-        pnlEdit.add(btnUpdate);
-
-        btnDelete.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        pnlEdit.add(btnDelete);
-
-        btnNew.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnNew.setText("New");
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
-            }
-        });
-        pnlEdit.add(btnNew);
-
-        jPanel1.setLayout(new java.awt.GridLayout(10, 1, 10, 10));
-
-        lblDateOfBirth.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblDateOfBirth.setText("Date of birth");
-        jPanel1.add(lblDateOfBirth);
-
-        txtDateOfBirth.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
-        jPanel1.add(txtDateOfBirth);
-
-        lblDateStartWork.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblDateStartWork.setText("Start date of work");
-        jPanel1.add(lblDateStartWork);
-
-        txtDateOfWork.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
-        jPanel1.add(txtDateOfWork);
-
-        lblAddress.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblAddress.setText("Address");
-        jPanel1.add(lblAddress);
-        jPanel1.add(txtAddress);
-
-        lblEmail.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblEmail.setText("Email");
-        jPanel1.add(lblEmail);
-        jPanel1.add(txtEmail);
-
-        lblPhone.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblPhone.setText("Phone");
-        jPanel1.add(lblPhone);
-        jPanel1.add(txtPhone);
-
-        jPanel3.setLayout(new java.awt.GridLayout(10, 1, 10, 10));
-
-        lblID.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblID.setText("Employee ID");
-        jPanel3.add(lblID);
-        jPanel3.add(txtID);
-
-        lblFullName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblFullName.setText("Full Name");
-        jPanel3.add(lblFullName);
-        jPanel3.add(txtFullName);
-
-        lblPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblPassword.setText("Password");
-        jPanel3.add(lblPassword);
-        jPanel3.add(txtPassword);
-
-        lblConfirmPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblConfirmPassword.setText("Confirm Password");
-        jPanel3.add(lblConfirmPassword);
-        jPanel3.add(txtConfirmPassword);
-
-        jPanel2.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
-
-        buttonGroup1.add(rdoBoss);
-        rdoBoss.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        rdoBoss.setSelected(true);
-        rdoBoss.setText("Boss");
-        jPanel2.add(rdoBoss);
-
-        buttonGroup1.add(rdoManager);
-        rdoManager.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        rdoManager.setText("Manager");
-        jPanel2.add(rdoManager);
-
-        buttonGroup1.add(rdoPharmacist);
-        rdoPharmacist.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        rdoPharmacist.setText("Pharmacist");
-        jPanel2.add(rdoPharmacist);
-
-        lblRole.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblRole.setText("Role");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(276, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(jPanel6);
-
-        lblDaiLy.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lblDaiLy.setText("Đại lý");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(lblDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboDaiLy, 0, 649, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(jPanel5);
-
-        tblGridView.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -292,6 +140,44 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(tblGridView);
+
+        pnlEdit.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+
+        btnInsert.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
+        pnlEdit.add(btnInsert);
+
+        btnUpdate.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        pnlEdit.add(btnUpdate);
+
+        btnDelete.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        pnlEdit.add(btnDelete);
+
+        btnNew.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnNew.setText("New");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
+        pnlEdit.add(btnNew);
 
         jPanel4.setLayout(new java.awt.GridLayout(1, 0, 10, 10));
 
@@ -327,40 +213,171 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         });
         jPanel4.add(btnLast);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(96, 96, 96))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel3.setLayout(new java.awt.GridLayout(9, 1, 10, 10));
+
+        lblID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblID.setText("Employee ID");
+        jPanel3.add(lblID);
+
+        txtID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel3.add(txtID);
+
+        lblFullName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblFullName.setText("Full Name");
+        jPanel3.add(lblFullName);
+
+        txtFullName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel3.add(txtFullName);
+
+        lblPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblPassword.setText("Password");
+        jPanel3.add(lblPassword);
+
+        txtPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel3.add(txtPassword);
+
+        lblConfirmPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblConfirmPassword.setText("Confirm Password");
+        jPanel3.add(lblConfirmPassword);
+
+        txtConfirmPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel3.add(txtConfirmPassword);
+
+        jPanel2.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
+
+        buttonGroup1.add(rdoBoss);
+        rdoBoss.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        rdoBoss.setSelected(true);
+        rdoBoss.setText("Boss");
+        jPanel2.add(rdoBoss);
+
+        buttonGroup1.add(rdoManager);
+        rdoManager.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        rdoManager.setText("Manager");
+        jPanel2.add(rdoManager);
+
+        buttonGroup1.add(rdoPharmacist);
+        rdoPharmacist.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        rdoPharmacist.setText("Pharmacist");
+        jPanel2.add(rdoPharmacist);
+
+        lblRole.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblRole.setText("Role");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel6);
+
+        jPanel1.setLayout(new java.awt.GridLayout(10, 1, 10, 10));
+
+        lblDateOfBirth.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblDateOfBirth.setText("Date of birth");
+        jPanel1.add(lblDateOfBirth);
+
+        txtDateOfBirth.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
+        txtDateOfBirth.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(txtDateOfBirth);
+
+        lblDateStartWork.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblDateStartWork.setText("Start date of work");
+        jPanel1.add(lblDateStartWork);
+
+        txtDateOfWork.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
+        txtDateOfWork.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(txtDateOfWork);
+
+        lblAddress.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblAddress.setText("Address");
+        jPanel1.add(lblAddress);
+
+        txtAddress.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(txtAddress);
+
+        lblEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblEmail.setText("Email");
+        jPanel1.add(lblEmail);
+
+        txtEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(txtEmail);
+
+        lblPhone.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblPhone.setText("Phone");
+        jPanel1.add(lblPhone);
+
+        txtPhone.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(txtPhone);
+
+        lblDaiLy.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblDaiLy.setText("Đại lý");
+
+        cboDaiLy.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        cboDaiLy.setMinimumSize(new java.awt.Dimension(43, 30));
+        cboDaiLy.setPreferredSize(new java.awt.Dimension(40, 30));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(lblDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(pnlEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel7);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -447,9 +464,10 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblDaiLy;
