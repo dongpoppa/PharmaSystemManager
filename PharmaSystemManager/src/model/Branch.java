@@ -82,4 +82,9 @@ public class Branch
     {
         this.status = status;
     }
+    
+    public String toString()
+    {
+        return this.branchName;
+    }
 }
