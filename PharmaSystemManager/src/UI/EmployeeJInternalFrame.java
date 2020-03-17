@@ -34,7 +34,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     public EmployeeJInternalFrame(JFrame frame) {
         ShareHelper.frame = frame;
         initComponents();
-        setTitle("Pharma4U - Employee Manager");
     }
 
     /**
