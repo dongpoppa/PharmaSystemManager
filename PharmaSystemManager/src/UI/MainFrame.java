@@ -18,7 +18,7 @@ import javax.swing.JInternalFrame;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    EmployeeJInternalFrame Eployeefrm;
+    EmployeeJInternalFrame employeeJInternalFrame;
 
     /**
      * Creates new form MainFrame
@@ -101,6 +101,11 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.add(jButton5);
 
         jButton6.setText("Employee Manager");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         pnlMenu.add(jButton6);
 
         jButton7.setText("Agency Manager");
@@ -137,19 +142,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.openEmployee();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
     //----------------------------FUNCTION--------------------------------//
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
-
     void init() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         setIconImage(ShareHelper.APP_ICON.getImage());
         this.setVisible(true);
-        this.login();
+//        this.login();
     }
 
     void login() {
@@ -158,27 +167,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     void openEmployee() {
 //        if (ShareHelper.authenticated()) {
-        new EmployeeJInternalFrame().setVisible(true);
-        Eployeefrm = new EmployeeJInternalFrame();
-        openJFrameIternal(Eployeefrm);
+        for (JInternalFrame fr : desktop.getAllFrames()) {
+            fr.dispose();
+        }
+        employeeJInternalFrame = new EmployeeJInternalFrame();
+        desktop.add(employeeJInternalFrame);
+        employeeJInternalFrame.setLocation(this.getWidth() / 2 - employeeJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - employeeJInternalFrame.getHeight() / 2);
+        employeeJInternalFrame.setVisible(true);
 //        } else {
 //            DialogHelper.alert(this, "Please login to use this feature!");
 //        }
     }
-
-    void openJFrameIternal(JInternalFrame frame) {
-//        if (ShareHelper.authenticated()) {
-        for (JInternalFrame fr : desktop.getAllFrames()) {
-            fr.dispose();
-        }
-        desktop.add(frame);
-        frame.setLocation(this.getWidth() / 2 - frame.getWidth() / 2, this.getHeight() / 3 - frame.getHeight() / 2);
-        frame.setVisible(true);
-//        } else {
-//            DialogHelper.alert(this, "Xin vui lòng đăng nhập!");
-//        }
-    }
-
+    
     /**
      * @param args the command line arguments
      */

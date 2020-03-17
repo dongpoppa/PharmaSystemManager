@@ -6,6 +6,7 @@
 package UI;
 
 import DAO.EmployeeDAO;
+import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import java.util.List;
@@ -57,14 +58,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         lblDateStartWork = new javax.swing.JLabel();
         txtDateOfWork = new javax.swing.JFormattedTextField();
         lblPhone = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JPasswordField();
         lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JPasswordField();
         lblAddress = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
-        lblStatus = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtStatus = new javax.swing.JTextArea();
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -73,9 +68,33 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        txtPhone = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        lblDaiLy = new javax.swing.JLabel();
+        cboDaiLy = new javax.swing.JComboBox();
         pnlList = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblGridView = new javax.swing.JTable();
+
+        setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         lblID.setText("Employee ID");
 
@@ -111,12 +130,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         lblAddress.setText("Address");
 
-        lblStatus.setText("Status");
-
-        txtStatus.setColumns(20);
-        txtStatus.setRows(5);
-        jScrollPane1.setViewportView(txtStatus);
-
         btnInsert.setText("Insert");
 
         btnUpdate.setText("Update");
@@ -125,13 +138,15 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         btnNew.setText("New");
 
-        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/don_top.png"))); // NOI18N
+        btnFirst.setText("|<");
 
-        btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/don_up.png"))); // NOI18N
+        btnPrev.setText("<<");
 
-        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/don_down.png"))); // NOI18N
+        btnNext.setText(">>");
 
-        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/don_bottom.png"))); // NOI18N
+        btnLast.setText(">|");
+
+        lblDaiLy.setText("Đại lý");
 
         javax.swing.GroupLayout pnlEditLayout = new javax.swing.GroupLayout(pnlEdit);
         pnlEdit.setLayout(pnlEditLayout);
@@ -143,39 +158,37 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     .addGroup(pnlEditLayout.createSequentialGroup()
                         .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFullName)
-                            .addComponent(lblStatus)
                             .addGroup(pnlEditLayout.createSequentialGroup()
                                 .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lblID)
-                                        .addComponent(jScrollPane1)
-                                        .addComponent(txtPassword)
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                                         .addComponent(txtConfirmPassword))
-                                    .addComponent(lblPassword))
-                                .addGap(62, 62, 62)
-                                .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEmail)
-                                    .addComponent(lblPhone)
-                                    .addComponent(lblDateOfBirth)
-                                    .addComponent(lblDateStartWork)
-                                    .addComponent(lblAddress)
+                                    .addComponent(lblPassword)
                                     .addComponent(lblRole)
                                     .addGroup(pnlEditLayout.createSequentialGroup()
                                         .addComponent(rdoBoss)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(rdoManager)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdoPharmacist))
-                                    .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtDateOfBirth, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtDateOfWork, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING))))
+                                        .addComponent(rdoPharmacist)))
+                                .addGap(65, 65, 65)
+                                .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblEmail)
+                                    .addComponent(lblPhone)
+                                    .addComponent(lblDateOfBirth)
+                                    .addComponent(lblDateStartWork)
+                                    .addComponent(lblAddress)
+                                    .addComponent(txtDateOfBirth)
+                                    .addComponent(txtDateOfWork)
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtAddress)))
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(13, Short.MAX_VALUE))
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(pnlEditLayout.createSequentialGroup()
                         .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDaiLy)
                             .addGroup(pnlEditLayout.createSequentialGroup()
                                 .addComponent(btnInsert)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,17 +197,18 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                                 .addComponent(btnDelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnNew)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnFirst)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLast))
+                                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblConfirmPassword)
-                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 39, Short.MAX_VALUE))))
+                            .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 29, Short.MAX_VALUE))))
         );
         pnlEditLayout.setVerticalGroup(
             pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,30 +248,30 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddress)
-                    .addComponent(lblStatus))
+                    .addComponent(lblRole))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlEditLayout.createSequentialGroup()
-                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblRole)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdoBoss)
-                            .addComponent(rdoManager)
-                            .addComponent(rdoPharmacist)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInsert)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(btnNew)
-                    .addComponent(btnFirst)
-                    .addComponent(btnPrev)
-                    .addComponent(btnNext)
-                    .addComponent(btnLast))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rdoBoss)
+                    .addComponent(rdoManager)
+                    .addComponent(rdoPharmacist)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDaiLy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboDaiLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsert)
+                        .addComponent(btnUpdate)
+                        .addComponent(btnDelete)
+                        .addComponent(btnNew))
+                    .addGroup(pnlEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         tabs.addTab("EDIT", pnlEdit);
@@ -281,6 +295,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGridViewMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblGridView);
 
         javax.swing.GroupLayout pnlListLayout = new javax.swing.GroupLayout(pnlList);
@@ -289,15 +308,15 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             pnlListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlListLayout.setVerticalGroup(
             pnlListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
 
         tabs.addTab("LIST", pnlList);
@@ -307,18 +326,30 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 434, Short.MAX_VALUE)
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 445, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        this.load();
+        this.setStatus(true);
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tblGridViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGridViewMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tblGridViewMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -331,10 +362,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox cboDaiLy;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblConfirmPassword;
+    private javax.swing.JLabel lblDaiLy;
     private javax.swing.JLabel lblDateOfBirth;
     private javax.swing.JLabel lblDateStartWork;
     private javax.swing.JLabel lblEmail;
@@ -343,7 +375,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblRole;
-    private javax.swing.JLabel lblStatus;
     private javax.swing.JPanel pnlEdit;
     private javax.swing.JPanel pnlList;
     private javax.swing.JRadioButton rdoBoss;
@@ -355,12 +386,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JFormattedTextField txtDateOfBirth;
     private javax.swing.JFormattedTextField txtDateOfWork;
-    private javax.swing.JPasswordField txtEmail;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtID;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JPasswordField txtPhone;
-    private javax.swing.JTextArea txtStatus;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 
     void init() {
@@ -374,7 +404,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         try {
             List<Employee> list = dao.select();
             for (Employee nv : list) {
-                if (nv.isRole() && (nv.getStoreID() == null || nv.getStoreID().equals(""))) {
+                if (nv.isRole() && (nv.getStoreID() == null || nv.getStoreID().length() == 0)) {
                     vaiTro = "Boss";
                 } else if (nv.isRole() && (nv.getStoreID().length() > 0)) {
                     vaiTro = "Manager";
@@ -401,41 +431,61 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         }
     }
 
-//    void edit() {
-//        try {
-//            String manv = (String) tblGridView.getValueAt(this.index, 0);
-//            Employee model = dao.findById(manv);
-//            if (model != null) {
-//                this.setModel(model);
-//                this.setStatus(false);
-//            }
-//        } catch (Exception e) {
-//            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
-//        }
-//    }
-//
-//    void clear() {
-//        this.setModel(new Employee());
-//        this.setStatus(true);
-//    }
-//
-//    void setModel(Employee model) {
-//        txtMaNV.setText(model.getMaNV());
-//        txtHoTen.setText(model.getHoTen());
-//        txtMatKhau.setText(model.getMatKhau());
-//        txtXacNhanMK.setText(model.getMatKhau());
-//        rdoTruongPhong.setSelected(model.isVaiTro());
-//        rdoNhanVien.setSelected(!model.isVaiTro());
-//    }
-//
-//    Employee getModel() {
-//        Employee model = new Employee();
-//        model.setMaNV(txtMaNV.getText());
-//        model.setHoTen(txtHoTen.getText());
-//        model.setMatKhau(new String(txtMatKhau.getPassword()));
-//        model.setVaiTro(rdoTruongPhong.isSelected());
-//        return model;
-//    }
+    void edit() {
+        try {
+            String manv = (String) tblGridView.getValueAt(this.index, 0);
+            Employee model = dao.findById(manv);
+            if (model != null) {
+                this.setModel(model);
+                this.setStatus(false);
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+
+    void clear() {
+        this.setModel(new Employee());
+        this.setStatus(true);
+    }
+
+    void setModel(Employee model) {
+        txtID.setText(model.getEmployeeID());
+        txtPassword.setText(model.getPassword());
+        txtConfirmPassword.setText(model.getPassword());
+        txtFullName.setText(model.getName());
+        txtDateOfBirth.setText(DateHelper.toString(model.getDateOfBirth()));
+        txtDateOfWork.setText(DateHelper.toString(model.getStartDate()));
+        txtPhone.setText(model.getPhone());
+        txtEmail.setText(model.getEmail());
+        txtAddress.setText(model.getAddress());
+        if (model.isRole() && (model.getStatus() == null || model.getStatus().length() == 0)) {
+            rdoBoss.setSelected(true);
+        } else if (model.isRole() && model.getStatus().length() > 0) {
+            rdoManager.setSelected(true);
+        } else {
+            rdoPharmacist.setSelected(true);
+        }
+    }
+
+    Employee getModel() {
+        Employee model = new Employee();
+        model.setEmployeeID(txtID.getText());
+        model.setPassword(new String(txtPassword.getPassword()));
+        if(rdoBoss.isSelected() || rdoManager.isSelected()){
+            model.setRole(true);
+        } else{
+            model.setRole(false);
+        }
+        model.setName(txtFullName.getText());
+        model.setDateOfBirth(DateHelper.toDate(txtDateOfBirth.getText()));
+         model.setStartDate(DateHelper.toDate(txtDateOfWork.getText()));
+         model.setPhone(txtPhone.getText());
+         model.setEmail(txtEmail.getText());
+         model.setAddress(txtAddress.getText());
+         model.setStoreID(cboDaiLy.getModel().getSelectedItem().toString());
+        return model;
+    }
 
     void setStatus(boolean insertable) {
         txtID.setEditable(insertable);
