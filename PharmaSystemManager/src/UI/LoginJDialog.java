@@ -233,8 +233,16 @@ public class LoginJDialog extends javax.swing.JDialog
                 {
                     ShareHelper.USER = em;
                     DialogHelper.alert(this, "Login successful!");
-                    ShareHelper.Branch = (Branch) cbbBranch.getModel().getSelectedItem();
+                    if (em.isRole() && em.getStoreID() != null)
+                    {
+                        ShareHelper.Branch = bd.findById(em.getStoreID());
+                    }
+                    else
+                    {
+                        ShareHelper.Branch = (Branch) cbbBranch.getModel().getSelectedItem();
+                    }
                     this.dispose();
+                    System.out.println(ShareHelper.Branch.toString());
                 }
                 else
                 {
