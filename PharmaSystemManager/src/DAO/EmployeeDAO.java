@@ -36,11 +36,6 @@ public class EmployeeDAO {
         JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getEmployeeID());
     }
 
-    public void delete(String MaNV) {
-        String sql = "DELETE FROM NhanVien WHERE MaNV = ?";
-        JdbcHelper.executeUpdate(sql, MaNV);
-    }
-
     public List<Employee> select() {
         String sql = "SELECT * FROM NhanVien";
         return select(sql);
@@ -50,6 +45,12 @@ public class EmployeeDAO {
         String sql = "SELECT * FROM NhanVien WHERE MaNV = ?";
         List<Employee> list = select(sql, manv);
         return list.size() > 0 ? list.get(0) : null;
+    }
+
+    public List<Employee> findByBranch(String maDaiLy) {
+        String sql = "SELECT * FROM NhanVien WHERE MaDaiLy = ?";
+        List<Employee> list = select(sql, maDaiLy);
+        return list;
     }
 
     private List<Employee> select(String sql, Object... args) {

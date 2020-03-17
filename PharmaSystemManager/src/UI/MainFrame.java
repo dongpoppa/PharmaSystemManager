@@ -5,6 +5,7 @@
  */
 package UI;
 
+import helper.DialogHelper;
 import helper.ShareHelper;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -147,17 +148,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(pnlMenu, java.awt.BorderLayout.LINE_START);
 
-        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
-        desktop.setLayout(desktopLayout);
-        desktopLayout.setHorizontalGroup(
-            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
-        );
-        desktopLayout.setVerticalGroup(
-            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
-        );
-
+        desktop.setLayout(new java.awt.GridLayout());
         getContentPane().add(desktop, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
@@ -203,7 +194,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     void openEmployee() {
-//        if (ShareHelper.authenticated()) {
+        if (!ShareHelper.USER.isRole()) {
+            DialogHelper.alert(this, "You can't access here");
+            return;
+        }
         for (JInternalFrame fr : desktop.getAllFrames()) {
             fr.dispose();
         }
@@ -211,9 +205,6 @@ public class MainFrame extends javax.swing.JFrame {
         desktop.add(employeeJInternalFrame);
         employeeJInternalFrame.setLocation(this.getWidth() / 2 - employeeJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - employeeJInternalFrame.getHeight() / 2);
         employeeJInternalFrame.setVisible(true);
-//        } else {
-//            DialogHelper.alert(this, "Please login to use this feature!");
-//        }
     }
 
     /**
