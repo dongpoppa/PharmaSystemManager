@@ -67,7 +67,8 @@ public class StoragedDrugDAO {
 
     private StoragedDrug readFromResultSet(ResultSet rs) throws SQLException {
         StoragedDrug model = new StoragedDrug();
-        model.setID(rs.getInt("MaLoHang"));
+        model.setID(rs.getInt("IDThuoc"));
+        model.setBatchNo(rs.getString("MaLoHang"));
         model.setMFG(rs.getDate("NgaySX"));
         model.setEXP(rs.getDate("NgayHetHan"));
         model.setQuantity(rs.getInt("SoLuong"));

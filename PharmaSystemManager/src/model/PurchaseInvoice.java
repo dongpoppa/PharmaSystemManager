@@ -14,15 +14,15 @@ import java.util.Date;
 public class PurchaseInvoice {
 
     private String ID, employeeID, supplierID, payType, status;
-    private Date saleDate;
+    private Date purchaseDate;
     private int discount;
     private double purchaseMoney, remainMoney;
 
-    public String getPurchaseInvoiceID() {
+    public String getID() {
         return ID;
     }
 
-    public void setPurchaseInvoiceID(String purchaseInvoiceID) {
+    public void setID(String purchaseInvoiceID) {
         this.ID = purchaseInvoiceID;
     }
 
@@ -50,20 +50,20 @@ public class PurchaseInvoice {
         this.payType = payType;
     }
 
-    public String getPurchaseInvoiceStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setPurchaseInvoiceStatus(String purchaseInvoiceStatus) {
+    public void setStatus(String purchaseInvoiceStatus) {
         this.status = purchaseInvoiceStatus;
     }
 
-    public Date getSaleDate() {
-        return saleDate;
+    public Date getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setSaleDate(Date saleDate) {
-        this.saleDate = saleDate;
+    public void setPurchaseDate(Date saleDate) {
+        this.purchaseDate = saleDate;
     }
 
     public int getDiscount() {
