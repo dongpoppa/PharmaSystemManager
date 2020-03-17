@@ -5,21 +5,25 @@
  */
 package UI;
 
+import DAO.BranchDAO;
 import DAO.EmployeeDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import helper.UtilitiesHelper;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import model.Branch;
 import model.Employee;
 
 /**
  *
  * @author Admin
  */
-public class LoginJDialog extends javax.swing.JDialog
+public class LoginJDialog11111 extends javax.swing.JDialog
 {
 
     /** Creates new form LoginJDialog */
-    public LoginJDialog(java.awt.Frame parent, boolean modal)
+    public LoginJDialog11111(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
@@ -139,17 +143,18 @@ public class LoginJDialog extends javax.swing.JDialog
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(LoginJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJDialog11111.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(LoginJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJDialog11111.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(LoginJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJDialog11111.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(LoginJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJDialog11111.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
@@ -157,7 +162,7 @@ public class LoginJDialog extends javax.swing.JDialog
         {
             public void run()
             {
-                LoginJDialog dialog = new LoginJDialog(new javax.swing.JFrame(), true);
+                LoginJDialog11111 dialog = new LoginJDialog11111(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter()
                 {
                     @Override
@@ -191,7 +196,7 @@ public class LoginJDialog extends javax.swing.JDialog
                 {
                     ShareHelper.USER=em;
                     DialogHelper.alert(this, "Login successful!");
-                    ///gán branch
+                    ShareHelper.Branch= cbbBranch.getModel();
                 }
                 else
                     DialogHelper.alert(this, "Wrong password!");
@@ -203,6 +208,27 @@ public class LoginJDialog extends javax.swing.JDialog
             DialogHelper.alert(this, "Database access error!");
             e.printStackTrace();
         }
+    }
+    
+    BranchDAO bd= new BranchDAO();
+    
+    void fillCombobox()
+    {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbBranch.getModel();
+        model.removeAllElements();
+        try
+        {
+            List<Branch> list= bd.select();
+            for (Branch br:list)
+            {
+               model.addElement(br);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
