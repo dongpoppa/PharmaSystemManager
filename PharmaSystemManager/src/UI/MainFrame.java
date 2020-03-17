@@ -9,9 +9,14 @@ import helper.DialogHelper;
 import helper.ShareHelper;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.Timer;
 
 /**
  *
@@ -29,7 +34,6 @@ public class MainFrame extends javax.swing.JFrame
     {
         initComponents();
         init();
-        new LoginJDialog(this, true).setVisible(true);
     }
 
     /**
@@ -40,7 +44,17 @@ public class MainFrame extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        pnlStatus = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lblPharName = new javax.swing.JLabel();
+        lblBranchName = new javax.swing.JLabel();
+        lblTime = new javax.swing.JLabel();
         pnlMenu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -59,42 +73,114 @@ public class MainFrame extends javax.swing.JFrame
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pharma4U");
         setAutoRequestFocus(false);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(211, 24));
+        pnlStatus.setPreferredSize(new java.awt.Dimension(211, 24));
+        pnlStatus.setLayout(new java.awt.GridLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 126, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        pnlStatus.add(jPanel4);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 126, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        pnlStatus.add(jPanel3);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 871, Short.MAX_VALUE)
+            .addGap(0, 126, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 24, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        pnlStatus.add(jPanel2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 126, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        pnlStatus.add(jPanel1);
+
+        lblPharName.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblPharName.setText("pharmacist's name");
+        pnlStatus.add(lblPharName);
+
+        lblBranchName.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblBranchName.setText("Branch's position");
+        pnlStatus.add(lblBranchName);
+
+        lblTime.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblTime.setForeground(new java.awt.Color(255, 51, 51));
+        lblTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/clock.png"))); // NOI18N
+        lblTime.setText("hh:mm:ss");
+        pnlStatus.add(lblTime);
+
+        getContentPane().add(pnlStatus, java.awt.BorderLayout.PAGE_END);
 
         pnlMenu.setBackground(new java.awt.Color(190, 232, 239));
         pnlMenu.setPreferredSize(new java.awt.Dimension(150, 551));
         pnlMenu.setLayout(new java.awt.GridLayout(9, 1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setBackground(new java.awt.Color(255, 227, 249));
+        jButton1.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 51));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/purchase_invoice.png"))); // NOI18N
         jButton1.setText("Purchase Invoices");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton1);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setBackground(new java.awt.Color(255, 227, 249));
+        jButton2.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 51, 51));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sale_invoice.png"))); // NOI18N
         jButton2.setText("Sale Invoices");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -102,24 +188,41 @@ public class MainFrame extends javax.swing.JFrame
         });
         pnlMenu.add(jButton2);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setBackground(new java.awt.Color(255, 227, 249));
+        jButton3.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 51, 51));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/supplier.png"))); // NOI18N
         jButton3.setText("Suppliers Manager");
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton3);
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Drugs Infomation Manager");
+        jButton4.setBackground(new java.awt.Color(255, 227, 249));
+        jButton4.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(51, 51, 51));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/drug_information.png"))); // NOI18N
+        jButton4.setText("<html><p style=\"text-align: center\">Drugs Infomation <br>  Manager</p></html>");
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton4);
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Drugs Status Manager");
+        jButton5.setBackground(new java.awt.Color(255, 227, 249));
+        jButton5.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(51, 51, 51));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/drug_status.png"))); // NOI18N
+        jButton5.setText("<html><p style=\"text-align: center\">Drugs Status <br>  Manager</p></html>");
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton5);
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jButton6.setBackground(new java.awt.Color(255, 227, 249));
+        jButton6.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(51, 51, 51));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employee.png"))); // NOI18N
         jButton6.setText("Employee Manager");
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -127,19 +230,32 @@ public class MainFrame extends javax.swing.JFrame
         });
         pnlMenu.add(jButton6);
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setText("Agency Manager");
+        jButton7.setBackground(new java.awt.Color(255, 227, 249));
+        jButton7.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(51, 51, 51));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/store.png"))); // NOI18N
+        jButton7.setText("Branch Manager");
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton7);
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
+        jButton8.setBackground(new java.awt.Color(255, 227, 249));
+        jButton8.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(51, 51, 51));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/report.png"))); // NOI18N
         jButton8.setText("Report");
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         pnlMenu.add(jButton8);
 
-        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
-        btnLogout.setForeground(new java.awt.Color(0, 0, 0));
+        btnLogout.setBackground(new java.awt.Color(255, 227, 249));
+        btnLogout.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(51, 51, 51));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logout.png"))); // NOI18N
         btnLogout.setText("Logout");
+        btnLogout.setHideActionText(true);
+        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
@@ -153,20 +269,33 @@ public class MainFrame extends javax.swing.JFrame
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+            .addGap(0, 732, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 1046, Short.MAX_VALUE)
         );
 
         getContentPane().add(desktop, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("File");
+        jMenu1.setText("   File   ");
+
+        jMenuItem2.setText("Logout");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem1.setText("Change password");
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("   Invoices   ");
         jMenuBar1.add(jMenu2);
+
+        jMenu5.setText("   Manager   ");
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("   statistical   ");
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -203,7 +332,20 @@ public class MainFrame extends javax.swing.JFrame
         this.setLocationRelativeTo(null);
         setIconImage(ShareHelper.APP_ICON.getImage());
         this.setVisible(true);
-//        this.login();
+        
+        this.login();
+        
+        //Status panel
+        new Timer(1000, new ActionListener() {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblTime.setText(sdf.format(new Date()));
+            }
+        }).start();
+        lblPharName.setText(ShareHelper.USER.getName());
+        lblBranchName.setText(ShareHelper.getUserPosition());
     }
 
     void login()
@@ -288,9 +430,23 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton jButton8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblBranchName;
+    private javax.swing.JLabel lblPharName;
+    private javax.swing.JLabel lblTime;
     private javax.swing.JPanel pnlMenu;
+    private javax.swing.JPanel pnlStatus;
     // End of variables declaration//GEN-END:variables
 
 }

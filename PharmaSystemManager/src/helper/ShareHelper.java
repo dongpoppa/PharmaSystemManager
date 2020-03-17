@@ -69,6 +69,16 @@ public class ShareHelper {
     public static String getStatus() {
         return ShareHelper.USER.getEmployeeID() + " - " + DateHelper.now().toString() + " - " + ShareHelper.status;
     }
+    
+    public static String getUserPosition() {
+         if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0)) {
+                   return "Boss";
+                } else if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID().length() > 0)) {
+                    return "Manager";
+                } else {
+                    return "Pharmacist";
+                }
+    }
 
     /**
      * Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất
