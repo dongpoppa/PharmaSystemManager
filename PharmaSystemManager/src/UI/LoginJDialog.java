@@ -6,6 +6,10 @@
 package UI;
 
 import DAO.EmployeeDAO;
+import helper.DialogHelper;
+import helper.ShareHelper;
+import helper.UtilitiesHelper;
+import model.Employee;
 
 /**
  *
@@ -27,11 +31,12 @@ public class LoginJDialog extends javax.swing.JDialog
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        cbbDaiLy = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        cbbBranch = new javax.swing.JComboBox<>();
+        txtID = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -44,37 +49,39 @@ public class LoginJDialog extends javax.swing.JDialog
         setMinimumSize(new java.awt.Dimension(830, 530));
         getContentPane().setLayout(null);
 
-        cbbDaiLy.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(cbbDaiLy);
-        cbbDaiLy.setBounds(540, 330, 210, 30);
+        cbbBranch.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(cbbBranch);
+        cbbBranch.setBounds(540, 330, 210, 30);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(540, 210, 210, 30);
+        txtID.setBackground(new java.awt.Color(255, 255, 255));
+        txtID.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(txtID);
+        txtID.setBounds(540, 210, 210, 30);
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(540, 270, 210, 30);
+        txtPass.setBackground(new java.awt.Color(255, 255, 255));
+        txtPass.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(txtPass);
+        txtPass.setBounds(540, 270, 210, 30);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Exit");
         jButton2.setMaximumSize(new java.awt.Dimension(32, 32));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(650, 400, 90, 32);
+        jButton2.setBounds(650, 400, 90, 25);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Login");
         getContentPane().add(jButton1);
-        jButton1.setBounds(550, 400, 90, 32);
+        jButton1.setBounds(550, 400, 90, 25);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/login_logo.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -83,17 +90,17 @@ public class LoginJDialog extends javax.swing.JDialog
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Branch");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(710, 310, 41, 16);
+        jLabel1.setBounds(710, 310, 35, 15);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("User ID");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(700, 190, 50, 16);
+        jLabel2.setBounds(700, 190, 50, 15);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(690, 250, 58, 16);
+        jLabel3.setBounds(690, 250, 50, 15);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/login_background.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -168,11 +175,38 @@ public class LoginJDialog extends javax.swing.JDialog
     
     void login()
     {
-        if(Utili)
+        if(UtilitiesHelper.checkNull(txtID, "Tên đăng nhập không để trống"))
+        {
+            return;
+        }
+        String ID= txtID.getText();
+        String pass= new String(txtPass.getPassword());
+        try
+        {
+            Employee em= new Employee();
+            if(em!=null)
+            {
+                String pass2= em.getPassword();
+                if(pass.equals(pass2))
+                {
+                    ShareHelper.USER=em;
+                    DialogHelper.alert(this, "Login successful!");
+                    ///gán branch
+                }
+                else
+                    DialogHelper.alert(this, "Wrong password!");
+            }
+            else
+                DialogHelper.alert(this, "ID not found!");
+        } catch (Exception e)
+        {
+            DialogHelper.alert(this, "Database access error!");
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbbDaiLy;
+    private javax.swing.JComboBox<String> cbbBranch;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -180,7 +214,7 @@ public class LoginJDialog extends javax.swing.JDialog
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }

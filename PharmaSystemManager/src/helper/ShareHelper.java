@@ -47,6 +47,7 @@ public class ShareHelper {
     }
 
     public static Employee USER = null;
+    public static String Branch=null;
 
     public static void logoff() {
         ShareHelper.USER = null;
