@@ -12,6 +12,7 @@ import helper.DialogHelper;
 import helper.ShareHelper;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Branch;
 import model.Employee;
@@ -29,7 +30,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form NhanVienJInternalFrame
      */
-    public EmployeeJInternalFrame() {
+    public EmployeeJInternalFrame(JFrame frame) {
+        ShareHelper.frame = frame;
         initComponents();
     }
 
@@ -647,7 +649,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void delete() {
-        new ConfirmDeleteHelper(this, true).setVisible(true);
-        
+        new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
+
     }
 }

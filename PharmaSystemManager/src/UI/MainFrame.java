@@ -169,7 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
         for (JInternalFrame fr : desktop.getAllFrames()) {
             fr.dispose();
         }
-        employeeJInternalFrame = new EmployeeJInternalFrame();
+        employeeJInternalFrame = new EmployeeJInternalFrame(this);
         desktop.add(employeeJInternalFrame);
         employeeJInternalFrame.setLocation(this.getWidth() / 2 - employeeJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - employeeJInternalFrame.getHeight() / 2);
         employeeJInternalFrame.setVisible(true);
@@ -177,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
 //            DialogHelper.alert(this, "Please login to use this feature!");
 //        }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -208,7 +208,9 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                MainFrame frame = new MainFrame();
+                frame.setVisible(true);
+                ShareHelper.frame = frame;
             }
         });
     }

@@ -7,7 +7,7 @@ package UI;
 
 import helper.DialogHelper;
 import helper.ShareHelper;
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,7 +18,8 @@ public class ConfirmDeleteHelper extends javax.swing.JDialog {
     /**
      * Creates new form ConfirmDeleteHelper
      */
-    public ConfirmDeleteHelper(JInternalFrame parent, boolean modal) {
+    public ConfirmDeleteHelper(JFrame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -40,8 +41,7 @@ public class ConfirmDeleteHelper extends javax.swing.JDialog {
         btnConfirm = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         lblPassword.setText("Password");
 
@@ -148,7 +148,7 @@ public class ConfirmDeleteHelper extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConfirmDeleteHelper dialog = new ConfirmDeleteHelper(new JInternalFrame(), true);
+                ConfirmDeleteHelper dialog = new ConfirmDeleteHelper(new JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
