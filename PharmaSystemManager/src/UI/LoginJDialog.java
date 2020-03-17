@@ -28,6 +28,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         init();
+        fillCombobox();
     }
 
     /**
@@ -132,6 +133,7 @@ public class LoginJDialog extends javax.swing.JDialog {
 
     void init() {
         setLocationRelativeTo(null);
+        ShareHelper.USER=null;
     }
 
     /**
@@ -195,16 +197,19 @@ public class LoginJDialog extends javax.swing.JDialog {
                     ShareHelper.USER = em;
                     DialogHelper.alert(this, "Login successful!");
                     ShareHelper.Branch = (Branch) cbbBranch.getModel().getSelectedItem();
+                    this.dispose();
                 } else {
                     DialogHelper.alert(this, "Wrong password!");
                 }
             } else {
                 DialogHelper.alert(this, "ID not found!");
             }
+            
         } catch (Exception e) {
             DialogHelper.alert(this, "Database access error!");
             e.printStackTrace();
         }
+        
     }
 
     BranchDAO bd = new BranchDAO();
