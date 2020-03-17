@@ -5,15 +5,12 @@
  */
 package UI;
 
-import DAO.BranchDAO;
 import DAO.EmployeeDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import model.Branch;
 import model.Employee;
 
 /**
@@ -24,7 +21,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
     int index = 0; // vị trí của nhân viên đang hiển thị trên form
     EmployeeDAO dao = new EmployeeDAO();
-    BranchDAO branchDAO = new BranchDAO();
 
     /**
      * Creates new form NhanVienJInternalFrame
@@ -367,8 +363,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
         this.load();
-        this.fillCombobox();
-        this.clear();
         this.setStatus(true);
     }//GEN-LAST:event_formInternalFrameOpened
 
@@ -528,18 +522,18 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         Employee model = new Employee();
         model.setEmployeeID(txtID.getText());
         model.setPassword(new String(txtPassword.getPassword()));
-        if (rdoBoss.isSelected() || rdoManager.isSelected()) {
+        if(rdoBoss.isSelected() || rdoManager.isSelected()){
             model.setRole(true);
-        } else {
+        } else{
             model.setRole(false);
         }
         model.setName(txtFullName.getText());
         model.setDateOfBirth(DateHelper.toDate(txtDateOfBirth.getText()));
-        model.setStartDate(DateHelper.toDate(txtDateOfWork.getText()));
-        model.setPhone(txtPhone.getText());
-        model.setEmail(txtEmail.getText());
-        model.setAddress(txtAddress.getText());
-        model.setStoreID(cboDaiLy.getModel().getSelectedItem().toString());
+         model.setStartDate(DateHelper.toDate(txtDateOfWork.getText()));
+         model.setPhone(txtPhone.getText());
+         model.setEmail(txtEmail.getText());
+         model.setAddress(txtAddress.getText());
+         model.setStoreID(cboDaiLy.getModel().getSelectedItem().toString());
         return model;
     }
 
@@ -554,18 +548,5 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnPrev.setEnabled(!insertable && first);
         btnNext.setEnabled(!insertable && last);
         btnLast.setEnabled(!insertable && last);
-    }
-
-    void fillCombobox() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboDaiLy.getModel();
-        model.removeAllElements();
-        try {
-            List<Branch> list = branchDAO.select();
-            for (Branch br : list) {
-                model.addElement(br);
-            }
-        } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
-        }
     }
 }
