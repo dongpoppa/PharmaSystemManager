@@ -190,21 +190,25 @@ public class LoginJDialog extends javax.swing.JDialog {
         String ID = txtID.getText();
         String pass = new String(txtPass.getPassword());
         try {
+            System.out.println("1");
             Employee em = ed.findById(ID);
-            if (em != null || em.getStatus() != null) {
-                String pass2 = em.getPassword();
-                if (pass.equals(pass2)) {
-                    ShareHelper.USER = em;
-                    DialogHelper.alert(this, "Login successful!");
-                    ShareHelper.Branch = (Branch) cbbBranch.getModel().getSelectedItem();
-                    this.dispose();
-                } else {
-                    DialogHelper.alert(this, "Wrong password!");
-                }
-            } else {
+            if (em == null) {
                 DialogHelper.alert(this, "ID not found!");
+            } else {
+                if (em.getStatus() == null) {
+                    String pass2 = em.getPassword();
+                    if (pass.equals(pass2)) {
+                        ShareHelper.USER = em;
+                        DialogHelper.alert(this, "Login successful!");
+                        ShareHelper.Branch = (Branch) cbbBranch.getModel().getSelectedItem();
+                        this.dispose();
+                    } else {
+                        DialogHelper.alert(this, "Wrong password!");
+                    }
+                } else {
+                    DialogHelper.alert(this, "ID not found!");
+                }
             }
-
         } catch (Exception e) {
             DialogHelper.alert(this, "Database access error!");
             e.printStackTrace();
@@ -228,7 +232,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         }
 
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbbBranch;
     private javax.swing.JButton jButton1;
