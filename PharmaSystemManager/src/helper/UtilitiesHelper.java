@@ -5,11 +5,9 @@
  */
 package helper;
 
-import helper.DialogHelper;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import helper.DateHelper;
 
 /**
  *
