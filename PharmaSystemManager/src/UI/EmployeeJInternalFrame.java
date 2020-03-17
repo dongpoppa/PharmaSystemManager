@@ -164,6 +164,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/first.png"))); // NOI18N
         btnFirst.setText("|<");
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,7 +582,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         model.setPhone(txtPhone.getText());
         model.setEmail(txtEmail.getText());
         model.setAddress(txtAddress.getText());
-        model.setStoreID(cboDaiLy.getModel().getSelectedItem().toString());
+        if (rdoBoss.isSelected()) {
+            model.setStoreID(null);
+        } else {
+            model.setStoreID(((Branch) cboDaiLy.getSelectedItem()).getBranchID());
+        }
         return model;
     }
 
@@ -622,6 +627,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 this.clear();
                 DialogHelper.alert(this, "Thêm mới thành công!");
             } catch (Exception e) {
+                e.printStackTrace();
                 DialogHelper.alert(this, "Thêm mới thất bại!");
             }
         } else {
@@ -652,8 +658,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
         if (ShareHelper.status != null) {
             Employee model = dao.findById(txtID.getText());
+            model.setStatus(ShareHelper.status);
             try {
-                dao.update(model);
+                dao.updateStatus(model);
                 this.load();
                 DialogHelper.alert(this, "Update successfull");
             } catch (Exception e) {

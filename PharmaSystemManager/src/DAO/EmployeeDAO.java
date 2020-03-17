@@ -6,6 +6,7 @@
 package DAO;
 
 import helper.JdbcHelper;
+import helper.ShareHelper;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class EmployeeDAO {
 
     public void updateStatus(Employee model) {
         String sql = "UPDATE NhanVien SET TrangThaiNV = ? Where MaNV = ?";
-        JdbcHelper.executeUpdate(sql, model.getEmployeeID());
+        JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getEmployeeID());
     }
 
     public void delete(String MaNV) {

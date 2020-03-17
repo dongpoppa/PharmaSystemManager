@@ -53,8 +53,8 @@ public class ShareHelper {
     public static Branch Branch = null;
     public static JFrame frame = null;
 
-    public String getStatus() {
-        return this.USER.getEmployeeID() + " - " + DateHelper.now().toString() + " - " + this.status;
+    public static String getStatus() {
+        return ShareHelper.USER.getEmployeeID() + " - " + DateHelper.now().toString() + " - " + ShareHelper.status;
     }
 
     public static void logoff() {

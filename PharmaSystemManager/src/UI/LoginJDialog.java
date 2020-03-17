@@ -123,7 +123,7 @@ public class LoginJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
@@ -133,7 +133,7 @@ public class LoginJDialog extends javax.swing.JDialog {
 
     void init() {
         setLocationRelativeTo(null);
-        ShareHelper.USER=null;
+        ShareHelper.USER = null;
     }
 
     /**
@@ -191,7 +191,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         String pass = new String(txtPass.getPassword());
         try {
             Employee em = ed.findById(ID);
-            if (em != null||em.getStatus()!=null) {
+            if (em != null || em.getStatus() != null) {
                 String pass2 = em.getPassword();
                 if (pass.equals(pass2)) {
                     ShareHelper.USER = em;
@@ -204,12 +204,12 @@ public class LoginJDialog extends javax.swing.JDialog {
             } else {
                 DialogHelper.alert(this, "ID not found!");
             }
-            
+
         } catch (Exception e) {
             DialogHelper.alert(this, "Database access error!");
             e.printStackTrace();
         }
-        
+
     }
 
     BranchDAO bd = new BranchDAO();
