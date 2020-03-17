@@ -5,12 +5,15 @@
  */
 package UI;
 
+import DAO.BranchDAO;
 import DAO.EmployeeDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import model.Branch;
 import model.Employee;
 
 /**
@@ -21,6 +24,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
     int index = 0; // vị trí của nhân viên đang hiển thị trên form
     EmployeeDAO dao = new EmployeeDAO();
+    BranchDAO branchDAO = new BranchDAO();
 
     /**
      * Creates new form NhanVienJInternalFrame
@@ -131,10 +135,25 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         lblAddress.setText("Address");
 
         btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnNew.setText("New");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -367,7 +386,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
+        this.fillToCombobox();
         this.load();
+        this.clear();
         this.setStatus(true);
     }//GEN-LAST:event_formInternalFrameOpened
 
@@ -410,6 +431,21 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.clear();
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        // TODO add your handling code here:
+        this.insert();
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        this.update();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -519,9 +555,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         txtPhone.setText(model.getPhone());
         txtEmail.setText(model.getEmail());
         txtAddress.setText(model.getAddress());
-        if (model.isRole() && (model.getStatus() == null || model.getStatus().length() == 0)) {
+        if (model.isRole() && (model.getStoreID() == null || model.getStoreID().length() == 0)) {
             rdoBoss.setSelected(true);
-        } else if (model.isRole() && model.getStatus().length() > 0) {
+        } else if (model.isRole() && model.getStoreID().length() > 0) {
             rdoManager.setSelected(true);
         } else {
             rdoPharmacist.setSelected(true);
@@ -558,5 +594,60 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnPrev.setEnabled(!insertable && first);
         btnNext.setEnabled(!insertable && last);
         btnLast.setEnabled(!insertable && last);
+    }
+
+    void fillToCombobox() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboDaiLy.getModel();
+        model.removeAllElements();
+        try {
+            List<Branch> list = branchDAO.select();
+            for (Branch branch : list) {
+                model.addElement(branch);
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+
+    void insert() {
+        Employee model = getModel();
+
+        String confirm = new String(txtConfirmPassword.getPassword());
+        if (confirm.equals(model.getPassword())) {
+            try {
+                dao.insert(model);
+                this.load();
+                this.clear();
+                DialogHelper.alert(this, "Thêm mới thành công!");
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Thêm mới thất bại!");
+            }
+        } else {
+            DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
+            txtConfirmPassword.requestFocus();
+        }
+    }
+
+    void update() {
+        Employee model = getModel();
+
+        String confirm = new String(txtConfirmPassword.getPassword());
+        if (!confirm.equals(model.getPassword())) {
+            DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
+            txtConfirmPassword.requestFocus();
+        } else {
+            try {
+                dao.update(model);
+                this.load();
+                DialogHelper.alert(this, "Cập nhật thành công!");
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Cập nhật thất bại!");
+            }
+        }
+    }
+
+    void delete() {
+        new ConfirmDeleteHelper(this, true).setVisible(true);
+        
     }
 }
