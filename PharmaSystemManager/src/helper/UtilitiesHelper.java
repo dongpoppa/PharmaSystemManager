@@ -15,7 +15,7 @@ import helper.DateHelper;
  *
  * @author Admin
  */
-public class UtilitiesHelper1
+public class UtilitiesHelper
 {
 
     public static boolean checkNull(JTextField c, String m)
