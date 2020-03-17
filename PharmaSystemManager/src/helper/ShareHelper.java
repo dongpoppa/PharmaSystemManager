@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
+import model.Branch;
 
 /**
  *
@@ -47,7 +48,7 @@ public class ShareHelper {
     }
 
     public static Employee USER = null;
-    public static String Branch=null;
+    public static Branch Branch = null;
 
     public static void logoff() {
         ShareHelper.USER = null;

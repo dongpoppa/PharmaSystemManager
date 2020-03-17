@@ -137,6 +137,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnDelete.setText("Delete");
 
         btnNew.setText("New");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnFirst.setText("|<");
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
@@ -401,6 +406,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        this.clear();
+    }//GEN-LAST:event_btnNewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -522,18 +532,18 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         Employee model = new Employee();
         model.setEmployeeID(txtID.getText());
         model.setPassword(new String(txtPassword.getPassword()));
-        if(rdoBoss.isSelected() || rdoManager.isSelected()){
+        if (rdoBoss.isSelected() || rdoManager.isSelected()) {
             model.setRole(true);
-        } else{
+        } else {
             model.setRole(false);
         }
         model.setName(txtFullName.getText());
         model.setDateOfBirth(DateHelper.toDate(txtDateOfBirth.getText()));
-         model.setStartDate(DateHelper.toDate(txtDateOfWork.getText()));
-         model.setPhone(txtPhone.getText());
-         model.setEmail(txtEmail.getText());
-         model.setAddress(txtAddress.getText());
-         model.setStoreID(cboDaiLy.getModel().getSelectedItem().toString());
+        model.setStartDate(DateHelper.toDate(txtDateOfWork.getText()));
+        model.setPhone(txtPhone.getText());
+        model.setEmail(txtEmail.getText());
+        model.setAddress(txtAddress.getText());
+        model.setStoreID(cboDaiLy.getModel().getSelectedItem().toString());
         return model;
     }
 
