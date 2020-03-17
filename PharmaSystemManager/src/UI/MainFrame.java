@@ -150,7 +150,17 @@ public class MainFrame extends javax.swing.JFrame
 
         getContentPane().add(pnlMenu, java.awt.BorderLayout.LINE_START);
 
-        desktop.setLayout(new java.awt.GridLayout());
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 721, Short.MAX_VALUE)
+        );
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 692, Short.MAX_VALUE)
+        );
+
         getContentPane().add(desktop, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
