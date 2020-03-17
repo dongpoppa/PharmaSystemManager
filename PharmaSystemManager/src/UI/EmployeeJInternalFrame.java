@@ -11,6 +11,7 @@ import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
@@ -34,6 +35,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     public EmployeeJInternalFrame(JFrame frame) {
         ShareHelper.frame = frame;
         initComponents();
+        init();
     }
 
     /**
@@ -523,6 +525,10 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
     void init() {
         setFrameIcon(ShareHelper.APP_ICON);
+        if (ShareHelper.USER.getStoreID() != null) {
+            rdoBoss.setEnabled(false);
+            rdoManager.setEnabled(false);
+        }
     }
 
     public void scroll() {
@@ -586,6 +592,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     void clear() {
         this.setModel(new Employee());
         this.setStatus(true);
+        this.tblGridView.clearSelection();
     }
 
     void setModel(Employee model) {
@@ -647,11 +654,18 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboDaiLy.getModel();
         model.removeAllElements();
         try {
-            List<Branch> list = branchDAO.select();
+            List<Branch> list = new ArrayList<>();
+            if (ShareHelper.USER.getStoreID() == null) {
+                list = branchDAO.select();
+            } else {
+                ShareHelper.Branch = branchDAO.findById(ShareHelper.USER.getStoreID());
+                list.add(ShareHelper.Branch);
+            }
             for (Branch branch : list) {
                 model.addElement(branch);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
