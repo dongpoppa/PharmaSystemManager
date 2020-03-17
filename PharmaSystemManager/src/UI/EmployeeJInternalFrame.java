@@ -10,6 +10,7 @@ import DAO.EmployeeDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import java.awt.Rectangle;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
@@ -377,6 +378,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         if (evt.getClickCount() == 2) {
             this.index = tblGridView.rowAtPoint(evt.getPoint());
             if (this.index >= 0) {
+                this.edit();
             }
         }
     }//GEN-LAST:event_tblGridViewMouseClicked
@@ -384,24 +386,28 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         // TODO add your handling code here:
         this.index = 0;
+        scroll();
         this.edit();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
         // TODO add your handling code here:
         this.index--;
+        scroll();
         this.edit();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
         this.index++;
+        scroll();
         this.edit();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         // TODO add your handling code here:
         this.index = tblGridView.getRowCount() - 1;
+        scroll();
         this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
@@ -475,12 +481,23 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         setFrameIcon(ShareHelper.APP_ICON);
     }
 
+    public void scroll() {
+        tblGridView.setRowSelectionInterval(index, index);
+        Rectangle cellRect = tblGridView.getCellRect(index, 0, false);
+        tblGridView.scrollRectToVisible(cellRect);
+    }
+
     void load() {
         DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
         model.setRowCount(0);
         String vaiTro = "";
         try {
-            List<Employee> list = dao.select();
+            List<Employee> list = null;
+            if (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0) {
+                list = dao.select();
+            } else {
+                list = dao.findByBranch(ShareHelper.USER.getStoreID());
+            }
             for (Employee nv : list) {
                 if (nv.isRole() && (nv.getStoreID() == null || nv.getStoreID().length() == 0)) {
                     vaiTro = "Boss";
