@@ -242,7 +242,6 @@ public class LoginJDialog extends javax.swing.JDialog
                         ShareHelper.Branch = (Branch) cbbBranch.getModel().getSelectedItem();
                     }
                     this.dispose();
-                    System.out.println(ShareHelper.Branch.toString());
                 }
                 else
                 {
