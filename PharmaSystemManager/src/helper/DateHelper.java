@@ -15,6 +15,7 @@ import java.util.Locale;
  *
  * @author Admin
  */
+<<<<<<< HEAD
 public class DateHelper {
 
     public static final SimpleDateFormat DATE_FORMATER = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
@@ -31,6 +32,18 @@ public class DateHelper {
     public static Date toDate(String date, String... pattern) {
         try {
             if (pattern.length > 0) {
+=======
+public class DateHelper
+{
+    static final SimpleDateFormat DATE_FORMATER = new SimpleDateFormat("dd/MM/yyyy");
+    
+    public static Date toDate(String date, String... pattern)
+    {
+        try
+        {
+            if (pattern.length > 0)
+            {
+>>>>>>> parent of cf443c4... Update DateHelper.java
                 DATE_FORMATER.applyPattern(pattern[0]);
             }
             if (date == null || date.length() == 0) {
@@ -53,8 +66,14 @@ public class DateHelper {
         if (pattern.length > 0) {
             DATE_FORMATER.applyPattern(pattern[0]);
         }
+<<<<<<< HEAD
         if (date == null) {
             date = DateHelper.now();
+=======
+        if(date==null)
+        {
+            date=DateHelper.now();
+>>>>>>> parent of cf443c4... Update DateHelper.java
         }
         return DATE_FORMATER.format(date);
     }
