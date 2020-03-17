@@ -70,6 +70,6 @@ public class Branch {
     }
 
     public String toString() {
-        return this.branchName;
+        return "["+branchID+"] "+branchName+" - " +address;
     }
 }
