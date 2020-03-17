@@ -35,7 +35,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel2 = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
@@ -49,8 +50,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         Image img = new ImageIcon("src\\icon\\logo_background.png").getImage();
-        desktop = new javax.swing.JDesktopPane(){
-            public void paintComponent(Graphics g){
+        desktop = new javax.swing.JDesktopPane()
+        {
+            public void paintComponent(Graphics g)
+            {
                 g.drawImage(img, this.getWidth()/2 - img.getWidth(null)/2, (this.getHeight() - 20)/2 - (img.getHeight(null) - 20)/2, null);
             }
         };
@@ -60,7 +63,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pharma4U");
-        setAlwaysOnTop(true);
         setAutoRequestFocus(false);
 
         jPanel2.setPreferredSize(new java.awt.Dimension(211, 24));
@@ -101,8 +103,10 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.add(jButton5);
 
         jButton6.setText("Employee Manager");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton6.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton6ActionPerformed(evt);
             }
         });
@@ -115,6 +119,13 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.add(jButton8);
 
         jButton9.setText("Logout");
+        jButton9.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton9ActionPerformed(evt);
+            }
+        });
         pnlMenu.add(jButton9);
 
         getContentPane().add(pnlMenu, java.awt.BorderLayout.LINE_START);
@@ -147,6 +158,11 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.openEmployee();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton9ActionPerformed
+    {//GEN-HEADEREND:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
