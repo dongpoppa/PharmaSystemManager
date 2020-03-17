@@ -60,7 +60,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pharma4U");
-        setAlwaysOnTop(true);
         setAutoRequestFocus(false);
 
         jPanel2.setPreferredSize(new java.awt.Dimension(211, 24));

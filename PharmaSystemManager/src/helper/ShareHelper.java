@@ -21,6 +21,7 @@ import model.Branch;
 public class ShareHelper {
 
     public static final ImageIcon APP_ICON;
+    public static String status = null;
 
     static {
         APP_ICON = new ImageIcon("src\\icon\\logo.png");
