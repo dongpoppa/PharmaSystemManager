@@ -162,7 +162,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     void login() {
-        new LoginJDialog11111(this, true).setVisible(true);
+        
     }
 
     void openEmployee() {
