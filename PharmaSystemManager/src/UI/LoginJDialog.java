@@ -37,7 +37,8 @@ public class LoginJDialog extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         txtID = new javax.swing.JTextField();
         cbbBranch = new javax.swing.JComboBox();
@@ -71,8 +72,10 @@ public class LoginJDialog extends javax.swing.JDialog {
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Exit");
         jButton2.setMaximumSize(new java.awt.Dimension(32, 32));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -82,6 +85,13 @@ public class LoginJDialog extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(550, 400, 90, 32);
 
@@ -112,9 +122,13 @@ public class LoginJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
+          System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        login();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     void init() {
         setLocationRelativeTo(null);
@@ -174,8 +188,8 @@ public class LoginJDialog extends javax.swing.JDialog {
         String ID = txtID.getText();
         String pass = new String(txtPass.getPassword());
         try {
-            Employee em = new Employee();
-            if (em != null) {
+            Employee em = ed.findById(ID);
+            if (em != null||em.getStatus()!=null) {
                 String pass2 = em.getPassword();
                 if (pass.equals(pass2)) {
                     ShareHelper.USER = em;
