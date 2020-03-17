@@ -9,82 +9,67 @@ package model;
  *
  * @author Admin
  */
-public class Branch
-{
+public class Branch {
+
     private String branchID, branchName, email, phone, address, city, status;
 
-    public String getBranchID()
-    {
+    public String getBranchID() {
         return branchID;
     }
 
-    public void setBranchID(String branchID)
-    {
+    public void setBranchID(String branchID) {
         this.branchID = branchID;
     }
 
-    public String getBranchName()
-    {
+    public String getBranchName() {
         return branchName;
     }
 
-    public void setBranchName(String branchName)
-    {
+    public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPhone()
-    {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone)
-    {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public String getAddress()
-    {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address)
-    {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getCity()
-    {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(String city)
-    {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public String getStatus()
-    {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status)
-    {
+    public void setStatus(String status) {
         this.status = status;
     }
-    
-    public String toString()
-    {
+
+    public String toString() {
         return this.branchName;
     }
 }

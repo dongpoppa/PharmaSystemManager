@@ -25,6 +25,11 @@ public class Employee {
     private String status;
     private String storeID;
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
     public String getEmployeeID() {
         return employeeID;
     }
