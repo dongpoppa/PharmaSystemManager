@@ -36,11 +36,6 @@ public class EmployeeDAO {
         JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getEmployeeID());
     }
 
-    public void delete(String MaNV) {
-        String sql = "DELETE FROM NhanVien WHERE MaNV = ?";
-        JdbcHelper.executeUpdate(sql, MaNV);
-    }
-
     public List<Employee> select() {
         String sql = "SELECT * FROM NhanVien";
         return select(sql);
