@@ -5,6 +5,8 @@
  */
 package UI;
 
+import DAO.EmployeeDAO;
+
 /**
  *
  * @author Admin
@@ -160,6 +162,13 @@ public class LoginJDialog extends javax.swing.JDialog
                 dialog.setVisible(true);
             }
         });
+    }
+    
+    EmployeeDAO ed= new EmployeeDAO();
+    
+    void login()
+    {
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
