@@ -23,30 +23,47 @@ public class TESTGIT extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
+
+        jButton1 = new javax.swing.JButton();
 
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+<<<<<<< HEAD
         jLabel1.setText("ĐÂY LÀ PHẦN CỦA QUÂN");
+=======
+        jButton1.setText("jButton1");
+>>>>>>> master
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(94, 94, 94)
                 .addComponent(jLabel1)
                 .addContainerGap(176, Short.MAX_VALUE))
+=======
+                .addGap(160, 160, 160)
+                .addComponent(jButton1)
+                .addContainerGap(163, Short.MAX_VALUE))
+>>>>>>> master
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(129, 129, 129)
                 .addComponent(jLabel1)
                 .addContainerGap(156, Short.MAX_VALUE))
+=======
+                .addGap(121, 121, 121)
+                .addComponent(jButton1)
+                .addContainerGap(147, Short.MAX_VALUE))
+>>>>>>> master
         );
 
         pack();
@@ -98,6 +115,10 @@ public class TESTGIT extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel1;
+=======
+    private javax.swing.JButton jButton1;
+>>>>>>> master
     // End of variables declaration//GEN-END:variables
 }
