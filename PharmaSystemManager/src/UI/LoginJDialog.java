@@ -60,6 +60,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         txtID.setBackground(new java.awt.Color(255, 255, 255));
         txtID.setForeground(new java.awt.Color(0, 0, 0));
         txtID.setText("NV001");
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtID);
         txtID.setBounds(540, 210, 210, 30);
 
@@ -153,7 +158,13 @@ public class LoginJDialog extends javax.swing.JDialog {
     private void txtPassActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtPassActionPerformed
     {//GEN-HEADEREND:event_txtPassActionPerformed
         // TODO add your handling code here:
+        login();
     }//GEN-LAST:event_txtPassActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+        login();
+    }//GEN-LAST:event_txtIDActionPerformed
 
     void init() {
         setLocationRelativeTo(null);

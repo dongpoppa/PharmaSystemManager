@@ -90,7 +90,7 @@ public class MainFrame extends javax.swing.JFrame
         setAutoRequestFocus(false);
 
         pnlStatus.setPreferredSize(new java.awt.Dimension(211, 24));
-        pnlStatus.setLayout(new java.awt.GridLayout());
+        pnlStatus.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
