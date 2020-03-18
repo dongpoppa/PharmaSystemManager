@@ -51,7 +51,7 @@ public class LoginJDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Pharma4U - Login");
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(830, 530));
