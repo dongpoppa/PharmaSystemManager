@@ -65,12 +65,12 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         lblRole = new javax.swing.JLabel();
         rdoBoss = new javax.swing.JRadioButton();
         rdoManager = new javax.swing.JRadioButton();
-        rdoPharmacist = new javax.swing.JRadioButton();
         jPanel10 = new javax.swing.JPanel();
         btnFirst = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        rdoPharmacist = new javax.swing.JRadioButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         lblDateOfBirth1 = new javax.swing.JLabel();
@@ -213,15 +213,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         rdoManager.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         rdoManager.setText("Manager");
 
-        buttonGroup1.add(rdoPharmacist);
-        rdoPharmacist.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        rdoPharmacist.setText("Pharmacist");
-        rdoPharmacist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoPharmacistActionPerformed(evt);
-            }
-        });
-
         jPanel10.setLayout(new java.awt.GridLayout(1, 0, 10, 10));
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/first.png"))); // NOI18N
@@ -256,6 +247,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         });
         jPanel10.add(btnLast);
 
+        rdoPharmacist.setText("Pharmacist");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -275,8 +268,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(rdoBoss, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rdoManager, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rdoPharmacist, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdoPharmacist)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -291,7 +284,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(rdoBoss)
                     .addComponent(rdoManager)
                     .addComponent(rdoPharmacist))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -550,10 +543,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         this.index = tblGridView.getRowCount() - 1;
         this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
-
-    private void rdoPharmacistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoPharmacistActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoPharmacistActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
