@@ -25,6 +25,9 @@ public class ShareHelper {
      * Ảnh biểu tượng của ứng dụng, xuất hiện trên mọi cửa sổ
      */
     public static final ImageIcon APP_ICON;
+    /**
+     * Trạng thái của các đối tượng
+     */
     public static String status = null;
 
     static {
@@ -63,21 +66,37 @@ public class ShareHelper {
      * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
      */
     public static Employee USER = null;
+    /**
+     * Đối tượng này chứa thông tin đại lý của nhân viên đang làm việc
+     */
     public static Branch Branch = null;
+    /**
+     * Đối tượng này chứa giao diện chính đang sử dụng
+     */
     public static JFrame frame = null;
 
+    /**
+     * Hàm này trả về thông tin trạng thái của các đối tượng
+     *
+     * @return
+     */
     public static String getStatus() {
-        return ShareHelper.USER.getEmployeeID() + " - " + DateHelper.now().toString() + " - " + ShareHelper.status;
+        return ShareHelper.USER.getEmployeeID() + " - " + DateHelper.DATE_FORMATER.format(DateHelper.now()) + " - " + ShareHelper.status;
     }
-    
+
+    /**
+     * Hàm này trả về chức vụ của người dùng
+     *
+     * @return
+     */
     public static String getUserPosition() {
-         if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0)) {
-                   return "Boss";
-                } else if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID().length() > 0)) {
-                    return "Manager";
-                } else {
-                    return "Pharmacist";
-                }
+        if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0)) {
+            return "Boss";
+        } else if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID().length() > 0)) {
+            return "Manager";
+        } else {
+            return "Pharmacist";
+        }
     }
 
     /**

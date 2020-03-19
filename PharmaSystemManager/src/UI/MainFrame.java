@@ -325,6 +325,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         ShareHelper.logoff();
         new LoginJDialog(this, true).setVisible(true);
+        setMainStatus();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -363,12 +364,16 @@ public class MainFrame extends javax.swing.JFrame {
                 lblTime.setText(sdf.format(new Date()));
             }
         }).start();
+    }
+
+    public void setMainStatus() {
         lblPharName.setText(ShareHelper.USER.getName());
         lblBranchName.setText(ShareHelper.getUserPosition());
     }
 
     void login() {
         new LoginJDialog(this, true).setVisible(true);
+        setMainStatus();
     }
 
     void openEmployee() {
