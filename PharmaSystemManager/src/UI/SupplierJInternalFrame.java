@@ -419,24 +419,28 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.index = 0;
         this.edit();
+        this.scroll();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
         // TODO add your handling code here:
         this.index--;
         this.edit();
+        this.scroll();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
         this.index++;
         this.edit();
+        this.scroll();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         // TODO add your handling code here:
         this.index = tblGridView.getRowCount() - 1;
         this.edit();
+        this.scroll();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void tblGridViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGridViewMouseClicked
@@ -512,8 +516,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
                     sp.getStatus()
                 };
                 model.addRow(row);
-            }
-            scroll();
+            }  
         } catch (Exception e) {
             e.printStackTrace();
             DialogHelper.alert(this, "Database access error!");
