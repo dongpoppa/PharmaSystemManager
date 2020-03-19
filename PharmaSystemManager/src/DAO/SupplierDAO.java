@@ -31,7 +31,7 @@ public class SupplierDAO {
 
     public void updateStatus(Supplier model) {
         String sql = "UPDATE NhaCungCap SET TrangThaiNCC = ? Where MaNCC = ?";
-        JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getStatus());
+        JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getID());
     }
 
     public List<Supplier> select() {
