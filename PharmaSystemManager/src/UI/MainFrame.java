@@ -28,6 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     SupplierJInternalFrame supplierJInternalFrame;
     BranchJInternalFrame branchJInternalFrame;
     DrugJInternalFrame drugJInternalFrame;
+    DrugStatus DrugStatus;
 
     /**
      * Creates new form MainFrame
@@ -44,7 +45,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -68,8 +70,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         Image img = new ImageIcon("src\\icon\\logo_background.png").getImage();
-        desktop = new javax.swing.JDesktopPane(){
-            public void paintComponent(Graphics g){
+        desktop = new javax.swing.JDesktopPane()
+        {
+            public void paintComponent(Graphics g)
+            {
                 g.drawImage(img, this.getWidth()/2 - img.getWidth(null)/2, (this.getHeight() - 20)/2 - (img.getHeight(null) - 20)/2, null);
             }
         };
@@ -183,8 +187,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2.setText("Sale Invoices");
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -198,8 +204,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton3ActionPerformed(evt);
             }
         });
@@ -212,8 +220,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4.setText("<html><p style=\"text-align: center\">Drugs Infomation <br>  Manager</p></html>");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton4.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton4ActionPerformed(evt);
             }
         });
@@ -226,6 +236,13 @@ public class MainFrame extends javax.swing.JFrame {
         jButton5.setText("<html><p style=\"text-align: center\">Drugs Status <br>  Manager</p></html>");
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton5ActionPerformed(evt);
+            }
+        });
         pnlMenu.add(jButton5);
 
         btnEmployee.setBackground(new java.awt.Color(255, 227, 249));
@@ -235,8 +252,10 @@ public class MainFrame extends javax.swing.JFrame {
         btnEmployee.setText("Employee Manager");
         btnEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEmployee.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEmployee.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnEmployeeActionPerformed(evt);
             }
         });
@@ -249,8 +268,10 @@ public class MainFrame extends javax.swing.JFrame {
         btnBranch.setText("Branch Manager");
         btnBranch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBranch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBranch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnBranch.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnBranchActionPerformed(evt);
             }
         });
@@ -273,8 +294,10 @@ public class MainFrame extends javax.swing.JFrame {
         btnLogout.setHideActionText(true);
         btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLogout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLogoutActionPerformed(evt);
             }
         });
@@ -352,6 +375,17 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         openDrugInfo();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
+    {//GEN-HEADEREND:event_jButton5ActionPerformed
+        for (JInternalFrame fr : desktop.getAllFrames()) {
+            fr.dispose();
+        }
+        DrugStatus = new DrugStatus();
+        desktop.add(DrugStatus);
+        DrugStatus.setLocation(this.getWidth() / 2 - DrugStatus.getWidth() / 2, desktop.getHeight() / 2 - DrugStatus.getHeight() / 2);
+        DrugStatus.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//

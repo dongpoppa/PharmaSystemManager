@@ -6,7 +6,6 @@
 package DAO;
 
 import helper.JdbcHelper;
-import helper.ShareHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class StoragedDrugDAO {
         return list;
     }
 
-    private List<StoragedDrug> select(String sql, Object... args) {
+    public List<StoragedDrug> select(String sql, Object... args) {
         List<StoragedDrug> list = new ArrayList<>();
         try {
             ResultSet rs = null;
