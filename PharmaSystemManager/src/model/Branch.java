@@ -11,7 +11,13 @@ package model;
  */
 public class Branch {
 
-    private String branchID, branchName, email, phone, address, city, status;
+    private String branchID;
+    private String branchName;
+    private String email;
+    private String phone;
+    private String address;
+    private String city;
+    private String status;
 
     public String getBranchID() {
         return branchID;
@@ -70,6 +76,6 @@ public class Branch {
     }
 
     public String toString() {
-        return "["+branchID+"] "+branchName+" - " +address;
+        return "[" + branchID + "] " + branchName + " - " + address;
     }
 }
