@@ -238,19 +238,18 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblPassword" min="-2" pref="443" max="-2" attributes="0"/>
-                      <Component id="txtPassword" min="-2" pref="443" max="-2" attributes="0"/>
-                      <Component id="lblConfirmPassword" min="-2" pref="443" max="-2" attributes="0"/>
-                      <Component id="txtConfirmPassword" min="-2" pref="443" max="-2" attributes="0"/>
-                      <Component id="lblID" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="lblFullName" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtID" alignment="1" min="-2" pref="443" max="-2" attributes="0"/>
-                              <Component id="txtFullName" alignment="1" min="-2" pref="443" max="-2" attributes="0"/>
+                              <Component id="lblPassword" min="-2" pref="443" max="-2" attributes="0"/>
+                              <Component id="txtPassword" min="-2" pref="443" max="-2" attributes="0"/>
+                              <Component id="lblConfirmPassword" min="-2" pref="443" max="-2" attributes="0"/>
+                              <Component id="txtConfirmPassword" min="-2" pref="443" max="-2" attributes="0"/>
+                              <Component id="lblID" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="lblFullName" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="txtFullName" alignment="0" min="-2" pref="443" max="-2" attributes="0"/>
+                              <Component id="txtID" alignment="0" min="-2" pref="443" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -423,6 +422,9 @@
             </Container>
             <Component class="javax.swing.JRadioButton" name="rdoPharmacist">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pharmacist"/>
               </Properties>
             </Component>
