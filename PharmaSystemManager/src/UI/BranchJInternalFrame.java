@@ -20,7 +20,7 @@ import model.Branch;
  */
 public class BranchJInternalFrame extends javax.swing.JInternalFrame {
 
-    int index = 0; // vị trí của nhân viên đang hiển thị trên form
+    int index = 0; // vị trí của đại lý đang hiển thị trên form
     BranchDAO branchDAO = new BranchDAO();
 
     /**

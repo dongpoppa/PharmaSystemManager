@@ -11,9 +11,11 @@ import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import java.awt.Rectangle;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Branch;
@@ -24,10 +26,11 @@ import model.Employee;
  * @author Long
  */
 public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
-
+    
     int index = 0; // vị trí của nhân viên đang hiển thị trên form
     EmployeeDAO dao = new EmployeeDAO();
     BranchDAO branchDAO = new BranchDAO();
+    JFileChooser fileChooser = new JFileChooser("src\\avatars");
 
     /**
      * Creates new form NhanVienJInternalFrame
@@ -117,17 +120,17 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "Password", "Role", "Full Name", "Date of birth", "Date start", "Phone", "Email", "Address", "Status", "Store ID"
+                "Employee ID", "Password", "Role", "Full Name", "Date of birth", "Date start", "Phone", "Email", "Address", "Status", "Store ID", "Avatar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -384,11 +387,15 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        lblAvatar.setText("                            AVATAR");
         lblAvatar.setAutoscrolls(true);
         lblAvatar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblAvatar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAvatar.setInheritsPopupMenu(false);
+        lblAvatar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblAvatarMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -398,9 +405,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+            .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
@@ -441,7 +446,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                                 .addGap(163, 163, 163)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
+                                .addGap(241, 241, 241)
                                 .addComponent(jLabel1)))))
                 .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -459,9 +464,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addGap(38, 38, 38)
+                        .addGap(53, 53, 53)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,6 +568,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
+    private void lblAvatarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAvatarMousePressed
+        // TODO add your handling code here:
+        this.selectImage();
+    }//GEN-LAST:event_lblAvatarMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -616,13 +626,13 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             rdoManager.setEnabled(false);
         }
     }
-
+    
     public void scroll() {
         tblGridView.setRowSelectionInterval(index, index);
         Rectangle cellRect = tblGridView.getCellRect(index, 0, false);
         tblGridView.scrollRectToVisible(cellRect);
     }
-
+    
     void load() {
         DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
         model.setRowCount(0);
@@ -653,7 +663,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     nv.getEmail(),
                     nv.getAddress(),
                     nv.getStatus(),
-                    nv.getStoreID()
+                    nv.getStoreID(),
+                    nv.getAvatar()
                 };
                 model.addRow(row);
             }
@@ -661,7 +672,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
-
+    
     void edit() {
         try {
             String manv = (String) tblGridView.getValueAt(this.index, 0);
@@ -674,13 +685,14 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
-
+    
     void clear() {
         this.setModel(new Employee());
         this.setStatus(true);
         this.tblGridView.clearSelection();
+        lblAvatar.setIcon(null);
     }
-
+    
     void setModel(Employee model) {
         txtID.setText(model.getEmployeeID());
         txtPassword.setText(model.getPassword());
@@ -698,9 +710,15 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         } else {
             rdoPharmacist.setSelected(true);
         }
+        lblAvatar.setToolTipText(model.getAvatar());
+        if (model.getAvatar() != null) {
+            lblAvatar.setIcon(ShareHelper.readLogo(model.getAvatar()));
+        } else {
+            lblAvatar.setIcon(null);
+        }
         cboRanch.getModel().setSelectedItem(new BranchDAO().findById(model.getStoreID()));
     }
-
+    
     Employee getModel() {
         Employee model = new Employee();
         model.setEmployeeID(txtID.getText());
@@ -716,6 +734,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         model.setPhone(txtPhone.getText());
         model.setEmail(txtEmail.getText());
         model.setAddress(txtAddress.getText());
+        model.setAvatar(lblAvatar.getToolTipText());
         if (rdoBoss.isSelected()) {
             model.setStoreID(null);
         } else {
@@ -723,7 +742,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         }
         return model;
     }
-
+    
     void setStatus(boolean insertable) {
         txtID.setEditable(insertable);
         btnInsert.setEnabled(insertable);
@@ -736,7 +755,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnNext.setEnabled(!insertable && last);
         btnLast.setEnabled(!insertable && last);
     }
-
+    
     void fillToCombobox() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboRanch.getModel();
         model.removeAllElements();
@@ -756,10 +775,21 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }
-
+    
+    void selectImage() {
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if (ShareHelper.saveLogo(file)) {
+                // Hiển thị hình lên form
+                lblAvatar.setIcon(ShareHelper.readLogo(file.getName()));
+                lblAvatar.setToolTipText(file.getName());
+            }
+        }
+    }
+    
     void insert() {
         Employee model = getModel();
-
+        
         String confirm = new String(txtConfirmPassword.getPassword());
         if (confirm.equals(model.getPassword())) {
             try {
@@ -776,10 +806,10 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             txtConfirmPassword.requestFocus();
         }
     }
-
+    
     void update() {
         Employee model = getModel();
-
+        
         String confirm = new String(txtConfirmPassword.getPassword());
         if (!confirm.equals(model.getPassword())) {
             DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
@@ -794,7 +824,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             }
         }
     }
-
+    
     void delete() {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
         if (ShareHelper.status != null) {

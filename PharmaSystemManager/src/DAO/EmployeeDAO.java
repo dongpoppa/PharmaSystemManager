@@ -20,15 +20,15 @@ import model.Employee;
 public class EmployeeDAO {
 
     public void insert(Employee model) {
-        String sql = "INSERT INTO NhanVien (MaNV, MatKhau, VaiTro, HoVaTen, NgaySinh, NgayLamViec, SDTNV, EmailNV, DiaChiNV, TrangThaiNV, MaDaiLy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO NhanVien (MaNV, MatKhau, VaiTro, HoVaTen, NgaySinh, NgayLamViec, SDTNV, EmailNV, DiaChiNV, TrangThaiNV, Hinh, MaDaiLy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql, model.getEmployeeID(), model.getPassword(), model.isRole(), model.getName(), model.getDateOfBirth(),
-                model.getStartDate(), model.getPhone(), model.getEmail(), model.getAddress(), model.getStatus(), model.getStoreID());
+                model.getStartDate(), model.getPhone(), model.getEmail(), model.getAddress(), model.getStatus(), model.getAvatar(), model.getStoreID());
     }
 
     public void update(Employee model) {
-        String sql = "UPDATE NhanVien SET MatKhau = ?, VaiTro = ?, HoVaTen = ?, NgaySinh = ?, NgayLamViec = ?, SDTNV = ?, EmailNV = ?, DiaChiNV = ?, TrangThaiNV = ?, MaDaiLy = ? WHERE MaNV = ?";
+        String sql = "UPDATE NhanVien SET MatKhau = ?, VaiTro = ?, HoVaTen = ?, NgaySinh = ?, NgayLamViec = ?, SDTNV = ?, EmailNV = ?, DiaChiNV = ?, TrangThaiNV = ?, Hinh = ?, MaDaiLy = ? WHERE MaNV = ?";
         JdbcHelper.executeUpdate(sql, model.getPassword(), model.isRole(), model.getName(), model.getDateOfBirth(),
-                model.getStartDate(), model.getPhone(), model.getEmail(), model.getAddress(), model.getStatus(), model.getStoreID(), model.getEmployeeID());
+                model.getStartDate(), model.getPhone(), model.getEmail(), model.getAddress(), model.getStatus(), model.getAvatar(), model.getStoreID(), model.getEmployeeID());
     }
 
     public void updateStatus(Employee model) {
@@ -84,6 +84,7 @@ public class EmployeeDAO {
         model.setEmail(rs.getString("EmailNV"));
         model.setAddress(rs.getString("DiaChiNV"));
         model.setStatus(rs.getString("TrangThaiNV"));
+        model.setAvatar(rs.getString("Hinh"));
         model.setStoreID(rs.getString("MaDaiLy"));
         return model;
     }

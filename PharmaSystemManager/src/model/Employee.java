@@ -24,6 +24,7 @@ public class Employee {
     private String address;
     private String status;
     private String storeID;
+    private String avatar;
 
     @Override
     public String toString() {
@@ -118,4 +119,12 @@ public class Employee {
         this.storeID = storeID;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
 }

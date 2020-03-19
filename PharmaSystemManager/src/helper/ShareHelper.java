@@ -5,6 +5,7 @@
  */
 package helper;
 
+import java.awt.Image;
 import model.Employee;
 import java.io.File;
 import java.nio.file.Files;
@@ -42,7 +43,7 @@ public class ShareHelper {
      * @return chép được hay không
      */
     public static boolean saveLogo(File file) {
-        File dir = new File("icon");
+        File dir = new File("src\\avatars");
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -59,8 +60,10 @@ public class ShareHelper {
     }
 
     public static ImageIcon readLogo(String fileName) {
-        File path = new File("logos", fileName);
-        return new ImageIcon(path.getAbsolutePath());
+        File path = new File("src\\avatars", fileName);
+        ImageIcon icon = new ImageIcon(path.getAbsolutePath());
+        Image newImage = icon.getImage().getScaledInstance(225, 252, Image.SCALE_DEFAULT);
+        return new ImageIcon(newImage);
     }
     /**
      * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
