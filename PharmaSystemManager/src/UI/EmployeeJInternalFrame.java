@@ -36,6 +36,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         ShareHelper.frame = frame;
         initComponents();
         init();
+        setTitle("Employee Manager");
     }
 
     /**
@@ -125,7 +126,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "Password", "Role", "Full Name", "Date of birth", "Date start", "Phone", "Email", "Address", "Store ID", "Status"
+                "Employee ID", "Password", "Role", "Full Name", "Date of birth", "Date start", "Phone", "Email", "Address", "Status", "Store ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -791,6 +792,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 dao.updateStatus(model);
                 this.load();
                 DialogHelper.alert(this, "Update successfull");
+                ShareHelper.status = null;
             } catch (Exception e) {
                 DialogHelper.alert(this, "Update failed");
             }

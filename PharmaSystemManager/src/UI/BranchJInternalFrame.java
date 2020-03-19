@@ -5,17 +5,32 @@
  */
 package UI;
 
+import DAO.BranchDAO;
+import helper.DialogHelper;
+import helper.ShareHelper;
+import java.awt.Rectangle;
+import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import model.Branch;
+
 /**
  *
  * @author Long
  */
 public class BranchJInternalFrame extends javax.swing.JInternalFrame {
 
+    int index = 0; // vị trí của nhân viên đang hiển thị trên form
+    BranchDAO branchDAO = new BranchDAO();
+
     /**
      * Creates new form BranchJInternalFrame
      */
-    public BranchJInternalFrame() {
+    public BranchJInternalFrame(JFrame frame) {
+        ShareHelper.frame = frame;
         initComponents();
+        init();
+        setTitle("Branch Manager");
     }
 
     /**
@@ -49,6 +64,25 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
         btnNew = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGridView = new javax.swing.JTable();
+
+        setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         lblID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblID.setText("BranchID");
@@ -159,6 +193,11 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGridViewMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGridView);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,24 +300,28 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         // TODO add your handling code here:
         this.index = 0;
+        this.scroll();
         this.edit();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
         // TODO add your handling code here:
         this.index--;
+        this.scroll();
         this.edit();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
         this.index++;
+        this.scroll();
         this.edit();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         // TODO add your handling code here:
         this.index = tblGridView.getRowCount() - 1;
+        this.scroll();
         this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
@@ -301,6 +344,23 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.clear();
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void tblGridViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGridViewMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.index = tblGridView.rowAtPoint(evt.getPoint());
+            if (this.index >= 0) {
+                this.edit();
+            }
+        }
+    }//GEN-LAST:event_tblGridViewMouseClicked
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        this.load();
+        this.clear();
+        this.setStatus(true);
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -327,4 +387,132 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
+
+    void init() {
+        setFrameIcon(ShareHelper.APP_ICON);
+    }
+
+    public void scroll() {
+        tblGridView.setRowSelectionInterval(index, index);
+        Rectangle cellRect = tblGridView.getCellRect(index, 0, false);
+        tblGridView.scrollRectToVisible(cellRect);
+    }
+
+    void load() {
+        DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
+        model.setRowCount(0);
+        try {
+            List<Branch> list = branchDAO.select();
+            for (Branch br : list) {
+                Object[] row = {
+                    br.getBranchID(),
+                    br.getBranchName(),
+                    br.getEmail(),
+                    br.getPhone(),
+                    br.getAddress(),
+                    br.getCity(),
+                    br.getStatus()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Data Query Error!");
+        }
+    }
+
+    void edit() {
+        try {
+            String madl = (String) tblGridView.getValueAt(this.index, 0);
+            Branch model = branchDAO.findById(madl);
+            if (model != null) {
+                this.setModel(model);
+                this.setStatus(false);
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Data Query Error!");
+        }
+    }
+
+    void clear() {
+        this.setModel(new Branch());
+        this.setStatus(true);
+        this.tblGridView.clearSelection();
+    }
+
+    void setModel(Branch model) {
+        txtID.setText(model.getBranchID());
+        txtName.setText(model.getBranchName());
+        txtEmail.setText(model.getEmail());
+        txtPhone.setText(model.getPhone());
+        txtAddress.setText(model.getAddress());
+        txtCity.setText(model.getCity());
+    }
+
+    Branch getModel() {
+        Branch model = new Branch();
+        model.setBranchID(txtID.getText());
+        model.setBranchName(txtName.getText());
+        model.setEmail(txtEmail.getText());
+        model.setPhone(txtPhone.getText());
+        model.setAddress(txtAddress.getText());
+        model.setCity(txtCity.getText());
+        return model;
+    }
+
+    void setStatus(boolean insertable) {
+        txtID.setEditable(insertable);
+        btnInsert.setEnabled(insertable);
+        btnUpdate.setEnabled(!insertable);
+        btnDelete.setEnabled(!insertable);
+        boolean first = this.index > 0;
+        boolean last = this.index < tblGridView.getRowCount() - 1;
+        btnFirst.setEnabled(!insertable && first);
+        btnPrev.setEnabled(!insertable && first);
+        btnNext.setEnabled(!insertable && last);
+        btnLast.setEnabled(!insertable && last);
+    }
+
+    void insert() {
+        Branch model = getModel();
+
+        try {
+            branchDAO.insert(model);
+            this.load();
+            this.clear();
+            DialogHelper.alert(this, "Insert Successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Insert Failed!");
+        }
+    }
+
+    void update() {
+        Branch model = getModel();
+
+        try {
+            branchDAO.update(model);
+            this.load();
+            this.clear();
+            DialogHelper.alert(this, "Update Successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Update Failed!");
+        }
+    }
+
+    void delete() {
+        new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
+        if (ShareHelper.status != null) {
+            Branch model = branchDAO.findById(txtID.getText());
+            model.setStatus(ShareHelper.status);
+            try {
+                branchDAO.updateStatus(model);
+                this.load();
+                DialogHelper.alert(this, "Update successfull");
+                ShareHelper.status = null;
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Update failed");
+            }
+        }
+    }
 }

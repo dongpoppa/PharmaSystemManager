@@ -6,6 +6,7 @@
 package DAO;
 
 import helper.JdbcHelper;
+import helper.ShareHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class BranchDAO {
         String sql = "UPDATE DaiLy SET TenDaiLy = ?, EmailDaiLy = ?, SDTDaiLy = ?, DiaChiDaiLy = ?, ThanhPhoDaiLy = ?, TrangThaiDaiLy = ? WHERE MaDaiLy = ?";
         JdbcHelper.executeUpdate(sql, model.getBranchName(), model.getEmail(), model.getPhone(),
                 model.getAddress(), model.getCity(), model.getStatus(), model.getBranchID());
+    }
+
+    public void updateStatus(Branch model) {
+        String sql = "UPDATE DaiLy SET TrangThaiDaiLy = ? Where MaDaiLy = ?";
+        JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getBranchID());
     }
 
     public void delete(String MaDaiLy) {
