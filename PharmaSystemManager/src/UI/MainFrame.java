@@ -27,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     EmployeeJInternalFrame employeeJInternalFrame;
     SupplierJInternalFrame supplierJInternalFrame;
     BranchJInternalFrame branchJInternalFrame;
+    DrugJInternalFrame drugJInternalFrame;
 
     /**
      * Creates new form MainFrame
@@ -211,6 +212,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4.setText("<html><p style=\"text-align: center\">Drugs Infomation <br>  Manager</p></html>");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         pnlMenu.add(jButton4);
 
         jButton5.setBackground(new java.awt.Color(255, 227, 249));
@@ -342,6 +348,11 @@ public class MainFrame extends javax.swing.JFrame {
         this.openBranch();
     }//GEN-LAST:event_btnBranchActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        openDrugInfo();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
     //----------------------------FUNCTION--------------------------------//
@@ -416,6 +427,20 @@ public class MainFrame extends javax.swing.JFrame {
         desktop.add(branchJInternalFrame);
         branchJInternalFrame.setLocation(this.getWidth() / 2 - branchJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - branchJInternalFrame.getHeight() / 2);
         branchJInternalFrame.setVisible(true);
+    }
+    
+    void openDrugInfo() {
+        if (!ShareHelper.USER.isRole()) {
+            DialogHelper.alert(this, "You can't access here");
+            return;
+        }
+        for (JInternalFrame fr : desktop.getAllFrames()) {
+            fr.dispose();
+        }
+        drugJInternalFrame = new DrugJInternalFrame(this);
+        desktop.add(drugJInternalFrame);
+        drugJInternalFrame.setLocation(this.getWidth() / 2 - drugJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - drugJInternalFrame.getHeight() / 2);
+        drugJInternalFrame.setVisible(true);
     }
 
     /**
