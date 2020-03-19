@@ -26,6 +26,7 @@ public class MainFrame extends javax.swing.JFrame
 {
 
     EmployeeJInternalFrame employeeJInternalFrame;
+    SupplierJInternalFrame supplierJInternalFrame;
 
     /**
      * Creates new form MainFrame
@@ -196,6 +197,11 @@ public class MainFrame extends javax.swing.JFrame
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         pnlMenu.add(jButton3);
 
         jButton4.setBackground(new java.awt.Color(255, 227, 249));
@@ -321,6 +327,11 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        openSupplier();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
     //----------------------------FUNCTION--------------------------------//
@@ -370,6 +381,22 @@ public class MainFrame extends javax.swing.JFrame
         employeeJInternalFrame.setVisible(true);
     }
 
+    void openSupplier()
+    {
+        if (!ShareHelper.USER.isRole())
+        {
+            DialogHelper.alert(this, "You can't access here");
+            return;
+        }
+        for (JInternalFrame fr : desktop.getAllFrames())
+        {
+            fr.dispose();
+        }
+        supplierJInternalFrame = new SupplierJInternalFrame(this);
+        desktop.add(supplierJInternalFrame);
+        supplierJInternalFrame.setLocation(this.getWidth() / 2 - supplierJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - supplierJInternalFrame.getHeight() / 2);
+        supplierJInternalFrame.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
