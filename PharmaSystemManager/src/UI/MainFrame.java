@@ -54,10 +54,10 @@ public class MainFrame extends javax.swing.JFrame {
         pnlStatus = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         lblPharName = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblBranchName = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         lblTime = new javax.swing.JLabel();
         pnlMenu = new javax.swing.JPanel();
         btnPurchase = new javax.swing.JButton();
@@ -131,18 +131,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlStatus.add(jPanel3);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 24, Short.MAX_VALUE)
-        );
-
-        pnlStatus.add(jPanel2);
+        lblPharName.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblPharName.setText("pharmacist's name");
+        pnlStatus.add(lblPharName);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,13 +148,22 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlStatus.add(jPanel1);
 
-        lblPharName.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        lblPharName.setText("pharmacist's name");
-        pnlStatus.add(lblPharName);
-
         lblBranchName.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         lblBranchName.setText("Branch's position");
         pnlStatus.add(lblBranchName);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 126, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
+        pnlStatus.add(jPanel2);
 
         lblTime.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         lblTime.setForeground(new java.awt.Color(255, 51, 51));
