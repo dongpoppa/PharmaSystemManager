@@ -54,7 +54,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -63,7 +62,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         txtTenHH = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtThanhTien = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtDonGia = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,6 +72,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtStatus = new javax.swing.JLabel();
         txtThanhTien1 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        jSpinField1 = new com.toedter.components.JSpinField();
         jLabel16 = new javax.swing.JLabel();
         cbxMaHD = new javax.swing.JComboBox<>();
         btnTimKiem = new javax.swing.JButton();
@@ -149,9 +148,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Card");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Debt");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,8 +169,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(jRadioButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -194,8 +188,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3))))
+                            .addComponent(jRadioButton2))))
                 .addGap(12, 12, 12))
         );
 
@@ -219,9 +212,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("Quantity");
-
-        txtThanhTien.setEditable(false);
-        txtThanhTien.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setText("Price");
@@ -309,7 +299,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTenHH)
-                                    .addComponent(txtThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                                    .addComponent(jSpinField1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel17)
@@ -332,13 +322,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLabel14)
                     .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtThanhTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(txtThanhTien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel17)
+                        .addComponent(txtThanhTien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -395,9 +386,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +403,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel12)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
@@ -435,9 +426,9 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -481,8 +472,8 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTable tblHDCT;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMaHD;
@@ -492,7 +483,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtTenKH1;
     private javax.swing.JTextField txtTenNV;
-    private javax.swing.JTextField txtThanhTien;
     private javax.swing.JTextField txtThanhTien1;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
