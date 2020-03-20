@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.InputStream;
 import java.util.Date;
 
 /**
@@ -24,7 +25,7 @@ public class Employee {
     private String address;
     private String status;
     private String storeID;
-    private String avatar;
+    private byte[] avatar;
 
     @Override
     public String toString() {
@@ -119,12 +120,12 @@ public class Employee {
         this.storeID = storeID;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
     }
-    
+
 }

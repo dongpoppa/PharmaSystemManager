@@ -8,6 +8,7 @@ package helper;
 import java.awt.Image;
 import model.Employee;
 import java.io.File;
+import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -77,6 +78,9 @@ public class ShareHelper {
      * Đối tượng này chứa giao diện chính đang sử dụng
      */
     public static JFrame frame = null;
+    
+    public static File file = null;
+    public static FileInputStream fileInputStream = null;
 
     /**
      * Hàm này trả về thông tin trạng thái của các đối tượng

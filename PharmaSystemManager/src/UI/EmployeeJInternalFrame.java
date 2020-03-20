@@ -10,11 +10,21 @@ import DAO.EmployeeDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +36,7 @@ import model.Employee;
  * @author Long
  */
 public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
-    
+
     int index = 0; // vị trí của nhân viên đang hiển thị trên form
     EmployeeDAO dao = new EmployeeDAO();
     BranchDAO branchDAO = new BranchDAO();
@@ -626,13 +636,13 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             rdoManager.setEnabled(false);
         }
     }
-    
+
     public void scroll() {
         tblGridView.setRowSelectionInterval(index, index);
         Rectangle cellRect = tblGridView.getCellRect(index, 0, false);
         tblGridView.scrollRectToVisible(cellRect);
     }
-    
+
     void load() {
         DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
         model.setRowCount(0);
@@ -672,7 +682,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Database access error!");
         }
     }
-    
+
     void edit() {
         try {
             String manv = (String) tblGridView.getValueAt(this.index, 0);
@@ -685,14 +695,14 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Database access error!");
         }
     }
-    
+
     void clear() {
         this.setModel(new Employee());
         this.setStatus(true);
         this.tblGridView.clearSelection();
         lblAvatar.setIcon(null);
     }
-    
+
     void setModel(Employee model) {
         txtID.setText(model.getEmployeeID());
         txtPassword.setText(model.getPassword());
@@ -710,15 +720,22 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         } else {
             rdoPharmacist.setSelected(true);
         }
-        lblAvatar.setToolTipText(model.getAvatar());
         if (model.getAvatar() != null) {
-            lblAvatar.setIcon(ShareHelper.readLogo(model.getAvatar()));
+            Image image = null;
+            try {
+                image = ImageIO.read(new ByteArrayInputStream(model.getAvatar()));
+                ImageIcon icon = new ImageIcon(image);
+                image = icon.getImage().getScaledInstance(lblAvatar.getWidth(), lblAvatar.getHeight(), Image.SCALE_DEFAULT);
+            } catch (IOException ex) {
+                Logger.getLogger(EmployeeJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            lblAvatar.setIcon(new ImageIcon(image));
         } else {
             lblAvatar.setIcon(null);
         }
         cboRanch.getModel().setSelectedItem(new BranchDAO().findById(model.getStoreID()));
     }
-    
+
     Employee getModel() {
         Employee model = new Employee();
         model.setEmployeeID(txtID.getText());
@@ -734,7 +751,12 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         model.setPhone(txtPhone.getText());
         model.setEmail(txtEmail.getText());
         model.setAddress(txtAddress.getText());
-        model.setAvatar(lblAvatar.getToolTipText());
+        try {
+            model.setAvatar(Files.readAllBytes(ShareHelper.file.toPath()));
+        } catch (IOException ex) {
+            model.setAvatar(null);
+        }
+//        model.setAvatar(ShareHelper.fileInputStream);
         if (rdoBoss.isSelected()) {
             model.setStoreID(null);
         } else {
@@ -742,7 +764,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         }
         return model;
     }
-    
+
     void setStatus(boolean insertable) {
         txtID.setEditable(insertable);
         btnInsert.setEnabled(insertable);
@@ -755,7 +777,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnNext.setEnabled(!insertable && last);
         btnLast.setEnabled(!insertable && last);
     }
-    
+
     void fillToCombobox() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboRanch.getModel();
         model.removeAllElements();
@@ -775,21 +797,30 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Database access error!");
         }
     }
-    
+
     void selectImage() {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
+            ShareHelper.file = file;
+            Image image = null;
             if (ShareHelper.saveLogo(file)) {
-                // Hiển thị hình lên form
-                lblAvatar.setIcon(ShareHelper.readLogo(file.getName()));
-                lblAvatar.setToolTipText(file.getName());
+                try {
+                    // Hiển thị hình lên form
+                    ShareHelper.fileInputStream = new FileInputStream(ShareHelper.file);
+                    image = ImageIO.read(ShareHelper.fileInputStream);
+                } catch (Exception ex) {
+                    Logger.getLogger(EmployeeJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ImageIcon icon = new ImageIcon(image);
+                image = icon.getImage().getScaledInstance(lblAvatar.getWidth(), lblAvatar.getHeight(), Image.SCALE_DEFAULT);
+                lblAvatar.setIcon(new ImageIcon(image));
             }
         }
     }
-    
+
     void insert() {
         Employee model = getModel();
-        
+
         String confirm = new String(txtConfirmPassword.getPassword());
         if (confirm.equals(model.getPassword())) {
             try {
@@ -806,10 +837,10 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             txtConfirmPassword.requestFocus();
         }
     }
-    
+
     void update() {
         Employee model = getModel();
-        
+
         String confirm = new String(txtConfirmPassword.getPassword());
         if (!confirm.equals(model.getPassword())) {
             DialogHelper.alert(this, "Password comfirm is incorect!");
@@ -824,7 +855,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     void delete() {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
         if (ShareHelper.status != null) {

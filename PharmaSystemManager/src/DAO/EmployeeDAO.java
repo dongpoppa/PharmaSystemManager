@@ -84,7 +84,7 @@ public class EmployeeDAO {
         model.setEmail(rs.getString("EmailNV"));
         model.setAddress(rs.getString("DiaChiNV"));
         model.setStatus(rs.getString("TrangThaiNV"));
-        model.setAvatar(rs.getString("Hinh"));
+        model.setAvatar(rs.getBytes("Hinh"));
         model.setStoreID(rs.getString("MaDaiLy"));
         return model;
     }
