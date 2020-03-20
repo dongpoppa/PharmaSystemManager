@@ -12,16 +12,16 @@ import javax.swing.JFrame;
  *
  * @author rondw
  */
-public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
+public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form PurchaseInvoiceJInternalFrame
      */
-    public PurchaseInvoiceJInternalFrame() {
+    public SaleInvoiceJInternalFrame() {
         initComponents();
     }
 
-    public PurchaseInvoiceJInternalFrame(JFrame frame) {
+    public SaleInvoiceJInternalFrame(JFrame frame) {
         initComponents();
         ShareHelper.frame = frame;
     }
@@ -47,9 +47,9 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         txtMaHD = new javax.swing.JTextField();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        cbxMaNV = new javax.swing.JComboBox<>();
         txtTenNV = new javax.swing.JTextField();
         txtTenKH = new javax.swing.JTextField();
+        txtTenKH1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -126,9 +126,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         jFormattedTextField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPanel3.add(jFormattedTextField1);
 
-        cbxMaNV.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jPanel3.add(cbxMaNV);
-
         txtTenNV.setEditable(false);
         txtTenNV.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtTenNV.setToolTipText("");
@@ -137,6 +134,10 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtTenKH.setEditable(false);
         txtTenKH.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPanel3.add(txtTenKH);
+
+        txtTenKH1.setEditable(false);
+        txtTenKH1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel3.add(txtTenKH1);
 
         jPanel4.setLayout(new java.awt.GridLayout(2, 1, 10, 10));
 
@@ -277,7 +278,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
@@ -363,7 +364,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel1.setText("PURCHASE INVOICE");
+        jLabel1.setText("SALE INVOICE");
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
 
@@ -394,50 +395,49 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(jLabel16)
-                                .addGap(28, 28, 28)
-                                .addComponent(cbxMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jLabel12))))
+                        .addGap(97, 97, 97)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel16)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(cbxMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnTimKiem)
+                                        .addGap(47, 47, 47))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(cbxMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(35, 35, 35)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -449,7 +449,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxMaHD;
     private javax.swing.JComboBox<String> cbxMaHH;
-    private javax.swing.JComboBox<String> cbxMaNV;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -491,6 +490,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel txtStatus;
     private javax.swing.JTextField txtTenHH;
     private javax.swing.JTextField txtTenKH;
+    private javax.swing.JTextField txtTenKH1;
     private javax.swing.JTextField txtTenNV;
     private javax.swing.JTextField txtThanhTien;
     private javax.swing.JTextField txtThanhTien1;
