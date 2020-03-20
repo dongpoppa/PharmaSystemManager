@@ -93,5 +93,5 @@ public class Drug {
     public void setStorageTemperatures(int storageTemperatures) {
         this.storageTemperatures = storageTemperatures;
     }
-
+    
 }

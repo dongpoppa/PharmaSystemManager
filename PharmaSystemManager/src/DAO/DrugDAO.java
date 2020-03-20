@@ -72,16 +72,16 @@ public class DrugDAO {
 
     private Drug readFromResultSet(ResultSet rs) throws SQLException {
         Drug model = new Drug();
-        model.setID(rs.getString("MaNV"));
-        model.setName(rs.getString("MatKhau"));
-        model.setScienceName(rs.getString("VaiTro"));
-        model.setStorageTemperatures(rs.getInt("HoVaTen"));
-        model.setPacking(rs.getString("NgaySinh"));
-        model.setUnit(rs.getString("NgayLamViec"));
-        model.setProducer(rs.getString("SDTNV"));
-        model.setDescription(rs.getString("EmailNV"));
-        model.setStatus(rs.getString("DiaChiNV"));
-        model.setDrugCategoryID(rs.getString("TrangThaiNV"));;
+        model.setID(rs.getString("MaThuoc"));
+        model.setName(rs.getString("TenThuoc"));
+        model.setScienceName(rs.getString("TenKhoaHoc"));
+        model.setStorageTemperatures(rs.getInt("NhietDoBaoQuan"));
+        model.setPacking(rs.getString("QuyCachDongGoi"));
+        model.setUnit(rs.getString("DonViTinh"));
+        model.setProducer(rs.getString("NhaSX"));
+        model.setDescription(rs.getString("MoTaThuoc"));
+        model.setStatus(rs.getString("TrangThaiThuoc"));
+        model.setDrugCategoryID(rs.getString("MaLoaiThuoc"));;
         return model;
     }
 }

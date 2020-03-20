@@ -11,7 +11,7 @@ package model;
  */
 public class DrugCategory {
 
-    private String ID, Name, description;
+    private String ID, name, description;
 
     public String getDrugCategoryID() {
         return ID;
@@ -22,11 +22,11 @@ public class DrugCategory {
     }
 
     public String getDrugCategoryName() {
-        return Name;
+        return name;
     }
 
     public void setDrugCategoryName(String drugCategoryName) {
-        this.Name = drugCategoryName;
+        this.name = drugCategoryName;
     }
 
     public String getDescription() {
@@ -35,6 +35,10 @@ public class DrugCategory {
 
     public void setDescription(String Description) {
         this.description = Description;
+    }
+
+    public String toString() {
+        return "[" + this.ID + "] " + this.name;
     }
 
 }

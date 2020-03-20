@@ -6,6 +6,8 @@
 package UI;
 
 import DAO.BranchDAO;
+import DAO.DrugCategoryDAO;
+import DAO.DrugDAO;
 import DAO.EmployeeDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
@@ -17,6 +19,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import model.Branch;
+import model.Drug;
+import model.DrugCategory;
 import model.Employee;
 
 /**
@@ -26,8 +30,8 @@ import model.Employee;
 public class DrugJInternalFrame extends javax.swing.JInternalFrame {
 
     int index = 0; // vị trí của nhân viên đang hiển thị trên form
-    EmployeeDAO dao = new EmployeeDAO();
-    BranchDAO branchDAO = new BranchDAO();
+    DrugDAO dao = new DrugDAO();
+    DrugCategoryDAO categoryDAO = new DrugCategoryDAO();
 
     /**
      * Creates new form NhanVienJInternalFrame
@@ -36,7 +40,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         ShareHelper.frame = frame;
         initComponents();
         init();
-        setTitle("Employee Manager");
+        setTitle("Drug Infomation Manager");
     }
 
     /**
@@ -62,22 +66,22 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         lblFullName = new javax.swing.JLabel();
-        txtFullName = new javax.swing.JTextField();
+        txtScientificName = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
         lblDateOfBirth1 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
+        txtProducer = new javax.swing.JTextField();
         lblAddress1 = new javax.swing.JLabel();
         lblEmail1 = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
-        cboRanch = new javax.swing.JComboBox();
-        txtAddress2 = new javax.swing.JTextField();
+        cbxDrugCategory = new javax.swing.JComboBox();
+        txtPakingStyle = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        txtAddress1 = new javax.swing.JTextField();
+        txtDecription = new javax.swing.JTextArea();
+        txtStorageTem = new javax.swing.JTextField();
         lblDateStartWork1 = new javax.swing.JLabel();
-        txtConfirmPassword = new javax.swing.JPasswordField();
         lblConfirmPassword = new javax.swing.JLabel();
+        txtDrugName = new javax.swing.JTextField();
+        txtUnit = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -174,20 +178,18 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         lblFullName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblFullName.setText("Drug name");
 
-        txtFullName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtScientificName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblPassword.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblPassword.setText("Scientific name");
 
-        txtPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
         lblDateOfBirth1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDateOfBirth1.setText("Paking style");
 
-        txtAddress.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtProducer.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblAddress1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblAddress1.setText("Producter");
+        lblAddress1.setText("Producer");
 
         lblEmail1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblEmail1.setText("Decription");
@@ -195,78 +197,79 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         lblPhone1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblPhone1.setText("Drug category");
 
-        cboRanch.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        cboRanch.setMinimumSize(new java.awt.Dimension(43, 30));
-        cboRanch.setPreferredSize(new java.awt.Dimension(40, 30));
+        cbxDrugCategory.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        cbxDrugCategory.setMinimumSize(new java.awt.Dimension(43, 30));
+        cbxDrugCategory.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        txtAddress2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtPakingStyle.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtDecription.setColumns(20);
+        txtDecription.setLineWrap(true);
+        txtDecription.setRows(5);
+        jScrollPane1.setViewportView(txtDecription);
 
-        txtAddress1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtStorageTem.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblDateStartWork1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDateStartWork1.setText("Unit");
 
-        txtConfirmPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
         lblConfirmPassword.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblConfirmPassword.setText("Storage temperatures");
+
+        txtDrugName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        txtUnit.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDateOfBirth1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAddress)
-                            .addComponent(txtConfirmPassword)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPakingStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblDateStartWork1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(35, 35, 35)))
+                                .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblDateStartWork1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProducer, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(txtStorageTem))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtScientificName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboRanch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(45, 45, 45))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                    .addComponent(lblEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxDrugCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,44 +278,41 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(txtScientificName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblDateOfBirth1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtPakingStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(lblAddress1)
                                 .addGap(2, 2, 2)
-                                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblDateStartWork1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                                .addComponent(txtProducer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19)
+                        .addComponent(lblDateStartWork1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStorageTem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(lblPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(cboRanch, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbxDrugCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         btnInsert.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -527,14 +527,13 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPrev;
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox cboRanch;
+    private javax.swing.JComboBox cbxDrugCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAvatar;
@@ -547,13 +546,14 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JTable tblGridView;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAddress1;
-    private javax.swing.JTextField txtAddress2;
-    private javax.swing.JPasswordField txtConfirmPassword;
-    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextArea txtDecription;
+    private javax.swing.JTextField txtDrugName;
     private javax.swing.JTextField txtID;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPakingStyle;
+    private javax.swing.JTextField txtProducer;
+    private javax.swing.JTextField txtScientificName;
+    private javax.swing.JTextField txtStorageTem;
+    private javax.swing.JTextField txtUnit;
     // End of variables declaration//GEN-END:variables
 
     void init() {
@@ -569,72 +569,65 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     void load() {
         DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
         model.setRowCount(0);
-        String vaiTro = "";
         try {
-            List<Employee> list = null;
-            if (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0) {
-                list = dao.select();
-            } else {
-                list = dao.findByBranch(ShareHelper.USER.getStoreID());
-            }
-            for (Employee nv : list) {
-                if (nv.isRole() && (nv.getStoreID() == null || nv.getStoreID().length() == 0)) {
-                    vaiTro = "Boss";
-                } else if (nv.isRole() && (nv.getStoreID().length() > 0)) {
-                    vaiTro = "Manager";
-                } else {
-                    vaiTro = "Pharmacist";
-                }
+            List<Drug> list = null;
+            list = dao.select();
+            for (Drug drug : list) {
                 Object[] row = {
-                    nv.getEmployeeID(),
-                    nv.getPassword(),
-                    vaiTro,
-                    nv.getName(),
-                    nv.getDateOfBirth(),
-                    nv.getStartDate(),
-                    nv.getPhone(),
-                    nv.getEmail(),
-                    nv.getAddress(),
-                    nv.getStatus(),
-                    nv.getStoreID()
+                    drug.getID(), drug.getName(), drug.getScienceName(),
+                    drug.getPacking(), drug.getProducer(), drug.getUnit(),
+                    drug.getStorageTemperatures(), categoryDAO.findById(drug.getDrugCategoryID()).getDrugCategoryName(),
+                    drug.getDescription(), drug.getStatus()
                 };
                 model.addRow(row);
             }
         } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
         }
     }
 
     void edit() {
         try {
-            String manv = (String) tblGridView.getValueAt(this.index, 0);
-            Employee model = dao.findById(manv);
+            String drugID = (String) tblGridView.getValueAt(this.index, 0);
+            Drug model = dao.findById(drugID);
             if (model != null) {
                 this.setModel(model);
                 this.setStatus(false);
             }
         } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+            DialogHelper.alert(this, "Database access error!");
         }
     }
 
     void clear() {
-        this.setModel(new Employee());
+        this.setModel(new Drug());
         this.setStatus(true);
         this.tblGridView.clearSelection();
     }
 
-    void setModel(Employee model) {
-        txtID.setText(model.getEmployeeID());
-        txtPassword.setText(model.getPassword());
-        txtConfirmPassword.setText(model.getPassword());
-        txtFullName.setText(model.getName());
+    void setModel(Drug model) {
+        txtID.setText(model.getID());
+        txtDrugName.setText(model.getName());
+        txtScientificName.setText(model.getScienceName());
+        txtPakingStyle.setText(model.getPacking());
+        txtProducer.setText(model.getProducer());
+        txtUnit.setText(model.getUnit());
+        txtStorageTem.setText(String.valueOf(model.getStorageTemperatures()));
+        txtDecription.setText(model.getDescription());
     }
 
-    Employee getModel() {
-        Employee model = new Employee();
-        model.setEmployeeID(txtID.getText());
-        model.setPassword(new String(txtPassword.getPassword()));
+    Drug getModel() {
+        Drug model = new Drug();
+        model.setID(txtID.getText());
+        model.setName(txtDrugName.getText());
+        model.setScienceName(txtScientificName.getText());
+        model.setPacking(txtPakingStyle.getText());
+        model.setProducer(txtProducer.getText());
+        model.setUnit(txtUnit.getText());
+        model.setStorageTemperatures(Integer.parseInt(txtStorageTem.getText()));
+        model.setDrugCategoryID(((DrugCategory) cbxDrugCategory.getSelectedItem()).getDrugCategoryID());
+        model.setDescription(txtDecription.getText());
         return model;
     }
 
@@ -652,75 +645,57 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void fillToCombobox() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboRanch.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbxDrugCategory.getModel();
         model.removeAllElements();
         try {
-            List<Branch> list = new ArrayList<>();
-            if (ShareHelper.USER.getStoreID() == null) {
-                list = branchDAO.select();
-            } else {
-                ShareHelper.Branch = branchDAO.findById(ShareHelper.USER.getStoreID());
-                list.add(ShareHelper.Branch);
-            }
-            for (Branch branch : list) {
-                model.addElement(branch);
+            List<DrugCategory> list = new ArrayList<>();
+            list = categoryDAO.select();
+            for (DrugCategory drugCate : list) {
+                model.addElement(drugCate);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+            DialogHelper.alert(this, "Database access error!");
         }
     }
 
     void insert() {
-        Employee model = getModel();
-
-        String confirm = new String(txtConfirmPassword.getPassword());
-        if (confirm.equals(model.getPassword())) {
-            try {
-                dao.insert(model);
-                this.load();
-                this.clear();
-                DialogHelper.alert(this, "Thêm mới thành công!");
-            } catch (Exception e) {
-                e.printStackTrace();
-                DialogHelper.alert(this, "Thêm mới thất bại!");
-            }
-        } else {
-            DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
-            txtConfirmPassword.requestFocus();
+        Drug model = getModel();
+        try {
+            dao.insert(model);
+            this.load();
+            this.clear();
+            DialogHelper.alert(this, "Insert successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Insert failed!");
         }
+
     }
 
     void update() {
-        Employee model = getModel();
-
-        String confirm = new String(txtConfirmPassword.getPassword());
-        if (!confirm.equals(model.getPassword())) {
-            DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
-            txtConfirmPassword.requestFocus();
-        } else {
-            try {
-                dao.update(model);
-                this.load();
-                DialogHelper.alert(this, "Cập nhật thành công!");
-            } catch (Exception e) {
-                DialogHelper.alert(this, "Cập nhật thất bại!");
-            }
+        Drug model = getModel();
+        try {
+            dao.update(model);
+            this.load();
+            DialogHelper.alert(this, "Update successfully!");
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Update failed!");
         }
     }
 
     void delete() {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
         if (ShareHelper.status != null) {
-            Employee model = dao.findById(txtID.getText());
+            Drug model = dao.findById(txtID.getText());
             model.setStatus(ShareHelper.status);
             try {
                 dao.updateStatus(model);
                 this.load();
-                DialogHelper.alert(this, "Update successfull");
+                DialogHelper.alert(this, "Delete successfully!");
                 ShareHelper.status = null;
             } catch (Exception e) {
-                DialogHelper.alert(this, "Update failed");
+                DialogHelper.alert(this, "Delete failed!");
             }
         }
     }
