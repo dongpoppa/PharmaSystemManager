@@ -10,8 +10,9 @@ import helper.DateHelper;
 import helper.JdbcHelper;
 import helper.ShareHelper;
 import java.sql.ResultSet;
-import java.util.Date;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.StoragedDrug;
 
 /**
@@ -57,6 +58,8 @@ public class DrugStatus extends javax.swing.JInternalFrame
         jLabel13 = new javax.swing.JLabel();
         txtEXP_type_1day = new javax.swing.JTextField();
 
+        setClosable(true);
+
         jScrollPane3.setBorder(null);
 
         tblReview.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -77,6 +80,13 @@ public class DrugStatus extends javax.swing.JInternalFrame
         jScrollPane3.setViewportView(tblReview);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Doanh số", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Số đơn bán");
 
@@ -136,22 +146,57 @@ public class DrugStatus extends javax.swing.JInternalFrame
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thuốc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         txtEXP_type_7day.setEditable(false);
+        txtEXP_type_7day.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                txtEXP_type_7dayMouseClicked(evt);
+            }
+        });
 
         jLabel10.setText("Số loại huốc hết hạn trong 7 ngày");
 
         txtEXP_type_7day_revoke.setEditable(false);
+        txtEXP_type_7day_revoke.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                txtEXP_type_7day_revokeMouseClicked(evt);
+            }
+        });
 
         jLabel11.setText("Số lượng thuốc hết hạn trong 7 ngày");
 
         txtEXP_type_1day_revoke.setEditable(false);
+        txtEXP_type_1day_revoke.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                txtEXP_type_1day_revokeMouseClicked(evt);
+            }
+        });
 
         jLabel12.setText("Số lượng thuốc hết hạn trong ngày");
 
         jLabel13.setText("Số loại thuốc hết hạn trong ngày");
 
         txtEXP_type_1day.setEditable(false);
+        txtEXP_type_1day.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                txtEXP_type_1dayMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,67 +270,166 @@ public class DrugStatus extends javax.swing.JInternalFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    StoragedDrugDAO dao= new StoragedDrugDAO();
-    List<StoragedDrug> list1, list2;
-    
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPanel2MouseClicked
+    {//GEN-HEADEREND:event_jPanel2MouseClicked
+        fillEXP();
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void txtEXP_type_1dayMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_1dayMouseClicked
+    {//GEN-HEADEREND:event_txtEXP_type_1dayMouseClicked
+        fillEXP();
+    }//GEN-LAST:event_txtEXP_type_1dayMouseClicked
+
+    private void txtEXP_type_1day_revokeMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_1day_revokeMouseClicked
+    {//GEN-HEADEREND:event_txtEXP_type_1day_revokeMouseClicked
+        fillEXP();
+    }//GEN-LAST:event_txtEXP_type_1day_revokeMouseClicked
+
+    private void txtEXP_type_7dayMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_7dayMouseClicked
+    {//GEN-HEADEREND:event_txtEXP_type_7dayMouseClicked
+        fillEXP();
+    }//GEN-LAST:event_txtEXP_type_7dayMouseClicked
+
+    private void txtEXP_type_7day_revokeMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_7day_revokeMouseClicked
+    {//GEN-HEADEREND:event_txtEXP_type_7day_revokeMouseClicked
+        fillEXP();
+    }//GEN-LAST:event_txtEXP_type_7day_revokeMouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPanel1MouseClicked
+    {//GEN-HEADEREND:event_jPanel1MouseClicked
+        fillSale();
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    StoragedDrugDAO dao = new StoragedDrugDAO();
+    List<StoragedDrug> list1;
+    ResultSet list2;
+    int i = 1;
+    String[][] arr;
+
     void init()
     {
         setFrameIcon(ShareHelper.APP_ICON);
         load();
+
+        list1 = dao.select("Select * from THUOCTRONGKHO WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan = '" + DateHelper.toString(DateHelper.now()) + "'");
+
+        list2 = JdbcHelper.executeQuery("Select H.MAHDBAN, NGAYBAN, HINHTHUCTHANHTOAN, SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' GROUP BY H.MAHDBAN, NGAYBAN, HINHTHUCTHANHTOAN");
+
+         arr= new String[4][100];
+        
+        try
+        {
+            while (list2.next())
+            {
+                arr[0][i] = list2.getString(1);
+                arr[1][i] = list2.getString(2);
+                arr[2][i] = list2.getString(3);
+                arr[3][i] = list2.getString(4);
+                i++;
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-    
+
     public void load()
     {
         try
         {
-            ResultSet rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT MaTHUOC), sum(soluongton) from THUOCTRONGKHO WHERE MADAILY = '"+ShareHelper.Branch.getBranchID()+"' and ngayhethan between '"+ DateHelper.toString(DateHelper.now())+"' and '"+DateHelper.toString(DateHelper.addDays(DateHelper.now(), 7))+"'");
+            ResultSet rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT MaTHUOC), sum(soluongton) from THUOCTRONGKHO WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan between '" + DateHelper.toString(DateHelper.now()) + "' and '" + DateHelper.toString(DateHelper.addDays(DateHelper.now(), 7)) + "'");
             System.out.println(DateHelper.toString(DateHelper.addDays(DateHelper.now(), 7)));
             while (rs1.next())
             {
                 txtEXP_type_7day.setText(rs1.getString(1));
                 txtEXP_type_7day_revoke.setText(rs1.getString(2));
             }
-            
-             rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT MaTHUOC), sum(soluongton) from THUOCTRONGKHO WHERE MADAILY = '"+ShareHelper.Branch.getBranchID()+"' and ngayhethan = '"+ DateHelper.toString(DateHelper.now())+"'");
+
+            rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT MaTHUOC), sum(soluongton) from THUOCTRONGKHO WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan = '" + DateHelper.toString(DateHelper.now()) + "'");
             while (rs1.next())
             {
                 txtEXP_type_1day.setText(rs1.getString(1));
                 txtEXP_type_1day_revoke.setText(rs1.getString(2));
             }
-            
-            rs1= JdbcHelper.executeQuery("Select COUNT(DISTINCT H.MaHDBan), SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '"+ShareHelper.Branch.getBranchID()+"' and ngayban = '"+ DateHelper.toString(DateHelper.now())+"'");
-            while(rs1.next())
+
+            rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT H.MaHDBan), SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "'");
+            while (rs1.next())
             {
                 txtRevenue_Sale_No.setText(rs1.getString(1));
                 txtRevenue_Sale_Total.setText(rs1.getString(2));
             }
-            
-            rs1= JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '"+ShareHelper.Branch.getBranchID()+"' and ngayban = '"+ DateHelper.toString(DateHelper.now())+"' AND HINHTHUCTHANHTOAN = 'CASH'");
-            while(rs1.next())
+
+            rs1 = JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' AND HINHTHUCTHANHTOAN = 'CASH'");
+            while (rs1.next())
             {
                 txtRevenue_Sale_Cash.setText(rs1.getString(1));
             }
-            
-            rs1= JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '"+ShareHelper.Branch.getBranchID()+"' and ngayban = '"+ DateHelper.toString(DateHelper.now())+"' AND HINHTHUCTHANHTOAN = 'DEBIT'");
-            while(rs1.next())
+
+            rs1 = JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' AND HINHTHUCTHANHTOAN = 'DEBIT'");
+            while (rs1.next())
             {
                 txtRevenue_Sale_Debit.setText(rs1.getString(1));
             }
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-    
+
+    public void fillSale()
+    {
+        try
+        {
+            tblReview = new JTable();
+            tblReview.setFont(new java.awt.Font("Dialog", 0, 14));
+            DefaultTableModel model = new DefaultTableModel(new Object[]
+            {
+                "Mã hóa đơn", "Ngày bán", "Hình thức thanh toán", "Tổng tiền"
+            }, 0);
+            tblReview.setRowHeight(30);
+            jScrollPane3.setViewportView(tblReview);
+            tblReview.setModel(model);
+            
+            for(int j=1;j<i; j++)
+                model.addRow(new Object[]{arr[0][j],arr[1][j],arr[2][j],arr[3][j]});
+            
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public void fillEXP()
     {
-        list1=null;
-        list1=dao.select("Select * from THUOCTRONG KHO WHERE MADAILY = "+ShareHelper.Branch.getBranchID()+" and ngayhethan between "+ DateHelper.now()+" and "+DateHelper.addDays(DateHelper.now(), 7));
+        try
+        {
+            tblReview = new JTable();
+            tblReview.setFont(new java.awt.Font("Dialog", 0, 14));
+            DefaultTableModel model = new DefaultTableModel(new Object[]
+            {
+                "Mã thuốc", "Mã lô hàng", "Ngày sản xuất", "Ngày hết hạn", "Số lượng tồn"
+            }, 0);
+            tblReview.setRowHeight(30);
+            jScrollPane3.setViewportView(tblReview);
+            tblReview.setModel(model);
+            for (StoragedDrug d : list1)
+            {
+                Object[] row =
+                {
+                    d.getDrugID(),
+                    d.getBatchNo(),
+                    d.getMFG(),
+                    d.getEXP(),
+                    d.getQuantity()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -309,9 +453,5 @@ public class DrugStatus extends javax.swing.JInternalFrame
     private javax.swing.JTextField txtRevenue_Sale_No;
     private javax.swing.JTextField txtRevenue_Sale_Total;
     // End of variables declaration//GEN-END:variables
-
-
-
-
 
 }

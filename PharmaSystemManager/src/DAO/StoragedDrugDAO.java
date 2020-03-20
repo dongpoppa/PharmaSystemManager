@@ -19,12 +19,12 @@ import model.StoragedDrug;
 public class StoragedDrugDAO {
 
     public void insert(StoragedDrug model) {
-        String sql = "INSERT INTO ThuocTrongKho (MaLoHang, NgaySX, NgayHetHan, SoLuong, NgayNhapHang, GiaBan, GiaNhap, MaThuoc, MaDaiLy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ThuocTrongKho (MaLoHang, NgaySX, NgayHetHan, SoLuongTon, NgayNhapHang, GiaBan, GiaNhap, MaThuoc, MaDaiLy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID());
     }
 
     public void update(StoragedDrug model) {
-        String sql = "UPDATE ThuocTrongKho SET MaLoHang = ?, NgaySX = ?, NgayHetHan = ?, SoLuong = ?, NgayNhapHang = ?, GiaNhap = ?, MaThuoc = ?, MaDaiLy = ? WHERE ID = ?";
+        String sql = "UPDATE ThuocTrongKho SET MaLoHang = ?, NgaySX = ?, NgayHetHan = ?, SoLuongTon = ?, NgayNhapHang = ?, GiaNhap = ?, MaThuoc = ?, MaDaiLy = ? WHERE ID = ?";
         JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID(), model.getID());
     }
 
@@ -70,7 +70,7 @@ public class StoragedDrugDAO {
         model.setBatchNo(rs.getString("MaLoHang"));
         model.setMFG(rs.getDate("NgaySX"));
         model.setEXP(rs.getDate("NgayHetHan"));
-        model.setQuantity(rs.getInt("SoLuong"));
+        model.setQuantity(rs.getInt("SoLuongTon"));
         model.setPurchaseDate(rs.getDate("NgayNhapHang"));
         model.setSaleMoney(rs.getDouble("GiaBan"));
         model.setPurchaseMoney(rs.getDouble("GiaNhap"));
