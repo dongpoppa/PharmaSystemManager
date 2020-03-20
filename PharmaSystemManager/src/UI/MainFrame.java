@@ -60,14 +60,14 @@ public class MainFrame extends javax.swing.JFrame {
         lblBranchName = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
         pnlMenu = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnPurchase = new javax.swing.JButton();
+        btnSale = new javax.swing.JButton();
+        btnSup = new javax.swing.JButton();
+        btnDrugInfo = new javax.swing.JButton();
+        btnStoreStatus = new javax.swing.JButton();
         btnEmployee = new javax.swing.JButton();
         btnBranch = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         Image img = new ImageIcon("src\\icon\\logo_background.png").getImage();
         desktop = new javax.swing.JDesktopPane(){
@@ -77,10 +77,19 @@ public class MainFrame extends javax.swing.JFrame {
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
 
         jMenu3.setText("File");
@@ -168,77 +177,77 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.setPreferredSize(new java.awt.Dimension(150, 551));
         pnlMenu.setLayout(new java.awt.GridLayout(9, 1));
 
-        jButton1.setBackground(new java.awt.Color(255, 227, 249));
-        jButton1.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/purchase_invoice.png"))); // NOI18N
-        jButton1.setText("Purchase Invoices");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPurchase.setBackground(new java.awt.Color(255, 227, 249));
+        btnPurchase.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnPurchase.setForeground(new java.awt.Color(51, 51, 51));
+        btnPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/purchase_invoice.png"))); // NOI18N
+        btnPurchase.setText("Purchase Invoices");
+        btnPurchase.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPurchase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPurchase.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPurchaseActionPerformed(evt);
             }
         });
-        pnlMenu.add(jButton1);
+        pnlMenu.add(btnPurchase);
 
-        jButton2.setBackground(new java.awt.Color(255, 227, 249));
-        jButton2.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sale_invoice.png"))); // NOI18N
-        jButton2.setText("Sale Invoices");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSale.setBackground(new java.awt.Color(255, 227, 249));
+        btnSale.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnSale.setForeground(new java.awt.Color(51, 51, 51));
+        btnSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/sale_invoice.png"))); // NOI18N
+        btnSale.setText("Sale Invoices");
+        btnSale.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSale.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSaleActionPerformed(evt);
             }
         });
-        pnlMenu.add(jButton2);
+        pnlMenu.add(btnSale);
 
-        jButton3.setBackground(new java.awt.Color(255, 227, 249));
-        jButton3.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/supplier.png"))); // NOI18N
-        jButton3.setText("Suppliers Manager");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSup.setBackground(new java.awt.Color(255, 227, 249));
+        btnSup.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnSup.setForeground(new java.awt.Color(51, 51, 51));
+        btnSup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/supplier.png"))); // NOI18N
+        btnSup.setText("Suppliers");
+        btnSup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btnSup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSupActionPerformed(evt);
             }
         });
-        pnlMenu.add(jButton3);
+        pnlMenu.add(btnSup);
 
-        jButton4.setBackground(new java.awt.Color(255, 227, 249));
-        jButton4.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/drug_information.png"))); // NOI18N
-        jButton4.setText("Drugs Infomation");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnDrugInfo.setBackground(new java.awt.Color(255, 227, 249));
+        btnDrugInfo.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnDrugInfo.setForeground(new java.awt.Color(51, 51, 51));
+        btnDrugInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/drug_information.png"))); // NOI18N
+        btnDrugInfo.setText("Drugs Infomation");
+        btnDrugInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDrugInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDrugInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnDrugInfoActionPerformed(evt);
             }
         });
-        pnlMenu.add(jButton4);
+        pnlMenu.add(btnDrugInfo);
 
-        jButton5.setBackground(new java.awt.Color(255, 227, 249));
-        jButton5.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/drug_status.png"))); // NOI18N
-        jButton5.setText("Store Status");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnStoreStatus.setBackground(new java.awt.Color(255, 227, 249));
+        btnStoreStatus.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnStoreStatus.setForeground(new java.awt.Color(51, 51, 51));
+        btnStoreStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/drug_status.png"))); // NOI18N
+        btnStoreStatus.setText("Store Status");
+        btnStoreStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnStoreStatus.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnStoreStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnStoreStatusActionPerformed(evt);
             }
         });
-        pnlMenu.add(jButton5);
+        pnlMenu.add(btnStoreStatus);
 
         btnEmployee.setBackground(new java.awt.Color(255, 227, 249));
         btnEmployee.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
@@ -268,14 +277,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         pnlMenu.add(btnBranch);
 
-        jButton8.setBackground(new java.awt.Color(255, 227, 249));
-        jButton8.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(51, 51, 51));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/report.png"))); // NOI18N
-        jButton8.setText("Report");
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        pnlMenu.add(jButton8);
+        btnReport.setBackground(new java.awt.Color(255, 227, 249));
+        btnReport.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
+        btnReport.setForeground(new java.awt.Color(51, 51, 51));
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/report.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnlMenu.add(btnReport);
 
         btnLogout.setBackground(new java.awt.Color(255, 227, 249));
         btnLogout.setFont(new java.awt.Font("Dialog", 3, 13)); // NOI18N
@@ -308,19 +317,46 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(desktop, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("   File   ");
-
-        jMenuItem2.setText("Logout");
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(jSeparator1);
 
         jMenuItem1.setText("Change password");
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setText("Logout");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Exit");
+        jMenu1.add(jMenuItem3);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("   Invoices   ");
+
+        jMenuItem5.setText("Purchase invoice");
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem4.setText("Sale invoice");
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("   Manager   ");
+
+        jMenuItem6.setText("Drug infomation");
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Stoe status");
+        jMenu5.add(jMenuItem7);
+
+        jMenuItem8.setText("Employee");
+        jMenu5.add(jMenuItem8);
+
+        jMenuItem9.setText("Branch");
+        jMenu5.add(jMenuItem9);
+
+        jMenuItem10.setText("Supplier");
+        jMenu5.add(jMenuItem10);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("   statistical   ");
@@ -346,27 +382,27 @@ public class MainFrame extends javax.swing.JFrame {
         setMainStatus();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSaleActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupActionPerformed
         // TODO add your handling code here:
         openSupplier();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnSupActionPerformed
 
     private void btnBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchActionPerformed
         // TODO add your handling code here:
         this.openBranch();
     }//GEN-LAST:event_btnBranchActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnDrugInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrugInfoActionPerformed
         // TODO add your handling code here:
         openDrugInfo();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnDrugInfoActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
-    {//GEN-HEADEREND:event_jButton5ActionPerformed
+    private void btnStoreStatusActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStoreStatusActionPerformed
+    {//GEN-HEADEREND:event_btnStoreStatusActionPerformed
         for (JInternalFrame fr : desktop.getAllFrames()) {
             fr.dispose();
         }
@@ -374,12 +410,12 @@ public class MainFrame extends javax.swing.JFrame {
         desktop.add(DrugStatus);
         DrugStatus.setLocation(this.getWidth() / 2 - DrugStatus.getWidth() / 2, desktop.getHeight() / 2 - DrugStatus.getHeight() / 2);
         DrugStatus.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnStoreStatusActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
         // TODO add your handling code here:
         openPurchaseInvoice();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPurchaseActionPerformed
 
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
@@ -524,15 +560,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBranch;
+    private javax.swing.JButton btnDrugInfo;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPurchase;
+    private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnSale;
+    private javax.swing.JButton btnStoreStatus;
+    private javax.swing.JButton btnSup;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -542,11 +578,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblBranchName;
     private javax.swing.JLabel lblPharName;
     private javax.swing.JLabel lblTime;

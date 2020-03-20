@@ -669,7 +669,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+            DialogHelper.alert(this, "Database access error!");
         }
     }
     
@@ -682,7 +682,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 this.setStatus(false);
             }
         } catch (Exception e) {
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+            DialogHelper.alert(this, "Database access error!");
         }
     }
     
@@ -772,7 +772,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            DialogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+            DialogHelper.alert(this, "Database access error!");
         }
     }
     
@@ -796,13 +796,13 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 dao.insert(model);
                 this.load();
                 this.clear();
-                DialogHelper.alert(this, "Thêm mới thành công!");
+                DialogHelper.alert(this, "Insert successfully!");
             } catch (Exception e) {
                 e.printStackTrace();
-                DialogHelper.alert(this, "Thêm mới thất bại!");
+                DialogHelper.alert(this, "Insert failed!");
             }
         } else {
-            DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
+            DialogHelper.alert(this, "Password comfirm is incorect!");
             txtConfirmPassword.requestFocus();
         }
     }
@@ -812,15 +812,15 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         
         String confirm = new String(txtConfirmPassword.getPassword());
         if (!confirm.equals(model.getPassword())) {
-            DialogHelper.alert(this, "Xác nhận mật khẩu không đúng!");
+            DialogHelper.alert(this, "Password comfirm is incorect!");
             txtConfirmPassword.requestFocus();
         } else {
             try {
                 dao.update(model);
                 this.load();
-                DialogHelper.alert(this, "Cập nhật thành công!");
+                DialogHelper.alert(this, "Update successfully!");
             } catch (Exception e) {
-                DialogHelper.alert(this, "Cập nhật thất bại!");
+                DialogHelper.alert(this, "Update faied!");
             }
         }
     }
@@ -833,10 +833,10 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             try {
                 dao.updateStatus(model);
                 this.load();
-                DialogHelper.alert(this, "Update successfull");
+                DialogHelper.alert(this, "Update successfully!");
                 ShareHelper.status = null;
             } catch (Exception e) {
-                DialogHelper.alert(this, "Update failed");
+                DialogHelper.alert(this, "Update failed!");
             }
         }
     }
