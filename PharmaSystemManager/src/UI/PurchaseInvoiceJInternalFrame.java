@@ -6,6 +6,7 @@
 package UI;
 
 import helper.ShareHelper;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 /**
@@ -450,4 +451,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSalePrice;
     private javax.swing.JTextField txtTotalAmount;
     // End of variables declaration//GEN-END:variables
+
+    void fillToList(String DrugName) {
+        DefaultListModel model = (DefaultListModel) ListDrugs.getModel();
+        model.removeAllElements();
+        
+    }
+
 }

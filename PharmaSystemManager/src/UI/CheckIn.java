@@ -5,8 +5,6 @@
  */
 package UI;
 
-import helper.DialogHelper;
-import helper.ShareHelper;
 import javax.swing.JFrame;
 
 /**
@@ -166,7 +164,6 @@ public class CheckIn extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,7 +189,6 @@ public class CheckIn extends javax.swing.JDialog {
 //            }
 //        }
 //    }
-
     void cancel() {
         this.dispose();
     }
