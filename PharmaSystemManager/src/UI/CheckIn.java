@@ -5,6 +5,8 @@
  */
 package UI;
 
+import helper.DialogHelper;
+import helper.ShareHelper;
 import javax.swing.JFrame;
 
 /**
@@ -70,6 +72,7 @@ public class CheckIn extends javax.swing.JDialog {
 
         txtCash.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
+        txtDebit.setEditable(false);
         txtDebit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,7 +132,7 @@ public class CheckIn extends javax.swing.JDialog {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-//        this.confirm();
+        this.confirm();
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**
@@ -177,18 +180,15 @@ public class CheckIn extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
-//    void confirm() {
-//        if (!(new String(txtPassword.getPassword())).equals(ShareHelper.USER.getPassword())) {
-//            DialogHelper.alert(this, "Wrong password");
-//        } else {
-//            if (DialogHelper.confirm(this, "Are you sure?")) {
-//                ShareHelper.status = txtReason.getText();
-//                this.dispose();
-//            } else {
-//                ShareHelper.status = null;
-//            }
-//        }
-//    }
+    void confirm() {
+        if (DialogHelper.confirm(this, "Are you sure?")) {
+            ShareHelper.total = Integer.parseInt(txtTotal.getText());
+            ShareHelper.cash = Integer.parseInt(txtCash.getText());
+            ShareHelper.debit = ShareHelper.total - ShareHelper.cash;
+            this.dispose();
+        }
+    }
+
     void cancel() {
         this.dispose();
     }
