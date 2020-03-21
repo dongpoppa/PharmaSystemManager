@@ -16,6 +16,7 @@ public class StoragedDrug {
     private int ID, quantity;
     private Date MFG, EXP, purchaseDate;
     private String batchNo, drugID, branchID, status;
+    private double purchasePrice, salesPrice;
 
     public String getStatus()
     {
@@ -26,22 +27,21 @@ public class StoragedDrug {
     {
         this.status = status;
     }
-    private double purchaseMoney, saleMoney;
 
     public double getPurchaseMoney() {
-        return purchaseMoney;
+        return purchasePrice;
     }
 
     public void setPurchaseMoney(double purchaseMoney) {
-        this.purchaseMoney = purchaseMoney;
+        this.purchasePrice = purchaseMoney;
     }
 
     public double getSaleMoney() {
-        return saleMoney;
+        return salesPrice;
     }
 
     public void setSaleMoney(double saleMoney) {
-        this.saleMoney = saleMoney;
+        this.salesPrice = saleMoney;
     }
 
     public int getID() {

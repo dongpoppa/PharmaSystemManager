@@ -19,13 +19,13 @@ import model.StoragedDrug;
 public class StoragedDrugDAO {
 
     public void insert(StoragedDrug model) {
-        String sql = "INSERT INTO ThuocTrongKho (MaLoHang, NgaySX, NgayHetHan, SoLuongTon, NgayNhapHang, GiaBan, GiaNhap, MaThuoc, MaDaiLy) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID());
+        String sql = "INSERT INTO ThuocTrongKho (MaLoHang, NgaySX, NgayHetHan, SoLuongTon, NgayNhapHang, GiaBan, GiaNhap, MaThuoc, MaDaiLy, trangthaithuoc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID(),model.getStatus());
     }
 
     public void update(StoragedDrug model) {
-        String sql = "UPDATE ThuocTrongKho SET MaLoHang = ?, NgaySX = ?, NgayHetHan = ?, SoLuongTon = ?, NgayNhapHang = ?, GiaNhap = ?, MaThuoc = ?, MaDaiLy = ? WHERE ID = ?";
-        JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID(), model.getID());
+        String sql = "UPDATE ThuocTrongKho SET MaLoHang = ?, NgaySX = ?, NgayHetHan = ?, SoLuongTon = ?, NgayNhapHang = ?, GiaNhap = ?, MaThuoc = ?, MaDaiLy = ?, trangthaithuoc=? WHERE ID = ?";
+        JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID(), model.getStatus(), model.getID());
     }
 
     public List<StoragedDrug> select() {
@@ -59,6 +59,7 @@ public class StoragedDrugDAO {
                 rs.getStatement().getConnection().close();
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new RuntimeException(ex);
         }
         return list;
