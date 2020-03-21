@@ -140,7 +140,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         try {
-            JasperDesign jasdi = JRXmlLoader.load("E:\\OneDrive - Nguyen Sieu School\\Documents\\GitHub\\PharmaSystemManager\\PharmaSystemManager\\test\\testBill.jrxml");
+            JasperDesign jasdi = JRXmlLoader.load("E:\\GIT\\PharmaSystemManager\\PharmaSystemManager\\test\\testBill.jrxml");
 //            String sql = "SELECT `bill_no`, `item_name`, `quantity`, `price` FROM `item` WHERE bill_no='" + txtbillnumber.getText() + "'";
 //            JRDesignQuery newQuery = new JRDesignQuery();
 //            newQuery.setText(sql);
