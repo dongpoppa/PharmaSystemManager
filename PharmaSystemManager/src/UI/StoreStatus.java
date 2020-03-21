@@ -7,10 +7,15 @@ package UI;
 
 import DAO.StoragedDrugDAO;
 import helper.DateHelper;
+import helper.DialogHelper;
 import helper.JdbcHelper;
 import helper.ShareHelper;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.StoragedDrug;
@@ -37,72 +42,104 @@ public class StoreStatus extends javax.swing.JInternalFrame
     private void initComponents()
     {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblReview = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblSale = new javax.swing.JTable();
+        cbbSales = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        txtRevenue_Sale_No = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtRevenue_Sale_Cash = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtRevenue_Sale_Debit = new javax.swing.JTextField();
-        txtRevenue_Sale_Total = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
-        txtEXP_type_7day = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtEXP_type_7day_revoke = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtEXP_type_1day_revoke = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        txtEXP_type_1day = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDrug = new javax.swing.JTable();
+        cbbDrug = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        txtNoType = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtNoUnit = new javax.swing.JFormattedTextField();
+        txtRevoke = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
+        btnRevoke = new javax.swing.JButton();
 
         setClosable(true);
-
-        jScrollPane3.setBorder(null);
-
-        tblReview.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tblReview.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String []
-            {
-
-            }
-        ));
-        tblReview.setRowHeight(30);
-        jScrollPane3.setViewportView(tblReview);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Doanh số", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter()
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
             {
-                jPanel1MouseClicked(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameOpened(evt);
             }
         });
 
-        jLabel1.setText("Số đơn bán");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Doanh số", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        txtRevenue_Sale_No.setEditable(false);
+        jScrollPane4.setBorder(null);
 
-        jLabel4.setText("Doanh thu tiền mặt");
+        tblSale.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tblSale.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
 
-        txtRevenue_Sale_Cash.setEditable(false);
+            },
+            new String []
+            {
+                "Invoice ID", "Time", "Sales", "Payment method", "Discount", "Total bill", "Status"
+            }
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false
+            };
 
-        jLabel6.setText("Doanh thu thẻ");
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        tblSale.setRowHeight(30);
+        jScrollPane4.setViewportView(tblSale);
 
-        txtRevenue_Sale_Debit.setEditable(false);
+        cbbSales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Today sales invoices", "Today revoke sales invoices" }));
+        cbbSales.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                cbbSalesActionPerformed(evt);
+            }
+        });
 
-        txtRevenue_Sale_Total.setEditable(false);
+        jLabel1.setText("Total income");
 
-        jLabel8.setText("Tổng doanh thu");
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
+
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        jLabel2.setText("Total invoice");
+
+        jLabel3.setText("Total revoke invoice");
+
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,91 +147,93 @@ public class StoreStatus extends javax.swing.JInternalFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8))
-                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRevenue_Sale_No, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(txtRevenue_Sale_Cash)
-                    .addComponent(txtRevenue_Sale_Debit)
-                    .addComponent(txtRevenue_Sale_Total))
-                .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbbSales, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4))
+                        .addGap(24, 24, 24))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(cbbSales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtRevenue_Sale_No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtRevenue_Sale_Cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtRevenue_Sale_Debit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRevenue_Sale_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(30, 30, 30))
+                    .addComponent(jLabel2)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thuốc", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
+
+        jScrollPane3.setBorder(null);
+
+        tblDrug.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tblDrug.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
             {
-                jPanel2MouseClicked(evt);
+
+            },
+            new String []
+            {
+                "Drug ID", "Drug Name", "Batch no", "Stored Quantity", "Unit", "Date import", "Date of manufactored", "Date of exp", "Status"
+            }
+        ));
+        tblDrug.setRowHeight(30);
+        jScrollPane3.setViewportView(tblDrug);
+
+        cbbDrug.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All drugs", "Today expired drugs", "7 days expired drugs", "Today revoked drugs", "7 days revoked drugs" }));
+        cbbDrug.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                cbbDrugActionPerformed(evt);
             }
         });
 
-        txtEXP_type_7day.setEditable(false);
-        txtEXP_type_7day.addMouseListener(new java.awt.event.MouseAdapter()
+        jLabel4.setText("Amount of type");
+
+        txtNoType.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        jLabel5.setText("Amount of unit");
+
+        txtNoUnit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        txtRevoke.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        jLabel6.setText("Total revoked drugs");
+
+        btnRevoke.setText("Revoke drug");
+        btnRevoke.addActionListener(new java.awt.event.ActionListener()
         {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
+            public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                txtEXP_type_7dayMouseClicked(evt);
-            }
-        });
-
-        jLabel10.setText("Số loại huốc hết hạn trong 7 ngày");
-
-        txtEXP_type_7day_revoke.setEditable(false);
-        txtEXP_type_7day_revoke.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                txtEXP_type_7day_revokeMouseClicked(evt);
-            }
-        });
-
-        jLabel11.setText("Số lượng thuốc hết hạn trong 7 ngày");
-
-        txtEXP_type_1day_revoke.setEditable(false);
-        txtEXP_type_1day_revoke.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                txtEXP_type_1day_revokeMouseClicked(evt);
-            }
-        });
-
-        jLabel12.setText("Số lượng thuốc hết hạn trong ngày");
-
-        jLabel13.setText("Số loại thuốc hết hạn trong ngày");
-
-        txtEXP_type_1day.setEditable(false);
-        txtEXP_type_1day.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                txtEXP_type_1dayMouseClicked(evt);
+                btnRevokeActionPerformed(evt);
             }
         });
 
@@ -203,40 +242,48 @@ public class StoreStatus extends javax.swing.JInternalFrame
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtEXP_type_7day_revoke, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEXP_type_1day_revoke, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEXP_type_1day, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEXP_type_7day, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNoType, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRevoke, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbbDrug, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRevoke)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtEXP_type_1day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cbbDrug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRevoke))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtEXP_type_1day_revoke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtEXP_type_7day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtEXP_type_7day_revoke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                    .addComponent(jLabel4)
+                    .addComponent(txtNoType, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(txtNoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtRevoke, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,63 +291,99 @@ public class StoreStatus extends javax.swing.JInternalFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPanel2MouseClicked
-    {//GEN-HEADEREND:event_jPanel2MouseClicked
-        fillEXP();
-    }//GEN-LAST:event_jPanel2MouseClicked
+    private void load()
+    {
+        modelDrug = (DefaultTableModel) tblDrug.getModel();
+        modelSales = (DefaultTableModel) tblSale.getModel();
 
-    private void txtEXP_type_1dayMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_1dayMouseClicked
-    {//GEN-HEADEREND:event_txtEXP_type_1dayMouseClicked
-        fillEXP();
-    }//GEN-LAST:event_txtEXP_type_1dayMouseClicked
+        getDrug(DateHelper.toDate("1/1/3000"), false);
+        getInvoices(false);
+    }
+    private void cbbDrugActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cbbDrugActionPerformed
+    {//GEN-HEADEREND:event_cbbDrugActionPerformed
+        switch (cbbDrug.getSelectedIndex())
+        {
+            case 0:
+                getDrug(DateHelper.toDate("1/1/3000"), false);
+                break;
+            case 1:
+                getDrug(DateHelper.now(), false);
+                break;
+            case 2:
+                getDrug(DateHelper.addDays(DateHelper.now(), 7), false);
+                break;
+            case 3:
+                getDrug(DateHelper.now(), true);
+                break;
+            case 4:
+                getDrug(DateHelper.addDays(DateHelper.now(), 7), true);
+                break;
+        }
 
-    private void txtEXP_type_1day_revokeMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_1day_revokeMouseClicked
-    {//GEN-HEADEREND:event_txtEXP_type_1day_revokeMouseClicked
-        fillEXP();
-    }//GEN-LAST:event_txtEXP_type_1day_revokeMouseClicked
 
-    private void txtEXP_type_7dayMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_7dayMouseClicked
-    {//GEN-HEADEREND:event_txtEXP_type_7dayMouseClicked
-        fillEXP();
-    }//GEN-LAST:event_txtEXP_type_7dayMouseClicked
+    }//GEN-LAST:event_cbbDrugActionPerformed
 
-    private void txtEXP_type_7day_revokeMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_txtEXP_type_7day_revokeMouseClicked
-    {//GEN-HEADEREND:event_txtEXP_type_7day_revokeMouseClicked
-        fillEXP();
-    }//GEN-LAST:event_txtEXP_type_7day_revokeMouseClicked
+    private void btnRevokeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRevokeActionPerformed
+    {//GEN-HEADEREND:event_btnRevokeActionPerformed
+        new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
+        if (ShareHelper.status != null)
+        {
+            StoragedDrug model = dao.findById(tblDrug.getValueAt(tblDrug.getSelectedRow(), 0).toString());
+            model.setStatus(ShareHelper.getStatus());
+            try
+            {
+                dao.update(model);
+                load();
+                DialogHelper.alert(this, "Revoke successfully");
+                ShareHelper.status = null;
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                DialogHelper.alert(this, "Update failed!");
+            }
+        }
+    }//GEN-LAST:event_btnRevokeActionPerformed
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPanel1MouseClicked
-    {//GEN-HEADEREND:event_jPanel1MouseClicked
-        fillSale();
-    }//GEN-LAST:event_jPanel1MouseClicked
+    private void cbbSalesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cbbSalesActionPerformed
+    {//GEN-HEADEREND:event_cbbSalesActionPerformed
+        switch (cbbSales.getSelectedIndex())
+        {
+            case 0:
+                getInvoices(false);
+                break;
+            case 1:
+                getInvoices(true);
+                break;
+
+        }
+    }//GEN-LAST:event_cbbSalesActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameOpened
+    {//GEN-HEADEREND:event_formInternalFrameOpened
+        load();
+    }//GEN-LAST:event_formInternalFrameOpened
 
     StoragedDrugDAO dao = new StoragedDrugDAO();
+    DefaultTableModel modelDrug, modelSales;
     List<StoragedDrug> list1;
     ResultSet list2;
     int i = 1;
@@ -309,149 +392,174 @@ public class StoreStatus extends javax.swing.JInternalFrame
     void init()
     {
         setFrameIcon(ShareHelper.APP_ICON);
-        load();
-
-        list1 = dao.select("Select * from THUOCTRONGKHO WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan = '" + DateHelper.toString(DateHelper.now()) + "'");
 
         list2 = JdbcHelper.executeQuery("Select H.MAHDBAN, NGAYBAN, HINHTHUCTHANHTOAN, SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' GROUP BY H.MAHDBAN, NGAYBAN, HINHTHUCTHANHTOAN");
-
-         arr= new String[4][100];
-        
-        try
-        {
-            while (list2.next())
-            {
-                arr[0][i] = list2.getString(1);
-                arr[1][i] = list2.getString(2);
-                arr[2][i] = list2.getString(3);
-                arr[3][i] = list2.getString(4);
-                i++;
-            }
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
-    public void load()
+    public void getDrug(Date date, boolean exp)
     {
-        try
+        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan between '" + DateHelper.toString(DateHelper.now()) + "' and '" + DateHelper.toString(date) + "'";
+        if (exp)
         {
-            ResultSet rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT MaTHUOC), sum(soluongton) from THUOCTRONGKHO WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan between '" + DateHelper.toString(DateHelper.now()) + "' and '" + DateHelper.toString(DateHelper.addDays(DateHelper.now(), 7)) + "'");
-            System.out.println(DateHelper.toString(DateHelper.addDays(DateHelper.now(), 7)));
-            while (rs1.next())
-            {
-                txtEXP_type_7day.setText(rs1.getString(1));
-                txtEXP_type_7day_revoke.setText(rs1.getString(2));
-            }
-
-            rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT MaTHUOC), sum(soluongton) from THUOCTRONGKHO WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan = '" + DateHelper.toString(DateHelper.now()) + "'");
-            while (rs1.next())
-            {
-                txtEXP_type_1day.setText(rs1.getString(1));
-                txtEXP_type_1day_revoke.setText(rs1.getString(2));
-            }
-
-            rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT H.MaHDBan), SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "'");
-            while (rs1.next())
-            {
-                txtRevenue_Sale_No.setText(rs1.getString(1));
-                txtRevenue_Sale_Total.setText(rs1.getString(2));
-            }
-
-            rs1 = JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' AND HINHTHUCTHANHTOAN = 'CASH'");
-            while (rs1.next())
-            {
-                txtRevenue_Sale_Cash.setText(rs1.getString(1));
-            }
-
-            rs1 = JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' AND HINHTHUCTHANHTOAN = 'DEBIT'");
-            while (rs1.next())
-            {
-                txtRevenue_Sale_Debit.setText(rs1.getString(1));
-            }
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+            sql += " and trangthaithuoc is not null";
         }
-    }
+        ResultSet rs = JdbcHelper.executeQuery(sql);
+        int total_unit = 0, total_type = 0, total_revoke = 0;
+        Set type = new HashSet();
 
-    public void fillSale()
-    {
+        modelDrug.setRowCount(0);
         try
         {
-            tblReview = new JTable();
-            tblReview.setFont(new java.awt.Font("Dialog", 0, 14));
-            DefaultTableModel model = new DefaultTableModel(new Object[]
-            {
-                "Mã hóa đơn", "Ngày bán", "Hình thức thanh toán", "Tổng tiền"
-            }, 0);
-            tblReview.setRowHeight(30);
-            jScrollPane3.setViewportView(tblReview);
-            tblReview.setModel(model);
-            
-            for(int j=1;j<i; j++)
-                model.addRow(new Object[]{arr[0][j],arr[1][j],arr[2][j],arr[3][j]});
-            
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public void fillEXP()
-    {
-        try
-        {
-            tblReview = new JTable();
-            tblReview.setFont(new java.awt.Font("Dialog", 0, 14));
-            DefaultTableModel model = new DefaultTableModel(new Object[]
-            {
-                "Mã thuốc", "Mã lô hàng", "Ngày sản xuất", "Ngày hết hạn", "Số lượng tồn"
-            }, 0);
-            tblReview.setRowHeight(30);
-            jScrollPane3.setViewportView(tblReview);
-            tblReview.setModel(model);
-            for (StoragedDrug d : list1)
+            while (rs.next())
             {
                 Object[] row =
                 {
-                    d.getDrugID(),
-                    d.getBatchNo(),
-                    d.getMFG(),
-                    d.getEXP(),
-                    d.getQuantity()
+                    rs.getString("MATHUOC"),
+                    rs.getString("tenthuoc"),
+                    rs.getString("MaLoHang"),
+                    rs.getInt("soluongton"),
+                    rs.getString("donvitinh"),
+                    rs.getDate("ngaynhaphang"),
+                    rs.getDate("ngaysx"),
+                    rs.getDate("ngayhethan"),
+                    rs.getString("trangthaithuoc"),
                 };
-                model.addRow(row);
+                type.add(rs.getString("MATHUOC"));
+                total_unit += rs.getInt("soluongton");
+                if (rs.getString("trangthaithuoc") != null)
+                {
+                    total_revoke += 1;
+                }
+
+                modelDrug.addRow(row);
             }
-        } catch (Exception e)
+        } catch (SQLException ex)
         {
-            e.printStackTrace();
+            ex.printStackTrace();
         }
+        txtNoType.setText(String.valueOf(type.size()));
+        txtNoUnit.setText(String.valueOf(total_unit));
+        txtRevoke.setText(String.valueOf(total_revoke));
     }
+
+    public void getInvoices(Boolean exp)
+    {
+        String sql = "Select H.MAHDBAN, NGAYBAN, MANV, HINHTHUCTHANHTOAN, GIAMGIA, NGAYNHAPHANG, trangthaihdban, SUM (T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban between '" + DateHelper.toString(null,"yyyy/MM/dd") + " 00:00:00' and '"+DateHelper.toString(null,"yyyy/MM/dd")+" 23:59:59'";
+        System.out.println(sql);
+
+        if (exp)
+        {
+            sql += " and trangthaihdban is not null GROUP BY H.MAHDBAN, NGAYBAN, MANV, HINHTHUCTHANHTOAN, GIAMGIA, NGAYNHAPHANG, trangthaihdban";
+        }
+        else
+            sql+= "GROUP BY H.MAHDBAN, NGAYBAN, MANV, HINHTHUCTHANHTOAN, GIAMGIA, NGAYNHAPHANG, trangthaihdban";
+        ResultSet rs = JdbcHelper.executeQuery(sql);
+        modelSales.setRowCount(0);
+        try
+        {
+            while (rs.next())
+            {
+                Object[] row =
+                {
+                    rs.getString("MAHDBAN"),
+                    rs.getTime("NGAYBAN"),
+                    rs.getString("MaNV"),
+                    rs.getString("HINHTHUCTHANHTOAN"),
+                    rs.getInt("GIAMGIA"),
+                    rs.getDate("ngaynhaphang"),
+                    rs.getString("trangthaihdban"),
+                };
+
+                modelSales.addRow(row);
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+
+    }
+
+//    public void load()
+//    {
+//        
+//            
+//
+//           
+//
+//            rs1 = JdbcHelper.executeQuery("Select COUNT(DISTINCT H.MaHDBan), SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "'");
+//            while (rs1.next())
+//            {
+//                txtRevenue_Sale_No.setText(rs1.getString(1));
+//                txtRevenue_Sale_Total.setText(rs1.getString(2));
+//            }
+//
+//            rs1 = JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' AND HINHTHUCTHANHTOAN = 'CASH'");
+//            while (rs1.next())
+//            {
+//                txtRevenue_Sale_Cash.setText(rs1.getString(1));
+//            }
+//
+//            rs1 = JdbcHelper.executeQuery("Select  SUM(T.GiaBan*HCT.SOLUONG) from HOADONBANHANG as H JOIN HoaDonBanHangChiTiet as HCT on H.MaHDBan=HCT.MaHDBan JOIN ThuocTrongKho AS T ON T.IDThuoc=HCT.IDThuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayban = '" + DateHelper.toString(DateHelper.now()) + "' AND HINHTHUCTHANHTOAN = 'DEBIT'");
+//            while (rs1.next())
+//            {
+//                txtRevenue_Sale_Debit.setText(rs1.getString(1));
+//            }
+//        } catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void fillSale()
+//    {
+//        try
+//        {
+//            tblDrug = new JTable();
+//            tblDrug.setFont(new java.awt.Font("Dialog", 0, 14));
+//            DefaultTableModel model = new DefaultTableModel(new Object[]
+//            {
+//                "Mã hóa đơn", "Ngày bán", "Hình thức thanh toán", "Tổng tiền"
+//            }, 0);
+//            tblDrug.setRowHeight(30);
+//            jScrollPane3.setViewportView(tblDrug);
+//            tblDrug.setModel(model);
+//
+//            for (int j = 1; j < i; j++)
+//            {
+//                model.addRow(new Object[]
+//                {
+//                    arr[0][j], arr[1][j], arr[2][j], arr[3][j]
+//                });
+//            }
+//
+//        } catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRevoke;
+    private javax.swing.JComboBox<String> cbbDrug;
+    private javax.swing.JComboBox<String> cbbSales;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tblReview;
-    private javax.swing.JTextField txtEXP_type_1day;
-    private javax.swing.JTextField txtEXP_type_1day_revoke;
-    private javax.swing.JTextField txtEXP_type_7day;
-    private javax.swing.JTextField txtEXP_type_7day_revoke;
-    private javax.swing.JTextField txtRevenue_Sale_Cash;
-    private javax.swing.JTextField txtRevenue_Sale_Debit;
-    private javax.swing.JTextField txtRevenue_Sale_No;
-    private javax.swing.JTextField txtRevenue_Sale_Total;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable tblDrug;
+    private javax.swing.JTable tblSale;
+    private javax.swing.JFormattedTextField txtNoType;
+    private javax.swing.JFormattedTextField txtNoUnit;
+    private javax.swing.JFormattedTextField txtRevoke;
     // End of variables declaration//GEN-END:variables
 
 }

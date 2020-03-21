@@ -76,6 +76,7 @@ public class StoragedDrugDAO {
         model.setPurchaseMoney(rs.getDouble("GiaNhap"));
         model.setDrugID(rs.getString("MaThuoc"));
         model.setBranchID(rs.getString("MaDaiLy"));
+        model.setStatus(rs.getString("Trangthaithuoc"));
         return model;
     }
 }

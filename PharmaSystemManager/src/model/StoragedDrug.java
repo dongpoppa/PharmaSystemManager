@@ -15,7 +15,17 @@ public class StoragedDrug {
 
     private int ID, quantity;
     private Date MFG, EXP, purchaseDate;
-    private String batchNo, drugID, branchID;
+    private String batchNo, drugID, branchID, status;
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
     private double purchaseMoney, saleMoney;
 
     public double getPurchaseMoney() {
