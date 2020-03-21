@@ -139,7 +139,7 @@ public class CheckOut extends javax.swing.JDialog {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-        this.confirm();
+//        this.confirm();
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**
@@ -185,18 +185,18 @@ public class CheckOut extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
-    void confirm() {
-        if (!(new String(txtPassword.getPassword())).equals(ShareHelper.USER.getPassword())) {
-            DialogHelper.alert(this, "Wrong password");
-        } else {
-            if (DialogHelper.confirm(this, "Are you sure?")) {
-                ShareHelper.status = txtReason.getText();
-                this.dispose();
-            } else {
-                ShareHelper.status = null;
-            }
-        }
-    }
+//    void confirm() {
+//        if (!(new String(txtPassword.getPassword())).equals(ShareHelper.USER.getPassword())) {
+//            DialogHelper.alert(this, "Wrong password");
+//        } else {
+//            if (DialogHelper.confirm(this, "Are you sure?")) {
+//                ShareHelper.status = txtReason.getText();
+//                this.dispose();
+//            } else {
+//                ShareHelper.status = null;
+//            }
+//        }
+//    }
 
     void cancel() {
         this.dispose();
