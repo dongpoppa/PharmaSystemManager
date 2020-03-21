@@ -13,10 +13,39 @@ import java.util.Date;
  */
 public class StoragedDrug {
 
-    private int ID, quantity;
+    private int  quantity;
     private Date MFG, EXP, purchaseDate;
-    private String batchNo, drugID, branchID, status;
+    private String ID, batchNo, drugID, branchID, status;
     private double purchasePrice, salesPrice;
+    public String getID()
+    {
+        return ID;
+    }
+
+    public void setID(String ID)
+    {
+        this.ID = ID;
+    }
+
+    public double getPurchasePrice()
+    {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(double purchasePrice)
+    {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public double getSalesPrice()
+    {
+        return salesPrice;
+    }
+
+    public void setSalesPrice(double salesPrice)
+    {
+        this.salesPrice = salesPrice;
+    }
 
     public String getStatus()
     {
@@ -44,13 +73,6 @@ public class StoragedDrug {
         this.salesPrice = saleMoney;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -106,6 +128,10 @@ public class StoragedDrug {
 
     public void setBranchID(String branchID) {
         this.branchID = branchID;
+    }
+    
+    public String toString(){
+        return this.drugID;
     }
 
 }

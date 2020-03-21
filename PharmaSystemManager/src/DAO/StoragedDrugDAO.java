@@ -34,7 +34,7 @@ public class StoragedDrugDAO {
     }
 
     public StoragedDrug findById(String ID) {
-        String sql = "SELECT * FROM ThuocTrongKho WHERE ID = ?";
+        String sql = "SELECT * FROM ThuocTrongKho WHERE IDThuoc = ?";
         List<StoragedDrug> list = select(sql, ID);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -67,7 +67,7 @@ public class StoragedDrugDAO {
 
     private StoragedDrug readFromResultSet(ResultSet rs) throws SQLException {
         StoragedDrug model = new StoragedDrug();
-        model.setID(rs.getInt("IDThuoc"));
+        model.setID(rs.getString("IDThuoc"));
         model.setBatchNo(rs.getString("MaLoHang"));
         model.setMFG(rs.getDate("NgaySX"));
         model.setEXP(rs.getDate("NgayHetHan"));
