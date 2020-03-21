@@ -267,7 +267,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblPurchasePrice.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblPurchasePrice.setText("Purchase Price");
 
-        txtPurchasePrice.setEditable(false);
         txtPurchasePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
@@ -290,7 +289,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnAddToInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add_cart.png"))); // NOI18N
         btnAddToInvoice.setText("Add to invoice");
 
-        txtSalePrice.setEditable(false);
         txtSalePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblSalePrice.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -299,7 +297,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblBatchNo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblBatchNo.setText("Batch no");
 
-        txtBatchNo.setEditable(false);
         txtBatchNo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
@@ -555,8 +552,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtDrugInfo.setText(drug.getDrugName());
         txtDrugID.setText(drug.getDrugID());
         txtDrugName.setText(drug.getDrugName());
-        txtPurchasePrice.setText(String.valueOf(drug.getPurchasePrice()));
-        txtSalePrice.setText(String.valueOf(drug.getSalePrice()));
     }
 
 }

@@ -478,7 +478,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtPurchasePrice">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -531,7 +530,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtSalePrice">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -555,7 +553,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBatchNo">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
