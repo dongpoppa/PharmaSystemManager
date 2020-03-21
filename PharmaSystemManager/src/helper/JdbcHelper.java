@@ -5,11 +5,14 @@
  */
 package helper;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,6 +36,7 @@ public class JdbcHelper {
         }
     }
 
+
     /**
      * Xây dựng PreparedStatement
      *
@@ -55,6 +59,27 @@ public class JdbcHelper {
             pstmt.setObject(i + 1, args[i]);
         }
         return pstmt;
+    }
+
+    /**
+     * Xây dựng PreparedStatement với output
+     *
+     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
+     * gọi thủ tục lưu
+     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
+     * câu lệnh sql
+     * @return PreparedStatement tạo được
+     * @throws java.sql.SQLException lỗi sai cú pháp
+     */
+    public static CallableStatement CallableStatementWithOutput(String sql, Object... args) throws SQLException {
+        Connection connection = DriverManager.getConnection(dburl, username, password);
+        CallableStatement cstm = null;
+        cstm = connection.prepareCall(sql);
+        cstm.registerOutParameter(1, java.sql.Types.NVARCHAR);
+        for (int i = 1; i < args.length; i++) {
+            cstm.setObject(i + 1, args[i]);
+        }
+        return cstm;
     }
 
     /**
