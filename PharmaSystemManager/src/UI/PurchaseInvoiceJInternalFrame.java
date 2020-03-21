@@ -6,13 +6,17 @@
 package UI;
 
 import DAO.DrugInfomationDAO;
+import DAO.SupplierDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import model.DrugInfomation;
+import model.PurchaseInvoice;
+import model.Supplier;
 
 /**
  *
@@ -20,7 +24,9 @@ import model.DrugInfomation;
  */
 public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
+    int index = 0;
     DrugInfomationDAO dao = new DrugInfomationDAO();
+    SupplierDAO supDao = new SupplierDAO();
 
     /**
      * Creates new form PurchaseInvoiceJInternalFrame
@@ -32,6 +38,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     public PurchaseInvoiceJInternalFrame(JFrame frame) {
         initComponents();
         ShareHelper.frame = frame;
+        init();
     }
 
     /**
@@ -81,27 +88,44 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         ListDrugs = new javax.swing.JList();
 
         setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         pnlInvoice.setBorder(javax.swing.BorderFactory.createTitledBorder("Medicine infomation"));
 
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Drug index", "Drug ID", "Drug name", "Quantity", "Price", "Amount", "Select"
+                "Drug ID", "Drug name", "Quantity", "Price", "Amount", "Select"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -121,7 +145,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             tblGridView.getColumnModel().getColumn(3).setResizable(false);
             tblGridView.getColumnModel().getColumn(4).setResizable(false);
             tblGridView.getColumnModel().getColumn(5).setResizable(false);
-            tblGridView.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jPanel7.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
@@ -213,6 +236,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnCheckIn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_invoice.png"))); // NOI18N
         btnCheckIn.setText("Check in");
+        btnCheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckInActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnCheckIn);
 
         btnPrint.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -239,7 +267,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblPurchasePrice.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblPurchasePrice.setText("Purchase Price");
 
-        txtPurchasePrice.setEditable(false);
         txtPurchasePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
@@ -262,7 +289,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnAddToInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add_cart.png"))); // NOI18N
         btnAddToInvoice.setText("Add to invoice");
 
-        txtSalePrice.setEditable(false);
         txtSalePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblSalePrice.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -271,7 +297,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblBatchNo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblBatchNo.setText("Batch no");
 
-        txtBatchNo.setEditable(false);
         txtBatchNo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
@@ -374,6 +399,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        ListDrugs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListDrugsMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(ListDrugs);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -428,6 +458,21 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         this.fillToList(drugName);
     }//GEN-LAST:event_btnFindActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        this.fillToCombobox();
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void btnCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInActionPerformed
+        // TODO add your handling code here:
+        new CheckIn(ShareHelper.frame, true, ShareHelper.total);
+    }//GEN-LAST:event_btnCheckInActionPerformed
+
+    private void ListDrugsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListDrugsMouseClicked
+        // TODO add your handling code here:
+        this.setModel();
+    }//GEN-LAST:event_ListDrugsMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList ListDrugs;
@@ -468,6 +513,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTotalAmount;
     // End of variables declaration//GEN-END:variables
 
+    void init() {
+        setFrameIcon(ShareHelper.APP_ICON);
+
+    }
+
     void fillToList(String DrugName) {
         ListDrugs.setModel(new DefaultListModel());
         DefaultListModel model = (DefaultListModel) ListDrugs.getModel();
@@ -481,6 +531,27 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             e.printStackTrace();
             DialogHelper.alert(this, "Database access error!");
         }
+    }
+
+    void fillToCombobox() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboSupplier.getModel();
+        model.removeAllElements();
+        try {
+            List<Supplier> list = supDao.select();
+            for (Supplier sup : list) {
+                model.addElement(sup);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
+        }
+    }
+
+    void setModel() {
+        DrugInfomation drug = (DrugInfomation) ListDrugs.getSelectedValue();
+        txtDrugInfo.setText(drug.getDrugName());
+        txtDrugID.setText(drug.getDrugID());
+        txtDrugName.setText(drug.getDrugName());
     }
 
 }

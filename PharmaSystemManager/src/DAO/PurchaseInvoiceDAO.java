@@ -7,10 +7,13 @@ package DAO;
 
 import helper.JdbcHelper;
 import helper.ShareHelper;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.PurchaseInvoice;
 
 /**
@@ -18,16 +21,25 @@ import model.PurchaseInvoice;
  * @author rondw
  */
 public class PurchaseInvoiceDAO {
-     public void insert(PurchaseInvoice model) {
-        String sql = "INSERT INTO HoaDonThuMua (NgayMua, HinhThucThanhToan, GiamGia, SoTienThanhToan, SoTienConLai, TrangThaiHDMua, MaNV, MaNCC) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPayType(), model.getDiscount(), model.getPurchaseMoney(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID());
-    }
+
+//    public void insert(PurchaseInvoice model) {
+//        String sql = "INSERT INTO HoaDonThuMua (NgayMua, HinhThucThanhToan, GiamGia, SoTienThanhToan, SoTienConLai, TrangThaiHDMua, MaNV, MaNCC) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+//        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPayType(), model.getDiscount(), model.getPurchaseMoney(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID());
+//    }
+//    public String insert(PurchaseInvoice model) {
+//        try {
+//            String sql = "call InsertPurchaseInvoice (?, ?, ?, ?, ?, ?, ?, ?)";
+//            return JdbcHelper.CallableStatementWithOutput(sql,model.get).getString(1);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
 
     public void update(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET NgayMua = ?, HinhThucThanhToan = ?, GiamGia = ?, SoTienThanhToan = ?, SoTienConLai = ?, TrangThaiHDMua = ?, MaNV = ?, MaNCC = ? WHERE MaHDMua = ?";
-        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPayType(), model.getDiscount(), model.getPurchaseMoney(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(),model.getID());
+        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPayType(), model.getDiscount(), model.getPurchaseMoney(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
     }
-
 
     public void updateStatus(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET TrangThaiHDMua = ? Where MaHDMua = ?";
@@ -44,7 +56,7 @@ public class PurchaseInvoiceDAO {
         List<PurchaseInvoice> list = select(sql, MaHDMua);
         return list.size() > 0 ? list.get(0) : null;
     }
-    
+
     public PurchaseInvoice findByEmployeeID(String EmployeeID) {
         String sql = "SELECT * FROM HoaDonThuMua WHERE MaNV = ?";
         List<PurchaseInvoice> list = select(sql, EmployeeID);

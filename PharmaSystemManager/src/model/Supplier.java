@@ -13,6 +13,11 @@ public class Supplier {
 
     private String ID, name, email, phoneNumber, address, city, description, status;
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
     public String getID() {
         return ID;
     }
