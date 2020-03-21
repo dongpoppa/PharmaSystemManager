@@ -30,7 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
     DrugJInternalFrame drugJInternalFrame;
     StoreStatus DrugStatus;
     SaleInvoiceJInternalFrame saleInvoice;
-    SaleInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
+    PurchaseInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
 
     /**
      * Creates new form MainFrame
@@ -522,7 +522,7 @@ public class MainFrame extends javax.swing.JFrame {
         for (JInternalFrame fr : desktop.getAllFrames()) {
             fr.dispose();
         }
-        purchaseInvoiceJInternalFrame = new SaleInvoiceJInternalFrame(this);
+        purchaseInvoiceJInternalFrame = new PurchaseInvoiceJInternalFrame(this);
         desktop.add(purchaseInvoiceJInternalFrame);
         purchaseInvoiceJInternalFrame.setLocation(this.getWidth() / 2 - purchaseInvoiceJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - purchaseInvoiceJInternalFrame.getHeight() / 2);
         purchaseInvoiceJInternalFrame.setVisible(true);
