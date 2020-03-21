@@ -19,7 +19,7 @@ public class DrugInfomation {
 
     @Override
     public String toString() {
-        return this.drugName;
+        return this.drugName + " (" + this.batchNo + ")";
     }
 
     public String getDrugID() {
