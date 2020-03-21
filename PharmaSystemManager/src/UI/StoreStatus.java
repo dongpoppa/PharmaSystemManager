@@ -19,11 +19,11 @@ import model.StoragedDrug;
  *
  * @author Admin
  */
-public class DrugStatus extends javax.swing.JInternalFrame
+public class StoreStatus extends javax.swing.JInternalFrame
 {
 
     /** Creates new form DrugStatus */
-    public DrugStatus()
+    public StoreStatus()
     {
         initComponents();
         init();

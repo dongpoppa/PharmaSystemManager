@@ -28,7 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     SupplierJInternalFrame supplierJInternalFrame;
     BranchJInternalFrame branchJInternalFrame;
     DrugJInternalFrame drugJInternalFrame;
-    DrugStatus DrugStatus;
+    StoreStatus DrugStatus;
     SaleInvoiceJInternalFrame saleInvoice;
     SaleInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
 
@@ -413,7 +413,7 @@ public class MainFrame extends javax.swing.JFrame {
         for (JInternalFrame fr : desktop.getAllFrames()) {
             fr.dispose();
         }
-        DrugStatus = new DrugStatus();
+        DrugStatus = new StoreStatus();
         desktop.add(DrugStatus);
         DrugStatus.setLocation(this.getWidth() / 2 - DrugStatus.getWidth() / 2, desktop.getHeight() / 2 - DrugStatus.getHeight() / 2);
         DrugStatus.setVisible(true);
