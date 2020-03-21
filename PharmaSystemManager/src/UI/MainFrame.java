@@ -29,6 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     BranchJInternalFrame branchJInternalFrame;
     DrugJInternalFrame drugJInternalFrame;
     DrugStatus DrugStatus;
+    SaleInvoiceJInternalFrame saleInvoice;
     SaleInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
 
     /**
@@ -383,7 +384,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaleActionPerformed
-        // TODO add your handling code here:
+        for (JInternalFrame fr : desktop.getAllFrames()) {
+            fr.dispose();
+        }
+        saleInvoice=new SaleInvoiceJInternalFrame();
+        desktop.add(saleInvoice);
+        saleInvoice.setLocation(this.getWidth() / 2 - saleInvoice.getWidth() / 2, desktop.getHeight() / 2 - saleInvoice.getHeight() / 2);
+        saleInvoice.setVisible(true);
     }//GEN-LAST:event_btnSaleActionPerformed
 
     private void btnSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupActionPerformed
