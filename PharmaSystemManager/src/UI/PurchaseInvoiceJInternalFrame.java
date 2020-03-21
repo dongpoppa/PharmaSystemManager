@@ -5,15 +5,22 @@
  */
 package UI;
 
+import DAO.DrugInfomationDAO;
+import helper.DialogHelper;
 import helper.ShareHelper;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import model.DrugInfomation;
 
 /**
  *
  * @author rondw
  */
 public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
+
+    DrugInfomationDAO dao = new DrugInfomationDAO();
 
     /**
      * Creates new form PurchaseInvoiceJInternalFrame
@@ -36,7 +43,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         pnlInvoice = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGridView = new javax.swing.JTable();
@@ -237,6 +243,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtPurchasePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindActionPerformed(evt);
+            }
+        });
 
         lblSupplier.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblSupplier.setText("Supplier");
@@ -411,6 +422,12 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        // TODO add your handling code here:
+        String drugName = txtDrugInfo.getText().trim();
+        this.fillToList(drugName);
+    }//GEN-LAST:event_btnFindActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList ListDrugs;
@@ -420,7 +437,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnFindHistory;
     private javax.swing.JButton btnPrint;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cboSupplier;
     private javax.swing.JCheckBox chkSelectAll;
     private javax.swing.JPanel jPanel7;
@@ -453,9 +469,18 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     void fillToList(String DrugName) {
+        ListDrugs.setModel(new DefaultListModel());
         DefaultListModel model = (DefaultListModel) ListDrugs.getModel();
         model.removeAllElements();
-        
+        try {
+            List<DrugInfomation> list = dao.findByID(DrugName);
+            for (DrugInfomation drug : list) {
+                model.addElement(drug);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
+        }
     }
 
 }
