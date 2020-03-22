@@ -5,7 +5,7 @@
  */
 package UI;
 
-import DAO.DrugInfomationDAO;
+import DAO.DrugInfomationPurchaseDAO;
 import DAO.PurchaseInvoiceDAO;
 import DAO.SupplierDAO;
 import helper.DateHelper;
@@ -30,7 +30,7 @@ import model.Supplier;
 public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     int index = 0;
-    DrugInfomationDAO dao = new DrugInfomationDAO();
+    DrugInfomationPurchaseDAO dao = new DrugInfomationPurchaseDAO();
     SupplierDAO supDao = new SupplierDAO();
     List<DrugInfomation> list = new ArrayList<>();
     PurchaseInvoiceDAO purchaseInvoiceDAO = new PurchaseInvoiceDAO();
