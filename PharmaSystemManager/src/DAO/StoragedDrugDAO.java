@@ -24,7 +24,7 @@ public class StoragedDrugDAO {
     }
 
     public void update(StoragedDrug model) {
-        String sql = "UPDATE ThuocTrongKho SET MaLoHang = ?, NgaySX = ?, NgayHetHan = ?, SoLuongTon = ?, NgayNhapHang = ?, GiaNhap = ?, MaThuoc = ?, MaDaiLy = ?, trangthaithuoc=? WHERE ID = ?";
+        String sql = "UPDATE ThuocTrongKho SET MaLoHang = ?, NgaySX = ?, NgayHetHan = ?, SoLuongTon = ?, NgayNhapHang = ?,GIABAN=?, GiaNhap = ?, MaThuoc = ?, MaDaiLy = ?, trangthaithuoc=? WHERE IDTHUOC = ?";
         JdbcHelper.executeUpdate(sql, model.getBatchNo(), model.getMFG(), model.getEXP(), model.getQuantity(), model.getPurchaseDate(), model.getSaleMoney(), model.getPurchaseMoney(), model.getDrugID(), model.getBranchID(), model.getStatus(), model.getID());
     }
 
@@ -34,7 +34,7 @@ public class StoragedDrugDAO {
     }
 
     public StoragedDrug findById(String ID) {
-        String sql = "SELECT * FROM ThuocTrongKho WHERE IDThuoc = ?";
+        String sql = "SELECT * FROM ThuocTrongKho WHERE MaThuoc = ?";
         List<StoragedDrug> list = select(sql, ID);
         return list.size() > 0 ? list.get(0) : null;
     }

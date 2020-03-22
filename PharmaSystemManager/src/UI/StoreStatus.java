@@ -361,9 +361,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
 
     private void load()
     {
-        modelDrug = (DefaultTableModel) tblDrug.getModel();
-        modelSales = (DefaultTableModel) tblSale.getModel();
-
         getDrug(DateHelper.toDate("1/1/3000"), false);
         getInvoices(false);
     }
@@ -403,7 +400,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
                         continue;
                     }
                     StoragedDrug model = dao.findById(tblDrug.getValueAt(i, 0).toString());
-                    System.out.println(model);
                     model.setStatus(ShareHelper.getStatus());
                     dao.update(model);
                 }
@@ -411,7 +407,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
             {
                 e.printStackTrace();
                 DialogHelper.alert(this, "Update failed!");
-                return;
             }
             load();
             ShareHelper.status = null;
@@ -459,50 +454,65 @@ public class StoreStatus extends javax.swing.JInternalFrame
     void init()
     {
         setFrameIcon(ShareHelper.APP_ICON);
+        modelDrug = (DefaultTableModel) tblDrug.getModel();
+        modelSales = (DefaultTableModel) tblSale.getModel();
     }
 
     public void getDrug(Date date, boolean exp)
     {
         String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan between '" + DateHelper.toString(DateHelper.now()) + "' and '" + DateHelper.toString(date) + "'";
+
         if (exp)
         {
-            sql += " and trangthaithuoc is not null";
+            sql += " and thuoctrongkho.trangthaithuoc is not null";
         }
-        ResultSet rs = JdbcHelper.executeQuery(sql);
+        
+        System.out.println(sql);
+
         int total_unit = 0, total_type = 0, total_revoke = 0;
         Set type = new HashSet();
-
         modelDrug.setRowCount(0);
+
         try
         {
-            while (rs.next())
+            ResultSet rs = null;
+            try
             {
-                Object[] row =
+                rs = JdbcHelper.executeQuery(sql);
+                while (rs.next())
                 {
-                    rs.getString("MATHUOC"),
-                    rs.getString("tenthuoc"),
-                    rs.getString("MaLoHang"),
-                    rs.getInt("soluongton"),
-                    rs.getString("donvitinh"),
-                    rs.getDate("ngaynhaphang"),
-                    rs.getDate("ngaysx"),
-                    rs.getDate("ngayhethan"),
-                    rs.getString("trangthaithuoc"),
-                    false
-                };
-                type.add(rs.getString("MATHUOC"));
-                total_unit += rs.getInt("soluongton");
-                if (rs.getString("trangthaithuoc") != null)
-                {
-                    total_revoke += 1;
-                }
+                    Object[] row =
+                    {
+                        rs.getString("MATHUOC"),
+                        rs.getString("tenthuoc"),
+                        rs.getString("MaLoHang"),
+                        rs.getInt("soluongton"),
+                        rs.getString("donvitinh"),
+                        rs.getDate("ngaynhaphang"),
+                        rs.getDate("ngaysx"),
+                        rs.getDate("ngayhethan"),
+                        rs.getString("trangthaithuoc"),
+                        false
+                    };
+                    modelDrug.addRow(row);
 
-                modelDrug.addRow(row);
+                    type.add(rs.getString("MATHUOC"));
+                    total_unit += rs.getInt("soluongton");
+                    if (rs.getString("trangthaithuoc") != null)
+                    {
+                        total_revoke += 1;
+                    }
+                    System.out.println(row.toString());
+                }
+            } finally
+            {
+                rs.getStatement().getConnection().close();
             }
         } catch (SQLException ex)
         {
             ex.printStackTrace();
         }
+
         txtNoType.setText(String.valueOf(type.size()));
         txtNoUnit.setText(String.valueOf(total_unit));
         txtRevoke.setText(String.valueOf(total_revoke));
@@ -520,27 +530,37 @@ public class StoreStatus extends javax.swing.JInternalFrame
         {
             sql += "GROUP BY H.MAHDBAN, NGAYBAN, MANV, GIAMGIA, TTTIENMAT, TTTHE, trangthaihdban";
         }
-        ResultSet rs = JdbcHelper.executeQuery(sql);
+
         modelSales.setRowCount(0);
         int cash = 0, debit = 0;
         try
         {
-            while (rs.next())
+            ResultSet rs = null;
+            try
             {
-                Object[] row =
+                rs = JdbcHelper.executeQuery(sql);
+                while (rs.next())
                 {
-                    rs.getString("MAHDBAN"),
-                    rs.getTime("NGAYBAN"),
-                    rs.getString("MaNV"),
-                    rs.getInt("GIAMGIA"),
-                    rs.getInt("TTTIENMAT"),
-                    rs.getInt("TTTHE"),
-                    rs.getInt("TONG"),
-                    rs.getString("trangthaihdban"),
-                };
-                cash += rs.getInt("TTTIENMAT");
-                debit += rs.getInt("TTTHE");
-                modelSales.addRow(row);
+                    Object[] row =
+                    {
+                        
+                        rs.getString("MAHDBAN"),
+                        rs.getTime("NGAYBAN"),
+                        rs.getString("MaNV"),
+                        rs.getInt("GIAMGIA"),
+                        rs.getInt("TTTIENMAT"),
+                        rs.getInt("TTTHE"),
+                        rs.getInt("TONG"),
+                        rs.getString("trangthaihdban"),
+                    };
+                    cash += rs.getInt("TTTIENMAT");
+                    debit += rs.getInt("TTTHE");
+                    System.out.println("a5");
+                    modelSales.addRow(row);
+                }
+            } finally
+            {
+                rs.getStatement().getConnection().close();
             }
         } catch (SQLException ex)
         {
