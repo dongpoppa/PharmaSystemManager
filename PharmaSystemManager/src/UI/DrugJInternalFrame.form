@@ -162,14 +162,14 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="10" rowCount="4">
-                    <Column editable="false" title="Drug  ID" type="java.lang.Object"/>
-                    <Column editable="false" title="Drug name" type="java.lang.Object"/>
+                    <Column editable="false" title="Medicine ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Medicine name" type="java.lang.Object"/>
                     <Column editable="false" title="Scientific name" type="java.lang.Object"/>
                     <Column editable="false" title="Paking style" type="java.lang.Object"/>
                     <Column editable="false" title="Producter" type="java.lang.Object"/>
                     <Column editable="false" title="Unit" type="java.lang.Object"/>
                     <Column editable="false" title="Storage temperatures" type="java.lang.Object"/>
-                    <Column editable="false" title="Drug category" type="java.lang.Object"/>
+                    <Column editable="false" title="Medicine category" type="java.lang.Object"/>
                     <Column editable="false" title="Decription" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>
@@ -300,66 +300,58 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblDateOfBirth1" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                      <Component id="txtPakingStyle" min="-2" pref="212" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtUnit" min="-2" pref="208" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblDateStartWork1" min="-2" pref="128" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblConfirmPassword" min="-2" pref="194" max="-2" attributes="0"/>
-                                  <Component id="lblAddress1" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="txtProducer" alignment="0" pref="237" max="32767" attributes="0"/>
-                                  <Component id="txtStorageTem" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="lblPassword" min="-2" pref="151" max="-2" attributes="0"/>
-                                      <Component id="lblPhone1" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtID" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
-                                              <Component id="lblID" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                  <Component id="txtDrugName" min="-2" pref="341" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="lblFullName" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Component id="lblPassword" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtID" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
+                                          <Component id="lblID" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtDrugName" min="-2" pref="341" max="-2" attributes="0"/>
+                                          <Component id="lblFullName" min="-2" pref="130" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="txtScientificName" alignment="1" min="-2" pref="484" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Component id="txtScientificName" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblDateOfBirth1" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <Component id="txtPakingStyle" min="-2" pref="214" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lblDateStartWork1" min="-2" pref="128" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtUnit" min="-2" pref="214" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblConfirmPassword" min="-2" pref="194" max="-2" attributes="0"/>
+                                          <Component id="lblAddress1" min="-2" pref="114" max="-2" attributes="0"/>
+                                          <Component id="txtProducer" alignment="0" pref="237" max="32767" attributes="0"/>
+                                          <Component id="txtStorageTem" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane1" min="-2" pref="477" max="-2" attributes="0"/>
+                                          <Component id="lblEmail1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="cbxDrugCategory" alignment="0" min="-2" pref="483" max="-2" attributes="0"/>
+                                  <Component id="lblPhone1" min="-2" pref="151" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane1" pref="477" max="32767" attributes="0"/>
-                          <Component id="lblEmail1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                          <Component id="cbxDrugCategory" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -404,9 +396,9 @@
                           <Component id="txtStorageTem" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="txtUnit" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblPhone1" min="-2" pref="22" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Component id="cbxDrugCategory" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblEmail1" min="-2" pref="28" max="-2" attributes="0"/>
@@ -423,7 +415,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Drug ID"/>
+                <Property name="text" type="java.lang.String" value="Medicine ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtID">
@@ -438,7 +430,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Drug name"/>
+                <Property name="text" type="java.lang.String" value="Medicine name"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtScientificName">
@@ -492,7 +484,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Drug category"/>
+                <Property name="text" type="java.lang.String" value="Medicine category"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbxDrugCategory">
@@ -633,7 +625,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="DRUG INFO MANAGER"/>
+            <Property name="text" type="java.lang.String" value="MEDICINE INFOMATION"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAvatar">
