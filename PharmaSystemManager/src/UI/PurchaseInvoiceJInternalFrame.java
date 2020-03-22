@@ -722,7 +722,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     void setModelFromList(DrugInfomation model) {
         txtDrugInfo.setText(model.getDrugName());
         txtDrugID.setText(model.getDrugID());
-        txtDrugName.setText(model.getDrugID());
+        txtDrugName.setText(model.getDrugName());
         txtBatchNo.setText(model.getBatchNo());
         cboSupplier.setSelectedItem(supDao.findById(model.getSupplierID()));
         sfQuantity.setValue(model.getQuantity());
