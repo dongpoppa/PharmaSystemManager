@@ -37,8 +37,8 @@ public class DrugInfomationSalesDAO {
     public DrugInfomation findById(String ID) {
         String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
-                + " WHERE IDTHUOC= ?";
-        List<DrugInfomation> list = select(sql, ID);
+                + "WHERE madaily='" +ShareHelper.Branch+"' AND maTHUOC= '"+ID+"'";
+        List<DrugInfomation> list = select(sql);
         return list.size() > 0 ? list.get(0) : null;
     }
 
