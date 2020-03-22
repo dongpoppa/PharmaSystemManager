@@ -61,7 +61,7 @@ public class JdbcHelper {
     }
 
     /**
-     * Xây dựng PreparedStatement với output
+     * Xây dựng CallableStatement với output
      *
      * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
      * gọi thủ tục lưu
