@@ -13,10 +13,27 @@ import java.util.Date;
  */
 public class SaleInvoice {
 
-    private String ID,employeeID,payType,status;
+    private String ID,employeeID,status;
     private Date saleDate;
     private int discount;
+    private double purchaseByCash,purchaseByCredit;
 
+    public double getPurchaseByCash() {
+        return purchaseByCash;
+    }
+
+    public void setPurchaseByCash(double purchaseByCash) {
+        this.purchaseByCash = purchaseByCash;
+    }
+
+    public double getPurchaseByCredit() {
+        return purchaseByCredit;
+    }
+
+    public void setPurchaseByCredit(double purchaseByCredit) {
+        this.purchaseByCredit = purchaseByCredit;
+    }
+    
     public String getID() {
         return ID;
     }
@@ -33,13 +50,6 @@ public class SaleInvoice {
         this.saleDate = saleDate;
     }
 
-    public String getPayType() {
-        return payType;
-    }
-
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
 
     public int getDiscount() {
         return discount;
