@@ -12,6 +12,7 @@ import helper.DialogHelper;
 import helper.ShareHelper;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -140,6 +141,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         tblGridView.setRowHeight(25);
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGridViewMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGridView);
         if (tblGridView.getColumnModel().getColumnCount() > 0) {
             tblGridView.getColumnModel().getColumn(0).setResizable(false);
@@ -466,6 +472,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
         // TODO add your handling code here:
+        for (int i = 0; i < tblGridView.getRowCount(); i++) {
+            System.out.println(i);
+            System.out.println(tblGridView.getModel().getValueAt(i, 5));
+        }
+        this.addToCart();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -493,12 +504,22 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.list.add(this.getModel());
         this.addToCart();
+        this.clear();
     }//GEN-LAST:event_btnAddToInvoiceActionPerformed
 
     private void chkSelectAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkSelectAllMouseClicked
         // TODO add your handling code here:
         this.selectAllItems(chkSelectAll.isSelected());
     }//GEN-LAST:event_chkSelectAllMouseClicked
+
+    private void tblGridViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGridViewMouseClicked
+        // TODO add your handling code here:
+        this.index = tblGridView.rowAtPoint(evt.getPoint());
+        if (this.index >= 0) {
+            this.setModelFromList(this.getModelFromList());
+        }
+
+    }//GEN-LAST:event_tblGridViewMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -590,6 +611,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         model.setSalePrice(Double.parseDouble(txtSalePrice.getText()));
         model.setImportDate(new Date());
         model.setExpirationDate(DateHelper.add(1800));
+        model.setSupplierID(((Supplier) cboSupplier.getSelectedItem()).getID());
         return model;
     }
 
@@ -618,5 +640,37 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         for (int i = 0; i < tblGridView.getRowCount(); i++) {
             tblGridView.setValueAt(selectAll, i, 5);
         }
+    }
+
+    void clear() {
+        txtDrugInfo.setText("");
+        txtDrugID.setText("");
+        txtDrugName.setText("");
+        sfQuantity.setValue(0);
+        txtPurchasePrice.setText("");
+        txtSalePrice.setText("");
+    }
+
+    DrugInfomation getModelFromList() {
+        DrugInfomation model = new DrugInfomation();
+        model.setDrugID((String) tblGridView.getValueAt(index, 0));
+        for (int i = 0; i < list.size(); i++) {
+            if (model.getDrugID().equals(list.get(i).getDrugID())) {
+                model = list.get(i);
+                break;
+            }
+        }
+        return model;
+    }
+
+    void setModelFromList(DrugInfomation model) {
+        txtDrugInfo.setText(model.getDrugName());
+        txtDrugID.setText(model.getDrugID());
+        txtDrugName.setText(model.getDrugID());
+        txtBatchNo.setText(model.getBatchNo());
+        cboSupplier.setSelectedItem(supDao.findById(model.getSupplierID()));
+        sfQuantity.setValue(model.getQuantity());
+        txtPurchasePrice.setText(String.valueOf(model.getPurchasePrice()));
+        txtSalePrice.setText(String.valueOf(model.getSalePrice()));
     }
 }

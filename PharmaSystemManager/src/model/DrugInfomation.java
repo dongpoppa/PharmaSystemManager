@@ -13,10 +13,19 @@ import java.util.Date;
  */
 public class DrugInfomation {
 
-    private String drugID, drugName, batchNo;
+    private String drugID, drugName, batchNo, supplierID;
     private double purchasePrice, salePrice;
     private int quantity;
     private Date importDate, expirationDate;
+    private boolean delete;
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
 
     @Override
     public String toString() {
@@ -85,6 +94,14 @@ public class DrugInfomation {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getSupplierID() {
+        return supplierID;
+    }
+
+    public void setSupplierID(String supplierID) {
+        this.supplierID = supplierID;
     }
 
 }
