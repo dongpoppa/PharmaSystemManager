@@ -15,6 +15,7 @@ public class DrugInfomation {
 
     private String drugID, drugName, batchNo;
     private double purchasePrice, salePrice;
+    private int quantity;
     private Date importDate, expirationDate;
 
     @Override
@@ -76,6 +77,14 @@ public class DrugInfomation {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }

@@ -81,9 +81,9 @@ public class ShareHelper {
     
     public static File file = null;
     public static FileInputStream fileInputStream = null;
-    public static int total = 0;
-    public static int cash = 0;
-    public static int debit = 0;
+    public static double total = 0;
+    public static double cash = 0;
+    public static double debit = 0;
 
     /**
      * Hàm này trả về thông tin trạng thái của các đối tượng

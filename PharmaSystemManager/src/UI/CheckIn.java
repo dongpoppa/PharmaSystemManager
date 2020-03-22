@@ -18,11 +18,11 @@ public class CheckIn extends javax.swing.JDialog {
     /**
      * Creates new form ConfirmDeleteHelper
      */
-    public CheckIn(JFrame parent, boolean modal, int total) {
+    public CheckIn(JFrame parent, boolean modal, double total) {
         super(parent, modal);
-        txtTotal.setText(String.valueOf(total));
         initComponents();
         setLocationRelativeTo(null);
+        txtTotal.setText(String.valueOf(total));
     }
 
     /**
@@ -44,6 +44,7 @@ public class CheckIn extends javax.swing.JDialog {
         txtDebit = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         lblPassword.setText("CASH");
 
@@ -69,10 +70,10 @@ public class CheckIn extends javax.swing.JDialog {
 
         txtTotal.setEditable(false);
         txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
+        txtTotal.setEnabled(false);
 
         txtCash.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
-        txtDebit.setEditable(false);
         txtDebit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,8 +183,8 @@ public class CheckIn extends javax.swing.JDialog {
 
     void confirm() {
         if (DialogHelper.confirm(this, "Are you sure?")) {
-            ShareHelper.total = Integer.parseInt(txtTotal.getText());
-            ShareHelper.cash = Integer.parseInt(txtCash.getText());
+            ShareHelper.total = Double.parseDouble(txtTotal.getText());
+            ShareHelper.cash = Double.parseDouble(txtCash.getText());
             ShareHelper.debit = ShareHelper.total - ShareHelper.cash;
             this.dispose();
         }
