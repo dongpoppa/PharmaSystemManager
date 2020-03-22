@@ -7,15 +7,18 @@ package UI;
 
 import DAO.DrugInfomationDAO;
 import DAO.SupplierDAO;
+import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import model.DrugInfomation;
-import model.PurchaseInvoice;
 import model.Supplier;
 
 /**
@@ -27,6 +30,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     int index = 0;
     DrugInfomationDAO dao = new DrugInfomationDAO();
     SupplierDAO supDao = new SupplierDAO();
+    List<DrugInfomation> list = new ArrayList<>();
 
     /**
      * Creates new form PurchaseInvoiceJInternalFrame
@@ -137,15 +141,12 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         tblGridView.setRowHeight(25);
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblGridViewMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblGridView);
-        if (tblGridView.getColumnModel().getColumnCount() > 0) {
-            tblGridView.getColumnModel().getColumn(0).setResizable(false);
-            tblGridView.getColumnModel().getColumn(1).setResizable(false);
-            tblGridView.getColumnModel().getColumn(2).setResizable(false);
-            tblGridView.getColumnModel().getColumn(3).setResizable(false);
-            tblGridView.getColumnModel().getColumn(4).setResizable(false);
-            tblGridView.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         jPanel7.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
 
@@ -158,8 +159,13 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblDiscount.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDiscount.setText("Discount");
 
-        txtDiscount.setEditable(false);
         txtDiscount.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        chkSelectAll.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkSelectAllMouseClicked(evt);
+            }
+        });
 
         lblSelectAll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblSelectAll.setText("Select all");
@@ -178,16 +184,17 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInvoiceLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
                                 .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(10, 10, 10)
                                 .addComponent(txtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
+                                .addGap(55, 55, 55)
                                 .addComponent(lblTotal)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(109, 109, 109)
+                                .addGap(91, 91, 91)
                                 .addComponent(lblSelectAll)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(chkSelectAll)))
                         .addContainerGap(32, Short.MAX_VALUE))))
         );
@@ -197,18 +204,20 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlInvoiceLayout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(pnlInvoiceLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkSelectAll, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(16, 16, 16)
+                        .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblTotal)
                                 .addComponent(txtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblSelectAll))))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                                .addComponent(lblSelectAll))
+                            .addComponent(chkSelectAll))
+                        .addGap(19, 19, 19))))
         );
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
@@ -288,6 +297,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnAddToInvoice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnAddToInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add_cart.png"))); // NOI18N
         btnAddToInvoice.setText("Add to invoice");
+        btnAddToInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToInvoiceActionPerformed(evt);
+            }
+        });
 
         txtSalePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -450,6 +464,17 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
         // TODO add your handling code here:
+        for (int i = 0; i < tblGridView.getRowCount(); i++) {
+            Boolean check = (Boolean) tblGridView.getValueAt(i, 5);
+            list.get(i).setDelete(check);
+        }
+        for (Iterator<DrugInfomation> iter = list.iterator(); iter.hasNext();) {
+            DrugInfomation model = iter.next();
+            if (model.isDelete()) {
+                iter.remove();
+            }
+        }
+        this.addToCart();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
@@ -465,13 +490,33 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInActionPerformed
         // TODO add your handling code here:
-        new CheckIn(ShareHelper.frame, true, ShareHelper.total);
+        new CheckIn(ShareHelper.frame, true, Double.parseDouble(txtTotalAmount.getText())).setVisible(true);
     }//GEN-LAST:event_btnCheckInActionPerformed
 
     private void ListDrugsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListDrugsMouseClicked
         // TODO add your handling code here:
         this.setModel();
     }//GEN-LAST:event_ListDrugsMouseClicked
+
+    private void btnAddToInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToInvoiceActionPerformed
+        // TODO add your handling code here:
+        this.list.add(this.getModel());
+        this.addToCart();
+        this.clear();
+    }//GEN-LAST:event_btnAddToInvoiceActionPerformed
+
+    private void chkSelectAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkSelectAllMouseClicked
+        // TODO add your handling code here:
+        this.selectAllItems(chkSelectAll.isSelected());
+    }//GEN-LAST:event_chkSelectAllMouseClicked
+
+    private void tblGridViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGridViewMouseClicked
+        // TODO add your handling code here:
+        this.index = tblGridView.rowAtPoint(evt.getPoint());
+        if (this.index >= 0) {
+            this.setModelFromList(this.getModelFromList());
+        }
+    }//GEN-LAST:event_tblGridViewMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -515,7 +560,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     void init() {
         setFrameIcon(ShareHelper.APP_ICON);
-
     }
 
     void fillToList(String DrugName) {
@@ -554,4 +598,77 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtDrugName.setText(drug.getDrugName());
     }
 
+    DrugInfomation getModel() {
+        DrugInfomation model = new DrugInfomation();
+        model.setDrugID(txtDrugID.getText());
+        model.setDrugName(txtDrugName.getText());
+        model.setBatchNo(txtBatchNo.getText());
+        model.setQuantity(sfQuantity.getValue());
+        model.setPurchasePrice(Double.parseDouble(txtPurchasePrice.getText()));
+        model.setSalePrice(Double.parseDouble(txtSalePrice.getText()));
+        model.setImportDate(new Date());
+        model.setExpirationDate(DateHelper.add(1800));
+        model.setSupplierID(((Supplier) cboSupplier.getSelectedItem()).getID());
+        return model;
+    }
+
+    void addToCart() {
+        DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
+        model.setRowCount(0);
+        for (DrugInfomation drug : list) {
+            double amount = drug.getQuantity() * drug.getPurchasePrice();
+            Object[] row = {
+                drug.getDrugID(),
+                drug.getDrugName(),
+                drug.getQuantity(),
+                drug.getPurchasePrice(),
+                amount,
+                drug.isDelete()
+            };
+            model.addRow(row);
+        }
+        double total = 0;
+        for (int i = 0; i < tblGridView.getRowCount(); i++) {
+            total += (Double) tblGridView.getValueAt(i, 4);
+        }
+        txtTotalAmount.setText(String.valueOf(total));
+    }
+
+    void selectAllItems(boolean selectAll) {
+        for (int i = 0; i < tblGridView.getRowCount(); i++) {
+            tblGridView.setValueAt(selectAll, i, 5);
+        }
+    }
+
+    void clear() {
+        txtDrugInfo.setText("");
+        txtDrugID.setText("");
+        txtDrugName.setText("");
+        sfQuantity.setValue(0);
+        txtPurchasePrice.setText("");
+        txtSalePrice.setText("");
+    }
+
+    DrugInfomation getModelFromList() {
+        DrugInfomation model = new DrugInfomation();
+        model.setDrugID((String) tblGridView.getValueAt(index, 0));
+        for (int i = 0; i < list.size(); i++) {
+            if (model.getDrugID().equals(list.get(i).getDrugID())) {
+                model = list.get(i);
+                break;
+            }
+        }
+        return model;
+    }
+
+    void setModelFromList(DrugInfomation model) {
+        txtDrugInfo.setText(model.getDrugName());
+        txtDrugID.setText(model.getDrugID());
+        txtDrugName.setText(model.getDrugID());
+        txtBatchNo.setText(model.getBatchNo());
+        cboSupplier.setSelectedItem(supDao.findById(model.getSupplierID()));
+        sfQuantity.setValue(model.getQuantity());
+        txtPurchasePrice.setText(String.valueOf(model.getPurchasePrice()));
+        txtSalePrice.setText(String.valueOf(model.getSalePrice()));
+    }
 }
