@@ -467,7 +467,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
             sql += " and thuoctrongkho.trangthaithuoc is not null";
         }
         
-        System.out.println(sql);
 
         int total_unit = 0, total_type = 0, total_revoke = 0;
         Set type = new HashSet();
@@ -502,7 +501,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
                     {
                         total_revoke += 1;
                     }
-                    System.out.println(row.toString());
                 }
             } finally
             {
