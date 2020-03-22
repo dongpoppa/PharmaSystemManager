@@ -5,6 +5,7 @@
  */
 package model;
 
+import helper.DateHelper;
 import java.util.Date;
 
 /**
@@ -13,7 +14,27 @@ import java.util.Date;
  */
 public class DrugInfomation {
 
-    private String drugID, drugName, batchNo, supplierID;
+    private String drugID, drugName, batchNo, supplierID, manufactured, unit;
+
+    public String getUnit()
+    {
+        return unit;
+    }
+
+    public void setUnit(String unit)
+    {
+        this.unit = unit;
+    }
+
+    public String getManufactured()
+    {
+        return manufactured;
+    }
+
+    public void setManufactured(String manufactured)
+    {
+        this.manufactured = manufactured;
+    }
     private double purchasePrice, salePrice;
     private int quantity;
     private Date importDate, expirationDate;
@@ -29,7 +50,7 @@ public class DrugInfomation {
 
     @Override
     public String toString() {
-        return this.drugName + " (" + this.batchNo + ")";
+        return "<html>"+this.drugName + "<br>►"+this.manufactured+"  ►Batch: " + this.batchNo + "<br>►EXP: "+DateHelper.toString(expirationDate)+ "  ►Price: VND "+salePrice+" / "+this.unit+"<br>_____________________________________</html>";
     }
 
     public String getDrugID() {

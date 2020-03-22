@@ -19,17 +19,17 @@ import model.DrugInfomation;
 public class DrugInfomationDAO {
 
     public List<DrugInfomation> select() {
-        String sql = "SELECT THUOCTRONGKHO.MATHUOC, TENTHUOC, MALOHANG, GIANHAP, GIABAN, NGAYNHAPHANG, NGAYHETHAN FROM THUOC\n"
+        String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOC.TENTHUOC = THUOC.MATHUOC\n"
                 + "ORDER BY NGAYHETHAN ASC";
         return select(sql);
     }
     
-    public List<DrugInfomation> findByID(String drugName) {
-        String sql = "SELECT THUOCTRONGKHO.MATHUOC, TENTHUOC, MALOHANG, GIANHAP, GIABAN, NGAYNHAPHANG, NGAYHETHAN FROM THUOC\n"
+    public List<DrugInfomation> findByID(String drugInfo) {
+        String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
-                + "WHERE THUOC.TENTHUOC LIKE '%" + drugName + "%'\n"
-                + "ORDER BY NGAYHETHAN ASC";
+                + "WHERE THUOC.TENTHUOC LIKE '%" + drugInfo + "%' OR THUOCTRONGKHO.MATHUOC LIKE '%"+drugInfo+"%' or TENKHOAHOC LIKE '%" +drugInfo+"%' or nhasx like '%" +drugInfo+"%' "
+                + " ORDER BY NGAYHETHAN ASC";
         return select(sql);
     }
 
@@ -61,6 +61,8 @@ public class DrugInfomationDAO {
         model.setSalePrice(rs.getDouble("GIABAN"));
         model.setImportDate(rs.getDate("NGAYNHAPHANG"));
         model.setExpirationDate(rs.getDate("NGAYHETHAN"));
+        model.setManufactured(rs.getString("NhaSX"));
+        model.setUnit(rs.getString("donvitinh"));
         return model;
     }
 }
