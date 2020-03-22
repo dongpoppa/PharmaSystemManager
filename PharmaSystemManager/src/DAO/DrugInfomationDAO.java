@@ -20,7 +20,7 @@ public class DrugInfomationDAO {
 
     public List<DrugInfomation> select() {
         String sql = "SELECT THUOCTRONGKHO.MATHUOC, TENTHUOC, MALOHANG, GIANHAP, GIABAN, NGAYNHAPHANG, NGAYHETHAN FROM THUOC\n"
-                + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.TENTHUOC = THUOC.MATHUOC\n"
+                + "JOIN THUOCTRONGKHO ON THUOC.TENTHUOC = THUOC.MATHUOC\n"
                 + "ORDER BY NGAYHETHAN ASC";
         return select(sql);
     }
@@ -28,7 +28,9 @@ public class DrugInfomationDAO {
     public List<DrugInfomation> findByID(String drugName) {
         String sql = "SELECT THUOCTRONGKHO.MATHUOC, TENTHUOC, MALOHANG, GIANHAP, GIABAN, NGAYNHAPHANG, NGAYHETHAN FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
-                + "WHERE THUOCTRONGKHO.TENTHUOC LIKE '%" + drugName + "%'\n"
+                + "WHERE THUOC.TENTHUOC LIKE '%" + drugName + "%'\n"
+                + "OR THUOC.MATHUOC LIKE '%" + drugName + "%'\n"
+                + "OR THUOC.MATHUOC LIKE '%" + drugName + "%'\n"
                 + "ORDER BY NGAYHETHAN ASC";
         return select(sql);
     }
