@@ -51,6 +51,12 @@ public class DrugDAO {
         return list;
     }
 
+    public List<Drug> selectByKeyword(String keyWord) {
+        String sql = "SELECT * FROM Thuoc WHERE MaThuoc LIKE ? or MaLoaiThuoc LIKE ? or TenThuoc LIKE ?"
+                + " or TenKhoaHoc LIKE ? or DonViTinh LIKE ?";
+        return select(sql, "%" + keyWord + "%", "%" + keyWord + "%", "%" + keyWord + "%", "%" + keyWord + "%", "%" + keyWord + "%");
+    }
+
     private List<Drug> select(String sql, Object... args) {
         List<Drug> list = new ArrayList<>();
         try {
