@@ -13,10 +13,26 @@ import java.util.Date;
  */
 public class PurchaseInvoice {
 
-    private String ID, employeeID, supplierID, payType, status;
+    private String ID, employeeID, supplierID, status;
     private Date purchaseDate;
     private int discount;
-    private double purchaseMoney, remainMoney;
+    private double purchaseByCash,purchaseByCredit, remainMoney;
+
+    public double getPurchaseByCash() {
+        return purchaseByCash;
+    }
+
+    public void setPurchaseByCash(double purchaseByCash) {
+        this.purchaseByCash = purchaseByCash;
+    }
+
+    public double getPurchaseByCredit() {
+        return purchaseByCredit;
+    }
+
+    public void setPurchaseByCredit(double purchaseByCredit) {
+        this.purchaseByCredit = purchaseByCredit;
+    }
 
     public String getID() {
         return ID;
@@ -42,13 +58,6 @@ public class PurchaseInvoice {
         this.supplierID = supplierID;
     }
 
-    public String getPayType() {
-        return payType;
-    }
-
-    public void setPayType(String payType) {
-        this.payType = payType;
-    }
 
     public String getStatus() {
         return status;
@@ -72,14 +81,6 @@ public class PurchaseInvoice {
 
     public void setDiscount(int discount) {
         this.discount = discount;
-    }
-
-    public double getPurchaseMoney() {
-        return purchaseMoney;
-    }
-
-    public void setPurchaseMoney(double purchaseMoney) {
-        this.purchaseMoney = purchaseMoney;
     }
 
     public double getRemainMoney() {
