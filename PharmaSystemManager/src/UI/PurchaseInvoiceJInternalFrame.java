@@ -147,14 +147,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblGridView);
-        if (tblGridView.getColumnModel().getColumnCount() > 0) {
-            tblGridView.getColumnModel().getColumn(0).setResizable(false);
-            tblGridView.getColumnModel().getColumn(1).setResizable(false);
-            tblGridView.getColumnModel().getColumn(2).setResizable(false);
-            tblGridView.getColumnModel().getColumn(3).setResizable(false);
-            tblGridView.getColumnModel().getColumn(4).setResizable(false);
-            tblGridView.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         jPanel7.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
 
@@ -473,8 +465,14 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     {//GEN-HEADEREND:event_btnClearActionPerformed
         // TODO add your handling code here:
         for (int i = 0; i < tblGridView.getRowCount(); i++) {
-            System.out.println(i);
-            System.out.println(tblGridView.getModel().getValueAt(i, 5));
+            Boolean check = (Boolean) tblGridView.getValueAt(i, 5);
+            list.get(i).setDelete(check);
+        }
+        for (Iterator<DrugInfomation> iter = list.iterator(); iter.hasNext();) {
+            DrugInfomation model = iter.next();
+            if (model.isDelete()) {
+                iter.remove();
+            }
         }
         this.addToCart();
     }//GEN-LAST:event_btnClearActionPerformed
@@ -518,7 +516,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         if (this.index >= 0) {
             this.setModelFromList(this.getModelFromList());
         }
-
     }//GEN-LAST:event_tblGridViewMouseClicked
 
 
@@ -625,7 +622,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                 drug.getDrugName(),
                 drug.getQuantity(),
                 drug.getPurchasePrice(),
-                amount
+                amount,
+                drug.isDelete()
             };
             model.addRow(row);
         }
