@@ -36,7 +36,6 @@ public class JdbcHelper {
         }
     }
 
-
     /**
      * Xây dựng PreparedStatement
      *
@@ -71,15 +70,18 @@ public class JdbcHelper {
      * @return PreparedStatement tạo được
      * @throws java.sql.SQLException lỗi sai cú pháp
      */
-    public static CallableStatement CallableStatementWithOutput(String sql, Object... args) throws SQLException {
+    public static String CallableStatementWithOutputAtParameterOneAndTypeIsNvarchar(String sql, Object... args) throws SQLException {
+        String s = "";
         Connection connection = DriverManager.getConnection(dburl, username, password);
-        CallableStatement cstm = null;
-        cstm = connection.prepareCall(sql);
+        CallableStatement cstm = connection.prepareCall(sql);
         cstm.registerOutParameter(1, java.sql.Types.NVARCHAR);
-        for (int i = 1; i < args.length; i++) {
-            cstm.setObject(i + 1, args[i]);
+        for (int i = 0; i < args.length; i++) {
+            cstm.setObject(i + 2, args[i]);
         }
-        return cstm;
+        cstm.execute();
+        s = cstm.getString(1);
+        connection.close();
+        return s;
     }
 
     /**
