@@ -22,22 +22,22 @@ public class DrugInfomationSalesDAO {
     public List<DrugInfomation> select() {
         String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOC.TENTHUOC = THUOC.MATHUOC\n where madaily='" +ShareHelper.Branch
-                + "' ORDER BY NGAYHETHAN ASC";
+                + "' group by mathuoc";
         return select(sql);
     }
     
     public List<DrugInfomation> findByID(String drugInfo) {
         String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
-                + "WHERE madaily='" +ShareHelper.Branch+"' and THUOC.TENTHUOC LIKE '%" + drugInfo + "%' OR THUOCTRONGKHO.MATHUOC LIKE '%"+drugInfo+"%' or TENKHOAHOC LIKE '%" +drugInfo+"%' or nhasx like '%" +drugInfo+"%' "
-                + " ORDER BY NGAYHETHAN ASC";
+                + "WHERE madaily='%" +ShareHelper.Branch.getBranchID()+"%' and THUOC.TENTHUOC LIKE '%" + drugInfo + "%' OR THUOCTRONGKHO.MATHUOC LIKE '%"+drugInfo+"%' or TENKHOAHOC LIKE '%" +drugInfo+"%' or nhasx like '%" +drugInfo+"%' ";
         return select(sql);
     }
     
     public DrugInfomation findById(String ID) {
         String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
-                + "WHERE madaily='" +ShareHelper.Branch+"' AND maTHUOC= '"+ID+"'";
+                + "WHERE madaily like '%" +ShareHelper.Branch.getBranchID()+"%' AND thuoctrongkho.maTHUOC= '"+ID+"'";
+        System.out.println(sql);
         List<DrugInfomation> list = select(sql);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -61,6 +61,11 @@ public class DrugInfomationSalesDAO {
         }
         return list;
     }
+    
+     public void updateQuantity(DrugInfomation model) {
+        String sql = "UPDATE Thuoctrongkho SET soluongton=? WHERE MaThuoc = ?";
+        JdbcHelper.executeUpdate(sql, model.getQuantity(), model.getDrugID());
+     }
 
     private DrugInfomation readFromResultSet(ResultSet rs) throws SQLException {
         DrugInfomation model = new DrugInfomation();
@@ -74,6 +79,7 @@ public class DrugInfomationSalesDAO {
         model.setManufactured(rs.getString("NhaSX"));
         model.setUnit(rs.getString("donvitinh"));
         model.setQuantity(rs.getInt("Soluongton"));
+        model.setDrugNumber(rs.getInt("IDTHUOC"));
         return model;
     }
 }
