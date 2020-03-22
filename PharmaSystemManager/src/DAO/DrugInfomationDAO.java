@@ -29,6 +29,8 @@ public class DrugInfomationDAO {
         String sql = "SELECT THUOCTRONGKHO.MATHUOC, TENTHUOC, MALOHANG, GIANHAP, GIABAN, NGAYNHAPHANG, NGAYHETHAN FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
                 + "WHERE THUOC.TENTHUOC LIKE '%" + drugName + "%'\n"
+                + "OR THUOC.MATHUOC LIKE '%" + drugName + "%'\n"
+                + "OR THUOC.MATHUOC LIKE '%" + drugName + "%'\n"
                 + "ORDER BY NGAYHETHAN ASC";
         return select(sql);
     }
