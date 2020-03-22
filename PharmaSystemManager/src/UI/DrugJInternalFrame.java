@@ -5,7 +5,7 @@
  */
 package UI;
 
-import DAO.DrugCategoryPurchaseDAO;
+import DAO.DrugCategoryDAO;
 import DAO.DrugDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
@@ -26,7 +26,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
 
     int index = 0; // vị trí của nhân viên đang hiển thị trên form
     DrugDAO dao = new DrugDAO();
-    DrugCategoryPurchaseDAO categoryDAO = new DrugCategoryPurchaseDAO();
+    DrugCategoryDAO categoryDAO = new DrugCategoryDAO();
 
     /**
      * Creates new form NhanVienJInternalFrame
@@ -639,7 +639,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         txtUnit.setText(model.getUnit());
         txtStorageTem.setText(String.valueOf(model.getStorageTemperatures()));
         txtDecription.setText(model.getDescription());
-        cbxDrugCategory.getModel().setSelectedItem(new DrugCategoryPurchaseDAO().findById(model.getDrugCategoryID()));
+        cbxDrugCategory.getModel().setSelectedItem(new DrugCategoryDAO().findById(model.getDrugCategoryID()));
     }
 
     Drug getModel() {

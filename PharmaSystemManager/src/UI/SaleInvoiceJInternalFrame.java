@@ -5,7 +5,7 @@
  */
 package UI;
 
-import DAO.DrugInfomationDAO;
+import DAO.DrugInfomationSalesDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
 import java.util.List;
@@ -27,9 +27,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     public SaleInvoiceJInternalFrame()
     {
         initComponents();
+        init();
     }
 
-    DrugInfomationDAO dao = new DrugInfomationDAO();
+    DrugInfomationSalesDAO dao = new DrugInfomationSalesDAO();
     DefaultTableModel modelInvoice;
     DefaultListModel model;
     DrugInfomation selectedDrug;
@@ -37,6 +38,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     public SaleInvoiceJInternalFrame(JFrame frame)
     {
         initComponents();
+        init();
         ShareHelper.frame = frame;
     }
 
@@ -127,6 +129,13 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             }
         });
         tblInvoice.setRowHeight(25);
+        tblInvoice.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                tblInvoiceMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblInvoice);
         if (tblInvoice.getColumnModel().getColumnCount() > 0)
         {
@@ -510,10 +519,16 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         chooseFromList();
     }//GEN-LAST:event_listDrugMouseClicked
 
+    private void tblInvoiceMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tblInvoiceMouseClicked
+    {//GEN-HEADEREND:event_tblInvoiceMouseClicked
+        getModel();
+    }//GEN-LAST:event_tblInvoiceMouseClicked
+
     void init()
     {
         setFrameIcon(ShareHelper.APP_ICON);
         modelInvoice = (DefaultTableModel) tblInvoice.getModel();
+        modelInvoice.setRowCount(0);
     }
 
     void fillToList()
@@ -546,23 +561,38 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         lblMax.setText(String.valueOf(selectedDrug.getQuantity()));
         txtQuantity.setMaximum(selectedDrug.getQuantity());
     }
-    
+
     void addToCart()
     {
-            modelInvoice.addRow(new Object[]{
+        
+        modelInvoice.addRow(new Object[]
+        {
             selectedDrug.getDrugID(),
             selectedDrug.getDrugName(),
             txtQuantity.getValue(),
             txtPrice.getValue(),
-            (Double)(txtQuantity.getValue()*selectedDrug.getSalePrice())
+            (Double) (txtQuantity.getValue() * selectedDrug.getSalePrice()),
+            false
         });
-        double discount= txtDC.getText().trim().equals("")?1:Double.valueOf(txtDC.getText());
-        double total=0;
-        for (int i=0; i<modelInvoice.getRowCount();i++)
+        double discount = txtDC.getText().trim().equals("") ? 1 : Double.valueOf(txtDC.getText());
+        double total = 0;
+        for (int i = 0; i < modelInvoice.getRowCount(); i++)
         {
-            total+=(double)modelInvoice.getValueAt(i, 4);
+            total += (double) modelInvoice.getValueAt(i, 4);
         }
-        txtTotal.setValue(total*discount/100);
+        txtTotal.setValue(total * discount / 100);
+    }
+    
+    void getModel()
+    {
+        selectedDrug=dao.findById(modelInvoice.getValueAt(tblInvoice.getSelectedRow(), 0).toString());
+        txtID.setText(selectedDrug.getDrugID());
+        txtName.setText(selectedDrug.getDrugName());
+        txtMan.setText(selectedDrug.getManufactured());
+        txtPrice.setText(modelInvoice.getValueAt(tblInvoice.getSelectedRow(), 3).toString());
+        txtQuantity.setValue((Integer)modelInvoice.getValueAt(tblInvoice.getSelectedRow(), 2));
+        lblMax.setText(String.valueOf(selectedDrug.getQuantity()));
+        btnAddToCart.setText("Update to invoice");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

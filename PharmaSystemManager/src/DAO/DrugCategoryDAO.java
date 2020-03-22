@@ -17,7 +17,7 @@ import model.DrugCategory;
  *
  * @author rondw
  */
-public class DrugCategoryPurchaseDAO {
+public class DrugCategoryDAO {
 
     public void insert(DrugCategory model) {
         String sql = "INSERT INTO LoaiThuoc (MaLoaiThuoc, TenLoaiThuoc, MoTa) VALUES (?, ?, ?)";

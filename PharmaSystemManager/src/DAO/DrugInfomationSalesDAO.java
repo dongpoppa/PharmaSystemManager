@@ -6,6 +6,7 @@
 package DAO;
 
 import helper.JdbcHelper;
+import helper.ShareHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,17 +21,25 @@ public class DrugInfomationSalesDAO {
 
     public List<DrugInfomation> select() {
         String sql = "SELECT * FROM THUOC\n"
-                + "JOIN THUOCTRONGKHO ON THUOC.TENTHUOC = THUOC.MATHUOC\n"
-                + "ORDER BY NGAYHETHAN ASC";
+                + "JOIN THUOCTRONGKHO ON THUOC.TENTHUOC = THUOC.MATHUOC\n where madaily='" +ShareHelper.Branch
+                + "' ORDER BY NGAYHETHAN ASC";
         return select(sql);
     }
     
     public List<DrugInfomation> findByID(String drugInfo) {
         String sql = "SELECT * FROM THUOC\n"
                 + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
-                + "WHERE THUOC.TENTHUOC LIKE '%" + drugInfo + "%' OR THUOCTRONGKHO.MATHUOC LIKE '%"+drugInfo+"%' or TENKHOAHOC LIKE '%" +drugInfo+"%' or nhasx like '%" +drugInfo+"%' "
+                + "WHERE madaily='" +ShareHelper.Branch+"' and THUOC.TENTHUOC LIKE '%" + drugInfo + "%' OR THUOCTRONGKHO.MATHUOC LIKE '%"+drugInfo+"%' or TENKHOAHOC LIKE '%" +drugInfo+"%' or nhasx like '%" +drugInfo+"%' "
                 + " ORDER BY NGAYHETHAN ASC";
         return select(sql);
+    }
+    
+    public DrugInfomation findById(String ID) {
+        String sql = "SELECT * FROM THUOC\n"
+                + "JOIN THUOCTRONGKHO ON THUOCTRONGKHO.MATHUOC = THUOC.MATHUOC\n"
+                + " WHERE IDTHUOC= ?";
+        List<DrugInfomation> list = select(sql, ID);
+        return list.size() > 0 ? list.get(0) : null;
     }
 
     private List<DrugInfomation> select(String sql, Object... args) {
@@ -47,6 +56,7 @@ public class DrugInfomationSalesDAO {
                 rs.getStatement().getConnection().close();
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new RuntimeException(ex);
         }
         return list;
