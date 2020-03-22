@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.SaleInvoice;
 
 /**
@@ -18,14 +20,21 @@ import model.SaleInvoice;
  * @author rondw
  */
 public class SaleInvoiceDAO {
-     public void insert(SaleInvoice model) {
-        String sql = "INSERT INTO HoaDonBanHang (NgayBan, HinhThucThanhToan, GiamGia, TrangThaiHDBan, MaNV) VALUES (?, ?, ?, ?, ?)";
-        JdbcHelper.executeUpdate(sql, model.getSaleDate(), model.getPayType(), model.getDiscount(), model.getStatus(), model.getEmployeeID());
+
+    public String insert(SaleInvoice model) {
+        try {
+            String sql = "call InsertSaleInvoice (?, ?, ?, ?, ?, ?)";
+            return JdbcHelper.CallableStatementWithOutputAtParameterOneAndTypeIsNvarchar(sql, model.getSaleDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(),
+                    model.getDiscount(), model.getEmployeeID());
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public void update(SaleInvoice model) {
-        String sql = "UPDATE HoaDonBanHang SET NgayBan = ?, HinhThucThanhToan = ?, GiamGia = ?, TrangThaiHDBan = ?, MaNV = ? WHERE MaHDBan = ?";
-        JdbcHelper.executeUpdate(sql, model.getSaleDate(), model.getPayType(), model.getDiscount(), model.getStatus(), model.getEmployeeID(),model.getID());
+        String sql = "UPDATE HoaDonBanHang SET NgayBan = ?, TTTienMat = ?,TTThe = ?, GiamGia = ?, TrangThaiHDBan = ?, MaNV = ? WHERE MaHDBan = ?";
+        JdbcHelper.executeUpdate(sql, model.getSaleDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getStatus(), model.getEmployeeID(), model.getID());
     }
 
     public void updateStatus(SaleInvoice model) {
@@ -44,7 +53,7 @@ public class SaleInvoiceDAO {
         return list.size() > 0 ? list.get(0) : null;
     }
 
-     public SaleInvoice findByEmployeeID(String EmployeeID) {
+    public SaleInvoice findByEmployeeID(String EmployeeID) {
         String sql = "SELECT * FROM HoaDonBanHang WHERE MaNV = ?";
         List<SaleInvoice> list = select(sql, EmployeeID);
         return list.size() > 0 ? list.get(0) : null;
@@ -73,7 +82,8 @@ public class SaleInvoiceDAO {
         SaleInvoice model = new SaleInvoice();
         model.setID(rs.getString("MaHDBan"));
         model.setSaleDate(rs.getDate("NgayBan"));
-        model.setPayType(rs.getString("HinhThucThanhToan"));
+        model.setPurchaseByCash(rs.getDouble("TTTienMat"));
+        model.setPurchaseByCredit(rs.getDouble("TTThe"));
         model.setDiscount(rs.getInt("GiamGia"));
         model.setStatus(rs.getString("TrangThaiHDBan"));
         model.setEmployeeID(rs.getString("MaNV"));
