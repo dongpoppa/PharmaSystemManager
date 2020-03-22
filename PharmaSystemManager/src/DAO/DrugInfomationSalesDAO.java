@@ -16,7 +16,7 @@ import model.DrugInfomation;
  *
  * @author longd
  */
-public class DrugInfomationDAO {
+public class DrugInfomationSalesDAO {
 
     public List<DrugInfomation> select() {
         String sql = "SELECT * FROM THUOC\n"
