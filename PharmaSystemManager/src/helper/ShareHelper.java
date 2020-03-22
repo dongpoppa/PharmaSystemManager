@@ -60,12 +60,6 @@ public class ShareHelper {
         }
     }
 
-    public static ImageIcon readLogo(String fileName) {
-        File path = new File("src\\avatars", fileName);
-        ImageIcon icon = new ImageIcon(path.getAbsolutePath());
-        Image newImage = icon.getImage().getScaledInstance(225, 252, Image.SCALE_DEFAULT);
-        return new ImageIcon(newImage);
-    }
     /**
      * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
      */
@@ -79,11 +73,29 @@ public class ShareHelper {
      */
     public static JFrame frame = null;
 
+    /**
+     * Đối tượng này chứa file được chọn
+     */
     public static File file = null;
+    /**
+     * Đối tượng này để đọc file dưới dạng byte
+     */
     public static FileInputStream fileInputStream = null;
+    /**
+     * Đối tượng này chứa tổng tiền cần thanh toán
+     */
     public static double total = 0;
+    /**
+     * Đối tượng này chứa số tiền mặt
+     */
     public static double cash = 0;
+    /**
+     * Đối tượng này chứa số tiền quẹt thẻ
+     */
     public static double debit = 0;
+    /**
+     * Đối tượng này xác nhận xem đã thanh toán hay chưa
+     */
     public static boolean paymentConfimation = false;
 
     /**
