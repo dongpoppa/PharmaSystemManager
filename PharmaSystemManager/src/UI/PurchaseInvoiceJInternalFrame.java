@@ -723,6 +723,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void insert() {
-
+        String sql = "INSERT INTO HOADONTHUMUA(NGAYMUA, TTTIENMAT, TTTHE, GIAMGIA, SOTIENCONLAI, TRANGTHAIHDMUA, MANV, MANCC "
+                + "VALUES(?, ?, ?, ?, ?, ?, ? ,?)";
     }
 }
