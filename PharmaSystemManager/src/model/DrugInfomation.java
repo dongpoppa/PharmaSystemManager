@@ -16,9 +16,17 @@ public class DrugInfomation {
 
     private String drugID, drugName, batchNo, supplierID, manufactured, unit;
     private double purchasePrice, salePrice;
-    private int quantity;
+    private int quantity, drugNumber;
     private Date importDate, expirationDate, manufactureDate;
     private boolean delete;
+
+    public int getDrugNumber() {
+        return drugNumber;
+    }
+
+    public void setDrugNumber(int drugNumber) {
+        this.drugNumber = drugNumber;
+    }
 
     public String getUnit() {
         return unit;

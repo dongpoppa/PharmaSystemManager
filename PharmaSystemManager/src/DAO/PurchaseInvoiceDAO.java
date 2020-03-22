@@ -21,22 +21,47 @@ import model.PurchaseInvoice;
  */
 public class PurchaseInvoiceDAO {
 
-
     public String insert(PurchaseInvoice model) {
         try {
             String sql = "call InsertPurchaseInvoice (?, ?, ?, ?, ?, ?, ?, ?)";
-            return JdbcHelper.CallableStatementWithOutputAtParameterOneAndTypeIsNvarchar
-               (sql,model.getPurchaseDate(),model.getPurchaseByCash(),model.getPurchaseByCredit()
-                ,model.getDiscount(),model.getRemainMoney(),model.getEmployeeID(),model.getSupplierID());
+            return JdbcHelper.CallableStatementWithOutputAtParameterOneAndTypeIsNvarchar(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getEmployeeID(), model.getSupplierID());
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
+    public String lastPurchaseInvoiceID() {
+        String sql = "SELECT TOP 1 MAHDMUA FROM HOADONTHUMUA ORDER BY MAHDMUA DESC";
+        ResultSet resultSet = JdbcHelper.executeQuery(sql);
+        String purchaseInvoiceID = null;
+        try {
+            while (resultSet.next()) {
+                purchaseInvoiceID = resultSet.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return purchaseInvoiceID;
+    }
+
+    public int lastStoragedDrugID() {
+        String sql = "SELECT TOP 1 IDTHUOC FROM THUOCTRONGKHO ORDER BY IDTHUOC DESC";
+        ResultSet resultSet = JdbcHelper.executeQuery(sql);
+        int i = 0;
+        try {
+            while (resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return i;
+    }
+
     public void update(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET NgayMua = ?, TTTienMat = ?,TTThe = ?, GiamGia = ?, SoTienConLai = ?, TrangThaiHDMua = ?, MaNV = ?, MaNCC = ? WHERE MaHDMua = ?";
-        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(),model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
+        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
     }
 
     public void updateStatus(PurchaseInvoice model) {

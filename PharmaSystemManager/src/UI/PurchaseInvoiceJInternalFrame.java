@@ -6,9 +6,11 @@
 package UI;
 
 import DAO.DrugInfomationDAO;
+import DAO.PurchaseInvoiceDAO;
 import DAO.SupplierDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
+import helper.JdbcHelper;
 import helper.ShareHelper;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +33,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     DrugInfomationDAO dao = new DrugInfomationDAO();
     SupplierDAO supDao = new SupplierDAO();
     List<DrugInfomation> list = new ArrayList<>();
+    PurchaseInvoiceDAO purchaseInvoiceDAO = new PurchaseInvoiceDAO();
 
     /**
      * Creates new form PurchaseInvoiceJInternalFrame
@@ -201,14 +204,14 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGap(24, 24, 24))
                     .addGroup(pnlInvoiceLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
+                        .addGap(17, 17, 17)
                         .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblTotal)
                                 .addComponent(lblSelectAll))
                             .addComponent(chkSelectAll))
-                        .addGap(19, 19, 19))))
+                        .addGap(16, 16, 16))))
         );
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
@@ -723,7 +726,30 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void insert() {
-        String sql = "INSERT INTO HOADONTHUMUA(NGAYMUA, TTTIENMAT, TTTHE, GIAMGIA, SOTIENCONLAI, TRANGTHAIHDMUA, MANV, MANCC "
-                + "VALUES(?, ?, ?, ?, ?, ?, ? ,?)";
+        try {
+            String sqlHDMua = "INSERT INTO HOADONTHUMUA(NGAYMUA, TTTIENMAT, TTTHE, SOTIENCONLAI, TRANGTHAIHDMUA, MANV, MANCC) "
+                    + "VALUES(?, ?, ?, ?, ?, ? ,?)";
+            JdbcHelper.executeUpdate(sqlHDMua, new Date(), ShareHelper.cash, ShareHelper.debit, ShareHelper.total - ShareHelper.cash - ShareHelper.debit,
+                    null, ShareHelper.USER.getEmployeeID(), list.get(0).getSupplierID());
+
+            String sqlThuocTrongKho = "INSERT INTO THUOCTRONGKHO(MALOHANG, NGAYSX, NGAYHETHAN, SOLUONGTON, NGAYNHAPHANG, GIABAN, GIANHAP,"
+                    + "MATHUOC, MADAILY, TRANGTHAITHUOC) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            for (int i = 0; i < list.size(); i++) {
+                JdbcHelper.executeUpdate(sqlThuocTrongKho, list.get(i).getBatchNo(), list.get(i).getManufactureDate(), list.get(i).getExpirationDate(),
+                        list.get(i).getQuantity(), new Date(), list.get(i).getSalePrice(), list.get(i).getPurchasePrice(),
+                        list.get(i).getDrugID(), ShareHelper.Branch.getBranchID(), null);
+                list.get(i).setDrugNumber(purchaseInvoiceDAO.lastStoragedDrugID());
+            }
+
+            String sqlHDMChiTiet = "INSERT INTO HOADONTHUMUACHITIET VALUES(?, ?, ?)";
+            for (int i = 0; i < list.size(); i++) {
+                JdbcHelper.executeUpdate(sqlHDMChiTiet, purchaseInvoiceDAO.lastPurchaseInvoiceID(), list.get(i).getDrugNumber(), list.get(i).getQuantity());
+            }
+
+            DialogHelper.alert(this, "Update successfully");
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Insert failsed");
+            e.printStackTrace();
+        }
     }
 }
