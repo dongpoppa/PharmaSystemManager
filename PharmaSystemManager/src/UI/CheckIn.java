@@ -186,11 +186,13 @@ public class CheckIn extends javax.swing.JDialog {
             ShareHelper.total = Double.parseDouble(txtTotal.getText());
             ShareHelper.cash = Double.parseDouble(txtCash.getText());
             ShareHelper.debit = ShareHelper.total - ShareHelper.cash;
+            ShareHelper.paymentConfimation = true;
             this.dispose();
         }
     }
 
     void cancel() {
+        ShareHelper.paymentConfimation = false;
         this.dispose();
     }
 }

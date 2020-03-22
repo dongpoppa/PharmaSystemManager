@@ -60,8 +60,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
         txtTotalAmount = new javax.swing.JTextField();
-        lblDiscount = new javax.swing.JLabel();
-        txtDiscount = new javax.swing.JTextField();
         chkSelectAll = new javax.swing.JCheckBox();
         lblSelectAll = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -90,10 +88,10 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblBatchNo = new javax.swing.JLabel();
         txtBatchNo = new javax.swing.JTextField();
         cboSupplier = new javax.swing.JComboBox();
-        lblSalePrice1 = new javax.swing.JLabel();
-        lblPurchasePrice1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        lblExpirationDate = new javax.swing.JLabel();
+        lblManufactureDate = new javax.swing.JLabel();
+        txtExpirationDate = new javax.swing.JFormattedTextField();
+        txtManufactureDate = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -160,11 +158,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtTotalAmount.setEditable(false);
         txtTotalAmount.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        lblDiscount.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDiscount.setText("Discount");
-
-        txtDiscount.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
         chkSelectAll.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chkSelectAllMouseClicked(evt);
@@ -188,11 +181,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInvoiceLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(txtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
+                                .addGap(224, 224, 224)
                                 .addComponent(lblTotal)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,8 +206,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                             .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblTotal)
-                                .addComponent(txtDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblSelectAll))
                             .addComponent(chkSelectAll))
                         .addGap(19, 19, 19))))
@@ -333,40 +320,17 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtBatchNo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtBatchNo.setForeground(new java.awt.Color(0, 0, 204));
 
-        lblSalePrice1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        lblSalePrice1.setForeground(new java.awt.Color(51, 51, 51));
-        lblSalePrice1.setText("EXP");
+        lblExpirationDate.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblExpirationDate.setForeground(new java.awt.Color(51, 51, 51));
+        lblExpirationDate.setText("EXP");
 
-        lblPurchasePrice1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        lblPurchasePrice1.setForeground(new java.awt.Color(51, 51, 51));
-        lblPurchasePrice1.setText("MFG");
+        lblManufactureDate.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblManufactureDate.setForeground(new java.awt.Color(51, 51, 51));
+        lblManufactureDate.setText("MFG");
 
-        jFormattedTextField1.setText("jFormattedTextField1");
+        txtExpirationDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
 
-        jFormattedTextField2.setText("jFormattedTextField1");
-
-        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSalePrice1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblPurchasePrice1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(jFormattedTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(jFormattedTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        txtManufactureDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
 
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
@@ -402,18 +366,18 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(btnAddToInvoice))
                         .addGroup(pnlInfoLayout.createSequentialGroup()
                             .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jFormattedTextField2)
+                                .addComponent(txtManufactureDate)
                                 .addGroup(pnlInfoLayout.createSequentialGroup()
                                     .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblPurchasePrice)
                                         .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblPurchasePrice1))
+                                        .addComponent(lblManufactureDate))
                                     .addGap(0, 0, Short.MAX_VALUE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jFormattedTextField1)
+                                .addComponent(txtExpirationDate)
                                 .addComponent(lblSalePrice)
-                                .addComponent(lblSalePrice1)
+                                .addComponent(lblExpirationDate)
                                 .addComponent(txtSalePrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addComponent(lblDrugID)
@@ -460,12 +424,12 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(txtSalePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSalePrice1)
-                            .addComponent(lblPurchasePrice1))
+                            .addComponent(lblExpirationDate)
+                            .addComponent(lblManufactureDate))
                         .addGap(0, 0, 0)
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtManufactureDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblQuantity)
                         .addGap(0, 0, 0)
@@ -473,6 +437,28 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(btnAddToInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -539,6 +525,9 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInActionPerformed
         // TODO add your handling code here:
         new CheckIn(ShareHelper.frame, true, Double.parseDouble(txtTotalAmount.getText())).setVisible(true);
+        if (ShareHelper.paymentConfimation) {
+            this.insert();
+        }
     }//GEN-LAST:event_btnCheckInActionPerformed
 
     private void ListDrugsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListDrugsMouseClicked
@@ -583,22 +572,19 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox cboSupplier;
     private javax.swing.JCheckBox chkSelectAll;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblBatchNo;
-    private javax.swing.JLabel lblDiscount;
     private javax.swing.JLabel lblDrugID;
     private javax.swing.JLabel lblDrugInfo;
     private javax.swing.JLabel lblDrugName;
+    private javax.swing.JLabel lblExpirationDate;
+    private javax.swing.JLabel lblManufactureDate;
     private javax.swing.JLabel lblPurchasePrice;
-    private javax.swing.JLabel lblPurchasePrice1;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblSalePrice;
-    private javax.swing.JLabel lblSalePrice1;
     private javax.swing.JLabel lblSelectAll;
     private javax.swing.JLabel lblSupplier;
     private javax.swing.JLabel lblTotal;
@@ -607,10 +593,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private com.toedter.components.JSpinField sfQuantity;
     private javax.swing.JTable tblGridView;
     private javax.swing.JTextField txtBatchNo;
-    private javax.swing.JTextField txtDiscount;
     private javax.swing.JTextField txtDrugID;
     private javax.swing.JTextField txtDrugInfo;
     private javax.swing.JTextField txtDrugName;
+    private javax.swing.JFormattedTextField txtExpirationDate;
+    private javax.swing.JFormattedTextField txtManufactureDate;
     private javax.swing.JTextField txtPurchasePrice;
     private javax.swing.JTextField txtSalePrice;
     private javax.swing.JTextField txtTotalAmount;
@@ -665,7 +652,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         model.setPurchasePrice(Double.parseDouble(txtPurchasePrice.getText()));
         model.setSalePrice(Double.parseDouble(txtSalePrice.getText()));
         model.setImportDate(new Date());
-        model.setExpirationDate(DateHelper.add(1800));
+        model.setManufactureDate(DateHelper.toDate(txtManufactureDate.getText()));
+        model.setExpirationDate(DateHelper.toDate(txtExpirationDate.getText()));
         model.setSupplierID(((Supplier) cboSupplier.getSelectedItem()).getID());
         return model;
     }
@@ -705,6 +693,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         sfQuantity.setValue(0);
         txtPurchasePrice.setText("");
         txtSalePrice.setText("");
+        txtExpirationDate.setText("");
+        txtManufactureDate.setText("");
     }
 
     DrugInfomation getModelFromList() {
@@ -728,5 +718,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         sfQuantity.setValue(model.getQuantity());
         txtPurchasePrice.setText(String.valueOf(model.getPurchasePrice()));
         txtSalePrice.setText(String.valueOf(model.getSalePrice()));
+        txtExpirationDate.setText(DateHelper.toString(model.getExpirationDate(), "MM/dd/yyyy"));
+        txtManufactureDate.setText(DateHelper.toString(model.getManufactureDate(), "MM/dd/yyyy"));
+    }
+
+    void insert() {
+
     }
 }

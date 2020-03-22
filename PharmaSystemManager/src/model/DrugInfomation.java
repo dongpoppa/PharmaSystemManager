@@ -15,30 +15,34 @@ import java.util.Date;
 public class DrugInfomation {
 
     private String drugID, drugName, batchNo, supplierID, manufactured, unit;
+    private double purchasePrice, salePrice;
+    private int quantity;
+    private Date importDate, expirationDate, manufactureDate;
+    private boolean delete;
 
-    public String getUnit()
-    {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit)
-    {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 
-    public String getManufactured()
-    {
+    public String getManufactured() {
         return manufactured;
     }
 
-    public void setManufactured(String manufactured)
-    {
+    public void setManufactured(String manufactured) {
         this.manufactured = manufactured;
     }
-    private double purchasePrice, salePrice;
-    private int quantity;
-    private Date importDate, expirationDate;
-    private boolean delete;
+
+    public Date getManufactureDate() {
+        return manufactureDate;
+    }
+
+    public void setManufactureDate(Date manufactureDate) {
+        this.manufactureDate = manufactureDate;
+    }
 
     public boolean isDelete() {
         return delete;
@@ -50,7 +54,7 @@ public class DrugInfomation {
 
     @Override
     public String toString() {
-        return "<html>"+this.drugName + "<br>►"+this.manufactured+"  ►Batch: " + this.batchNo + "<br>►EXP: "+DateHelper.toString(expirationDate)+ "  ►Price: VND "+salePrice+" / "+this.unit+"<br>_____________________________________</html>";
+        return "<html>" + this.drugName + "<br>►" + this.manufactured + "  ►Batch: " + this.batchNo + "<br>►EXP: " + DateHelper.toString(expirationDate) + "  ►Price: VND " + salePrice + " / " + this.unit + "<br>_____________________________________</html>";
     }
 
     public String getDrugID() {

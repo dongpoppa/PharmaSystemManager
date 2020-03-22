@@ -78,12 +78,13 @@ public class ShareHelper {
      * Đối tượng này chứa giao diện chính đang sử dụng
      */
     public static JFrame frame = null;
-    
+
     public static File file = null;
     public static FileInputStream fileInputStream = null;
     public static double total = 0;
     public static double cash = 0;
     public static double debit = 0;
+    public static boolean paymentConfimation = false;
 
     /**
      * Hàm này trả về thông tin trạng thái của các đối tượng
