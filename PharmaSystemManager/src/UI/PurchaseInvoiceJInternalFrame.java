@@ -12,16 +12,33 @@ import helper.DateHelper;
 import helper.DialogHelper;
 import helper.JdbcHelper;
 import helper.ShareHelper;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.DrugInfomation;
 import model.Supplier;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -30,6 +47,7 @@ import model.Supplier;
 public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     int index = 0;
+    String InvoiceID = null;
     DrugInfomationPurchaseDAO dao = new DrugInfomationPurchaseDAO();
     SupplierDAO supDao = new SupplierDAO();
     List<DrugInfomation> list = new ArrayList<>();
@@ -120,29 +138,22 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
+                {"123", "123", "123", "123", "123", null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Drug ID", "Drug name", "Quantity", "Price", "Amount", "Select"
+                "Drug ID", "Drug name", "Price", "Quantity", "Amount", "Select"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         tblGridView.setRowHeight(25);
@@ -249,6 +260,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnPrint.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
         btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnPrint);
 
         ListDrugs.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -334,6 +350,29 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtExpirationDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
 
         txtManufactureDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
+
+        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
@@ -440,28 +479,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(btnAddToInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -470,17 +487,17 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(84, 84, 84)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(pnlInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane3))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                .addComponent(jScrollPane3)))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,7 +510,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(pnlInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -563,6 +580,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         String drugName = txtDrugInfo.getText().trim();
         this.fillToList(drugName);
     }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        billPrint();
+    }//GEN-LAST:event_btnPrintActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -749,6 +771,49 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Update successfully");
         } catch (Exception e) {
             DialogHelper.alert(this, "Insert failsed");
+            e.printStackTrace();
+        }
+    }
+
+    void billPrint() {
+        try {
+            InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
+            String datePurchase = purchaseInvoiceDAO.DatePurchaseByID(InvoiceID);
+
+            String sql = " SELECT Thuoc.MaThuoc AS 'DrugID',TenThuoc AS 'Drug name',GiaBan AS 'Price',SoLuong AS 'Quantity',dbo.HoaDonThuMua.TTTienMat + dbo.HoaDonThuMua.TTThe AS 'Amount'   FROM dbo.HoaDonThuMuaChiTiet\n"
+                    + "	JOIN dbo.HoaDonThuMua ON HoaDonThuMua.MaHDMua = HoaDonThuMuaChiTiet.MaHDMua\n"
+                    + "	JOIN dbo.ThuocTrongKho ON HoaDonThuMuaChiTiet.IDThuoc = ThuocTrongKho.IDThuoc\n"
+                    + "	JOIN dbo.Thuoc ON Thuoc.MaThuoc = ThuocTrongKho.MaThuoc\n"
+                    + "	WHERE HoaDonThuMuaChiTiet.MaHDMua = '" + purchaseInvoiceDAO.lastPurchaseInvoiceID() + "'";
+            System.out.println(purchaseInvoiceDAO.lastPurchaseInvoiceID());
+            ResultSet rs = JdbcHelper.executeQuery(sql);
+
+            JasperDesign jasdi = JRXmlLoader.load("src/Print/PurchaseBill.jrxml");
+            HashMap<String, Object> para = new HashMap<>();
+
+            para.put("Address", ShareHelper.Branch.getAddress());
+            para.put("InvoiceID", InvoiceID);
+            para.put("EmployeeID", ShareHelper.USER.getEmployeeID());
+            para.put("PurchaseDate", datePurchase);
+            para.put("TotalAmount", String.valueOf(ShareHelper.total));
+            para.put("SupplierID", ((Supplier) cboSupplier.getSelectedItem()).getID());
+
+            DefaultTableModel tableModel = (DefaultTableModel) tblGridView.getModel();
+            Vector data = tableModel.getDataVector();
+            Vector row = (Vector) data.elementAt(0);
+            // Copy the first column
+            int mColIndex = 0;
+            List colData = new ArrayList(tableModel.getRowCount());
+            for (int i = 0; i < tableModel.getRowCount(); i++) {
+                row = (Vector) data.elementAt(i);
+                colData.add(row.get(mColIndex));
+            }
+
+            JasperReport js = JasperCompileManager.compileReport(jasdi);
+            JasperPrint jp = JasperFillManager.fillReport(js, para, new JRResultSetDataSource(rs));
+
+            JasperViewer.viewReport(jp, false);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -45,6 +45,20 @@ public class PurchaseInvoiceDAO {
         return purchaseInvoiceID;
     }
 
+    public String DatePurchaseByID(String InvoiceID) {
+        String sql = "SELECT NgayMua FROM dbo.HoaDonThuMua WHERE MaHDMua= '" + InvoiceID + "'";
+        ResultSet resultSet = JdbcHelper.executeQuery(sql);
+        String date = null;
+        try {
+            while (resultSet.next()) {
+                date = String.valueOf(resultSet.getDate(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
+    }
+
     public int lastStoragedDrugID() {
         String sql = "SELECT TOP 1 IDTHUOC FROM THUOCTRONGKHO ORDER BY IDTHUOC DESC";
         ResultSet resultSet = JdbcHelper.executeQuery(sql);
