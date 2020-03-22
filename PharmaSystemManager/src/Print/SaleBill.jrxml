@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="566" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="030c43c2-832b-4432-932a-b40c8e5c1a2b">
-	<property name="ireport.zoom" value="3.797498335832415"/>
+	<property name="ireport.zoom" value="2.593742460100003"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="203"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="Address" class="java.lang.String"/>
 	<parameter name="InvoiceID" class="java.lang.String"/>
 	<parameter name="SaleDate" class="java.lang.String"/>
 	<parameter name="EmployeeID" class="java.lang.String"/>
+	<parameter name="Discount" class="java.lang.String"/>
+	<parameter name="TotalAmount" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -68,8 +70,8 @@
 			</textField>
 			<textField>
 				<reportElement x="113" y="38" width="73" height="12" uuid="5e40b500-bcb9-4b77-b984-69e64a287021"/>
-				<textElement>
-					<font size="8" isBold="false"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{SaleDate}]]></textFieldExpression>
 			</textField>
@@ -89,18 +91,53 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="23" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="34" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="4" width="43" height="11" uuid="a317e533-8ff3-462e-b69c-89faa5e146a0"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="19" width="56" height="11" uuid="41dd886d-4f6e-46a3-ade2-19190f11b131"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="4" width="57" height="11" uuid="f1ae4caa-54c3-47aa-ad00-7505dba326fe"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="19" width="87" height="11" uuid="6ae74821-cfbe-4021-8877-b8dddc61da55"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TotalAmount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="186" height="1" uuid="80118599-7f5f-47e9-b5ea-b8388b30836f"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="19" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="20" splitType="Stretch"/>
 	</summary>
 </jasperReport>
