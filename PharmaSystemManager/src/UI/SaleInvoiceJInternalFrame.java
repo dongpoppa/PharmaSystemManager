@@ -8,6 +8,7 @@ package UI;
 import DAO.DrugInfomationSalesDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -30,6 +31,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         init();
     }
 
+    int index;
     DrugInfomationSalesDAO dao = new DrugInfomationSalesDAO();
     DefaultTableModel modelInvoice;
     DefaultListModel model;
@@ -62,7 +64,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         jLabel1 = new javax.swing.JLabel();
         txtDC = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JFormattedTextField();
         jPanel8 = new javax.swing.JPanel();
         btnFind = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
@@ -87,6 +88,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtPrice = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         listDrug = new javax.swing.JList<>();
+        txtTotal = new javax.swing.JFormattedTextField();
 
         setClosable(true);
 
@@ -97,25 +99,25 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         tblInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String []
             {
-                "Drug ID", "Drug name", "Quantity", "Price", "Amount", "Select"
+                "Drug ID", "Drug name", "Quantity", "Price", "Amount", "Select", "No", "Max"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, true
+                false, false, false, false, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex)
@@ -143,8 +145,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             tblInvoice.getColumnModel().getColumn(2).setResizable(false);
             tblInvoice.getColumnModel().getColumn(3).setResizable(false);
             tblInvoice.getColumnModel().getColumn(4).setResizable(false);
+            tblInvoice.getColumnModel().getColumn(5).setResizable(false);
             tblInvoice.getColumnModel().getColumn(5).setPreferredWidth(60);
-            tblInvoice.getColumnModel().getColumn(5).setMaxWidth(60);
+            tblInvoice.getColumnModel().getColumn(6).setMinWidth(0);
+            tblInvoice.getColumnModel().getColumn(6).setPreferredWidth(0);
+            tblInvoice.getColumnModel().getColumn(6).setMaxWidth(0);
+            tblInvoice.getColumnModel().getColumn(7).setMinWidth(0);
+            tblInvoice.getColumnModel().getColumn(7).setPreferredWidth(0);
+            tblInvoice.getColumnModel().getColumn(7).setMaxWidth(0);
         }
 
         jPanel7.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
@@ -170,8 +178,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
         jLabel2.setText("%");
 
-        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -180,12 +186,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                 .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDC, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,19 +193,21 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                         .addComponent(jLabel2)
                         .addGap(38, 38, 38)
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox1)
-                        .addGap(52, 52, 52))))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -216,13 +218,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel15)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel2))
+                                .addGap(0, 4, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                 .addGap(0, 8, Short.MAX_VALUE)
                                 .addComponent(jCheckBox1))))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
 
@@ -441,6 +444,8 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         });
         jScrollPane2.setViewportView(listDrug);
 
+        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -448,29 +453,36 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -513,6 +525,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAddToCartActionPerformed
     {//GEN-HEADEREND:event_btnAddToCartActionPerformed
         addToCart();
+        btnAddToCart.setText("Add to invoice");
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     private void listDrugMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_listDrugMouseClicked
@@ -544,6 +557,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             {
                 model.addElement(drug);
             }
+
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -553,7 +567,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     void chooseFromList()
     {
-        selectedDrug = (DrugInfomation) model.getElementAt(listDrug.getSelectedIndex());
+        try
+        {
+            selectedDrug = (DrugInfomation) model.getElementAt(listDrug.getSelectedIndex());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         txtID.setText(selectedDrug.getDrugID());
         txtMan.setText(selectedDrug.getManufactured());
         txtName.setText(selectedDrug.getDrugName());
@@ -563,37 +584,84 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtQuantity.setMaximum(selectedDrug.getQuantity());
     }
 
+    
+
     void addToCart()
     {
-        
+        if (txtQuantity.getValue() <= 0)
+        {
+            return;
+        }
+        if (btnAddToCart.getText().equals("Update to invoice"))
+        {
+            model.removeElementAt(index);
+        }
+        else
+        {
+            for (int i = 0; i < tblInvoice.getRowCount(); i++)
+            {
+                if (selectedDrug.getDrugNumber() == (Integer) modelInvoice.getValueAt(i, 6))
+                {
+                    int par = txtQuantity.getValue() + (Integer) modelInvoice.getValueAt(i, 2);
+                    if (par > (Integer) modelInvoice.getValueAt(i, 7))
+                    {
+                        DialogHelper.alert(this, "Số lượng thêm vào quá giới hạn!");
+                    }
+                    else
+                    {
+                        modelInvoice.setValueAt(par, i, 2);
+                        DialogHelper.alert(this, "Đã thay đổi số lượng!");
+                    }
+                    return;
+                }
+            }
+        }
+
         modelInvoice.addRow(new Object[]
         {
             selectedDrug.getDrugID(),
             selectedDrug.getDrugName(),
             txtQuantity.getValue(),
-            txtPrice.getValue(),
+            selectedDrug.getSalePrice(),
             (Double) (txtQuantity.getValue() * selectedDrug.getSalePrice()),
-            false
+            false,
+            selectedDrug.getDrugNumber(),
+            selectedDrug.getQuantity()
         });
+
         double discount = txtDC.getText().trim().equals("") ? 1 : Double.valueOf(txtDC.getText());
         double total = 0;
+
         for (int i = 0; i < modelInvoice.getRowCount(); i++)
         {
             total += (double) modelInvoice.getValueAt(i, 4);
         }
         txtTotal.setValue(total * discount / 100);
+        clearTextField();
+        listDrug.setEnabled(true);
     }
-    
+
     void getModel()
     {
-        selectedDrug=dao.findById(modelInvoice.getValueAt(tblInvoice.getSelectedRow(), 0).toString());
+        index=tblInvoice.getSelectedRow();
+        selectedDrug = dao.findById(modelInvoice.getValueAt(index, 0).toString());
         txtID.setText(selectedDrug.getDrugID());
         txtName.setText(selectedDrug.getDrugName());
         txtMan.setText(selectedDrug.getManufactured());
-        txtPrice.setText(modelInvoice.getValueAt(tblInvoice.getSelectedRow(), 3).toString());
-        txtQuantity.setValue((Integer)modelInvoice.getValueAt(tblInvoice.getSelectedRow(), 2));
+        txtPrice.setText(modelInvoice.getValueAt(index, 3).toString());
+        txtQuantity.setValue((Integer) modelInvoice.getValueAt(index, 2));
         lblMax.setText(String.valueOf(selectedDrug.getQuantity()));
         btnAddToCart.setText("Update to invoice");
+        listDrug.setEnabled(false);
+    }
+
+    void clearTextField()
+    {
+        txtID.setText("");
+        txtName.setText("");
+        txtMan.setText("");
+        txtPrice.setText("");
+        txtQuantity.setValue(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
