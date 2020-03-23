@@ -799,20 +799,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             para.put("TotalAmount", String.valueOf(ShareHelper.total));
             para.put("SupplierID", ((Supplier) cboSupplier.getSelectedItem()).getID());
 
-            DefaultTableModel tableModel = (DefaultTableModel) tblGridView.getModel();
-            Vector data = tableModel.getDataVector();
-            Vector row = (Vector) data.elementAt(0);
-            // Copy the first column
-            int mColIndex = 0;
-            List colData = new ArrayList(tableModel.getRowCount());
-            for (int i = 0; i < tableModel.getRowCount(); i++) {
-                row = (Vector) data.elementAt(i);
-                colData.add(row.get(mColIndex));
-            }
-
             JasperReport js = JasperCompileManager.compileReport(jasdi);
             JasperPrint jp = JasperFillManager.fillReport(js, para, new JRResultSetDataSource(rs));
-
             JasperViewer.viewReport(jp, false);
         } catch (Exception e) {
             e.printStackTrace();
