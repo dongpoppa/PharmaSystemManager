@@ -587,7 +587,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnCheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckInActionPerformed
         // TODO add your handling code here:
-        new CheckIn(ShareHelper.frame, true, Double.parseDouble(txtTotalAmount.getText())).setVisible(true);
+        new CheckOut(ShareHelper.frame, true, Double.parseDouble(txtTotalAmount.getText())).setVisible(true);
         if (ShareHelper.paymentConfimation) {
             this.insert();
         }

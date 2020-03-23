@@ -18,11 +18,11 @@ public class CheckOut extends javax.swing.JDialog {
     /**
      * Creates new form ConfirmDeleteHelper
      */
-    public CheckOut(JFrame parent, boolean modal, int total) {
+    public CheckOut(JFrame parent, boolean modal, double total) {
         super(parent, modal);
-        txtTotal.setText(String.valueOf(total));
         initComponents();
         setLocationRelativeTo(null);
+        txtTotal.setText(String.valueOf(total));
     }
 
     /**
@@ -32,7 +32,8 @@ public class CheckOut extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lblPassword = new javax.swing.JLabel();
         lblReason = new javax.swing.JLabel();
@@ -40,10 +41,11 @@ public class CheckOut extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JFormattedTextField();
-        txtCash = new javax.swing.JFormattedTextField();
-        txtDebit = new javax.swing.JFormattedTextField();
+        txtCash = new javax.swing.JTextField();
+        txtDebit = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         lblPassword.setText("CASH");
 
@@ -51,16 +53,20 @@ public class CheckOut extends javax.swing.JDialog {
 
         btnConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick.png"))); // NOI18N
         btnConfirm.setText("Confirm");
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnConfirm.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnConfirmActionPerformed(evt);
             }
         });
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancle.png"))); // NOI18N
         btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelActionPerformed(evt);
             }
         });
@@ -69,10 +75,7 @@ public class CheckOut extends javax.swing.JDialog {
 
         txtTotal.setEditable(false);
         txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
-
-        txtCash.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
-
-        txtDebit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
+        txtTotal.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,42 +84,38 @@ public class CheckOut extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConfirm)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(lblReason)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(lblPassword))
+                        .addComponent(btnConfirm)
                         .addGap(18, 18, 18)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblReason, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCash)
+                            .addComponent(txtTotal)
+                            .addComponent(txtDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCash, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblPassword)
+                    .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblReason)
-                    .addComponent(txtDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblReason))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirm)
                     .addComponent(btnCancel))
@@ -133,7 +132,7 @@ public class CheckOut extends javax.swing.JDialog {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-//        this.confirm();
+        this.confirm();
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**
@@ -164,8 +163,28 @@ public class CheckOut extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the dialog */
-       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -174,25 +193,23 @@ public class CheckOut extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblReason;
-    private javax.swing.JFormattedTextField txtCash;
-    private javax.swing.JFormattedTextField txtDebit;
+    private javax.swing.JTextField txtCash;
+    private javax.swing.JTextField txtDebit;
     private javax.swing.JFormattedTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
-//    void confirm() {
-//        if (!(new String(txtPassword.getPassword())).equals(ShareHelper.USER.getPassword())) {
-//            DialogHelper.alert(this, "Wrong password");
-//        } else {
-//            if (DialogHelper.confirm(this, "Are you sure?")) {
-//                ShareHelper.status = txtReason.getText();
-//                this.dispose();
-//            } else {
-//                ShareHelper.status = null;
-//            }
-//        }
-//    }
+    void confirm() {
+        if (DialogHelper.confirm(this, "Are you sure?")) {
+            ShareHelper.total = Double.valueOf(txtTotal.getText());
+            ShareHelper.cash = Double.valueOf(txtCash.getText());
+            ShareHelper.debit = Double.valueOf(txtDebit.getText());
+            ShareHelper.paymentConfimation = true;
+            this.dispose();
+        }
+    }
 
     void cancel() {
+        ShareHelper.paymentConfimation = false;
         this.dispose();
     }
 }
