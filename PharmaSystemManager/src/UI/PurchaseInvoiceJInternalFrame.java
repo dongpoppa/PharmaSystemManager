@@ -138,11 +138,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"123", "123", "123", "123", "123", null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Drug ID", "Drug name", "Price", "Quantity", "Amount", "Select"
@@ -151,9 +147,16 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblGridView.setRowHeight(25);
@@ -351,29 +354,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         txtManufactureDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
 
-        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
@@ -479,6 +459,28 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(btnAddToInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
