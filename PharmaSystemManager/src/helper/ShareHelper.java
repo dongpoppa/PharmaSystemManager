@@ -97,6 +97,10 @@ public class ShareHelper {
      * Đối tượng này xác nhận xem đã thanh toán hay chưa
      */
     public static boolean paymentConfimation = false;
+    /**
+     * Đối tượng này chứa tỉ lệ giảm giá
+     */
+    public static int discount = 0;
 
     /**
      * Hàm này trả về thông tin trạng thái của các đối tượng
