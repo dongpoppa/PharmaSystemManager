@@ -165,22 +165,16 @@ public class CheckOut extends javax.swing.JDialog {
 
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
 
@@ -203,6 +197,14 @@ public class CheckOut extends javax.swing.JDialog {
             ShareHelper.total = Double.valueOf(txtTotal.getText());
             ShareHelper.cash = Double.valueOf(txtCash.getText());
             ShareHelper.debit = Double.valueOf(txtDebit.getText());
+            if (ShareHelper.cash + ShareHelper.debit > 0) {
+                DialogHelper.alert(this, "Cash + Debit can not be higher than Total amount");
+                ShareHelper.cash = 0;
+                ShareHelper.debit = 0;
+                txtCash.setText("");
+                txtDebit.setText("");
+                return;
+            }
             ShareHelper.paymentConfimation = true;
             this.dispose();
         }
