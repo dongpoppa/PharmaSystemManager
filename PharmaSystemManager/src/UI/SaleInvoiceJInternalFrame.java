@@ -81,6 +81,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         jLabel11 = new javax.swing.JLabel();
         btnAddToCart = new javax.swing.JButton();
         txtPrice = new javax.swing.JFormattedTextField();
+        jLabel16 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listDrug = new javax.swing.JList<>();
         btnPrint = new javax.swing.JButton();
@@ -253,7 +254,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         });
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel13.setText("Available:");
+        jLabel13.setText("Nghìn VNĐ");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setText("Manufacturer");
@@ -285,6 +286,9 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtPrice.setMaximumSize(new java.awt.Dimension(4, 20));
         txtPrice.setName(""); // NOI18N
 
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel16.setText("Available:");
+
         jLayeredPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -301,6 +305,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         jLayeredPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(btnAddToCart, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txtPrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -332,22 +337,25 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                                     .addComponent(txtQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel16)
+                                    .addGap(12, 12, 12)
                                     .addComponent(lblMax)
                                     .addGap(14, 14, 14))
                                 .addComponent(txtName)
                                 .addComponent(txtMan)
                                 .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
                         .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jLayeredPane1Layout.createSequentialGroup()
                             .addComponent(btnAddToCart)
                             .addGap(23, 23, 23))))
                 .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addGap(96, 96, 96))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +385,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                             .addComponent(jLabel9)
                             .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(lblMax)))
+                        .addComponent(lblMax)
+                        .addComponent(jLabel16)))
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel14)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
@@ -685,6 +695,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

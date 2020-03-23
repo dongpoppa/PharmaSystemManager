@@ -98,7 +98,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblQuantity = new javax.swing.JLabel();
         sfQuantity = new com.toedter.components.JSpinField();
         lblPurchasePrice = new javax.swing.JLabel();
-        txtPurchasePrice = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
         lblSupplier = new javax.swing.JLabel();
         txtDrugID = new javax.swing.JTextField();
@@ -113,6 +112,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblManufactureDate = new javax.swing.JLabel();
         txtExpirationDate = new javax.swing.JFormattedTextField();
         txtManufactureDate = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtPurchasePrice = new javax.swing.JTextField();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -141,7 +142,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Drug ID", "Drug name", "Price", "Quantity", "Amount", "Select"
+                "Drug ID", "Drug name", "Price", "Quantity", "Amount (Nghìn VNĐ)", "Select"
             }
         ) {
             Class[] types = new Class [] {
@@ -211,7 +212,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         pnlInvoiceLayout.setVerticalGroup(
             pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInvoiceLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlInvoiceLayout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -300,8 +301,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblPurchasePrice.setForeground(new java.awt.Color(51, 51, 51));
         lblPurchasePrice.setText("Purchase Price");
 
-        txtPurchasePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
         btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
         btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,58 +353,100 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         txtManufactureDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
 
+        jLabel14.setFont(new java.awt.Font("Dialog", 2, 14)); // NOI18N
+        jLabel14.setText("Nghìn VNĐ");
+
+        txtPurchasePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
-                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtDrugID, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                .addComponent(txtBatchNo))
-                            .addComponent(lblBatchNo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
+                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDrugID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(lblBatchNo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBatchNo, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblSupplier)
+                        .addGap(216, 216, 216))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
+                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPurchasePrice)
+                                    .addComponent(lblManufactureDate))
+                                .addGap(47, 47, 47))
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addComponent(txtManufactureDate)
+                                .addGap(6, 6, 6)))
+                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addComponent(lblExpirationDate)
+                                .addGap(219, 219, 219))
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addComponent(txtExpirationDate)
+                                .addGap(91, 91, 91))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
+                        .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlInfoLayout.createSequentialGroup()
-                                .addComponent(lblSupplier)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(cboSupplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDrugName)))
-                    .addComponent(lblDrugInfo)
-                    .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addComponent(txtDrugInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFind))
-                    .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(pnlInfoLayout.createSequentialGroup()
-                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblQuantity)
-                                .addComponent(sfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addComponent(btnAddToInvoice))
-                        .addGroup(pnlInfoLayout.createSequentialGroup()
-                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtManufactureDate)
-                                .addGroup(pnlInfoLayout.createSequentialGroup()
-                                    .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblPurchasePrice)
-                                        .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblManufactureDate))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtExpirationDate)
                                 .addComponent(lblSalePrice)
-                                .addComponent(lblExpirationDate)
-                                .addComponent(txtSalePrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14))
+                            .addComponent(txtSalePrice))
+                        .addGap(106, 106, 106))
                     .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addComponent(lblDrugID)
-                        .addGap(55, 55, 55)
-                        .addComponent(lblDrugName)))
-                .addGap(43, 43, 43))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblDrugInfo)
+                                .addGroup(pnlInfoLayout.createSequentialGroup()
+                                    .addComponent(txtDrugInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnFind))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
+                                    .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblQuantity)
+                                        .addComponent(sfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnAddToInvoice))
+                                .addGroup(pnlInfoLayout.createSequentialGroup()
+                                    .addComponent(lblDrugID)
+                                    .addGap(55, 55, 55)
+                                    .addComponent(lblDrugName)))
+                            .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cboSupplier, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)
+                                .addComponent(txtDrugName, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGap(106, 106, 106))))
         );
         pnlInfoLayout.setVerticalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,18 +470,17 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(lblBatchNo)
                     .addComponent(lblSupplier))
                 .addGap(0, 0, 0)
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBatchNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSalePrice)
-                            .addComponent(lblPurchasePrice))
-                        .addGap(0, 0, 0)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPurchasePrice)
+                    .addComponent(lblSalePrice)
+                    .addComponent(jLabel14))
+                .addGap(4, 4, 4)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtPurchasePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSalePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -456,31 +496,9 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(lblQuantity)
                         .addGap(0, 0, 0)
                         .addComponent(sfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAddToInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddToInvoice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -496,8 +514,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(pnlInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jScrollPane3)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -506,13 +524,13 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                     .addComponent(pnlInfo))
                 .addGap(22, 22, 22)
                 .addComponent(pnlInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -599,6 +617,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPrint;
     private javax.swing.JComboBox cboSupplier;
     private javax.swing.JCheckBox chkSelectAll;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
