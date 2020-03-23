@@ -62,7 +62,7 @@ public class DrugInfomation {
 
     @Override
     public String toString() {
-        return "<html>" + this.drugName + "<br>►" + this.manufactured + "  ►Batch: " + this.batchNo + "<br>►EXP: " + DateHelper.toString(expirationDate) + "  ►Price: VND " + salePrice + " / " + this.unit + "<br>_____________________________________</html>";
+        return "<html>" + this.drugName + "<br>►" + this.manufactured + "  ►Batch: " + this.batchNo + "<br>►EXP: " + DateHelper.toString(expirationDate) + "  ►Price: VND " + salePrice + " / " + this.unit + "<br>________________________</html>";
     }
 
     public String getDrugID() {
