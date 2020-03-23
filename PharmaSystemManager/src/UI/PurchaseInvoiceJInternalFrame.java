@@ -138,7 +138,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"123", "123", "123", "123", "123", null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},

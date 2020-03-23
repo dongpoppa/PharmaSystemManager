@@ -43,7 +43,7 @@
 		<band height="65" splitType="Stretch">
 			<image>
 				<reportElement x="18" y="5" width="39" height="30" uuid="32d7ab20-4857-451a-a813-c5abbf1ce8d4"/>
-				<imageExpression><![CDATA["E:\\OneDrive - Nguyen Sieu School\\Documents\\GitHub\\PharmaSystemManager\\PharmaSystemManager\\src\\icon\\logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/icon/logo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="5" y="37" width="67" height="17" forecolor="#009900" uuid="4c60b134-154d-4950-aa9a-1ea4262e93fe"/>
