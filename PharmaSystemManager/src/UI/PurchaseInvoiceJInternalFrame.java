@@ -12,6 +12,7 @@ import helper.DateHelper;
 import helper.DialogHelper;
 import helper.JdbcHelper;
 import helper.ShareHelper;
+import helper.UtilitiesHelper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -352,30 +353,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         txtPurchasePrice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
@@ -403,19 +380,12 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                                     .addComponent(txtSalePrice)))
                             .addGroup(pnlInfoLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlInfoLayout.createSequentialGroup()
-                                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblQuantity)
-                                            .addComponent(sfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnAddToInvoice))
-                                    .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblDrugName)
-                                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cboSupplier, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)
-                                            .addComponent(txtDrugName, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addComponent(lblSupplier))))
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDrugName)
+                                    .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cboSupplier, javax.swing.GroupLayout.Alignment.TRAILING, 0, 200, Short.MAX_VALUE)
+                                        .addComponent(txtDrugName, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(lblSupplier)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
                                 .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
@@ -423,7 +393,13 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                                         .addGap(29, 29, 29)
                                         .addComponent(btnFind))
                                     .addComponent(lblDrugID, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(pnlInfoLayout.createSequentialGroup()
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblQuantity)
+                                    .addComponent(sfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAddToInvoice)))
                         .addGap(85, 85, 85))
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,13 +467,36 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtExpirationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtManufactureDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblQuantity)
-                        .addGap(0, 0, 0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sfQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnAddToInvoice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
+        pnlInfo.setLayer(lblDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(sfQuantity, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnFind, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblDrugID, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(btnAddToInvoice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblSalePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtBatchNo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(cboSupplier, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(lblManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtExpirationDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtManufactureDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pnlInfo.setLayer(txtPurchasePrice, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         ListDrugs.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListDrugs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -613,6 +612,12 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnAddToInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToInvoiceActionPerformed
         // TODO add your handling code here:
+        if (!validateID()) {
+            return;
+        }
+        if (!validateForm()) {
+            return;
+        }
         this.list.add(this.getModel());
         this.addToCart();
         this.clear();
@@ -848,5 +853,55 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    boolean validateID() {
+        if (txtDrugID.getText().equals("")) {
+            DialogHelper.alert(this, "Find and choose a drug from list");
+            return false;
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (txtDrugID.getText().equals(list.get(i).getDrugID())) {
+                    if (validateForm() && DialogHelper.confirm(this, "The item already exists, are you want to update?")) {
+                        list.set(i, this.getModel());
+                        this.addToCart();
+                        clear();
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    boolean validateForm() {
+        if (UtilitiesHelper.checkNull(txtBatchNo, "Empty Batch No")) {
+            return false;
+        }
+        if (UtilitiesHelper.checkNull(txtPurchasePrice, "Empty Purchase Price")) {
+            return false;
+        } else if (!UtilitiesHelper.checkPrice(txtPurchasePrice)) {
+            return false;
+        }
+        if (UtilitiesHelper.checkNull(txtSalePrice, "Empty Sale Price")) {
+            return false;
+        } else if (!UtilitiesHelper.checkPrice(txtSalePrice)) {
+            return false;
+        } else if (Double.parseDouble(txtSalePrice.getText().trim()) < Double.parseDouble(txtPurchasePrice.getText().trim())) {
+            DialogHelper.alert(this, "Sale price must be higher than purchase price");
+            txtSalePrice.requestFocus();
+            return false;
+        }
+        if (UtilitiesHelper.checkNull(txtManufactureDate, "Input date format MM/dd/yyyy")) {
+            return false;
+        }
+        if (UtilitiesHelper.checkNull(txtExpirationDate, "Input date format MM/dd/yyyy")) {
+            return false;
+        }
+        if (sfQuantity.getValue() <= 0) {
+            DialogHelper.alert(this, "Quantity must be higher than 0");
+            return false;
+        }
+        return true;
     }
 }

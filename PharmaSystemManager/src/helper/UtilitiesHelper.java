@@ -5,6 +5,7 @@
  */
 package helper;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -31,6 +32,15 @@ public class UtilitiesHelper {
             return false;
         }
         return true;
+    }
+
+    public static boolean checkNull(JFormattedTextField c, String m) {
+        if (c.getText().trim().isEmpty()) {
+            DialogHelper.alert(c, m);
+            c.requestFocus();
+            return true;
+        }
+        return false;
     }
 
     public static boolean checkPattern(JTextField c, String m) {
@@ -116,5 +126,21 @@ public class UtilitiesHelper {
             return false;
         }
         return true;
+    }
+
+    public static boolean checkPrice(JTextField a) {
+        try {
+            double number = Double.parseDouble(a.getText().trim());
+            if (number <= 0) {
+                DialogHelper.alert(null, "Price must be higher than 0");
+                a.requestFocus();
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            DialogHelper.alert(null, "Wrong number format");
+            a.requestFocus();
+            return false;
+        }
     }
 }
