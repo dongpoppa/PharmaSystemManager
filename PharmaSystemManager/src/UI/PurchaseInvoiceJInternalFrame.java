@@ -822,7 +822,10 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     void billPrint() {
         try {
-            InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
+            if (InvoiceID == null) {
+                InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
+            }
+
             String datePurchase = purchaseInvoiceDAO.DatePurchaseByID(InvoiceID);
 
             String sql = " SELECT Thuoc.MaThuoc AS 'DrugID',TenThuoc AS 'Drug name',GiaBan AS 'Price',SoLuong AS 'Quantity',dbo.HoaDonThuMua.TTTienMat + dbo.HoaDonThuMua.TTThe AS 'Amount'   FROM dbo.HoaDonThuMuaChiTiet\n"
@@ -845,6 +848,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             JasperReport js = JasperCompileManager.compileReport(jasdi);
             JasperPrint jp = JasperFillManager.fillReport(js, para, new JRResultSetDataSource(rs));
             JasperViewer.viewReport(jp, false);
+            InvoiceID = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
