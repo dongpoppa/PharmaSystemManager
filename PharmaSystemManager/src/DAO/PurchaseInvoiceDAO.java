@@ -78,7 +78,7 @@ public class PurchaseInvoiceDAO {
         try {
             JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
         } catch (SQLException ex) {
-            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+             ex.printStackTrace();
         }
     }
 
@@ -87,7 +87,7 @@ public class PurchaseInvoiceDAO {
         try {
             JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getID());
         } catch (SQLException ex) {
-            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
