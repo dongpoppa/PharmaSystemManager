@@ -59,6 +59,20 @@ public class SaleInvoiceDAO {
         return list.size() > 0 ? list.get(0) : null;
     }
 
+    public String DatePurchaseByID(String InvoiceID) {
+        String sql = "SELECT NgayBan FROM dbo.HoaDonBanHang WHERE MaHDBan = '" + InvoiceID + "'";
+        ResultSet resultSet = JdbcHelper.executeQuery(sql);
+        String date = null;
+        try {
+            while (resultSet.next()) {
+                date = String.valueOf(resultSet.getDate("NgayBan"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
+    }
+
     private List<SaleInvoice> select(String sql, Object... args) {
         List<SaleInvoice> list = new ArrayList<>();
         try {
