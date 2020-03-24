@@ -554,7 +554,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnFindHistoryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindHistoryActionPerformed
     {//GEN-HEADEREND:event_btnFindHistoryActionPerformed
         // TODO add your handling code here:
-        new FindHistoryJInternalFrame(ShareHelper.frame, true).setVisible(true);
+        new FindHistoryJInternalFrame(ShareHelper.frame, true, this).setVisible(true);
     }//GEN-LAST:event_btnFindHistoryActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -813,6 +813,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             }
 
             DialogHelper.alert(this, "Update successfully");
+            this.InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
         } catch (Exception e) {
             DialogHelper.alert(this, "Insert failsed");
             e.printStackTrace();

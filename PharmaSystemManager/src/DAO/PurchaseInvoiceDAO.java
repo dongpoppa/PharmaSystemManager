@@ -88,10 +88,15 @@ public class PurchaseInvoiceDAO {
         return select(sql);
     }
 
-    public PurchaseInvoice findById(String MaHDMua) {
-        String sql = "SELECT * FROM HoaDonThuMua WHERE MaHDMua = ?";
+    public List<PurchaseInvoice> findById(String MaHDMua) {
+        String sql = "SELECT THUOCTRONGKHO.IDTHUOC, MATHUOC, MALOHANG, NGAYSX, NGAYHETHAN, SOLUONGTON, "
+                + "GIANHAP, GIABAN, TRANGTHAITHUOC, MANV, MANCC, NGAYNHAPHANG, TRANGTHAIHDMUA, TTTIENMAT, TTTHE, SOTIENCONLAI\n"
+                + "FROM ThuocTrongKho\n"
+                + "JOIN HOADONTHUMUACHITIET ON HOADONTHUMUACHITIET.IDTHUOC = THUOCTRONGKHO.IDTHUOC\n"
+                + "JOIN HOADONTHUMUA ON HOADONTHUMUA.MAHDMUA = HOADONTHUMUACHITIET.MAHDMUA\n"
+                + "WHERE HOADONTHUMUA.MAHDMUA = ?";
         List<PurchaseInvoice> list = select(sql, MaHDMua);
-        return list.size() > 0 ? list.get(0) : null;
+        return list;
     }
 
     public PurchaseInvoice findByEmployeeID(String EmployeeID) {
@@ -127,15 +132,22 @@ public class PurchaseInvoiceDAO {
 
     private PurchaseInvoice readFromResultSet(ResultSet rs) throws SQLException {
         PurchaseInvoice model = new PurchaseInvoice();
-        model.setID(rs.getString("MaHDMua"));
-        model.setPurchaseDate(rs.getDate("NgayMua"));
-        model.setPurchaseByCash(rs.getDouble("TTTienMat"));
-        model.setPurchaseByCredit(rs.getDouble("TTThe"));
-        model.setDiscount(rs.getInt("GiamGia"));
-        model.setRemainMoney(rs.getDouble("SoTienConLai"));
-        model.setStatus(rs.getString("TrangThaiHDMua"));
-        model.setEmployeeID(rs.getString("MaNV"));
-        model.setSupplierID(rs.getString("MaNCC"));
+        model.setNumber(rs.getInt("IDTHUOC"));
+        model.setDrugID(rs.getString("MATHUOC"));
+        model.setBatchNo(rs.getString("MALOHANG"));
+        model.setMfg(rs.getDate("NGAYSX"));
+        model.setExp(rs.getDate("NGAYHETHAN"));
+        model.setQuantity(rs.getInt("SOLUONGTON"));
+        model.setPurchasePrice(rs.getDouble("GIANHAP"));
+        model.setSalePrice(rs.getDouble("GIABAN"));
+        model.setDrugStatus(rs.getString("TRANGTHAITHUOC"));
+        model.setEmployeeID(rs.getString("MANV"));
+        model.setSupplierID(rs.getString("MANCC"));
+        model.setPurchaseDate(rs.getDate("NGAYNHAPHANG"));
+        model.setStatus(rs.getString("TRANGTHAIHDMUA"));
+        model.setPurchaseByCash(rs.getDouble("TTTIENMAT"));
+        model.setPurchaseByCredit(rs.getDouble("TTTHE"));
+        model.setRemainMoney(rs.getDouble("SOTIENCONLAI"));
         return model;
     }
 }
