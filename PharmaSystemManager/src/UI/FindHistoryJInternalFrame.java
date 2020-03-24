@@ -264,7 +264,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
-         this.dispose();
+        this.dispose();
         this.frame.billPrint();
 
     }//GEN-LAST:event_btnPrintActionPerformed
@@ -371,11 +371,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         if (ShareHelper.status != null) {
             try {
                 String sql = "UPDATE HOADONTHUMUA\n"
-<<<<<<< HEAD
                         + "SET TRANGTHAIHDMUA = 'N" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
-=======
-                        + "SET TRANGTHAIHDMUA = N'" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
->>>>>>> 95f2b7780f109563b353570d5efb91963668a2ef
                 JdbcHelper.executeUpdate(sql);
                 DialogHelper.alert(ShareHelper.frame, "Successfull");
                 this.find();
