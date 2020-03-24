@@ -64,10 +64,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
 
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Number", "DrugID", "Batch No", "MFG", "EXP", "Quantity", "Purchase Price", "Sale Price", "Status"
@@ -326,11 +323,13 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
                 this.fillToTable(list);
             } else {
                 DialogHelper.alert(this, "Can not find this Invoice");
+                this.clear();
                 txtInvoiceID.setText("");
                 txtInvoiceID.requestFocus();
             }
         } catch (Exception e) {
             DialogHelper.alert(this, "Can not find this Invoice");
+            this.clear();
             txtInvoiceID.setText("");
             txtInvoiceID.requestFocus();
         }
@@ -353,5 +352,19 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
             };
             defaultTableModel.addRow(row);
         }
+    }
+
+    void clear() {
+        txtID.setText("");
+        txtSupplierID.setText("");
+        txtImportDate.setText("");
+        txtStatus.setText("");
+        txtCash.setText("");
+        txtDebit.setText("");
+        txtRemain.setText("");
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblGridView.getModel();
+        defaultTableModel.setRowCount(0);
+        tblGridView.clearSelection();
+        lblEmployeeID.setText("EmployeeID: ");
     }
 }
