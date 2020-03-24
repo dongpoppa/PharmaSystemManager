@@ -28,11 +28,13 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
      */
     public SupplierJInternalFrame() {
         initComponents();
+       
     }
 
     public SupplierJInternalFrame(JFrame frame) {
         initComponents();
         ShareHelper.frame = frame;
+        init();
     }
 
     /**
@@ -414,6 +416,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
         this.clear();
+        txtID.setText(getLastID());
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
@@ -491,6 +494,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     void init() {
         setFrameIcon(ShareHelper.APP_ICON);
+        txtID.setEditable(false);
     }
 
     public void scroll() {
@@ -517,7 +521,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
                     sp.getStatus()
                 };
                 model.addRow(row);
-            }  
+            }
         } catch (Exception e) {
             e.printStackTrace();
             DialogHelper.alert(this, "Database access error!");
@@ -566,7 +570,6 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void setStatus(boolean insertable) {
-        txtID.setEditable(insertable);
         btnInsert.setEnabled(insertable);
         btnUpdate.setEnabled(!insertable);
         btnDelete.setEnabled(!insertable);
@@ -616,6 +619,20 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
                 DialogHelper.alert(this, "Update failed!");
             }
         }
+    }
+
+    String getLastID() {
+        String lastID = (String) tblGridView.getValueAt(tblGridView.getRowCount() - 1, 0);
+        int num = Integer.parseInt(lastID.substring(3)) + 1;
+        String nextID = "NCC";
+        if (num < 10) {
+            nextID += "00" + String.valueOf(num);
+        } else if (num < 100) {
+            nextID += "0" + String.valueOf(num);
+        } else {
+            nextID += String.valueOf(num);
+        }
+        return nextID;
     }
 
 }

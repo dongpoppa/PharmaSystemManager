@@ -20,8 +20,8 @@ import model.Drug;
 public class DrugDAO {
 
     public void insert(Drug model) {
-        String sql = "INSERT INTO Thuoc (MaThuoc, TenThuoc, TenKhoaHoc, NhietDoBaoQuan, QuyCachDongGoi, DonViTinh, NhaSX, MoTaThuoc, TrangThaiThuoc, MaLoaiThuoc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        JdbcHelper.executeUpdate(sql, model.getID(), model.getName(), model.getScienceName(), model.getStorageTemperatures(), model.getPacking(), model.getUnit(), model.getProducer(), model.getDescription(), model.getStatus(), model.getDrugCategoryID());
+        String sql = "INSERT INTO Thuoc ( TenThuoc, TenKhoaHoc, NhietDoBaoQuan, QuyCachDongGoi, DonViTinh, NhaSX, MoTaThuoc, TrangThaiThuoc, MaLoaiThuoc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        JdbcHelper.executeUpdate(sql, model.getName(), model.getScienceName(), model.getStorageTemperatures(), model.getPacking(), model.getUnit(), model.getProducer(), model.getDescription(), model.getStatus(), model.getDrugCategoryID());
     }
 
     public void update(Drug model) {

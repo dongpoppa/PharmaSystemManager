@@ -20,8 +20,8 @@ import model.Supplier;
 public class SupplierDAO {
 
     public void insert(Supplier model) {
-        String sql = "INSERT INTO NhaCungCap (MaNCC, TenNCC, EmailNCC, SDTNCC, DiaChiNCC, ThanhPhoNCC, Mota, TrangThaiNCC) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        JdbcHelper.executeUpdate(sql, model.getID(), model.getName(), model.getEmail(), model.getPhoneNumber(), model.getAddress(), model.getCity(), model.getDescription(), model.getStatus());
+        String sql = "INSERT INTO NhaCungCap ( TenNCC, EmailNCC, SDTNCC, DiaChiNCC, ThanhPhoNCC, Mota, TrangThaiNCC) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+        JdbcHelper.executeUpdate(sql, model.getName(), model.getEmail(), model.getPhoneNumber(), model.getAddress(), model.getCity(), model.getDescription(), model.getStatus());
     }
 
     public void update(Supplier model) {

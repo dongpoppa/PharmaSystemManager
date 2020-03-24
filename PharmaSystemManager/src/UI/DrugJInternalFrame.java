@@ -172,6 +172,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         lblID.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblID.setText("Medicine ID");
 
+        txtID.setEditable(false);
         txtID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         lblFullName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -483,6 +484,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
         this.clear();
+        txtID.setText(getLastID());
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
@@ -582,6 +584,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
 
     void init() {
         setFrameIcon(ShareHelper.APP_ICON);
+        txtID.setEditable(false);
     }
 
     public void scroll() {
@@ -657,7 +660,6 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void setStatus(boolean insertable) {
-        txtID.setEditable(insertable);
         btnInsert.setEnabled(insertable);
         btnUpdate.setEnabled(!insertable);
         btnDelete.setEnabled(!insertable);
@@ -723,5 +725,19 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
                 DialogHelper.alert(this, "Delete failed!");
             }
         }
+    }
+
+    String getLastID() {
+        String lastID = (String) tblGridView.getValueAt(tblGridView.getRowCount() - 1, 0);
+        int num = Integer.parseInt(lastID.substring(3)) + 1;
+        String nextID = "MST";
+        if (num < 10) {
+            nextID += "00" + String.valueOf(num);
+        } else if (num < 100) {
+            nextID += "0" + String.valueOf(num);
+        } else {
+            nextID += String.valueOf(num);
+        }
+        return nextID;
     }
 }
