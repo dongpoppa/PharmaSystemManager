@@ -36,20 +36,20 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnFind" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel7" min="-2" pref="198" max="-2" attributes="0"/>
+              <Component id="lblEmployeeID" min="-2" pref="198" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSupplierID" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblImportDate" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -57,39 +57,39 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jTextField6" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Component id="txtSupplierID" min="-2" pref="148" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jTextField1" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Component id="txtID" min="-2" pref="148" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jTextField2" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Component id="txtImportDate" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="31" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCash" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField3" min="-2" pref="148" max="-2" attributes="0"/>
+                      <Component id="txtCash" min="-2" pref="148" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDebit" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField4" min="-2" pref="164" max="-2" attributes="0"/>
+                      <Component id="txtDebit" min="-2" pref="164" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRemain" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField5" min="-2" pref="148" max="-2" attributes="0"/>
+                      <Component id="txtRemain" min="-2" pref="148" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton1" min="-2" pref="375" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" pref="375" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -106,7 +106,7 @@
                       <Component id="txtInvoiceID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnFind" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmployeeID" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="524" max="-2" attributes="0"/>
@@ -114,21 +114,21 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDebit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCash" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDebit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCash" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRemain" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRemain" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -136,13 +136,13 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSupplierID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtSupplierID" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtImportDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblImportDate" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jScrollPane2" pref="125" max="32767" attributes="0"/>
@@ -162,7 +162,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblGridView">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="4">
@@ -250,54 +250,72 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFindActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtID">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
         <Property name="text" type="java.lang.String" value="InvoiceID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblImportDate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Import Date"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="txtImportDate">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lblDebit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Debit"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="txtCash">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="txtDebit">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblCash">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cash"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="lblRemain">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remain Price"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="txtRemain">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="lblSupplierID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Supplier ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="txtSupplierID">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="lblEmployeeID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Employee ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="lblStatus">
       <Properties>
         <Property name="text" type="java.lang.String" value="Status"/>
       </Properties>
@@ -309,8 +327,9 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="txtStatus">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
@@ -319,7 +338,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Invoice"/>
       </Properties>

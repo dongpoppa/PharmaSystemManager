@@ -5,11 +5,20 @@
  */
 package UI;
 
+import DAO.PurchaseInvoiceDAO;
+import helper.DateHelper;
+import helper.DialogHelper;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.PurchaseInvoice;
+
 /**
  *
  * @author longd
  */
 public class FindHistoryJInternalFrame extends javax.swing.JDialog {
+
+    PurchaseInvoiceDAO dao = new PurchaseInvoiceDAO();
 
     /**
      * Creates new form FindHistoryJInternalFrame
@@ -29,31 +38,31 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblGridView = new javax.swing.JTable();
         lblInvoiceID = new javax.swing.JLabel();
         txtInvoiceID = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        lblImportDate = new javax.swing.JLabel();
+        txtImportDate = new javax.swing.JTextField();
+        lblDebit = new javax.swing.JLabel();
+        txtCash = new javax.swing.JTextField();
+        txtDebit = new javax.swing.JTextField();
+        lblCash = new javax.swing.JLabel();
+        lblRemain = new javax.swing.JLabel();
+        txtRemain = new javax.swing.JTextField();
+        lblSupplierID = new javax.swing.JLabel();
+        txtSupplierID = new javax.swing.JTextField();
+        lblEmployeeID = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        txtStatus = new javax.swing.JTextArea();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -72,7 +81,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblGridView);
 
         lblInvoiceID.setText("Purchase Invoice ID");
 
@@ -83,29 +92,42 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("InvoiceID");
+        txtID.setEditable(false);
 
-        jLabel2.setText("Import Date");
+        lblID.setText("InvoiceID");
 
-        jLabel3.setText("Debit");
+        lblImportDate.setText("Import Date");
 
-        jLabel4.setText("Cash");
+        txtImportDate.setEditable(false);
 
-        jLabel5.setText("Remain Price");
+        lblDebit.setText("Debit");
 
-        jLabel6.setText("Supplier ID");
+        txtCash.setEditable(false);
 
-        jLabel7.setText("Employee ID:");
+        txtDebit.setEditable(false);
 
-        jLabel8.setText("Status");
+        lblCash.setText("Cash");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(jTextArea1);
+        lblRemain.setText("Remain Price");
 
-        jButton1.setText("Delete Invoice");
+        txtRemain.setEditable(false);
+
+        lblSupplierID.setText("Supplier ID");
+
+        txtSupplierID.setEditable(false);
+
+        lblEmployeeID.setText("Employee ID:");
+
+        lblStatus.setText("Status");
+
+        txtStatus.setEditable(false);
+        txtStatus.setColumns(20);
+        txtStatus.setLineWrap(true);
+        txtStatus.setRows(5);
+        txtStatus.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(txtStatus);
+
+        btnDelete.setText("Delete Invoice");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,49 +145,49 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(btnFind)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jLabel1))
+                        .addComponent(lblID))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2))))
+                            .addComponent(lblSupplierID)
+                            .addComponent(lblImportDate))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSupplierID, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(104, 104, 104))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8)))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblStatus)))
+                    .addComponent(txtImportDate, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblCash)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel3)
+                        .addComponent(lblDebit)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDebit, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(lblRemain)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRemain, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(183, 183, 183))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(83, 83, 83))))
         );
         layout.setVerticalGroup(
@@ -177,38 +199,38 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
                         .addComponent(lblInvoiceID)
                         .addComponent(txtInvoiceID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7))
+                    .addComponent(lblEmployeeID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8))
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblID)
+                            .addComponent(lblDebit)
+                            .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDebit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCash)
+                            .addComponent(lblStatus))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblRemain)
+                            .addComponent(txtRemain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnDelete)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblSupplierID)
+                                    .addComponent(txtSupplierID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
+                                    .addComponent(txtImportDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblImportDate)))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                         .addContainerGap(22, Short.MAX_VALUE))))
         );
@@ -218,7 +240,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-
+        this.find();
     }//GEN-LAST:event_btnFindActionPerformed
 
     /**
@@ -264,27 +286,72 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblCash;
+    private javax.swing.JLabel lblDebit;
+    private javax.swing.JLabel lblEmployeeID;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblImportDate;
     private javax.swing.JLabel lblInvoiceID;
+    private javax.swing.JLabel lblRemain;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblSupplierID;
+    private javax.swing.JTable tblGridView;
+    private javax.swing.JTextField txtCash;
+    private javax.swing.JTextField txtDebit;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtImportDate;
     private javax.swing.JTextField txtInvoiceID;
+    private javax.swing.JTextField txtRemain;
+    private javax.swing.JTextArea txtStatus;
+    private javax.swing.JTextField txtSupplierID;
     // End of variables declaration//GEN-END:variables
+
+    void find() {
+        String purchaseInvoiceID = txtInvoiceID.getText().trim();
+        try {
+            List<PurchaseInvoice> list = dao.findById(purchaseInvoiceID);
+            if (list.size() > 0) {
+                lblEmployeeID.setText("EmployeeID: " + list.get(0).getEmployeeID());
+                txtID.setText(purchaseInvoiceID);
+                txtSupplierID.setText(list.get(0).getSupplierID());
+                txtImportDate.setText(DateHelper.toString(list.get(0).getPurchaseDate()));
+                txtStatus.setText(list.get(0).getStatus());
+                txtCash.setText(String.valueOf(list.get(0).getPurchaseByCash()));
+                txtDebit.setText(String.valueOf(list.get(0).getPurchaseByCredit()));
+                txtRemain.setText(String.valueOf(list.get(0).getRemainMoney()));
+                this.fillToTable(list);
+            } else {
+                DialogHelper.alert(this, "Can not find this Invoice");
+                txtInvoiceID.setText("");
+                txtInvoiceID.requestFocus();
+            }
+        } catch (Exception e) {
+            DialogHelper.alert(this, "Can not find this Invoice");
+            txtInvoiceID.setText("");
+            txtInvoiceID.requestFocus();
+        }
+    }
+
+    void fillToTable(List<PurchaseInvoice> list) {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblGridView.getModel();
+        defaultTableModel.setRowCount(0);
+        for (PurchaseInvoice model : list) {
+            Object[] row = {
+                model.getNumber(),
+                model.getDrugID(),
+                model.getBatchNo(),
+                model.getMfg(),
+                model.getExp(),
+                model.getQuantity(),
+                model.getPurchasePrice(),
+                model.getSalePrice(),
+                model.getDrugStatus()
+            };
+            defaultTableModel.addRow(row);
+        }
+    }
 }

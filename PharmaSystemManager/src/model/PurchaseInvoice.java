@@ -13,10 +13,82 @@ import java.util.Date;
  */
 public class PurchaseInvoice {
 
-    private String ID, employeeID, supplierID, status;
-    private Date purchaseDate;
-    private int discount;
-    private double purchaseByCash,purchaseByCredit, remainMoney;
+    private String ID, employeeID, supplierID, status, drugID, batchNo, drugStatus;
+    private Date purchaseDate, mfg, exp;
+    private int discount, number, quantity;
+    private double purchaseByCash, purchaseByCredit, remainMoney, purchasePrice, salePrice;
+
+    public String getDrugStatus() {
+        return drugStatus;
+    }
+
+    public void setDrugStatus(String drugStatus) {
+        this.drugStatus = drugStatus;
+    }
+
+    public String getDrugID() {
+        return drugID;
+    }
+
+    public void setDrugID(String drugID) {
+        this.drugID = drugID;
+    }
+
+    public String getBatchNo() {
+        return batchNo;
+    }
+
+    public void setBatchNo(String batchNo) {
+        this.batchNo = batchNo;
+    }
+
+    public Date getMfg() {
+        return mfg;
+    }
+
+    public void setMfg(Date mfg) {
+        this.mfg = mfg;
+    }
+
+    public Date getExp() {
+        return exp;
+    }
+
+    public void setExp(Date exp) {
+        this.exp = exp;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
 
     public double getPurchaseByCash() {
         return purchaseByCash;
@@ -57,7 +129,6 @@ public class PurchaseInvoice {
     public void setSupplierID(String supplierID) {
         this.supplierID = supplierID;
     }
-
 
     public String getStatus() {
         return status;
