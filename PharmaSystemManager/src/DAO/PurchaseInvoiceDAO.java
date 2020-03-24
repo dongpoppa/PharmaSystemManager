@@ -75,12 +75,20 @@ public class PurchaseInvoiceDAO {
 
     public void update(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET NgayMua = ?, TTTienMat = ?,TTThe = ?, GiamGia = ?, SoTienConLai = ?, TrangThaiHDMua = ?, MaNV = ?, MaNCC = ? WHERE MaHDMua = ?";
-        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
+        try {
+            JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void updateStatus(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET TrangThaiHDMua = ? Where MaHDMua = ?";
-        JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getID());
+        try {
+            JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getID());
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public List<PurchaseInvoice> select() {
