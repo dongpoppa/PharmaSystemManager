@@ -554,6 +554,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnFindHistoryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindHistoryActionPerformed
     {//GEN-HEADEREND:event_btnFindHistoryActionPerformed
         // TODO add your handling code here:
+        new FindHistoryJInternalFrame(ShareHelper.frame, true).setVisible(true);
     }//GEN-LAST:event_btnFindHistoryActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed

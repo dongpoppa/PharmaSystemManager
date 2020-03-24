@@ -16,7 +16,6 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
      */
     public FindHistoryJInternalFrame(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -219,7 +218,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnFindActionPerformed
 
     /**
