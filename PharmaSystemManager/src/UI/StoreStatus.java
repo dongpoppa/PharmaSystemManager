@@ -32,8 +32,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
         init();
 
         
-        getInvoices(false);
-        getDrug(DateHelper.toDate("01/01/3000"), false);
     }
 
         /** This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The
@@ -71,6 +69,31 @@ public class StoreStatus extends javax.swing.JInternalFrame
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sales Info", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -91,7 +114,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
         {
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, true, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex)
@@ -202,10 +225,19 @@ public class StoreStatus extends javax.swing.JInternalFrame
             {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false, false, false, true
+            };
 
             public Class getColumnClass(int columnIndex)
             {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
             }
         });
         tblDrug.setRowHeight(30);
@@ -350,7 +382,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
         switch (cbbDrug.getSelectedIndex())
         {
             case 0:
-                getDrug(DateHelper.toDate("01/01/3000"), false);
+                getDrug(new Date(3000, 01, 01), false);
                 break;
             case 1:
                 getDrug(DateHelper.now(), false);
@@ -426,6 +458,11 @@ public class StoreStatus extends javax.swing.JInternalFrame
             }
         }
     }//GEN-LAST:event_chkAllStateChanged
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameOpened
+    {//GEN-HEADEREND:event_formInternalFrameOpened
+        load();
+    }//GEN-LAST:event_formInternalFrameOpened
 
     void init()
     {
@@ -528,7 +565,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
                     };
                     cash += rs.getInt("TTTIENMAT");
                     debit += rs.getInt("TTTHE");
-                    System.out.println("a5");
                     modelSales.addRow(row);
                 }
             } finally

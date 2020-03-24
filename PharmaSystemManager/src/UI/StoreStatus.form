@@ -7,6 +7,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="internalFrameOpened" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -149,7 +152,7 @@
                     <Column editable="false" title="Sales" type="java.lang.Object"/>
                     <Column editable="false" title="Discount" type="java.lang.Object"/>
                     <Column editable="false" title="Cash" type="java.lang.Object"/>
-                    <Column editable="true" title="Debit" type="java.lang.Object"/>
+                    <Column editable="false" title="Debit" type="java.lang.Object"/>
                     <Column editable="false" title="Total bill" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>
@@ -379,15 +382,15 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="10" rowCount="0">
-                    <Column editable="true" title="Drug ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Drug Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Batch no" type="java.lang.Object"/>
-                    <Column editable="true" title="Stored Quantity" type="java.lang.Object"/>
-                    <Column editable="true" title="Unit" type="java.lang.Object"/>
-                    <Column editable="true" title="Date import" type="java.lang.Object"/>
-                    <Column editable="true" title="Date of manufactored" type="java.lang.Object"/>
-                    <Column editable="true" title="Date of exp" type="java.lang.Object"/>
-                    <Column editable="true" title="Status" type="java.lang.Object"/>
+                    <Column editable="false" title="Drug ID" type="java.lang.Object"/>
+                    <Column editable="false" title="Drug Name" type="java.lang.Object"/>
+                    <Column editable="false" title="Batch no" type="java.lang.Object"/>
+                    <Column editable="false" title="Stored Quantity" type="java.lang.Object"/>
+                    <Column editable="false" title="Unit" type="java.lang.Object"/>
+                    <Column editable="false" title="Date import" type="java.lang.Object"/>
+                    <Column editable="false" title="Date of manufactored" type="java.lang.Object"/>
+                    <Column editable="false" title="Date of exp" type="java.lang.Object"/>
+                    <Column editable="false" title="Status" type="java.lang.Object"/>
                     <Column editable="true" title="Select" type="java.lang.Boolean"/>
                   </Table>
                 </Property>
