@@ -832,7 +832,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     + "	JOIN dbo.HoaDonThuMua ON HoaDonThuMua.MaHDMua = HoaDonThuMuaChiTiet.MaHDMua\n"
                     + "	JOIN dbo.ThuocTrongKho ON HoaDonThuMuaChiTiet.IDThuoc = ThuocTrongKho.IDThuoc\n"
                     + "	JOIN dbo.Thuoc ON Thuoc.MaThuoc = ThuocTrongKho.MaThuoc\n"
-                    + "	WHERE HoaDonThuMuaChiTiet.MaHDMua = '" + purchaseInvoiceDAO.lastPurchaseInvoiceID() + "'";
+                    + "	WHERE HoaDonThuMuaChiTiet.MaHDMua = '" + InvoiceID + "'";
             ResultSet rs = JdbcHelper.executeQuery(sql);
 
             JasperDesign jasdi = JRXmlLoader.load("src/Print/PurchaseBill.jrxml");
