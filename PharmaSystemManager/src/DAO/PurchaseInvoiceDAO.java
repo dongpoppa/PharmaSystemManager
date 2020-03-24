@@ -87,12 +87,6 @@ public class PurchaseInvoiceDAO {
         String sql = "SELECT * FROM HoaDonThuMua";
         return select(sql);
     }
-    
-    public PurchaseInvoice selectByID(String MaHDMua) {
-        String sql = "SELECT * FROM HoaDonThuMua WHERE MAHDMUA = ?";
-        List<PurchaseInvoice> list = select(sql, MaHDMua);
-        return list.size() > 0 ? list.get(0) : null;
-    }
 
     public List<PurchaseInvoice> findById(String MaHDMua) {
         String sql = "SELECT THUOCTRONGKHO.IDTHUOC, MATHUOC, MALOHANG, NGAYSX, NGAYHETHAN, SOLUONGTON, "

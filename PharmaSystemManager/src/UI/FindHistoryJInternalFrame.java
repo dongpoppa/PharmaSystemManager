@@ -8,6 +8,7 @@ package UI;
 import DAO.PurchaseInvoiceDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
+import helper.JdbcHelper;
 import helper.ShareHelper;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -366,12 +367,13 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
         if (ShareHelper.status != null) {
             try {
-                PurchaseInvoice model = dao.selectByID(txtInvoiceID.getText().trim());
-                model.setStatus(ShareHelper.status);
-                dao.updateStatus(model);
+                String sql = "UPDATE HOADONTHUMUA\n"
+                        + "SET TRANGTHAIHDMUA = '" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
+                JdbcHelper.executeUpdate(sql);
                 DialogHelper.alert(ShareHelper.frame, "Successfull");
                 this.find();
             } catch (Exception e) {
+                e.printStackTrace();
                 DialogHelper.alert(ShareHelper.frame, "Delete failed");
             }
         }

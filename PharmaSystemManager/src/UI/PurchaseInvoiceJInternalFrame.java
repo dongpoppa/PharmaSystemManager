@@ -822,8 +822,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     void billPrint() {
         try {
-            if (InvoiceID == null) {
-                InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
+            if (this.InvoiceID == null) {
+                this.InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
             }
 
             String datePurchase = purchaseInvoiceDAO.DatePurchaseByID(InvoiceID);
@@ -848,7 +848,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             JasperReport js = JasperCompileManager.compileReport(jasdi);
             JasperPrint jp = JasperFillManager.fillReport(js, para, new JRResultSetDataSource(rs));
             JasperViewer.viewReport(jp, false);
-            InvoiceID = null;
+            this.InvoiceID = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
