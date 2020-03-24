@@ -368,7 +368,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         if (ShareHelper.status != null) {
             try {
                 String sql = "UPDATE HOADONTHUMUA\n"
-                        + "SET TRANGTHAIHDMUA = '" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
+                        + "SET TRANGTHAIHDMUA = N'" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
                 JdbcHelper.executeUpdate(sql);
                 DialogHelper.alert(ShareHelper.frame, "Successfull");
                 this.find();
