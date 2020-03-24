@@ -10,9 +10,16 @@ import helper.DateHelper;
 import helper.DialogHelper;
 import helper.JdbcHelper;
 import helper.ShareHelper;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +46,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     DefaultTableModel modelInvoice;
     DefaultListModel modelList;
     DrugInfomation selectedDrug;
+    String INVOICE_ID;
 
     public SaleInvoiceJInternalFrame(JFrame frame)
     {
@@ -158,6 +166,13 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             }
         });
         tblInvoice.setRowHeight(25);
+        tblInvoice.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                tblInvoiceMouseClicked(evt);
+            }
+        });
         tblInvoice.addKeyListener(new java.awt.event.KeyAdapter()
         {
             public void keyTyped(java.awt.event.KeyEvent evt)
@@ -361,7 +376,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setText("Manufacturer");
 
-        txtQuantity.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtQuantity.setNextFocusableComponent(btnAddToCart);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -521,7 +535,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
     {//GEN-HEADEREND:event_btnFindActionPerformed
-        
+
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -586,6 +600,11 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         fillToList();
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void tblInvoiceMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tblInvoiceMouseClicked
+    {//GEN-HEADEREND:event_tblInvoiceMouseClicked
+        getModel();
+    }//GEN-LAST:event_tblInvoiceMouseClicked
+
     void init()
     {
         setFrameIcon(ShareHelper.APP_ICON);
@@ -627,14 +646,15 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         {
             e.printStackTrace();
         }
-
+        
+        int max=dao.findMax(selectedDrug.getDrugNumber());
         txtID.setText(selectedDrug.getDrugID());
         txtMan.setText(selectedDrug.getManufactured());
         txtName.setText(selectedDrug.getDrugName());
         txtPrice.setText(String.valueOf(selectedDrug.getSalePrice()));
         txtQuantity.setValue(1);
-        lblMax.setText(String.valueOf(selectedDrug.getQuantity()));
-        txtQuantity.setMaximum(selectedDrug.getQuantity());
+        lblMax.setText(String.valueOf(max));
+        txtQuantity.setMaximum(max);
         lblUnit.setText(selectedDrug.getUnit());
         txtQuantity.requestFocus();
     }
@@ -668,7 +688,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                     else
                     {
                         modelInvoice.setValueAt(par, i, 2);
-                        DialogHelper.alert(this, "Đã thay đổi số lượng!");
+                        DialogHelper.alert(this, "Đã bổ sung số lượng!");
                     }
                     return;
                 }
@@ -695,6 +715,22 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
         clearTextField();
         listDrug.setEnabled(true);
+    }
+    
+    void getModel()
+    {
+        int max=dao.findMax(selectedDrug.getDrugNumber());
+        selectedDrug = dao.findById(modelInvoice.getValueAt(selectedRow(), 0).toString());
+        txtID.setText(selectedDrug.getDrugID());
+        txtName.setText(selectedDrug.getDrugName());
+        txtMan.setText(selectedDrug.getManufactured());
+        txtPrice.setText(modelInvoice.getValueAt(selectedRow(), 3).toString());
+        txtQuantity.setValue((Integer) modelInvoice.getValueAt(selectedRow(), 2));
+        lblUnit.setText(selectedDrug.getUnit());
+        lblMax.setText(String.valueOf(max));
+        txtQuantity.setMaximum(max);
+        btnAddToCart.setText("Update to invoice");
+        listDrug.setEnabled(false);
     }
 
     void clearTextField()
@@ -742,32 +778,74 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         return price;
     }
 
+    private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=PharmaSystemManager";
+    private static String username = "sa";
+    private static String password = "songlong";
+
     void checkout()
     {
-        if (txtTotal.getText().equals(""))
+        if (tblInvoice.getRowCount() == 0)
         {
             return;
         }
-        new CheckOut(ShareHelper.frame, true, getPrice()).setVisible(true);
+        new CheckOut(ShareHelper.frame, true, getPrice(), true).setVisible(true);
         if (ShareHelper.paymentConfimation)
         {
             try
             {
-
-                //INSERT HOADONBANHANG
-                String sql = "INSERT INTO HOADONBANHANG VALUES (?,?,?,?,?,?) ";
-                JdbcHelper.executeUpdate(sql, new Date(), ShareHelper.cash, ShareHelper.debit, ShareHelper.discount, null, ShareHelper.USER.getEmployeeID());
-
-                sql = "INSERT INTO THUOCTRONGKHO VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                for (int i = 0; i < modelInvoice.getRowCount(); i++)
-                {
-
-                }
-
-            } catch (Exception e)
+                insert();
+            } catch (SQLException ex)
             {
+                ex.printStackTrace();
             }
         }
+    }
+
+    void insert() throws SQLException
+    {
+        int sothuoc=tblInvoice.getRowCount();
+        Connection connection=null;
+        try
+        {
+            connection = DriverManager.getConnection(dburl, username, password);
+            connection.setAutoCommit(false);
+            CallableStatement call = null;
+            PreparedStatement pstm = null;
+
+            //INSERT HOADONBANHANG
+            String sql1 = "{CALL sp_INSERT_HOADONBANHANG (?,?,?,?,?,?)}";
+            call = connection.prepareCall(sql1);
+            call.setObject(1, new Date());
+            call.setObject(2, ShareHelper.cash);
+            call.setObject(3, ShareHelper.debit);
+            call.setObject(4, 10);
+            call.setObject(5, ShareHelper.USER.getEmployeeID());
+            call.registerOutParameter(6, java.sql.Types.NVARCHAR);
+            
+            call.execute();
+            INVOICE_ID= call.getString(6);
+            
+            //INSERT HOADONBANHANGCHITIET
+            String sql2="INSERT INTO HOADONBANHANGCHITIET VALUES (?,?,?)";
+            for (int i=0; i<sothuoc ; i++)
+            {
+                pstm=connection.prepareStatement(sql2);
+                pstm.setObject(1, INVOICE_ID);
+                pstm.setObject(2, (Integer)modelInvoice.getValueAt(i, 6));
+                pstm.setObject(3, (Integer)modelInvoice.getValueAt(i, 2));
+                pstm.execute();
+            }
+            
+            connection.commit();
+            DialogHelper.alert(this, "Success");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            connection.rollback();
+            DialogHelper.alert(this,"Failed! Check drugs quantity");
+        }
+        connection.close();
     }
 
 

@@ -126,8 +126,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCash">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCashFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDebit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDebitFocusLost"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

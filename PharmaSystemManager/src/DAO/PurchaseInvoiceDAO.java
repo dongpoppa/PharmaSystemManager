@@ -75,20 +75,12 @@ public class PurchaseInvoiceDAO {
 
     public void update(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET NgayMua = ?, TTTienMat = ?,TTThe = ?, GiamGia = ?, SoTienConLai = ?, TrangThaiHDMua = ?, MaNV = ?, MaNCC = ? WHERE MaHDMua = ?";
-        try {
-            JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
-        } catch (SQLException ex) {
-             ex.printStackTrace();
-        }
+        JdbcHelper.executeUpdate(sql, model.getPurchaseDate(), model.getPurchaseByCash(), model.getPurchaseByCredit(), model.getDiscount(), model.getRemainMoney(), model.getStatus(), model.getEmployeeID(), model.getSupplierID(), model.getID());
     }
 
     public void updateStatus(PurchaseInvoice model) {
         String sql = "UPDATE HoaDonThuMua SET TrangThaiHDMua = ? Where MaHDMua = ?";
-        try {
-            JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getID());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        JdbcHelper.executeUpdate(sql, ShareHelper.getStatus(), model.getID());
     }
 
     public List<PurchaseInvoice> select() {
