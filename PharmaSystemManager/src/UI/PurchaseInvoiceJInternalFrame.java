@@ -825,16 +825,20 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             if (this.InvoiceID == null) {
                 this.InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
             }
-
             String datePurchase = purchaseInvoiceDAO.DatePurchaseByID(InvoiceID);
 
-            String sql = " SELECT Thuoc.MaThuoc AS 'DrugID',TenThuoc AS 'Drug name',GiaBan AS 'Price',SoLuong AS 'Quantity',dbo.HoaDonThuMua.TTTienMat + dbo.HoaDonThuMua.TTThe AS 'Amount'   FROM dbo.HoaDonThuMuaChiTiet\n"
+            String sql = "SELECT Thuoc.MaThuoc AS 'DrugID',TenThuoc AS 'Drug name',GiaNhap AS 'Price',HoaDonThuMuaChiTiet.SoLuong AS 'Quantity',GiaNhap*HoaDonThuMuaChiTiet.SoLuong AS 'Amount'   FROM dbo.HoaDonThuMuaChiTiet\n"
                     + "	JOIN dbo.HoaDonThuMua ON HoaDonThuMua.MaHDMua = HoaDonThuMuaChiTiet.MaHDMua\n"
                     + "	JOIN dbo.ThuocTrongKho ON HoaDonThuMuaChiTiet.IDThuoc = ThuocTrongKho.IDThuoc\n"
                     + "	JOIN dbo.Thuoc ON Thuoc.MaThuoc = ThuocTrongKho.MaThuoc\n"
-                    + "	WHERE HoaDonThuMuaChiTiet.MaHDMua = '" + InvoiceID + "'";
+                    + "	WHERE HoaDonThuMua.MaHDMua = '" + InvoiceID + "'";
             ResultSet rs = JdbcHelper.executeQuery(sql);
-
+            ResultSet rs1 = JdbcHelper.executeQuery(sql);
+            double totalAmount = 0;
+            while (rs.next()) {
+                totalAmount += rs.getDouble("Amount");
+            }
+            
             JasperDesign jasdi = JRXmlLoader.load("src/Print/PurchaseBill.jrxml");
             HashMap<String, Object> para = new HashMap<>();
 
@@ -842,11 +846,11 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             para.put("InvoiceID", InvoiceID);
             para.put("EmployeeID", ShareHelper.USER.getEmployeeID());
             para.put("PurchaseDate", datePurchase);
-            para.put("TotalAmount", String.valueOf(ShareHelper.total));
+            para.put("TotalAmount", String.valueOf(totalAmount));
             para.put("SupplierID", ((Supplier) cboSupplier.getSelectedItem()).getID());
 
             JasperReport js = JasperCompileManager.compileReport(jasdi);
-            JasperPrint jp = JasperFillManager.fillReport(js, para, new JRResultSetDataSource(rs));
+            JasperPrint jp = JasperFillManager.fillReport(js, para, new JRResultSetDataSource(rs1));
             JasperViewer.viewReport(jp, false);
             this.InvoiceID = null;
         } catch (Exception e) {

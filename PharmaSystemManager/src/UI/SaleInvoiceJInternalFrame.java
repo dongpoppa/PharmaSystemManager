@@ -788,16 +788,13 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
     void billPrint() {
         try {
-            String sql = "SELECT Thuoc.MaThuoc AS 'DrugID',TenThuoc AS 'Drug name',GiaBan AS 'Price',SoLuong AS 'Quantity',GiaBan*SoLuong AS 'Amount' FROM dbo.HoaDonBanHangChiTiet \n" +
-"	JOIN dbo.HoaDonBanHang ON HoaDonBanHang.MaHDBan = HoaDonBanHangChiTiet.MaHDBan \n" +
-"	JOIN dbo.ThuocTrongKho ON HoaDonBanHangChiTiet.IDThuoc = ThuocTrongKho.IDThuoc\n" +
-"	JOIN dbo.Thuoc ON Thuoc.MaThuoc = ThuocTrongKho.MaThuoc\n" +
-"	WHERE HoaDonBanHangChiTiet.MaHDBan ='" + INVOICE_ID + "'";
+            String sql = "SELECT Thuoc.MaThuoc AS 'DrugID',TenThuoc AS 'Drug name',GiaBan AS 'Price',HoaDonBanHangChiTiet.SoLuong AS 'Quantity',GiaBan*HoaDonBanHangChiTiet.SoLuong AS 'Amount' FROM dbo.HoaDonBanHangChiTiet \n"
+                    + "	JOIN dbo.HoaDonBanHang ON HoaDonBanHang.MaHDBan = HoaDonBanHangChiTiet.MaHDBan \n"
+                    + "	JOIN dbo.ThuocTrongKho ON HoaDonBanHangChiTiet.IDThuoc = ThuocTrongKho.IDThuoc\n"
+                    + "	JOIN dbo.Thuoc ON Thuoc.MaThuoc = ThuocTrongKho.MaThuoc\n"
+                    + "	WHERE HoaDonBanHang.MaHDBan = '" + INVOICE_ID + "'";
             ResultSet rs = JdbcHelper.executeQuery(sql);
 
-            System.out.println(saleInvoiceDAO.DatePurchaseByID(INVOICE_ID));
-            
-            
             JasperDesign jasdi = JRXmlLoader.load("src/Print/SaleBill.jrxml");
             HashMap<String, Object> para = new HashMap<>();
 

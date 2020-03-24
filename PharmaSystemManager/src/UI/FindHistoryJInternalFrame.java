@@ -66,6 +66,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAutoRequestFocus(false);
 
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -263,7 +264,9 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
+         this.dispose();
         this.frame.billPrint();
+
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -368,7 +371,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         if (ShareHelper.status != null) {
             try {
                 String sql = "UPDATE HOADONTHUMUA\n"
-                        + "SET TRANGTHAIHDMUA = '" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
+                        + "SET TRANGTHAIHDMUA = 'N" + ShareHelper.status + "' WHERE MAHDMUA = '" + txtInvoiceID.getText().trim() + "'";
                 JdbcHelper.executeUpdate(sql);
                 DialogHelper.alert(ShareHelper.frame, "Successfull");
                 this.find();
