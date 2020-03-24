@@ -785,7 +785,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     void checkout()
     {
-        if (tblInvoice.getRowCount() == 0)
+        if (tblInvoice.getRowCount() == 0||btnAddToCart.getText().equals("Update to invoice"))
         {
             return;
         }
