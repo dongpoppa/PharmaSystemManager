@@ -808,7 +808,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                     + "MATHUOC, MADAILY, TRANGTHAITHUOC) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             for (int i = 0; i < list.size(); i++) {
                 JdbcHelper.executeUpdate(sqlThuocTrongKho, list.get(i).getBatchNo(), list.get(i).getManufactureDate(), list.get(i).getExpirationDate(),
-                        list.get(i).getQuantity(), new Date(), list.get(i).getSalePrice(), list.get(i).getPurchasePrice(),
+                        0, new Date(), list.get(i).getSalePrice(), list.get(i).getPurchasePrice(),
                         list.get(i).getDrugID(), ShareHelper.Branch.getBranchID(), null);
                 list.get(i).setDrugNumber(purchaseInvoiceDAO.lastStoragedDrugID());
             }
