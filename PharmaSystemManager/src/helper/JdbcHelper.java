@@ -11,14 +11,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Admin
  */
-public class JdbcHelper {
+public class JdbcHelper
+{
 
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=PharmaSystemManager";
@@ -28,10 +27,13 @@ public class JdbcHelper {
     /*
      * Nạp driver
      */
-    static {
-        try {
+    static
+    {
+        try
+        {
             Class.forName(driver);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             throw new RuntimeException(ex);
         }
     }
@@ -39,22 +41,45 @@ public class JdbcHelper {
     /**
      * Xây dựng PreparedStatement
      *
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
-     * gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
-     * câu lệnh sql
+     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời gọi thủ tục lưu
+     * @param args là danh sách các giá trị được cung cấp cho các tham số trong câu lệnh sql
      * @return PreparedStatement tạo được
      * @throws java.sql.SQLException lỗi sai cú pháp
      */
-    public static PreparedStatement prepareStatement(String sql, Object... args) throws SQLException {
+    public static PreparedStatement prepareStatement(String sql, Object... args) throws SQLException
+    {
         Connection connection = DriverManager.getConnection(dburl, username, password);
         PreparedStatement pstmt = null;
-        if (sql.trim().startsWith("{")) {
+        if (sql.trim().startsWith("{"))
+        {
             pstmt = connection.prepareCall(sql);
-        } else {
+        }
+        else
+        {
             pstmt = connection.prepareStatement(sql);
         }
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 0; i < args.length; i++)
+        {
+            pstmt.setObject(i + 1, args[i]);
+        }
+        return pstmt;
+    }
+
+    public static PreparedStatement prepareStatementTrans(String sql, Object... args) throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(dburl, username, password);
+        connection.setAutoCommit(false);
+        PreparedStatement pstmt = null;
+        if (sql.trim().startsWith("{"))
+        {
+            pstmt = connection.prepareCall(sql);
+        }
+        else
+        {
+            pstmt = connection.prepareStatement(sql);
+        }
+        for (int i = 0; i < args.length; i++)
+        {
             pstmt.setObject(i + 1, args[i]);
         }
         return pstmt;
@@ -63,19 +88,19 @@ public class JdbcHelper {
     /**
      * Xây dựng CallableStatement với output
      *
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
-     * gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
-     * câu lệnh sql
+     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời gọi thủ tục lưu
+     * @param args là danh sách các giá trị được cung cấp cho các tham số trong câu lệnh sql
      * @return PreparedStatement tạo được
      * @throws java.sql.SQLException lỗi sai cú pháp
      */
-    public static String CallableStatementWithOutputAtParameterOneAndTypeIsNvarchar(String sql, Object... args) throws SQLException {
+    public static String CallableStatementWithOutputAtParameterOneAndTypeIsNvarchar(String sql, Object... args) throws SQLException
+    {
         String s = "";
         Connection connection = DriverManager.getConnection(dburl, username, password);
         CallableStatement cstm = connection.prepareCall(sql);
         cstm.registerOutParameter(1, java.sql.Types.NVARCHAR);
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 0; i < args.length; i++)
+        {
             cstm.setObject(i + 2, args[i]);
         }
         cstm.execute();
@@ -85,41 +110,60 @@ public class JdbcHelper {
     }
 
     /**
-     * Thực hiện câu lệnh SQL thao tác (INSERT, UPDATE, DELETE) hoặc thủ tục lưu
-     * thao tác dữ liệu
+     * Thực hiện câu lệnh SQL thao tác (INSERT, UPDATE, DELETE) hoặc thủ tục lưu thao tác dữ liệu
      *
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
-     * gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
-     * câu lệnh sql *
+     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời gọi thủ tục lưu
+     * @param args là danh sách các giá trị được cung cấp cho các tham số trong câu lệnh sql *
      */
-    public static void executeUpdate(String sql, Object... args) {
-        try {
+    public static void executeUpdate(String sql, Object... args) throws SQLException
+    {
+        PreparedStatement stmt = null;
+        try
+        {
+            stmt = prepareStatement(sql, args);
+            stmt.executeUpdate();
+            stmt.getConnection().commit();
+        } catch (SQLException e)
+        {
+            stmt.getConnection().rollback();
+            e.printStackTrace();
+        }
+        stmt.getConnection().close();
+    }
+
+    public static void executeUpdateTrans(String sql, Object... args)
+    {
+        try
+        {
             PreparedStatement stmt = prepareStatement(sql, args);
-            try {
+            try
+            {
                 stmt.executeUpdate();
-            } finally {
+
+            } finally
+            {
                 stmt.getConnection().close();
             }
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
     }
 
     /**
-     * Thực hiện câu lệnh SQL truy vấn (SELECT) hoặc thủ tục lưu truy vấn dữ
-     * liệu
+     * Thực hiện câu lệnh SQL truy vấn (SELECT) hoặc thủ tục lưu truy vấn dữ liệu
      *
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
-     * gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
-     * câu lệnh sql
+     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời gọi thủ tục lưu
+     * @param args là danh sách các giá trị được cung cấp cho các tham số trong câu lệnh sql
      */
-    public static ResultSet executeQuery(String sql, Object... args) {
-        try {
+    public static ResultSet executeQuery(String sql, Object... args)
+    {
+        try
+        {
             PreparedStatement stmt = prepareStatement(sql, args);
             return stmt.executeQuery();
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
     }
