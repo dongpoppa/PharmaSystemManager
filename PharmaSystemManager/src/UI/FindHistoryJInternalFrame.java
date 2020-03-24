@@ -8,6 +8,7 @@ package UI;
 import DAO.PurchaseInvoiceDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
+import helper.ShareHelper;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.PurchaseInvoice;
@@ -61,6 +62,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtStatus = new javax.swing.JTextArea();
         btnDelete = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -127,6 +129,18 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         jScrollPane2.setViewportView(txtStatus);
 
         btnDelete.setText("Delete Invoice");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,8 +200,10 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
                         .addComponent(txtRemain, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(183, 183, 183))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPrint)
+                        .addGap(148, 148, 148))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +233,9 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
                             .addComponent(lblRemain)
                             .addComponent(txtRemain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete)
+                            .addComponent(btnPrint))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -242,6 +260,16 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         this.find();
     }//GEN-LAST:event_btnFindActionPerformed
 
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+        this.frame.billPrint();
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,6 +277,7 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCash;
@@ -331,5 +360,20 @@ public class FindHistoryJInternalFrame extends javax.swing.JDialog {
         defaultTableModel.setRowCount(0);
         tblGridView.clearSelection();
         lblEmployeeID.setText("EmployeeID: ");
+    }
+
+    void delete() {
+        new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
+        if (ShareHelper.status != null) {
+            try {
+                PurchaseInvoice model = dao.selectByID(txtInvoiceID.getText().trim());
+                model.setStatus(ShareHelper.status);
+                dao.updateStatus(model);
+                DialogHelper.alert(ShareHelper.frame, "Successfull");
+                this.find();
+            } catch (Exception e) {
+                DialogHelper.alert(ShareHelper.frame, "Delete failed");
+            }
+        }
     }
 }
