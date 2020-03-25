@@ -77,6 +77,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtTotalAmount = new javax.swing.JTextField();
         chkSelectAll = new javax.swing.JCheckBox();
         lblSelectAll = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         btnFindHistory = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
@@ -180,6 +181,13 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblSelectAll.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblSelectAll.setText("Select all");
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancle.png"))); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlInvoiceLayout = new javax.swing.GroupLayout(pnlInvoice);
         pnlInvoice.setLayout(pnlInvoiceLayout);
         pnlInvoiceLayout.setHorizontalGroup(
@@ -194,14 +202,16 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInvoiceLayout.createSequentialGroup()
-                                .addGap(224, 224, 224)
+                                .addGap(89, 89, 89)
                                 .addComponent(lblTotal)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(91, 91, 91)
+                                .addGap(198, 198, 198)
                                 .addComponent(lblSelectAll)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkSelectAll)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(chkSelectAll)))
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(32, Short.MAX_VALUE))))
         );
         pnlInvoiceLayout.setVerticalGroup(
@@ -214,14 +224,18 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
                         .addGap(24, 24, 24))
                     .addGroup(pnlInvoiceLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblTotal)
-                                .addComponent(lblSelectAll))
-                            .addComponent(chkSelectAll))
-                        .addGap(16, 16, 16))))
+                        .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlInvoiceLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(pnlInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTotal)
+                                    .addComponent(lblSelectAll)
+                                    .addComponent(chkSelectAll)))
+                            .addGroup(pnlInvoiceLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDelete)))
+                        .addContainerGap())))
         );
 
         jPanel8.setLayout(new java.awt.GridLayout(1, 5, 10, 10));
@@ -560,17 +574,13 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < tblGridView.getRowCount(); i++) {
-            Boolean check = (Boolean) tblGridView.getValueAt(i, 5);
-            list.get(i).setDelete(check);
-        }
-        for (Iterator<DrugInfomation> iter = list.iterator(); iter.hasNext();) {
-            DrugInfomation model = iter.next();
-            if (model.isDelete()) {
-                iter.remove();
-            }
-        }
-        this.addToCart();
+        this.clear();
+        ListDrugs.clearSelection();
+        DefaultListModel listModel = (DefaultListModel) ListDrugs.getModel();
+        listModel.removeAllElements();
+        tblGridView.clearSelection();
+        DefaultTableModel tableModel = (DefaultTableModel) tblGridView.getModel();
+        tableModel.setRowCount(0);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -630,12 +640,28 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         billPrint();
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        for (int i = 0; i < tblGridView.getRowCount(); i++) {
+            Boolean check = (Boolean) tblGridView.getValueAt(i, 5);
+            list.get(i).setDelete(check);
+        }
+        for (Iterator<DrugInfomation> iter = list.iterator(); iter.hasNext();) {
+            DrugInfomation model = iter.next();
+            if (model.isDelete()) {
+                iter.remove();
+            }
+        }
+        this.addToCart();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList ListDrugs;
     private javax.swing.JButton btnAddToInvoice;
     private javax.swing.JButton btnCheckIn;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnFindHistory;
     private javax.swing.JButton btnPrint;
