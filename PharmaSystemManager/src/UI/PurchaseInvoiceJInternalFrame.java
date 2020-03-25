@@ -578,6 +578,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView.clearSelection();
         DefaultTableModel tableModel = (DefaultTableModel) tblGridView.getModel();
         tableModel.setRowCount(0);
+        this.InvoiceID = null;
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
