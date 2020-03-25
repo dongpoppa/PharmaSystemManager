@@ -1032,7 +1032,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         }
         else
         {
-            DialogHelper.alert(this, "Không tìm thấy hóa đơn này");
+            DialogHelper.alert(this, "Invoice not found!");
             this.newInvoice();
         }
 
