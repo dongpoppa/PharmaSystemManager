@@ -21,7 +21,7 @@ public class DialogHelper {
      * @param message là thông báo
      */
     public static void alert(Component parent, String message) {
-        JOptionPane.showMessageDialog(parent, message, "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(parent, message, "Pharma4U message", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -32,7 +32,7 @@ public class DialogHelper {
      * @return là kết quả nhận được true/false
      */
     public static boolean confirm(Component parent, String message) {
-        int result = JOptionPane.showConfirmDialog(parent, message, "Hệ thống quản lý đào tạo",
+        int result = JOptionPane.showConfirmDialog(parent, message, "Pharma4U message",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
@@ -45,6 +45,6 @@ public class DialogHelper {
      * @return là kết quả nhận được từ người sử dụng nhập vào
      */
     public static String prompt(Component parent, String message) {
-        return JOptionPane.showInputDialog(parent, message, "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+        return JOptionPane.showInputDialog(parent, message, "Pharma4U message", JOptionPane.INFORMATION_MESSAGE);
     }
 }

@@ -576,15 +576,17 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
     {//GEN-HEADEREND:event_btnFindActionPerformed
-        find();
+        findHistory();
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
     {//GEN-HEADEREND:event_btnClearActionPerformed
+        //Xóa hàng khi đang tạo hóa đơn
         if (btnCheckOut.isEnabled())
         {
-            clear();
+            deleteRow();
         }
+        //Xóa hóa đơn khi đang xem lịch sử
         else
         {
             deleteInvoice();
@@ -593,6 +595,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void chkAllItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_chkAllItemStateChanged
     {//GEN-HEADEREND:event_chkAllItemStateChanged
+        //Sự kiện của nút Select All
         if (chkAll.isSelected())
         {
             for (int i = 0; i < modelInvoice.getRowCount(); i++)
@@ -670,6 +673,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         setFrameIcon(ShareHelper.APP_ICON);
     }
 
+    //Tạo hóa đơn mới
     void newInvoice()
     {
         setStatus(true);
@@ -681,6 +685,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         chkAll.setSelected(false);
     }
 
+    //Chuẩn bị khi khởi chạy frame
     void load()
     {
         txtQuantity.setMinimum(1);
@@ -688,6 +693,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         modelInvoice.setRowCount(0);
     }
 
+    //Tìm kiếm thuốc
     void fillToList()
     {
         listDrug.setModel(new DefaultListModel());
@@ -708,6 +714,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         }
     }
 
+    //Lấy item từ list vào textfield
     void chooseFromList()
     {
         try
@@ -729,24 +736,30 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         lblUnit.setText(selectedDrug.getUnit());
         txtQuantity.requestFocus();
     }
-
+    
+    //Trả về vị trí lựa chọn trên bảng
     int selectedRow()
     {
         return tblInvoice.getSelectedRow();
     }
 
+    //Lấy sản phẩm đưa vào giỏ hàng
     void addToCart()
     {
+        //Chỉ thêm khi số lượng lấy được là dương
         if (txtQuantity.getValue() <= 0)
         {
+            DialogHelper.alert(this, "Check quantity!");
             return;
         }
+        //Kiểm tra đang cập nhật hay thêm mới item
         if (btnAddToCart.getText().equals("Update to invoice"))
         {
             modelInvoice.removeRow(selectedRow());
         }
         else
         {
+            //Kiểm tra sản phẩm đã có trong giỏ hàng chưa
             for (int i = 0; i < tblInvoice.getRowCount(); i++)
             {
                 if (selectedDrug.getDrugNumber() == (Integer) modelInvoice.getValueAt(i, 6))
@@ -754,17 +767,19 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                     int par = txtQuantity.getValue() + (Integer) modelInvoice.getValueAt(i, 2);
                     if (par > (Integer) modelInvoice.getValueAt(i, 7))
                     {
-                        DialogHelper.alert(this, "Số lượng thêm vào quá giới hạn!");
+                        DialogHelper.alert(this, "Limit exceeded!");
                     }
                     else
                     {
                         modelInvoice.setValueAt(par, i, 2);
-                        DialogHelper.alert(this, "Đã bổ sung số lượng!");
+                        DialogHelper.alert(this, "Item adding successfully!");
                     }
                     return;
                 }
             }
         }
+        
+        //Thêm item vào giỏ
         try
         {
             Vector vec = new Vector();
@@ -782,12 +797,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             e.printStackTrace();
         }
 
+        //Tính toán giá
         getPrice();
 
         clearTextField();
         listDrug.setEnabled(true);
     }
 
+    //Lấy item từ giỏ hàng đưa lên textfield
     void getModel()
     {
         int max = dao.findMax(selectedDrug.getDrugNumber());
@@ -804,6 +821,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         listDrug.setEnabled(false);
     }
 
+    //Xóa trắng textfield
     void clearTextField()
     {
         txtID.setText("");
@@ -813,7 +831,8 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtQuantity.setValue(0);
     }
 
-    void clear()
+    //Xóa hàng đã chọn
+    void deleteRow()
     {
         for (int i = tblInvoice.getRowCount() - 1; i > -1; i--)
         {
@@ -825,6 +844,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         getPrice();
     }
 
+    //Tính toán giá dựa trên table
     double getPrice()
     {
         double total = 0;
@@ -854,6 +874,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     private static String username = "sa";
     private static String password = "songlong";
 
+    //Thanh toán
     void checkout()
     {
         if (tblInvoice.getRowCount() == 0 || btnAddToCart.getText().equals("Update to invoice"))
@@ -873,6 +894,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         }
     }
 
+    //Tạo hóa đơn
     void insert() throws SQLException
     {
         int sothuoc = tblInvoice.getRowCount();
@@ -880,6 +902,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         try
         {
             connection = DriverManager.getConnection(dburl, username, password);
+            //Sử dụng transaction
             connection.setAutoCommit(false);
             CallableStatement call = null;
             PreparedStatement pstm = null;
@@ -908,17 +931,20 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                 pstm.execute();
             }
 
+            //Commit trans
             connection.commit();
             DialogHelper.alert(this, "Success");
         } catch (Exception e)
         {
             e.printStackTrace();
+            //Rollback trans
             connection.rollback();
             DialogHelper.alert(this, "Failed! Check drugs quantity");
         }
         connection.close();
     }
 
+    //In hóa đơn
     void billPrint()
     {
         try
@@ -949,6 +975,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         }
     }
 
+    //Trạng thái tạo hóa đơn hoặc xem xóa đơn cũ
     void setStatus(boolean status)
     {
         for (Component c : panelDrug.getComponents())
@@ -961,6 +988,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnCheckOut.setEnabled(status);
     }
 
+    // Hủy hóa đơn
     void deleteInvoice()
     {
         new ConfirmDeleteHelper(ShareHelper.frame, true).setVisible(true);
@@ -978,7 +1006,8 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         }
     }
 
-    private void find()
+    //Tìm kiếm hóa đơn
+    private void findHistory()
     {
         setStatus(false);
         INVOICE_ID = DialogHelper.prompt(this, "Invoice ID:");
