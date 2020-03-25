@@ -94,7 +94,7 @@ public class PurchaseInvoiceDAO {
                 + "FROM ThuocTrongKho\n"
                 + "JOIN HOADONTHUMUACHITIET ON HOADONTHUMUACHITIET.IDTHUOC = THUOCTRONGKHO.IDTHUOC\n"
                 + "JOIN HOADONTHUMUA ON HOADONTHUMUA.MAHDMUA = HOADONTHUMUACHITIET.MAHDMUA\n"
-                + "WHERE HOADONTHUMUA.MAHDMUA = ?";
+                + "WHERE HOADONTHUMUA.MAHDMUA = ? AND MADAILY = '" + ShareHelper.Branch.getBranchID() + "'";
         List<PurchaseInvoice> list = select(sql, MaHDMua);
         return list;
     }
