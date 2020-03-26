@@ -8,6 +8,7 @@ package UI;
 import DAO.BranchDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import helper.UtilitiesHelper;
 import java.awt.Rectangle;
 import java.util.List;
 import javax.swing.JFrame;
@@ -521,6 +522,12 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void insert() {
+        if (!checkExists()) {
+            return;
+        }
+        if (!validateForm()) {
+            return;
+        }
         Branch model = getModel();
 
         try {
@@ -535,6 +542,9 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void update() {
+        if (!validateForm()) {
+            return;
+        }
         Branch model = getModel();
 
         try {
@@ -562,5 +572,48 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
                 DialogHelper.alert(this, "Update failed");
             }
         }
+    }
+
+    boolean checkExists() {
+        if (UtilitiesHelper.checkNull(txtID, "Branch ID")) {
+            return false;
+        } else {
+            List<Branch> list = branchDAO.select();
+            for (int i = 0; i < list.size(); i++) {
+                if (txtID.getText().trim().equals(list.get(i).getBranchID())) {
+                    DialogHelper.alert(this, "This branch ID already exists");
+                    txtID.requestFocus();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    boolean validateForm() {
+        if (UtilitiesHelper.checkNull(txtName, "Branch name")) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtEmail, "Email")) {
+            return false;
+        } else if (!UtilitiesHelper.checkEmail(txtEmail)) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtPhone, "Phone number")) {
+            return false;
+        } else if (!UtilitiesHelper.checkPhone(txtPhone)) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtAddress, "Address")) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtCity, "City")) {
+            return false;
+        }
+        return true;
     }
 }

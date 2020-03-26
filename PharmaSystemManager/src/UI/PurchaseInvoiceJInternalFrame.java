@@ -914,15 +914,15 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     boolean validateForm() {
-        if (UtilitiesHelper.checkNull(txtBatchNo, "Empty Batch No")) {
+        if (UtilitiesHelper.checkNull(txtBatchNo, "Batch No")) {
             return false;
         }
-        if (UtilitiesHelper.checkNull(txtPurchasePrice, "Empty Purchase Price")) {
+        if (UtilitiesHelper.checkNull(txtPurchasePrice, "Purchase Price")) {
             return false;
         } else if (!UtilitiesHelper.checkPrice(txtPurchasePrice)) {
             return false;
         }
-        if (UtilitiesHelper.checkNull(txtSalePrice, "Empty Sale Price")) {
+        if (UtilitiesHelper.checkNull(txtSalePrice, "Sale Price")) {
             return false;
         } else if (!UtilitiesHelper.checkPrice(txtSalePrice)) {
             return false;
