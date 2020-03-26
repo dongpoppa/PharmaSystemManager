@@ -10,6 +10,7 @@ import DAO.EmployeeDAO;
 import helper.DateHelper;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import helper.UtilitiesHelper;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.ByteArrayInputStream;
@@ -58,8 +59,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTextField1 = new javax.swing.JTextField();
@@ -107,28 +107,20 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         jTextField1.setText("jTextField1");
 
         setClosable(true);
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
-        {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
-            {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
         });
@@ -137,82 +129,61 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+            new Object [][] {
+
             },
-            new String []
-            {
-                "Employee ID", "Password", "Role", "Full Name", "DOB", "Starting date", "Phone", "Email", "Address", "Status", "Store ID", "Avatar"
+            new String [] {
+                "Employee ID", "Role", "Full Name", "DOB", "Starting date", "Phone", "Email", "Address", "Store ID", "Status"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
-                false, false, false, false, false, false, false, false, false, false, false, false
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tblGridView.setRowHeight(30);
-        tblGridView.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblGridViewMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblGridView);
-        if (tblGridView.getColumnModel().getColumnCount() > 0)
-        {
-            tblGridView.getColumnModel().getColumn(0).setResizable(false);
+        if (tblGridView.getColumnModel().getColumnCount() > 0) {
             tblGridView.getColumnModel().getColumn(0).setPreferredWidth(60);
-            tblGridView.getColumnModel().getColumn(3).setResizable(false);
-            tblGridView.getColumnModel().getColumn(3).setPreferredWidth(150);
-            tblGridView.getColumnModel().getColumn(4).setResizable(false);
-            tblGridView.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tblGridView.getColumnModel().getColumn(2).setResizable(false);
+            tblGridView.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblGridView.getColumnModel().getColumn(3).setPreferredWidth(60);
         }
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
 
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/last.png"))); // NOI18N
-        btnLast.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLastActionPerformed(evt);
             }
         });
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/next.png"))); // NOI18N
-        btnNext.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
             }
         });
 
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/prev.png"))); // NOI18N
-        btnPrev.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevActionPerformed(evt);
             }
         });
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/first.png"))); // NOI18N
-        btnFirst.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstActionPerformed(evt);
             }
         });
@@ -397,40 +368,32 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
 
         btnInsert.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save.png"))); // NOI18N
-        btnInsert.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertActionPerformed(evt);
             }
         });
 
         btnUpdate.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/refesh.png"))); // NOI18N
-        btnUpdate.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
         btnDelete.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bin.png"))); // NOI18N
-        btnDelete.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
         btnNew.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/new.png"))); // NOI18N
-        btnNew.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
@@ -441,10 +404,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         lblAvatar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblAvatar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblAvatar.setInheritsPopupMenu(false);
-        lblAvatar.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
+        lblAvatar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblAvatarMousePressed(evt);
             }
         });
@@ -469,7 +430,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -500,7 +461,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(241, 241, 241)
                                 .addComponent(jLabel1)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(535, 535, 535)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -532,7 +493,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -706,7 +667,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 }
                 Object[] row = {
                     nv.getEmployeeID(),
-                    nv.getPassword(),
                     vaiTro,
                     nv.getName(),
                     nv.getDateOfBirth(),
@@ -714,9 +674,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     nv.getPhone(),
                     nv.getEmail(),
                     nv.getAddress(),
-                    nv.getStatus(),
                     nv.getStoreID(),
-                    nv.getAvatar()
+                    nv.getStatus()
                 };
                 model.addRow(row);
             }
@@ -861,6 +820,12 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void insert() {
+        if (!checkExists()) {
+            return;
+        }
+        if (!validateForm()) {
+            return;
+        }
         Employee model = getModel();
 
         String confirm = new String(txtConfirmPassword.getPassword());
@@ -881,6 +846,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void update() {
+        if (!validateForm()) {
+            return;
+        }
         Employee model = getModel();
 
         String confirm = new String(txtConfirmPassword.getPassword());
@@ -912,5 +880,76 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 DialogHelper.alert(this, "Update failed!");
             }
         }
+    }
+
+    boolean checkExists() {
+        if (UtilitiesHelper.checkNull(txtID, "ID")) {
+            return false;
+        } else {
+            List<Employee> list = dao.select();
+            for (int i = 0; i < list.size(); i++) {
+                if (txtID.getText().trim().equals(list.get(i).getEmployeeID())) {
+                    DialogHelper.alert(this, "This Employee ID already exists");
+                    txtID.requestFocus();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    boolean validateForm() {
+        if (UtilitiesHelper.checkNull(txtFullName, "Name")) {
+            return false;
+        } else if (!UtilitiesHelper.checkIsAlphabet(txtFullName, "Name")) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtPassword, "Password")) {
+            return false;
+        } else if (UtilitiesHelper.checkSize(txtPassword, 3)) {
+            return false;
+        }
+
+        if (!(new String(txtConfirmPassword.getPassword())).equals(new String(txtPassword.getPassword()))) {
+            DialogHelper.alert(this, "Password and confirm password does not match");
+            txtConfirmPassword.requestFocus();
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtDateOfBirth, "Input date format MM/dd/yyyy")) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtDateOfWork, "Input date format MM/dd/yyyy")) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtAddress, "Address")) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtEmail, "Email")) {
+            return false;
+        } else if (!UtilitiesHelper.checkEmail(txtEmail)) {
+            return false;
+        }
+
+        if (UtilitiesHelper.checkNull(txtPhone, "Phone number")) {
+            return false;
+        } else if (!UtilitiesHelper.checkPhone(txtPhone)) {
+            return false;
+        }
+
+        if (cboRanch.getSelectedIndex() == -1) {
+            DialogHelper.alert(this, "Select a branch");
+            return false;
+        }
+
+        if (lblAvatar.getIcon() == null) {
+            DialogHelper.alert(this, "Empty avatar");
+            return false;
+        }
+        return true;
     }
 }

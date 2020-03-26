@@ -36,7 +36,7 @@ public class UtilitiesHelper {
 
     public static boolean checkNull(JFormattedTextField c, String m) {
         if (c.getText().trim().isEmpty()) {
-            DialogHelper.alert(c, m + " can not be empty!");
+            DialogHelper.alert(c, m);
             c.requestFocus();
             return true;
         }
@@ -112,7 +112,7 @@ public class UtilitiesHelper {
 
     public static boolean checkSize(JPasswordField c, int s) {
         if (new String(c.getPassword()).length() < s) {
-            DialogHelper.alert(c, "Mật khẩu tối thiểu " + s + " kí tự!");
+            DialogHelper.alert(c, "password is at least " + s + " characters");
             c.requestFocus();
             return true;
         }
@@ -121,7 +121,16 @@ public class UtilitiesHelper {
 
     public static boolean checkEmail(JTextField c) {
         if (!c.getText().matches("\\w+@\\w+(\\.\\w+){1,2}")) {
-            DialogHelper.alert(c, "Sai định dạng email!");
+            DialogHelper.alert(c, "Invalid email address!");
+            c.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkPhone(JTextField c) {
+        if (!c.getText().matches("0\\d{9}")) {
+            DialogHelper.alert(c, "Invalid phone number!");
             c.requestFocus();
             return false;
         }
@@ -146,7 +155,7 @@ public class UtilitiesHelper {
 
     public static boolean checkIsAlphabet(JTextField txt, String mess) {
         if (!txt.getText().trim().matches("^[a-zA-Z\\s\\p{L}]+")) {
-            DialogHelper.alert(txt, mess + "chỉ chưa ký tự alphabet và ký tự trắng");
+            DialogHelper.alert(txt, mess + " contains only alphabet characters and white space characters");
             txt.requestFocus();
             return false;
         }
