@@ -241,6 +241,19 @@ public class StoreStatus extends javax.swing.JInternalFrame
         });
         tblDrug.setRowHeight(30);
         jScrollPane3.setViewportView(tblDrug);
+        if (tblDrug.getColumnModel().getColumnCount() > 0)
+        {
+            tblDrug.getColumnModel().getColumn(0).setResizable(false);
+            tblDrug.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblDrug.getColumnModel().getColumn(1).setResizable(false);
+            tblDrug.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblDrug.getColumnModel().getColumn(3).setResizable(false);
+            tblDrug.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tblDrug.getColumnModel().getColumn(4).setResizable(false);
+            tblDrug.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tblDrug.getColumnModel().getColumn(9).setResizable(false);
+            tblDrug.getColumnModel().getColumn(9).setPreferredWidth(30);
+        }
 
         cbbDrug.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All drugs", "Today expired drugs", "7 days expired drugs", "Today revoked drugs", "7 days revoked drugs" }));
         cbbDrug.addActionListener(new java.awt.event.ActionListener()
@@ -295,7 +308,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRevoke))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 331, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNoType, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,9 +324,9 @@ public class StoreStatus extends javax.swing.JInternalFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(chkAll)
-                .addGap(33, 33, 33))
+                .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
