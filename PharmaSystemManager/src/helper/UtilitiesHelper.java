@@ -18,7 +18,7 @@ public class UtilitiesHelper {
 
     public static boolean checkNull(JTextField c, String m) {
         if (c.getText().trim().isEmpty()) {
-            DialogHelper.alert(c, m);
+            DialogHelper.alert(c, m + " can not be empty!");
             c.requestFocus();
             return true;
         }
@@ -27,7 +27,7 @@ public class UtilitiesHelper {
 
     public static boolean checkNull(JTextArea c, String m) {
         if (c.getText().trim().isEmpty()) {
-            DialogHelper.alert(c, m);
+            DialogHelper.alert(c, m + " can not be empty!");
             c.requestFocus();
             return false;
         }
@@ -36,7 +36,7 @@ public class UtilitiesHelper {
 
     public static boolean checkNull(JFormattedTextField c, String m) {
         if (c.getText().trim().isEmpty()) {
-            DialogHelper.alert(c, m);
+            DialogHelper.alert(c, m + " can not be empty!");
             c.requestFocus();
             return true;
         }
@@ -143,4 +143,23 @@ public class UtilitiesHelper {
             return false;
         }
     }
-}
+
+    public static boolean checkIsAlphabet(JTextField txt, String mess) {
+        if (!txt.getText().trim().matches("^[a-zA-Z\\s\\p{L}]+")) {
+            DialogHelper.alert(txt, mess + "chỉ chưa ký tự alphabet và ký tự trắng");
+            txt.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkNumber(JTextField txt) {
+        if (!txt.getText().matches("-?\\d+(.\\d+)?")) {
+            DialogHelper.alert(txt, "This must be number!");
+            txt.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+}//CLASS

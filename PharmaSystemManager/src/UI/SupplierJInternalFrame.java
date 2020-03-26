@@ -8,6 +8,7 @@ package UI;
 import DAO.SupplierDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import helper.UtilitiesHelper;
 import java.awt.Rectangle;
 import java.util.List;
 import javax.swing.JFrame;
@@ -28,13 +29,12 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
      */
     public SupplierJInternalFrame() {
         initComponents();
-       
+
     }
 
     public SupplierJInternalFrame(JFrame frame) {
         initComponents();
         ShareHelper.frame = frame;
-        init();
     }
 
     /**
@@ -334,10 +334,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "Phone No.", "Email", "City", "Address", "Note", "Status"
@@ -393,8 +390,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
-        this.load();
-        this.clear();
+        this.init();
         this.setStatus(true);
     }//GEN-LAST:event_formInternalFrameOpened
 
@@ -494,7 +490,10 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     void init() {
         setFrameIcon(ShareHelper.APP_ICON);
+        setTitle("Supplier manager");
+        load();
         txtID.setEditable(false);
+        txtID.setText(getLastID());
     }
 
     public void scroll() {
@@ -582,26 +581,31 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void insert() {
-        Supplier model = getModel();
-        try {
-            dao.insert(model);
-            this.load();
-            this.clear();
-            DialogHelper.alert(this, "Saved!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            DialogHelper.alert(this, "Fail to save!");
+        if (vld()) {
+            Supplier model = getModel();
+            try {
+                dao.insert(model);
+                this.load();
+                this.clear();
+                DialogHelper.alert(this, "Saved!");
+            } catch (Exception e) {
+                e.printStackTrace();
+                DialogHelper.alert(this, "Fail to save!");
+            }
         }
+
     }
 
     void update() {
-        Supplier model = getModel();
-        try {
-            dao.update(model);
-            this.load();
-            DialogHelper.alert(this, "Updated!");
-        } catch (Exception e) {
-            DialogHelper.alert(this, "Fail to update!");
+        if (vld()) {
+            Supplier model = getModel();
+            try {
+                dao.update(model);
+                this.load();
+                DialogHelper.alert(this, "Updated!");
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Fail to update!");
+            }
         }
 
     }
@@ -635,4 +639,20 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
         return nextID;
     }
 
+    boolean vld() {
+        if (UtilitiesHelper.checkNull(txtName, "Supplier's name")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtPhoneNo, "Phone")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtEmail, "Email")) {
+            return false;
+        } else if (UtilitiesHelper.checkEmail(txtEmail)) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtAddress, "Address")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtCity, "City")) {
+            return false;
+        }
+        return true;
+    }
 }

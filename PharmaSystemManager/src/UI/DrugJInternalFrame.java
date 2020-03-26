@@ -9,6 +9,7 @@ import DAO.DrugCategoryDAO;
 import DAO.DrugDAO;
 import helper.DialogHelper;
 import helper.ShareHelper;
+import helper.UtilitiesHelper;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -466,8 +467,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
         this.fillToCombobox();
-        this.load();
-        this.clear();
+        this.init();
         this.setStatus(true);
     }//GEN-LAST:event_formInternalFrameOpened
 
@@ -584,7 +584,10 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
 
     void init() {
         setFrameIcon(ShareHelper.APP_ICON);
+        setTitle("Medicine manager");
+        load();
         txtID.setEditable(false);
+        txtID.setText(getLastID());
     }
 
     public void scroll() {
@@ -629,6 +632,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
 
     void clear() {
         this.setModel(new Drug());
+        cbxDrugCategory.setSelectedIndex(0);
         this.setStatus(true);
         this.tblGridView.clearSelection();
     }
@@ -687,27 +691,31 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void insert() {
-        Drug model = getModel();
-        try {
-            dao.insert(model);
-            this.load();
-            this.clear();
-            DialogHelper.alert(this, "Insert successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            DialogHelper.alert(this, "Insert failed!");
+        if (vld()) {
+            Drug model = getModel();
+            try {
+                dao.insert(model);
+                this.load();
+                this.clear();
+                DialogHelper.alert(this, "Insert successfully!");
+            } catch (Exception e) {
+                e.printStackTrace();
+                DialogHelper.alert(this, "Insert failed!");
+            }
         }
 
     }
 
     void update() {
-        Drug model = getModel();
-        try {
-            dao.update(model);
-            this.load();
-            DialogHelper.alert(this, "Update successfully!");
-        } catch (Exception e) {
-            DialogHelper.alert(this, "Update failed!");
+        if (vld()) {
+            Drug model = getModel();
+            try {
+                dao.update(model);
+                this.load();
+                DialogHelper.alert(this, "Update successfully!");
+            } catch (Exception e) {
+                DialogHelper.alert(this, "Update failed!");
+            }
         }
     }
 
@@ -739,5 +747,24 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
             nextID += String.valueOf(num);
         }
         return nextID;
+    }
+
+    boolean vld() {
+        if (UtilitiesHelper.checkNull(txtDrugName, "Medicine's name")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtScientificName, "Scientific name")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtPakingStyle, "Paking style")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtProducer, "Producer name")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtUnit, "Unit")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtStorageTem, "Storage temperatures")) {
+            return false;
+        } else if (UtilitiesHelper.checkNumber(txtStorageTem)) {
+            return false;
+        }
+        return true;
     }
 }
