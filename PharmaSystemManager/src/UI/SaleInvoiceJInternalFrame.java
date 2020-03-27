@@ -21,8 +21,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -63,16 +61,15 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     {
         initComponents();
         init();
-        ShareHelper.frame = frame;
     }
-    
+
     public SaleInvoiceJInternalFrame(String ID)
     {
         initComponents();
         init();
-        INVOICE_ID=ID;
-        findHistory(ID, false);
-        
+        btnNew.setEnabled(false);
+        INVOICE_ID = ID;
+        findHistory(ID);
     }
 
     /**
@@ -540,7 +537,8 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
     {//GEN-HEADEREND:event_btnFindActionPerformed
-        findHistory(null, true);
+        INVOICE_ID = DialogHelper.prompt(this, "Invoice ID:");
+        findHistory(INVOICE_ID);
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -636,10 +634,19 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     {
         setFrameIcon(ShareHelper.APP_ICON);
     }
+    
+    //Chuẩn bị khi khởi chạy frame
+    void load()
+    {
+        txtQuantity.setMinimum(1);
+        modelInvoice = (DefaultTableModel) tblInvoice.getModel();
+        modelInvoice.setRowCount(0);
+    }
 
     //Tạo hóa đơn mới
     void newInvoice()
     {
+        setTitle("New Sales Invoice");
         setStatus(true);
         INVOICE_ID = null;
         clearTextField();
@@ -649,13 +656,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         chkAll.setSelected(false);
     }
 
-    //Chuẩn bị khi khởi chạy frame
-    void load()
-    {
-        txtQuantity.setMinimum(1);
-        modelInvoice = (DefaultTableModel) tblInvoice.getModel();
-        modelInvoice.setRowCount(0);
-    }
 
     //Tìm kiếm thuốc
     void fillToList()
@@ -700,7 +700,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         lblUnit.setText(selectedDrug.getUnit());
         txtQuantity.requestFocus();
     }
-    
+
     //Trả về vị trí lựa chọn trên bảng
     int selectedRow()
     {
@@ -742,7 +742,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                 }
             }
         }
-        
+
         //Thêm item vào giỏ
         try
         {
@@ -859,9 +859,9 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             {
                 ex.printStackTrace();
             }
-            
+
         }
-        
+
     }
 
     //Tạo hóa đơn
@@ -977,15 +977,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     }
 
     //Tìm kiếm hóa đơn
-    private void findHistory(String ID, boolean a)
+    private void findHistory(String ID)
     {
         setStatus(false);
-        if(a)
-        INVOICE_ID = DialogHelper.prompt(this, "Invoice ID:");
+        setTitle("Invoice No." + ID);
         List<DrugInfomation> list = dao.findByInvoice(INVOICE_ID);
+        modelInvoice.setRowCount(0);
         if (!list.isEmpty())
         {
-            modelInvoice.setRowCount(0);
             for (DrugInfomation elm : list)
             {
                 try
@@ -1013,9 +1012,12 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                     rs = JdbcHelper.executeQuery("SELECT trangthaihdban, giamgia, SUM(TTTHE+TTTIENMAT) AS TONG FROM HOADONBANHANG WHERE MAHDBAN='" + INVOICE_ID + "' group by trangthaihdban, giamgia");
                     while (rs.next())
                     {
-                        String stt=rs.getString("trangthaihdban");
-                        if(stt!=null)
-                            DialogHelper.alert(this, "Invoice was deleted by:\n"+stt);
+                        String stt = rs.getString("trangthaihdban");
+                        if (stt != null)
+                        {
+                            DialogHelper.alert(this, "Invoice was deleted by:\n" + stt);
+                            setTitle("[DELETED] " + getTitle());
+                        }
                         txtTotal.setText(rs.getString("TONG"));
                         txtDC.setText(rs.getString("Giamgia"));
                     }

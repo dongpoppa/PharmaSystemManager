@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.JDesktopPane;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
 import model.StoragedDrug;
 
@@ -461,7 +463,15 @@ public class StoreStatus extends javax.swing.JInternalFrame
     {//GEN-HEADEREND:event_tblSaleMouseClicked
         if (evt.getClickCount() == 2)
         {
-            new SaleInvoiceJInternalFrame(String.valueOf(tblSale.getValueAt(tblSale.getSelectedRow(), 0)));
+            JDesktopPane jp = this.getDesktopPane();
+            if (jp.getAllFrames().length > 1)
+            {
+                jp.remove(1);
+            }
+            String InvoiceID=String.valueOf(tblSale.getValueAt(tblSale.getSelectedRow(), 0));
+            SaleInvoiceJInternalFrame sales = new SaleInvoiceJInternalFrame(InvoiceID);
+            jp.add(sales);
+            sales.setVisible(true);
         }
     }//GEN-LAST:event_tblSaleMouseClicked
 
@@ -469,7 +479,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
     {
         setFrameIcon(ShareHelper.APP_ICON);
     }
-    
+
     //Khởi tạo trạng thái ban đấu
     private void load()
     {
@@ -537,7 +547,6 @@ public class StoreStatus extends javax.swing.JInternalFrame
         txtRevoke.setText(String.valueOf(total_revoke));
     }
 
-    
     //Hủy thuốc theo điều kiện
     void revokeDrug()
     {

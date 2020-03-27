@@ -89,7 +89,6 @@ public class DrugInfomationSalesDAO {
         model.setManufactured(rs.getString("NhaSX"));
         model.setUnit(rs.getString("donvitinh"));
         model.setQuantity(rs.getInt("Soluongton"));
-        System.out.println(rs.getInt("Soluongton"));
         model.setDrugNumber(rs.getInt("IDTHUOC"));
         return model;
     }
