@@ -574,7 +574,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCheckOutActionPerformed
     {//GEN-HEADEREND:event_btnCheckOutActionPerformed
-        if (modelInvoice.getRowCount() > 0)
+        if (modelInvoice.getRowCount() > 0&&INVOICE_ID==null)
         {
             checkout();
         }
