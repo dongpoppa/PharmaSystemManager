@@ -633,14 +633,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     void init()
     {
         setFrameIcon(ShareHelper.APP_ICON);
+        txtQuantity.setMinimum(1);
+        modelInvoice = (DefaultTableModel) tblInvoice.getModel();
+        modelInvoice.setRowCount(0);
     }
     
     //Chuẩn bị khi khởi chạy frame
     void load()
     {
-        txtQuantity.setMinimum(1);
-        modelInvoice = (DefaultTableModel) tblInvoice.getModel();
-        modelInvoice.setRowCount(0);
     }
 
     //Tạo hóa đơn mới
