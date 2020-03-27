@@ -109,7 +109,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
             },
             new String []
             {
-                "Invoice ID", "Time", "Sales", "Discount", "Cash", "Debit", "Total bill", "Status"
+                "Invoice ID", "Time", "Sales", "Cash", "Debit", "Discount", "Total bill", "Status"
             }
         )
         {
@@ -596,15 +596,18 @@ public class StoreStatus extends javax.swing.JInternalFrame
                 rs = JdbcHelper.executeQuery(sql);
                 while (rs.next())
                 {
+                    int dc=rs.getInt("GIAMGIA");
+                    int tong= rs.getInt("TONG")*(100-dc)/100;
+                    
                     Object[] row =
                     {
                         rs.getString("MAHDBAN"),
                         rs.getTime("NGAYBAN"),
                         rs.getString("MaNV"),
-                        rs.getInt("GIAMGIA"),
                         rs.getInt("TTTIENMAT"),
                         rs.getInt("TTTHE"),
-                        rs.getInt("TONG"),
+                        dc,
+                        tong,
                         rs.getString("trangthaihdban"),
                     };
                     cash += rs.getInt("TTTIENMAT");

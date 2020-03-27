@@ -166,13 +166,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                 tblInvoiceMouseClicked(evt);
             }
         });
-        tblInvoice.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
-                tblInvoiceKeyTyped(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblInvoice);
         if (tblInvoice.getColumnModel().getColumnCount() > 0)
         {
@@ -215,9 +208,9 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         jLabel2.setText("%");
 
         txtTotal.setEditable(false);
-        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VNĐ #,##0"))));
+        txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtTotal.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        txtTotal.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
 
         txtDC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
         txtDC.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -574,19 +567,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     private void chkAllItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_chkAllItemStateChanged
     {//GEN-HEADEREND:event_chkAllItemStateChanged
         //Sự kiện của nút Select All
-        if (chkAll.isSelected())
+
+        for (int i = 0; i < modelInvoice.getRowCount(); i++)
         {
-            for (int i = 0; i < modelInvoice.getRowCount(); i++)
-            {
-                modelInvoice.setValueAt(true, i, 5);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < modelInvoice.getRowCount(); i++)
-            {
-                modelInvoice.setValueAt(false, i, 5);
-            }
+            modelInvoice.setValueAt(chkAll.isSelected(), i, 5);
         }
     }//GEN-LAST:event_chkAllItemStateChanged
 
@@ -602,11 +586,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             checkout();
         }
     }//GEN-LAST:event_btnCheckOutActionPerformed
-
-    private void tblInvoiceKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_tblInvoiceKeyTyped
-    {//GEN-HEADEREND:event_tblInvoiceKeyTyped
-        getPrice();
-    }//GEN-LAST:event_tblInvoiceKeyTyped
 
     private void txtDCFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_txtDCFocusLost
     {//GEN-HEADEREND:event_txtDCFocusLost
@@ -645,10 +624,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     {
         setFrameIcon(ShareHelper.APP_ICON);
         txtQuantity.setMinimum(1);
+        txtQuantity.setValue(1);
         modelInvoice = (DefaultTableModel) tblInvoice.getModel();
         modelInvoice.setRowCount(0);
     }
-    
 
     //Tạo hóa đơn mới
     void newInvoice()
@@ -662,7 +641,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtTotal.setText("0");
         chkAll.setSelected(false);
     }
-
 
     //Tìm kiếm thuốc
     void fillToList()
@@ -724,7 +702,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             return;
         }
         //Kiểm tra đang cập nhật hay thêm mới item
-        if (btnAddToCart.getText().equals("Update to invoice"))
+        if (btnAddToCart.getText().equals("Update to cart"))
         {
             modelInvoice.removeRow(selectedRow());
         }
@@ -770,7 +748,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
         //Tính toán giá
         getPrice();
-
         clearTextField();
         listDrug.setEnabled(true);
     }
@@ -861,6 +838,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             try
             {
                 insert();
+                setTitle("Invoice No." + INVOICE_ID);
                 btnCheckOut.setEnabled(false);
             } catch (SQLException ex)
             {
@@ -1022,11 +1000,11 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                         String stt = rs.getString("trangthaihdban");
                         if (stt != null)
                         {
-                            DialogHelper.alert(this, "Invoice was deleted by:\n" + stt);
                             setTitle("[DELETED] " + getTitle());
+                            DialogHelper.alert(this, "Invoice was deleted by:\n" + stt);
                         }
-                        txtTotal.setText(rs.getString("TONG"));
                         txtDC.setText(rs.getString("Giamgia"));
+                        getPrice();
                     }
                 } finally
                 {

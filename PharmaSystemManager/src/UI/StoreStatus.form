@@ -150,9 +150,9 @@
                     <Column editable="false" title="Invoice ID" type="java.lang.Object"/>
                     <Column editable="false" title="Time" type="java.lang.Object"/>
                     <Column editable="false" title="Sales" type="java.lang.Object"/>
-                    <Column editable="false" title="Discount" type="java.lang.Object"/>
                     <Column editable="false" title="Cash" type="java.lang.Object"/>
                     <Column editable="false" title="Debit" type="java.lang.Object"/>
+                    <Column editable="false" title="Discount" type="java.lang.Object"/>
                     <Column editable="false" title="Total bill" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
                   </Table>
