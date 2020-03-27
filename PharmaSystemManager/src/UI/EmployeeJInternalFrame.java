@@ -956,7 +956,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             return false;
         }
 
-        if (cboRanch.getSelectedIndex() == -1) {
+        if (!rdoBoss.isSelected() && cboRanch.getSelectedIndex() == -1) {
             DialogHelper.alert(this, "Select a branch");
             return false;
         }
