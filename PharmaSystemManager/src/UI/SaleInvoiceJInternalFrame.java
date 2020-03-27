@@ -78,7 +78,8 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -122,64 +123,59 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
         setClosable(true);
         setTitle("Sales Invoice");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-        });
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Invoice Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP));
 
         tblInvoice.setAutoCreateRowSorter(true);
         tblInvoice.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblInvoice.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Drug ID", "Drug name", "Quantity", "Price", "Amount", "Select", "No", "Max"
             }
-        ) {
-            Class[] types = new Class [] {
+        )
+        {
+            Class[] types = new Class []
+            {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean []
+            {
                 false, false, false, false, false, true, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass(int columnIndex)
+            {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
         tblInvoice.setRowHeight(25);
-        tblInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tblInvoice.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 tblInvoiceMouseClicked(evt);
             }
         });
-        tblInvoice.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        tblInvoice.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 tblInvoiceKeyTyped(evt);
             }
         });
         jScrollPane1.setViewportView(tblInvoice);
-        if (tblInvoice.getColumnModel().getColumnCount() > 0) {
+        if (tblInvoice.getColumnModel().getColumnCount() > 0)
+        {
             tblInvoice.getColumnModel().getColumn(0).setResizable(false);
             tblInvoice.getColumnModel().getColumn(1).setPreferredWidth(200);
             tblInvoice.getColumnModel().getColumn(2).setResizable(false);
@@ -205,8 +201,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setText("Discount");
 
-        chkAll.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        chkAll.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
                 chkAllItemStateChanged(evt);
             }
         });
@@ -227,8 +225,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtDC.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         txtDC.setMaximumSize(new java.awt.Dimension(4, 20));
         txtDC.setName(""); // NOI18N
-        txtDC.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtDC.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtDCFocusLost(evt);
             }
         });
@@ -290,8 +290,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         listDrug.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Result", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.ABOVE_TOP));
         listDrug.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listDrug.setVisibleRowCount(100);
-        listDrug.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        listDrug.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 listDrugMouseClicked(evt);
             }
         });
@@ -336,8 +338,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtID.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSearch.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnSearchActionPerformed(evt);
             }
         });
@@ -349,8 +353,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnAddToCart.setForeground(new java.awt.Color(0, 0, 204));
         btnAddToCart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add_cart.png"))); // NOI18N
         btnAddToCart.setText("Add to cart");
-        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnAddToCartActionPerformed(evt);
             }
         });
@@ -456,8 +462,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnFind.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus.png"))); // NOI18N
         btnFind.setText("Find history");
-        btnFind.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnFind.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnFindActionPerformed(evt);
             }
         });
@@ -466,8 +474,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnNew.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/refesh.png"))); // NOI18N
         btnNew.setText("New");
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNew.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNewActionPerformed(evt);
             }
         });
@@ -476,8 +486,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnClear.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancle.png"))); // NOI18N
         btnClear.setText("Delete");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnClear.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnClearActionPerformed(evt);
             }
         });
@@ -486,8 +498,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnCheckOut.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCheckOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_invoice.png"))); // NOI18N
         btnCheckOut.setText("Check out");
-        btnCheckOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCheckOut.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCheckOutActionPerformed(evt);
             }
         });
@@ -496,8 +510,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnPrint.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
         btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnPrint.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnPrintActionPerformed(evt);
             }
         });
@@ -587,11 +603,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         }
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt)//GEN-FIRST:event_formInternalFrameOpened
-    {//GEN-HEADEREND:event_formInternalFrameOpened
-        load();
-    }//GEN-LAST:event_formInternalFrameOpened
-
     private void tblInvoiceKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_tblInvoiceKeyTyped
     {//GEN-HEADEREND:event_tblInvoiceKeyTyped
         getPrice();
@@ -638,10 +649,6 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         modelInvoice.setRowCount(0);
     }
     
-    //Chuẩn bị khi khởi chạy frame
-    void load()
-    {
-    }
 
     //Tạo hóa đơn mới
     void newInvoice()
