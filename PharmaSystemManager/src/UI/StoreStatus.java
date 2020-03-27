@@ -122,6 +122,13 @@ public class StoreStatus extends javax.swing.JInternalFrame
             }
         });
         tblSale.setRowHeight(30);
+        tblSale.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                tblSaleMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblSale);
 
         cbbSales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Today sales invoices", "Today revoke sales invoices" }));
@@ -449,6 +456,14 @@ public class StoreStatus extends javax.swing.JInternalFrame
     {//GEN-HEADEREND:event_formInternalFrameOpened
         load();
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tblSaleMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tblSaleMouseClicked
+    {//GEN-HEADEREND:event_tblSaleMouseClicked
+        if (evt.getClickCount() == 2)
+        {
+            new SaleInvoiceJInternalFrame(String.valueOf(tblSale.getValueAt(tblSale.getSelectedRow(), 0)));
+        }
+    }//GEN-LAST:event_tblSaleMouseClicked
 
     void init()
     {

@@ -65,6 +65,15 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         init();
         ShareHelper.frame = frame;
     }
+    
+    public SaleInvoiceJInternalFrame(String ID)
+    {
+        initComponents();
+        init();
+        INVOICE_ID=ID;
+        findHistory(ID, false);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The
@@ -531,7 +540,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindActionPerformed
     {//GEN-HEADEREND:event_btnFindActionPerformed
-        findHistory();
+        findHistory(null, true);
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed
@@ -796,6 +805,9 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
                 modelInvoice.removeRow(i);
             }
         }
+        btnAddToCart.setText("Add to cart");
+        clearTextField();
+        listDrug.setEnabled(true);
         getPrice();
     }
 
@@ -965,11 +977,11 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     }
 
     //Tìm kiếm hóa đơn
-    private void findHistory()
+    private void findHistory(String ID, boolean a)
     {
         setStatus(false);
+        if(a)
         INVOICE_ID = DialogHelper.prompt(this, "Invoice ID:");
-        System.out.println(INVOICE_ID);
         List<DrugInfomation> list = dao.findByInvoice(INVOICE_ID);
         if (!list.isEmpty())
         {
