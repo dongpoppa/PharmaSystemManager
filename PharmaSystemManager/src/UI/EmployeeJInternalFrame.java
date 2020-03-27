@@ -956,6 +956,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             return false;
         }
 
+        if (!rdoBoss.isSelected() && cboRanch.getSelectedIndex() == -1) {
+            DialogHelper.alert(this, "Select a branch");
+            return false;
+        }
+
         if (lblAvatar.getIcon() == null) {
             DialogHelper.alert(this, "Empty avatar");
             return false;
