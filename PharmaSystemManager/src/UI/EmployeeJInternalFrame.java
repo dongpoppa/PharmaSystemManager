@@ -702,21 +702,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         this.setStatus(true);
         this.tblGridView.clearSelection();
         lblAvatar.setIcon(null);
-        File file = new File("src\\avatars\\default.png");
-        ShareHelper.file = file;
-        Image image = null;
-        if (ShareHelper.saveLogo(file)) {
-            try {
-                // Hiển thị hình lên form
-                ShareHelper.fileInputStream = new FileInputStream(ShareHelper.file);
-                image = ImageIO.read(ShareHelper.fileInputStream);
-            } catch (Exception ex) {
-                Logger.getLogger(EmployeeJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ImageIcon icon = new ImageIcon(image);
-            image = icon.getImage().getScaledInstance(lblAvatar.getWidth(), lblAvatar.getHeight(), Image.SCALE_DEFAULT);
-            lblAvatar.setIcon(new ImageIcon(image));
-        }
     }
 
     void setModel(Employee model) {
