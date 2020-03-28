@@ -124,6 +124,8 @@ public class StoreStatus extends javax.swing.JInternalFrame
             }
         });
         tblSale.setRowHeight(30);
+        tblSale.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblSale.getTableHeader().setReorderingAllowed(false);
         tblSale.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
