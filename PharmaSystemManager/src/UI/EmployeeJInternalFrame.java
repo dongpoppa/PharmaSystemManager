@@ -706,6 +706,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void setModel(Employee model) {
+        ShareHelper.file = null;
         txtID.setText(model.getEmployeeID());
         txtPassword.setText(model.getPassword());
         txtConfirmPassword.setText(model.getPassword());
