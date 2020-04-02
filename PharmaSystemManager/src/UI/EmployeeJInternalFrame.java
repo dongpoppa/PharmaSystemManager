@@ -686,6 +686,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void edit() {
+        ShareHelper.file = new File("src\\avatars\\default.png");
         try {
             String manv = (String) tblGridView.getValueAt(this.index, 0);
             Employee model = dao.findById(manv);
@@ -706,7 +707,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void setModel(Employee model) {
-        ShareHelper.file = null;
         txtID.setText(model.getEmployeeID());
         txtPassword.setText(model.getPassword());
         txtConfirmPassword.setText(model.getPassword());
