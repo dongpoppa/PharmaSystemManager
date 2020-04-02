@@ -16,6 +16,7 @@ import java.awt.Rectangle;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -698,10 +699,10 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void clear() {
+        ShareHelper.file = new File("src\\avatars\\default.png");
         this.setModel(new Employee());
         this.setStatus(true);
         this.tblGridView.clearSelection();
-        lblAvatar.setIcon(null);
     }
 
     void setModel(Employee model) {
@@ -727,12 +728,24 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                 image = ImageIO.read(new ByteArrayInputStream(model.getAvatar()));
                 ImageIcon icon = new ImageIcon(image);
                 image = icon.getImage().getScaledInstance(lblAvatar.getWidth(), lblAvatar.getHeight(), Image.SCALE_DEFAULT);
+                FileOutputStream fileOutputStream = new FileOutputStream("src\\avatars\\default1.png");
+                fileOutputStream.write(model.getAvatar());
+                ShareHelper.file = new File("src\\avatars\\default1.png");
             } catch (IOException ex) {
                 Logger.getLogger(EmployeeJInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
             lblAvatar.setIcon(new ImageIcon(image));
         } else {
-            lblAvatar.setIcon(null);
+            Image image = null;
+            try {
+                ShareHelper.fileInputStream = new FileInputStream(ShareHelper.file);
+                image = ImageIO.read(ShareHelper.fileInputStream);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            ImageIcon icon = new ImageIcon(image);
+            image = icon.getImage().getScaledInstance(lblAvatar.getWidth(), lblAvatar.getHeight(), Image.SCALE_DEFAULT);
+            lblAvatar.setIcon(new ImageIcon(image));
         }
         cboRanch.getModel().setSelectedItem(new BranchDAO().findById(model.getStoreID()));
     }
