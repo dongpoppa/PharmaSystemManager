@@ -8,12 +8,24 @@ package UI;
 import DAO.PurchaseInvoiceDAO;
 import DAO.SupplierDAO;
 import helper.DialogHelper;
+import helper.JdbcHelper;
 import helper.ShareHelper;
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import model.PurchaseInvoice;
 import model.Supplier;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -451,6 +463,30 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void showDebtChart() {
-        
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        String sql = "SELECT YEAR(NGAYDAOHAN) AS NGAYDAOHAN, SUM(SOTIENCONLAI) AS SOTIENCONLAI FROM HoaDonThuMua\n"
+                + "GROUP BY YEAR(NGAYDAOHAN)\n"
+                + "ORDER BY NGAYDAOHAN ASC";
+        ResultSet resultSet = JdbcHelper.executeQuery(sql);
+        List<PurchaseInvoice> list = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                PurchaseInvoice purchaseInvoice = new PurchaseInvoice();
+                purchaseInvoice.setYearDueDate(resultSet.getInt("NGAYDAOHAN"));
+                purchaseInvoice.setRemainMoney(resultSet.getDouble("SOTIENCONLAI"));
+                list.add(purchaseInvoice);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        for (int i = 0; i < list.size(); i++) {
+            dataset.addValue(list.get(i).getRemainMoney(), "Debt", String.valueOf(list.get(i).getYearDueDate()));
+        }
+        JFreeChart barChart = ChartFactory.createBarChart("Chart of Debt by year", "Year", "Debt", dataset, PlotOrientation.VERTICAL, true, true, false);
+        CategoryPlot plot = barChart.getCategoryPlot();
+        plot.setRangeGridlinePaint(Color.BLACK);
+        ChartFrame chartFrame = new ChartFrame("Chart of Debt by year", barChart, true);
+        chartFrame.setVisible(true);
+        chartFrame.setSize(800, 500);
     }
 }

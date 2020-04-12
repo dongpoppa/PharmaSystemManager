@@ -14,9 +14,25 @@ import java.util.Date;
 public class PurchaseInvoice {
 
     private String ID, employeeID, supplierID, status, drugID, batchNo, drugStatus;
-    private Date purchaseDate, mfg, exp;
-    private int discount, number, quantity;
+    private Date purchaseDate, mfg, exp, dueDate;
+    private int discount, number, quantity, yearDueDate;
     private double purchaseByCash, purchaseByCredit, remainMoney, purchasePrice, salePrice;
+
+    public int getYearDueDate() {
+        return yearDueDate;
+    }
+
+    public void setYearDueDate(int yearDueDate) {
+        this.yearDueDate = yearDueDate;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
 
     public String getDrugStatus() {
         return drugStatus;
