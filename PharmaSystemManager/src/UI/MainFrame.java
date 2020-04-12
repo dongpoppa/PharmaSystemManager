@@ -47,8 +47,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
@@ -72,10 +71,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnReport = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         Image img = new ImageIcon("src\\icon\\logo_background.png").getImage();
-        desktop = new javax.swing.JDesktopPane()
-        {
-            public void paintComponent(Graphics g)
-            {
+        desktop = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
                 g.drawImage(img, this.getWidth()/2 - img.getWidth(null)/2, (this.getHeight() - 20)/2 - (img.getHeight(null) - 20)/2, null);
             }
         };
@@ -189,10 +186,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnPurchase.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPurchase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPurchase.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnPurchase.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPurchaseActionPerformed(evt);
             }
         });
@@ -205,10 +200,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnSale.setText("Sale Invoices");
         btnSale.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSale.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSale.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaleActionPerformed(evt);
             }
         });
@@ -222,10 +215,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnSup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSup.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         btnSup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSup.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnSup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupActionPerformed(evt);
             }
         });
@@ -238,10 +229,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnDrugInfo.setText("Drugs Infomation");
         btnDrugInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDrugInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDrugInfo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnDrugInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDrugInfoActionPerformed(evt);
             }
         });
@@ -254,10 +243,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnStoreStatus.setText("Store Status");
         btnStoreStatus.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnStoreStatus.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnStoreStatus.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnStoreStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStoreStatusActionPerformed(evt);
             }
         });
@@ -270,10 +257,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnEmployee.setText("Employee");
         btnEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEmployee.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEmployee.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmployeeActionPerformed(evt);
             }
         });
@@ -286,10 +271,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnBranch.setText("Branch");
         btnBranch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBranch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBranch.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnBranch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBranchActionPerformed(evt);
             }
         });
@@ -302,6 +285,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnReport.setText("Report");
         btnReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
         pnlMenu.add(btnReport);
 
         btnLogout.setBackground(new java.awt.Color(255, 227, 249));
@@ -312,10 +300,8 @@ public class MainFrame extends javax.swing.JFrame {
         btnLogout.setHideActionText(true);
         btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
             }
         });
@@ -406,7 +392,7 @@ public class MainFrame extends javax.swing.JFrame {
         for (JInternalFrame fr : desktop.getAllFrames()) {
             fr.dispose();
         }
-        saleInvoice=new SaleInvoiceJInternalFrame();
+        saleInvoice = new SaleInvoiceJInternalFrame();
         desktop.add(saleInvoice);
         saleInvoice.setLocation(this.getWidth() / 2 - saleInvoice.getWidth() / 2, desktop.getHeight() / 2 - saleInvoice.getHeight() / 2);
         saleInvoice.setVisible(true);
@@ -442,6 +428,17 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         openPurchaseInvoice();
     }//GEN-LAST:event_btnPurchaseActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        for (JInternalFrame fr : desktop.getAllFrames()) {
+            fr.dispose();
+        }
+        StatisticJInternalFrame statisticJInternalFrame = new StatisticJInternalFrame(this);
+        desktop.add(statisticJInternalFrame);
+        statisticJInternalFrame.setLocation(this.getWidth() / 2 - statisticJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - statisticJInternalFrame.getHeight() / 2);
+        statisticJInternalFrame.setVisible(true);
+    }//GEN-LAST:event_btnReportActionPerformed
 
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
@@ -518,7 +515,7 @@ public class MainFrame extends javax.swing.JFrame {
         branchJInternalFrame.setLocation(this.getWidth() / 2 - branchJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - branchJInternalFrame.getHeight() / 2);
         branchJInternalFrame.setVisible(true);
     }
-    
+
     void openDrugInfo() {
         if (!ShareHelper.USER.isRole()) {
             DialogHelper.alert(this, "You can't access here");
@@ -532,7 +529,7 @@ public class MainFrame extends javax.swing.JFrame {
         drugJInternalFrame.setLocation(this.getWidth() / 2 - drugJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - drugJInternalFrame.getHeight() / 2);
         drugJInternalFrame.setVisible(true);
     }
-    
+
     void openPurchaseInvoice() {
         if (!ShareHelper.USER.isRole()) {
             DialogHelper.alert(this, "You can't access here");

@@ -21,6 +21,33 @@ import model.PurchaseInvoice;
  */
 public class PurchaseInvoiceDAO {
 
+    public List<Object []> getDebt(String ncc) {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = null;
+            try {
+                String sql = "{call sp_DuNo (?)}";
+                rs = JdbcHelper.executeQuery(sql, ncc);
+                while (rs.next()) {
+                    Object[] model = {
+                        rs.getString("MAHDMUA"),
+                        rs.getDouble("TTTIENMAT"),
+                        rs.getDouble("TTTHE"),
+                        rs.getDouble("SOTIENCONLAI"),
+                        rs.getDate("NGAYDAOHAN")
+                    };
+                    list.add(model);
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+        return list;
+    }
+
     public String insert(PurchaseInvoice model) {
         try {
             String sql = "call InsertPurchaseInvoice (?, ?, ?, ?, ?, ?, ?, ?)";
