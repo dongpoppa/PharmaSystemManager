@@ -76,6 +76,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView = new javax.swing.JTable();
         cboSupplier = new javax.swing.JComboBox();
 
+        setClosable(true);
         setTitle("Statistical Report");
         setToolTipText("");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
