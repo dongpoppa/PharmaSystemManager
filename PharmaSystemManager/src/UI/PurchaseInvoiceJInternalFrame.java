@@ -868,7 +868,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     void insert() {
         try {
             String sqlHDMua = "INSERT INTO HOADONTHUMUA(NGAYMUA, TTTIENMAT, TTTHE, SOTIENCONLAI, NGAYDAOHAN, TRANGTHAIHDMUA, MANV, MANCC) "
-                    + "VALUES(?, ?, ?, ?, ?, ? ,?)";
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
             JdbcHelper.executeUpdate(sqlHDMua, new Date(), ShareHelper.cash, ShareHelper.debit, ShareHelper.total - ShareHelper.cash - ShareHelper.debit,
                     DateHelper.addDays(new Date(), ShareHelper.month * 30), null, ShareHelper.USER.getEmployeeID(), list.get(0).getSupplierID());
 
