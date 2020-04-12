@@ -101,6 +101,10 @@ public class ShareHelper {
      * Đối tượng này chứa tỉ lệ giảm giá
      */
     public static int discount = 0;
+    /**
+     * Đối tượng này chứa thời hạn vay
+     */
+    public static int month = 0;
 
     /**
      * Hàm này trả về thông tin trạng thái của các đối tượng
