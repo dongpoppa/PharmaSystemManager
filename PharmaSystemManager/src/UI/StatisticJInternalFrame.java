@@ -573,14 +573,14 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 status = "";
                 break;
             case 1:
-                status = " status is null";
+                status = " and status is null";
                 break;
             case 2:
-                status = " status is not null";
+                status = " and status is not null";
                 break;
         }
 
-        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%' and " + status + " order by Tenthuoc";
+        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%' " + status + " order by Tenthuoc";
         System.out.println(sql);
 
         try
