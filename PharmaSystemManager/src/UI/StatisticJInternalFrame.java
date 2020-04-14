@@ -5,7 +5,9 @@
  */
 package UI;
 
+import DAO.BranchDAO;
 import DAO.PurchaseInvoiceDAO;
+import DAO.StoragedDrugDAO;
 import DAO.SupplierDAO;
 import helper.DialogHelper;
 import helper.JdbcHelper;
@@ -18,6 +20,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import model.Branch;
 import model.PurchaseInvoice;
 import model.Supplier;
 import org.jfree.chart.ChartFactory;
@@ -35,6 +38,8 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
     SupplierDAO supplierDAO = new SupplierDAO();
     PurchaseInvoiceDAO purchaseInvoiceDAO = new PurchaseInvoiceDAO();
+    BranchDAO branchDAO = new BranchDAO();
+    StoragedDrugDAO SDDAO = new StoragedDrugDAO();
 
     /**
      * Creates new form StatisticJInternalFrame
@@ -52,7 +57,8 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         pnlReport = new javax.swing.JTabbedPane();
@@ -64,22 +70,13 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        pnlDrugs = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         pnlDebt = new javax.swing.JPanel();
         lblSupplier = new javax.swing.JLabel();
         btnPrint = new javax.swing.JButton();
@@ -87,24 +84,43 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView = new javax.swing.JTable();
         cboSupplier = new javax.swing.JComboBox();
         btnDebtChart = new javax.swing.JButton();
+        pnlDrugs1 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblDrug = new javax.swing.JTable();
+        txtDrugName = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        cbbDrugStatus = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cbbBranch = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Statistical Report");
         setToolTipText("");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
+        {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
+            {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+            {
                 formInternalFrameOpened(evt);
             }
         });
@@ -114,13 +130,15 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jLabel5.setText("Date To");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String [] {
+            new String []
+            {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -128,7 +146,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Branch");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Branch" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Branch" }));
 
         jButton1.setText("Print");
 
@@ -203,7 +221,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -213,74 +231,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pnlReport.addTab("Revenue Report", pnlRevenue);
-
-        jButton3.setText("Report");
-
-        jButton4.setText("Print");
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
-
-        jLabel8.setText("Drug Name");
-
-        jLabel10.setText("EXP To");
-
-        javax.swing.GroupLayout pnlDrugsLayout = new javax.swing.GroupLayout(pnlDrugs);
-        pnlDrugs.setLayout(pnlDrugsLayout);
-        pnlDrugsLayout.setHorizontalGroup(
-            pnlDrugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDrugsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDrugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugsLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugsLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        pnlDrugsLayout.setVerticalGroup(
-            pnlDrugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDrugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlDrugsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-
-        pnlReport.addTab("Drugs Report", pnlDrugs);
 
         lblSupplier.setText("Supplier");
 
@@ -288,33 +242,42 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         btnPrint.setText("Print");
 
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "ID", "Cash", "Debit", "Remain", "Due Date"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tblGridView);
 
-        cboSupplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cboSupplier.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cboSupplierActionPerformed(evt);
             }
         });
 
         btnDebtChart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chart.png"))); // NOI18N
         btnDebtChart.setText("Chart");
-        btnDebtChart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDebtChart.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnDebtChartActionPerformed(evt);
             }
         });
@@ -333,7 +296,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
         pnlDebtLayout.setVerticalGroup(
             pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,6 +313,108 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         );
 
         pnlReport.addTab("Debt Report", pnlDebt);
+
+        jButton5.setText("Report");
+        jButton5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Print");
+
+        tblDrug.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "ID", "Name", "Batch No.", "Stored Qualtity", "Unit", "Imported Date", "MFG Date", "EXP Date", "Status"
+            }
+        )
+        {
+            boolean[] canEdit = new boolean []
+            {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex)
+            {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblDrug);
+
+        jLabel9.setText("Drug Name");
+
+        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
+
+        jLabel11.setText("Status");
+
+        jLabel12.setText("Branch");
+
+        javax.swing.GroupLayout pnlDrugs1Layout = new javax.swing.GroupLayout(pnlDrugs1);
+        pnlDrugs1.setLayout(pnlDrugs1Layout);
+        pnlDrugs1Layout.setHorizontalGroup(
+            pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDrugs1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDrugs1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(pnlDrugs1Layout.createSequentialGroup()
+                        .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDrugs1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbbBranch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDrugName, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
+                            .addComponent(jLabel12))
+                        .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDrugs1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbDrugStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugs1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnlDrugs1Layout.createSequentialGroup()
+                                        .addGap(90, 90, 90)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(80, 80, 80))))))
+        );
+        pnlDrugs1Layout.setVerticalGroup(
+            pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugs1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbDrugStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+
+        pnlReport.addTab("Drugs Report", pnlDrugs1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -375,53 +440,64 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.fillToSupplierCombobox();
         this.fillToTableDebt();
+        fillToDrugBranchCbb();
+        fillToTableDrug();
     }//GEN-LAST:event_formInternalFrameOpened
 
-    private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierActionPerformed
-        // TODO add your handling code here:
-        this.fillToTableDebt();
-    }//GEN-LAST:event_cboSupplierActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
+    {//GEN-HEADEREND:event_jButton5ActionPerformed
+        fillToTableDrug();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void btnDebtChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDebtChartActionPerformed
+    private void btnDebtChartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDebtChartActionPerformed
+    {//GEN-HEADEREND:event_btnDebtChartActionPerformed
         // TODO add your handling code here:
         this.showDebtChart();
     }//GEN-LAST:event_btnDebtChartActionPerformed
+
+    private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cboSupplierActionPerformed
+    {//GEN-HEADEREND:event_cboSupplierActionPerformed
+        // TODO add your handling code here:
+        this.fillToTableDebt();
+    }//GEN-LAST:event_cboSupplierActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDebtChart;
     private javax.swing.JButton btnPrint;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbbBranch;
+    private javax.swing.JComboBox<String> cbbDrugStatus;
     private javax.swing.JComboBox cboSupplier;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblSupplier;
     private javax.swing.JPanel pnlDebt;
-    private javax.swing.JPanel pnlDrugs;
+    private javax.swing.JPanel pnlDrugs1;
     private javax.swing.JTabbedPane pnlReport;
     private javax.swing.JPanel pnlRevenue;
+    private javax.swing.JTable tblDrug;
     private javax.swing.JTable tblGridView;
+    private javax.swing.JTextField txtDrugName;
     // End of variables declaration//GEN-END:variables
 
     void init() {
@@ -445,6 +521,25 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Database access error!");
         }
     }
+    
+    void fillToDrugBranchCbb()
+    {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbBranch.getModel();
+        model.removeAllElements();
+        model.addElement("All branchs");
+        try
+        {
+            List<Branch> list = branchDAO.select();
+            list.forEach((branch) ->
+            {
+                model.addElement(branch);
+            });
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
+        }
+    }
 
     void fillToTableDebt() {
         DefaultTableModel model = (DefaultTableModel) tblGridView.getModel();
@@ -453,6 +548,70 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         List<Object[]> list = purchaseInvoiceDAO.getDebt(supplier.getID());
         for (Object[] row : list) {
             model.addRow(row);
+        }
+    }
+    
+        void fillToTableDrug()
+    {
+        DefaultTableModel model = (DefaultTableModel) tblDrug.getModel();
+        model.setRowCount(0);
+        String name, branch, status = "";
+
+        name = "".equals(txtDrugName.getText()) ? "%" : txtDrugName.getText();
+        if (cbbBranch.getSelectedIndex() == 0)
+        {
+            branch = "%";
+        }
+        else
+        {
+            branch = ((Branch) cbbBranch.getSelectedItem()).getBranchID();
+        }
+        
+        switch (cbbDrugStatus.getSelectedIndex())
+        {
+            case 0:
+                status = "";
+                break;
+            case 1:
+                status = " status is null";
+                break;
+            case 2:
+                status = " status is not null";
+                break;
+        }
+
+        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%'" + status + " order by Tenthuoc";
+        System.out.println(sql);
+
+        try
+        {
+            ResultSet rs = null;
+            try
+            {
+                rs = JdbcHelper.executeQuery(sql);
+                while (rs.next())
+                {
+                    Object[] row =
+                    {
+                        rs.getString("MATHUOC"),
+                        rs.getString("tenthuoc"),
+                        rs.getString("MaLoHang"),
+                        rs.getInt("soluongton"),
+                        rs.getString("donvitinh"),
+                        rs.getDate("ngaynhaphang"),
+                        rs.getDate("ngaysx"),
+                        rs.getDate("ngayhethan"),
+                        rs.getString("trangthaithuoc")
+                    };
+                    model.addRow(row);
+                }
+            } finally
+            {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
         }
     }
 

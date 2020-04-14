@@ -34,6 +34,8 @@ public class CheckOut extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         txtTotal.setText(String.valueOf(total));
+        lblTerm.setVisible(false);
+        cboTerm.setVisible(false);
         check = b;
     }
 
