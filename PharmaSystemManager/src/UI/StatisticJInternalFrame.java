@@ -433,6 +433,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         model.removeAllElements();
         try {
             List<Supplier> list = supplierDAO.select();
+            Supplier all = new Supplier();
+            all.setName("All Suppliers");
+            all.setID("");
+            model.addElement(all);
             for (Supplier supplier : list) {
                 model.addElement(supplier);
             }
