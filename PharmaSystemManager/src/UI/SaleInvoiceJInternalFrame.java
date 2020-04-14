@@ -56,6 +56,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     DefaultListModel modelList;
     DrugInfomation selectedDrug;
     String INVOICE_ID;
+    boolean history=false;
 
     public SaleInvoiceJInternalFrame(JFrame frame)
     {
@@ -594,6 +595,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void tblInvoiceMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tblInvoiceMouseClicked
     {//GEN-HEADEREND:event_tblInvoiceMouseClicked
+        if(!history)
         getModel();
     }//GEN-LAST:event_tblInvoiceMouseClicked
 
@@ -937,6 +939,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         {
             c.setEnabled(status);
         }
+        history=!status;
         txtDC.setEditable(status);
         chkAll.setEnabled(status);
         listDrug.setEnabled(status);

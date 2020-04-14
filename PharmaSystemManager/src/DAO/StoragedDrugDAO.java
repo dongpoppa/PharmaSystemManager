@@ -34,7 +34,7 @@ public class StoragedDrugDAO {
     }
 
     public StoragedDrug findById(String ID) {
-        String sql = "SELECT * FROM ThuocTrongKho WHERE MaThuoc = ?";
+        String sql = "SELECT * FROM ThuocTrongKho WHERE IDThuoc = ?";
         List<StoragedDrug> list = select(sql, ID);
         return list.size() > 0 ? list.get(0) : null;
     }

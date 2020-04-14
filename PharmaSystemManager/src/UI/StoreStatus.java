@@ -227,17 +227,17 @@ public class StoreStatus extends javax.swing.JInternalFrame
             },
             new String []
             {
-                "Drug ID", "Drug Name", "Batch no", "Stored Quantity", "Unit", "Date import", "Date of manufactored", "Date of exp", "Status", "Select"
+                "Drug ID", "Drug Name", "Batch no", "Stored Quantity", "Unit", "Date import", "Date of manufactored", "Date of exp", "Status", "Select", "ID"
             }
         )
         {
             Class[] types = new Class []
             {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean []
             {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex)
@@ -264,6 +264,9 @@ public class StoreStatus extends javax.swing.JInternalFrame
             tblDrug.getColumnModel().getColumn(4).setPreferredWidth(50);
             tblDrug.getColumnModel().getColumn(9).setResizable(false);
             tblDrug.getColumnModel().getColumn(9).setPreferredWidth(30);
+            tblDrug.getColumnModel().getColumn(10).setMinWidth(0);
+            tblDrug.getColumnModel().getColumn(10).setPreferredWidth(0);
+            tblDrug.getColumnModel().getColumn(10).setMaxWidth(0);
         }
 
         cbbDrug.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All drugs", "Today expired drugs", "7 days expired drugs", "Today revoked drugs", "7 days revoked drugs" }));
@@ -470,7 +473,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
             {
                 jp.remove(1);
             }
-            String InvoiceID=String.valueOf(tblSale.getValueAt(tblSale.getSelectedRow(), 0));
+            String InvoiceID = String.valueOf(tblSale.getValueAt(tblSale.getSelectedRow(), 0));
             SaleInvoiceJInternalFrame sales = new SaleInvoiceJInternalFrame(InvoiceID);
             jp.add(sales);
             sales.setVisible(true);
@@ -494,7 +497,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
     //Phương thức tìm kiếm thuốc theo điều kiện
     public void getDrug(Date date, boolean exp)
     {
-        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan between '" + DateHelper.toString(DateHelper.now()) + "' and '" + DateHelper.toString(date) + "'";
+        String sql = "Select thuoc.mathuoc, tenthuoc, malohang, soluongton, donvitinh, ngaynhaphang, ngaysx, ngayhethan, idthuoc, thuoctrongkho.trangthaithuoc from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY = '" + ShareHelper.Branch.getBranchID() + "' and ngayhethan between '" + DateHelper.toString(DateHelper.now()) + "' and '" + DateHelper.toString(date) + "'";
 
         if (exp)
         {
@@ -514,7 +517,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
                 while (rs.next())
                 {
                     Object[] row =
-                    {
+                    { 
                         rs.getString("MATHUOC"),
                         rs.getString("tenthuoc"),
                         rs.getString("MaLoHang"),
@@ -524,7 +527,8 @@ public class StoreStatus extends javax.swing.JInternalFrame
                         rs.getDate("ngaysx"),
                         rs.getDate("ngayhethan"),
                         rs.getString("trangthaithuoc"),
-                        false
+                        false,
+                        rs.getString("IDthuoc")
                     };
                     modelDrug.addRow(row);
 
@@ -537,7 +541,16 @@ public class StoreStatus extends javax.swing.JInternalFrame
                 }
             } finally
             {
-                rs.getStatement().getConnection().close();
+                try
+                {
+                    rs.close();
+                    rs.getStatement().close();
+                    rs.getStatement().getConnection().close();
+                }
+                catch(Exception e)
+                {
+                    //
+                }
             }
         } catch (SQLException ex)
         {
@@ -560,18 +573,20 @@ public class StoreStatus extends javax.swing.JInternalFrame
                 {
                     continue;
                 }
-                StoragedDrug model = dao.findById(tblDrug.getValueAt(i, 0).toString());
+                StoragedDrug model = dao.findById(tblDrug.getValueAt(i, 10).toString());
                 model.setStatus(ShareHelper.getStatus());
                 ShareHelper.status = null;
-                DialogHelper.alert(this, "Revoke successfully");
                 dao.update(model);
+                DialogHelper.alert(this, "Revoke successfully");
             }
         } catch (Exception e)
         {
             e.printStackTrace();
             DialogHelper.alert(this, "Update failed!");
         }
+        int a= cbbDrug.getSelectedIndex();
         load();
+        cbbDrug.setSelectedIndex(a);
     }
 
     //Lấy thông tin hóa đơn theo điều kiện
@@ -598,9 +613,9 @@ public class StoreStatus extends javax.swing.JInternalFrame
                 rs = JdbcHelper.executeQuery(sql);
                 while (rs.next())
                 {
-                    int dc=rs.getInt("GIAMGIA");
-                    int tong= rs.getInt("TONG")*(100-dc)/100;
-                    
+                    int dc = rs.getInt("GIAMGIA");
+                    int tong = rs.getInt("TONG") * (100 - dc) / 100;
+
                     Object[] row =
                     {
                         rs.getString("MAHDBAN"),
