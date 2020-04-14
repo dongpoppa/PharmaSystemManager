@@ -9,6 +9,8 @@ import DAO.BranchDAO;
 import DAO.PurchaseInvoiceDAO;
 import DAO.StoragedDrugDAO;
 import DAO.SupplierDAO;
+import com.toedter.calendar.JTextFieldDateEditor;
+import helper.DateHelper;
 import helper.DialogHelper;
 import helper.JdbcHelper;
 import helper.ShareHelper;
@@ -16,6 +18,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
@@ -60,22 +63,23 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel2 = new javax.swing.JPanel();
         pnlReport = new javax.swing.JTabbedPane();
         pnlRevenue = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        tab1_txtDrugName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tab1_lblTotal = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jdcFrom = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tab1_tblGridView = new javax.swing.JTable();
+        jdcTo = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        tab1_cbxBranch = new javax.swing.JComboBox<>();
+        tab1_print = new javax.swing.JButton();
+        tab1_report = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         pnlDebt = new javax.swing.JPanel();
         lblSupplier = new javax.swing.JLabel();
         btnPrint = new javax.swing.JButton();
@@ -91,10 +95,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tblDrug = new javax.swing.JTable();
         txtDrugName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbbDrugStatus = new javax.swing.JComboBox<String>();
+        cbbDrugStatus = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbbBranch = new javax.swing.JComboBox<String>();
+        cbbBranch = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Statistical Report");
@@ -117,37 +121,51 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Total:");
+
         jLabel4.setText("Date From");
+
+        tab1_lblTotal.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tab1_lblTotal.setForeground(new java.awt.Color(0, 0, 0));
+        tab1_lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tab1_lblTotal.setText("VND ");
 
         jLabel5.setText("Date To");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tab1_tblGridView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Date", "Branch", "Drug name", "Quantity", "Amount"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tab1_tblGridView);
 
         jLabel6.setText("Branch");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Branch" }));
+        tab1_cbxBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Branch" }));
 
-        jButton1.setText("Print");
+        tab1_print.setText("Print");
 
-        jButton2.setText("Report");
+        tab1_report.setText("Report");
+        tab1_report.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab1_reportActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Drug Name");
-
-        jLabel2.setText("Total:");
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("VND ");
 
         javax.swing.GroupLayout pnlRevenueLayout = new javax.swing.GroupLayout(pnlRevenue);
         pnlRevenue.setLayout(pnlRevenueLayout);
@@ -156,73 +174,77 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(pnlRevenueLayout.createSequentialGroup()
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlRevenueLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(36, Short.MAX_VALUE)
                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlRevenueLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tab1_lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
                             .addGroup(pnlRevenueLayout.createSequentialGroup()
                                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tab1_report, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlRevenueLayout.createSequentialGroup()
                                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel6))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField1)
-                                            .addComponent(jComboBox1, 0, 277, Short.MAX_VALUE))))
+                                            .addComponent(tab1_cbxBranch, 0, 277, Short.MAX_VALUE)
+                                            .addComponent(jdcFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlRevenueLayout.createSequentialGroup()
+                                        .addComponent(tab1_print, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(pnlRevenueLayout.createSequentialGroup()
                                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
                                             .addComponent(jLabel5))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField2)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))))))
+                                            .addComponent(jdcTo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                            .addComponent(tab1_txtDrugName)))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueLayout.createSequentialGroup()
-                        .addContainerGap(13, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
         pnlRevenueLayout.setVerticalGroup(
             pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRevenueLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(pnlRevenueLayout.createSequentialGroup()
-                            .addComponent(jTextField2)
-                            .addGap(2, 2, 2))
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(pnlRevenueLayout.createSequentialGroup()
-                            .addComponent(jTextField1)
-                            .addGap(2, 2, 2))
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tab1_cbxBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(tab1_txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(tab1_print)
+                    .addComponent(tab1_report))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(tab1_lblTotal))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jdcFrom.setDateFormatString("dd-MM-yyyy");
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jdcFrom.getDateEditor();
+        editor.setEditable(false);
+        jdcTo.setDateFormatString("dd-MM-yyyy");
+        JTextFieldDateEditor editor1 = (JTextFieldDateEditor) jdcTo.getDateEditor();
+        editor1.setEditable(false);
 
         pnlReport.addTab("Revenue Report", pnlRevenue);
 
@@ -280,7 +302,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDebtLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,7 +358,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Drug Name");
 
-        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
+        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
 
         jLabel11.setText("Status");
 
@@ -348,34 +370,31 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDrugs1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDrugs1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-                        .addContainerGap())
+                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
                     .addGroup(pnlDrugs1Layout.createSequentialGroup()
                         .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDrugs1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbbBranch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDrugName, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
+                                    .addComponent(cbbBranch, 0, 289, Short.MAX_VALUE)
+                                    .addComponent(txtDrugName)))
                             .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlDrugs1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbbDrugStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugs1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlDrugs1Layout.createSequentialGroup()
                                         .addGap(90, 90, 90)
                                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(80, 80, 80))))))
+                                .addGap(47, 47, 47))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugs1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbbDrugStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18))
         );
         pnlDrugs1Layout.setVerticalGroup(
             pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,21 +418,37 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         pnlReport.addTab("Drugs Report", pnlDrugs1);
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(pnlReport, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(pnlReport, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlReport)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(pnlReport)
-                .addContainerGap())
+                .addGap(22, 22, 22)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -425,24 +460,27 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         this.fillToTableDebt();
         fillToDrugBranchCbb();
         fillToTableDrug();
+        this.fillToRevenueBranchCbx();
     }//GEN-LAST:event_formInternalFrameOpened
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
-    {//GEN-HEADEREND:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         fillToTableDrug();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void btnDebtChartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDebtChartActionPerformed
-    {//GEN-HEADEREND:event_btnDebtChartActionPerformed
+    private void btnDebtChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDebtChartActionPerformed
         // TODO add your handling code here:
         this.showDebtChart();
     }//GEN-LAST:event_btnDebtChartActionPerformed
 
-    private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cboSupplierActionPerformed
-    {//GEN-HEADEREND:event_cboSupplierActionPerformed
+    private void cboSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSupplierActionPerformed
         // TODO add your handling code here:
         this.fillToTableDebt();
     }//GEN-LAST:event_cboSupplierActionPerformed
+
+    private void tab1_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab1_reportActionPerformed
+        // TODO add your handling code here:
+        this.fillToTableRevenue();
+    }//GEN-LAST:event_tab1_reportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -452,33 +490,34 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbbBranch;
     private javax.swing.JComboBox<String> cbbDrugStatus;
     private javax.swing.JComboBox cboSupplier;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private com.toedter.calendar.JDateChooser jdcFrom;
+    private com.toedter.calendar.JDateChooser jdcTo;
     private javax.swing.JLabel lblSupplier;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlDebt;
     private javax.swing.JPanel pnlDrugs1;
     private javax.swing.JTabbedPane pnlReport;
     private javax.swing.JPanel pnlRevenue;
+    private javax.swing.JComboBox<String> tab1_cbxBranch;
+    private javax.swing.JLabel tab1_lblTotal;
+    private javax.swing.JButton tab1_print;
+    private javax.swing.JButton tab1_report;
+    private javax.swing.JTable tab1_tblGridView;
+    private javax.swing.JTextField tab1_txtDrugName;
     private javax.swing.JTable tblDrug;
     private javax.swing.JTable tblGridView;
     private javax.swing.JTextField txtDrugName;
@@ -617,4 +656,66 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         chartFrame.setVisible(true);
         chartFrame.setSize(800, 500);
     }
+    
+        //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //----------------------------REVENUE REPORT------------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    void fillToRevenueBranchCbx() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) tab1_cbxBranch.getModel();
+        model.removeAllElements();
+        model.addElement("All branchs");
+        try {
+            List<Branch> list = branchDAO.select();
+            list.forEach((branch)
+                    -> {
+                model.addElement(branch);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
+        }
+    }
+
+    void fillToTableRevenue() {
+        String drugName = tab1_txtDrugName.getText();
+        double total = 0;
+        Date dateFrom = new Date(0);
+        Date dateTo = DateHelper.now();
+        if (jdcFrom.getDate() != null) {
+            dateFrom = jdcFrom.getDate();
+        }
+        if (jdcTo.getDate() != null) {
+            dateTo = jdcTo.getDate();
+        }
+        String brarchID = "";
+        if (tab1_cbxBranch.getSelectedIndex() != 0) {
+            Branch branch = (Branch) tab1_cbxBranch.getSelectedItem();
+            brarchID = branch.getBranchID();
+        }
+        ResultSet rs = JdbcHelper.executeQuery("{call spDoanhThu(?,?,?,?)}", dateFrom, dateTo, brarchID, drugName);
+        DefaultTableModel model = (DefaultTableModel) tab1_tblGridView.getModel();
+        model.setRowCount(0);
+        try {
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getDate(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)});
+                total += Double.parseDouble(rs.getString(5));
+            }
+            tab1_lblTotal.setText(String.valueOf(total)+" VND");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            DialogHelper.alert(this, "Database access error!");
+        }
+    }
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    //--------------------------REVENUE REPORT END----------------------------//
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
 }

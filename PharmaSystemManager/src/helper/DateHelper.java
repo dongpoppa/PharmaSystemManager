@@ -41,6 +41,29 @@ public class DateHelper {
             throw new RuntimeException(ex);
         }
     }
+    
+     /**
+     * Ép kiểu date
+     *
+     * @param date là String cần chuyển
+     * @param pattern là định dạng thời gian
+     * @return Date kết quả
+     *
+     *
+     */
+    public static Date formatDate(Date date, String... pattern) {
+        try {
+            if (pattern.length > 0) {
+                DATE_FORMATER.applyPattern(pattern[0]);
+            }
+            if (date == null) {
+                return DateHelper.now();
+            }
+            return DATE_FORMATER.parse(String.valueOf(date));
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
     /**
      * Chuyển đổi từ Date sang String
