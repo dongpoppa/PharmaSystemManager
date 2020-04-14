@@ -573,10 +573,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 status = "";
                 break;
             case 1:
-                status = " and status is null";
+                status = " and THUOCTRONGKHO.trangthaithuoc is null";
                 break;
             case 2:
-                status = " and status is not null";
+                status = " and THUOCTRONGKHO.trangthaithuoc is not null";
                 break;
         }
 
