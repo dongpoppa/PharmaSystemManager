@@ -580,7 +580,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 break;
         }
 
-        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%'" + status + " order by Tenthuoc";
+        String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%' and " + status + " order by Tenthuoc";
         System.out.println(sql);
 
         try
