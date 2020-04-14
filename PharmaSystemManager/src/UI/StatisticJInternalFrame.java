@@ -82,7 +82,6 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         pnlDebt = new javax.swing.JPanel();
         lblSupplier = new javax.swing.JLabel();
-        btnReport = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblGridView = new javax.swing.JTable();
@@ -285,8 +284,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         lblSupplier.setText("Supplier");
 
-        btnReport.setText("Report");
-
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
         btnPrint.setText("Print");
 
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
@@ -313,6 +311,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        btnDebtChart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chart.png"))); // NOI18N
         btnDebtChart.setText("Chart");
         btnDebtChart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,21 +325,15 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDebtLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
-                    .addGroup(pnlDebtLayout.createSequentialGroup()
-                        .addComponent(lblSupplier)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboSupplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(lblSupplier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDebtChart, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDebtLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDebtChart)
-                .addGap(310, 310, 310))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
         );
         pnlDebtLayout.setVerticalGroup(
             pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,13 +342,11 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSupplier)
                     .addComponent(btnPrint)
-                    .addComponent(btnReport)
-                    .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDebtChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(btnDebtChart)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pnlReport.addTab("Debt Report", pnlDebt);
@@ -400,7 +391,6 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDebtChart;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton btnReport;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cboSupplier;
     private javax.swing.JButton jButton1;
