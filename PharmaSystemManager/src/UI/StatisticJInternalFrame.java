@@ -57,8 +57,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         pnlReport = new javax.swing.JTabbedPane();
@@ -70,7 +69,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -84,6 +83,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView = new javax.swing.JTable();
         cboSupplier = new javax.swing.JComboBox();
         btnDebtChart = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
         pnlDrugs1 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -91,36 +91,28 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tblDrug = new javax.swing.JTable();
         txtDrugName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbbDrugStatus = new javax.swing.JComboBox<>();
+        cbbDrugStatus = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbbBranch = new javax.swing.JComboBox<>();
+        cbbBranch = new javax.swing.JComboBox<String>();
 
         setClosable(true);
         setTitle("Statistical Report");
         setToolTipText("");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
-        {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
-            {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
         });
@@ -130,15 +122,13 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jLabel5.setText("Date To");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -146,7 +136,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Branch");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Branch" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Branch" }));
 
         jButton1.setText("Print");
 
@@ -242,45 +232,39 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         btnPrint.setText("Print");
 
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "ID", "Cash", "Debit", "Remain", "Due Date"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tblGridView);
 
-        cboSupplier.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cboSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSupplierActionPerformed(evt);
             }
         });
 
         btnDebtChart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chart.png"))); // NOI18N
         btnDebtChart.setText("Chart");
-        btnDebtChart.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnDebtChart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDebtChartActionPerformed(evt);
             }
         });
+
+        lblTotal.setForeground(new java.awt.Color(51, 51, 255));
+        lblTotal.setText("Total: ");
 
         javax.swing.GroupLayout pnlDebtLayout = new javax.swing.GroupLayout(pnlDebt);
         pnlDebt.setLayout(pnlDebtLayout);
@@ -297,6 +281,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDebtLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(169, 169, 169))
         );
         pnlDebtLayout.setVerticalGroup(
             pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,17 +296,17 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDebtChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotal)
+                .addGap(11, 11, 11))
         );
 
         pnlReport.addTab("Debt Report", pnlDebt);
 
         jButton5.setText("Report");
-        jButton5.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
@@ -326,26 +314,21 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jButton6.setText("Print");
 
         tblDrug.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "ID", "Name", "Batch No.", "Stored Qualtity", "Unit", "Imported Date", "MFG Date", "EXP Date", "Status"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -353,7 +336,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Drug Name");
 
-        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
+        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
 
         jLabel11.setText("Status");
 
@@ -491,6 +474,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblSupplier;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlDebt;
     private javax.swing.JPanel pnlDrugs1;
     private javax.swing.JTabbedPane pnlReport;
@@ -521,21 +505,17 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             DialogHelper.alert(this, "Database access error!");
         }
     }
-    
-    void fillToDrugBranchCbb()
-    {
+
+    void fillToDrugBranchCbb() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbbBranch.getModel();
         model.removeAllElements();
         model.addElement("All branchs");
-        try
-        {
+        try {
             List<Branch> list = branchDAO.select();
-            list.forEach((branch) ->
-            {
+            list.forEach((branch) -> {
                 model.addElement(branch);
             });
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             DialogHelper.alert(this, "Database access error!");
         }
@@ -549,26 +529,26 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         for (Object[] row : list) {
             model.addRow(row);
         }
+        double total = 0;
+        for (int i = 0; i < tblGridView.getRowCount(); i++) {
+            total += Double.parseDouble(String.valueOf(tblGridView.getValueAt(i, 3)));
+        }
+        lblTotal.setText("Total: " + total + " (VND)");
     }
-    
-        void fillToTableDrug()
-    {
+
+    void fillToTableDrug() {
         DefaultTableModel model = (DefaultTableModel) tblDrug.getModel();
         model.setRowCount(0);
         String name, branch, status = "";
 
         name = "".equals(txtDrugName.getText()) ? "%" : txtDrugName.getText();
-        if (cbbBranch.getSelectedIndex() == 0)
-        {
+        if (cbbBranch.getSelectedIndex() == 0) {
             branch = "%";
-        }
-        else
-        {
+        } else {
             branch = ((Branch) cbbBranch.getSelectedItem()).getBranchID();
         }
-        
-        switch (cbbDrugStatus.getSelectedIndex())
-        {
+
+        switch (cbbDrugStatus.getSelectedIndex()) {
             case 0:
                 status = "";
                 break;
@@ -583,34 +563,29 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%' " + status + " order by Tenthuoc";
         System.out.println(sql);
 
-        try
-        {
+        try {
             ResultSet rs = null;
-            try
-            {
+            try {
                 rs = JdbcHelper.executeQuery(sql);
-                while (rs.next())
-                {
-                    Object[] row =
-                    {
-                        rs.getString("MATHUOC"),
-                        rs.getString("tenthuoc"),
-                        rs.getString("MaLoHang"),
-                        rs.getInt("soluongton"),
-                        rs.getString("donvitinh"),
-                        rs.getDate("ngaynhaphang"),
-                        rs.getDate("ngaysx"),
-                        rs.getDate("ngayhethan"),
-                        rs.getString("trangthaithuoc")
-                    };
+                while (rs.next()) {
+                    Object[] row
+                            = {
+                                rs.getString("MATHUOC"),
+                                rs.getString("tenthuoc"),
+                                rs.getString("MaLoHang"),
+                                rs.getInt("soluongton"),
+                                rs.getString("donvitinh"),
+                                rs.getDate("ngaynhaphang"),
+                                rs.getDate("ngaysx"),
+                                rs.getDate("ngayhethan"),
+                                rs.getString("trangthaithuoc")
+                            };
                     model.addRow(row);
                 }
-            } finally
-            {
+            } finally {
                 rs.getStatement().getConnection().close();
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
