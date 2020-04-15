@@ -150,6 +150,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tab1_tblGridView.setAutoCreateRowSorter(true);
         jScrollPane1.setViewportView(tab1_tblGridView);
 
         jLabel6.setText("Branch");
@@ -174,7 +175,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(pnlRevenueLayout.createSequentialGroup()
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlRevenueLayout.createSequentialGroup()
-                        .addContainerGap(36, Short.MAX_VALUE)
+                        .addContainerGap(35, Short.MAX_VALUE)
                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlRevenueLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
