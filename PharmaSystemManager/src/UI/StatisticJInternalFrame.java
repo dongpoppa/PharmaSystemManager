@@ -142,9 +142,16 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 "Date", "Branch", "Drug name", "Quantity", "Amount"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -175,7 +182,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(pnlRevenueLayout.createSequentialGroup()
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlRevenueLayout.createSequentialGroup()
-                        .addContainerGap(35, Short.MAX_VALUE)
+                        .addContainerGap(36, Short.MAX_VALUE)
                         .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlRevenueLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -704,11 +711,12 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                     rs.getDate(1),
                     rs.getString(2),
                     rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5)});
+                    rs.getInt(4),
+                    rs.getDouble(5)});
                 total += Double.parseDouble(rs.getString(5));
             }
             tab1_lblTotal.setText(String.valueOf(total)+" VND");
+            tab1_tblGridView.setAutoCreateColumnsFromModel(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
             DialogHelper.alert(this, "Database access error!");

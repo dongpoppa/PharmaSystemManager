@@ -90,7 +90,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                                  <EmptySpace pref="36" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -234,8 +234,8 @@
                             <Column editable="false" title="Date" type="java.lang.Object"/>
                             <Column editable="false" title="Branch" type="java.lang.Object"/>
                             <Column editable="false" title="Drug name" type="java.lang.Object"/>
-                            <Column editable="false" title="Quantity" type="java.lang.Object"/>
-                            <Column editable="false" title="Amount" type="java.lang.Object"/>
+                            <Column editable="false" title="Quantity" type="java.lang.Integer"/>
+                            <Column editable="false" title="Amount" type="java.lang.Double"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
