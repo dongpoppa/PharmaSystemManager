@@ -89,7 +89,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAvatar1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -115,7 +115,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAvatar1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnInsert" min="-2" pref="42" max="-2" attributes="0"/>
@@ -321,14 +321,14 @@
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblDateOfBirth1" min="-2" pref="99" max="-2" attributes="0"/>
+                                          <Component id="lblDateOfBirth" min="-2" pref="99" max="-2" attributes="0"/>
                                           <Component id="txtDateOfBirth" min="-2" pref="204" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtDateOfWork" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <Component id="lblDateStartWork1" min="-2" pref="128" max="-2" attributes="0"/>
+                                              <Component id="lblDateStartWork" min="-2" pref="128" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -390,8 +390,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblDateOfBirth1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblDateStartWork1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblDateOfBirth" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lblDateStartWork" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -498,7 +498,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblDateOfBirth1">
+            <Component class="javax.swing.JLabel" name="lblDateOfBirth">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
@@ -516,7 +516,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblDateStartWork1">
+            <Component class="javax.swing.JLabel" name="lblDateStartWork">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="1"/>
@@ -723,7 +723,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblAvatar1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="3"/>

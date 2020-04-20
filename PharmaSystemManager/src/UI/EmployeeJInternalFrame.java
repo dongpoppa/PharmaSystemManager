@@ -82,9 +82,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         lblConfirmPassword = new javax.swing.JLabel();
         txtConfirmPassword = new javax.swing.JPasswordField();
         txtDateOfBirth = new javax.swing.JFormattedTextField();
-        lblDateOfBirth1 = new javax.swing.JLabel();
+        lblDateOfBirth = new javax.swing.JLabel();
         txtDateOfWork = new javax.swing.JFormattedTextField();
-        lblDateStartWork1 = new javax.swing.JLabel();
+        lblDateStartWork = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         lblAddress1 = new javax.swing.JLabel();
         lblEmail1 = new javax.swing.JLabel();
@@ -103,7 +103,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         btnNew = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblAvatar = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblAvatar1 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -212,14 +212,14 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
         txtDateOfBirth.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
         txtDateOfBirth.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        lblDateOfBirth1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDateOfBirth1.setText("Date of birth");
+        lblDateOfBirth.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblDateOfBirth.setText("Date of birth");
 
         txtDateOfWork.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("MM/dd/yyyy"))));
         txtDateOfWork.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        lblDateStartWork1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDateStartWork1.setText("Start date of work");
+        lblDateStartWork.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblDateStartWork.setText("Start date of work");
 
         txtAddress.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
@@ -285,13 +285,13 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                                     .addComponent(txtConfirmPassword)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDateOfBirth1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtDateOfWork)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(lblDateStartWork1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblDateStartWork, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addComponent(lblAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,8 +336,8 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDateOfBirth1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDateStartWork1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDateStartWork, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -422,9 +422,9 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel1.setText("AVATAR");
+        lblAvatar1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        lblAvatar1.setForeground(new java.awt.Color(0, 0, 204));
+        lblAvatar1.setText("AVATAR");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -461,7 +461,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(241, 241, 241)
-                                .addComponent(jLabel1)))))
+                                .addComponent(lblAvatar1)))))
                 .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(535, 535, 535)
@@ -479,7 +479,7 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
+                        .addComponent(lblAvatar1)
                         .addGap(53, 53, 53)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -599,7 +599,6 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cboRanch;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -608,10 +607,11 @@ public class EmployeeJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAvatar;
+    private javax.swing.JLabel lblAvatar1;
     private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblDaiLy;
-    private javax.swing.JLabel lblDateOfBirth1;
-    private javax.swing.JLabel lblDateStartWork1;
+    private javax.swing.JLabel lblDateOfBirth;
+    private javax.swing.JLabel lblDateStartWork;
     private javax.swing.JLabel lblEmail1;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblID;
