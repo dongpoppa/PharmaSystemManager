@@ -32,7 +32,7 @@ public class MainFrame extends javax.swing.JFrame
     StoreStatus DrugStatus;
     SaleInvoiceJInternalFrame saleInvoice;
     PurchaseInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
-    String name, pos, branch;
+    String name="", pos="", branch="";
     int dem=0;
 
     /**
@@ -83,21 +83,25 @@ public class MainFrame extends javax.swing.JFrame
             }
         };
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnSystem = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        mnChangePass = new javax.swing.JMenuItem();
+        mnLogout = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mnExit = new javax.swing.JMenuItem();
+        mnInvoice = new javax.swing.JMenu();
+        mnPurchase = new javax.swing.JMenuItem();
+        mnSales = new javax.swing.JMenuItem();
+        mnManager = new javax.swing.JMenu();
+        mnDrug = new javax.swing.JMenuItem();
+        mnStatus = new javax.swing.JMenuItem();
+        mnEmployee = new javax.swing.JMenuItem();
+        mnBranch = new javax.swing.JMenuItem();
+        mnSuplier = new javax.swing.JMenuItem();
+        mnReport = new javax.swing.JMenu();
+        mnRevenueReport = new javax.swing.JMenuItem();
+        mnDebtReport = new javax.swing.JMenuItem();
+        mnDrugReport = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -360,66 +364,161 @@ public class MainFrame extends javax.swing.JFrame
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 102));
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 102));
-        jMenu1.setForeground(new java.awt.Color(0, 51, 51));
-        jMenu1.setText("   File   ");
-        jMenu1.add(jSeparator1);
+        mnSystem.setBackground(new java.awt.Color(255, 255, 102));
+        mnSystem.setForeground(new java.awt.Color(0, 51, 51));
+        mnSystem.setText("   File   ");
+        mnSystem.add(jSeparator1);
 
-        jMenuItem1.setText("Change password");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener()
+        mnChangePass.setText("Change password");
+        mnChangePass.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jMenuItem1ActionPerformed(evt);
+                mnChangePassActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        mnSystem.add(mnChangePass);
 
-        jMenuItem2.setText("Logout");
-        jMenu1.add(jMenuItem2);
+        mnLogout.setText("Logout");
+        mnLogout.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnLogoutActionPerformed(evt);
+            }
+        });
+        mnSystem.add(mnLogout);
+        mnSystem.add(jSeparator2);
 
-        jMenuItem3.setText("Exit");
-        jMenu1.add(jMenuItem3);
+        mnExit.setText("Exit");
+        mnExit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnExitActionPerformed(evt);
+            }
+        });
+        mnSystem.add(mnExit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnSystem);
 
-        jMenu2.setBackground(new java.awt.Color(255, 255, 102));
-        jMenu2.setForeground(new java.awt.Color(0, 51, 51));
-        jMenu2.setText("   Invoices   ");
+        mnInvoice.setBackground(new java.awt.Color(255, 255, 102));
+        mnInvoice.setForeground(new java.awt.Color(0, 51, 51));
+        mnInvoice.setText("   Invoices   ");
 
-        jMenuItem5.setText("Purchase invoice");
-        jMenu2.add(jMenuItem5);
+        mnPurchase.setText("Purchase invoice");
+        mnPurchase.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnPurchaseActionPerformed(evt);
+            }
+        });
+        mnInvoice.add(mnPurchase);
 
-        jMenuItem4.setText("Sale invoice");
-        jMenu2.add(jMenuItem4);
+        mnSales.setText("Sale invoice");
+        mnSales.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnSalesActionPerformed(evt);
+            }
+        });
+        mnInvoice.add(mnSales);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnInvoice);
 
-        jMenu5.setBackground(new java.awt.Color(255, 255, 102));
-        jMenu5.setForeground(new java.awt.Color(0, 51, 51));
-        jMenu5.setText("   Manager   ");
+        mnManager.setBackground(new java.awt.Color(255, 255, 102));
+        mnManager.setForeground(new java.awt.Color(0, 51, 51));
+        mnManager.setText("   Manager   ");
 
-        jMenuItem6.setText("Drug infomation");
-        jMenu5.add(jMenuItem6);
+        mnDrug.setText("Drug infomation");
+        mnDrug.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnDrugActionPerformed(evt);
+            }
+        });
+        mnManager.add(mnDrug);
 
-        jMenuItem7.setText("Stoe status");
-        jMenu5.add(jMenuItem7);
+        mnStatus.setText("Store status");
+        mnStatus.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnStatusActionPerformed(evt);
+            }
+        });
+        mnManager.add(mnStatus);
 
-        jMenuItem8.setText("Employee");
-        jMenu5.add(jMenuItem8);
+        mnEmployee.setText("Employee");
+        mnEmployee.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnEmployeeActionPerformed(evt);
+            }
+        });
+        mnManager.add(mnEmployee);
 
-        jMenuItem9.setText("Branch");
-        jMenu5.add(jMenuItem9);
+        mnBranch.setText("Branch");
+        mnBranch.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnBranchActionPerformed(evt);
+            }
+        });
+        mnManager.add(mnBranch);
 
-        jMenuItem10.setText("Supplier");
-        jMenu5.add(jMenuItem10);
+        mnSuplier.setText("Supplier");
+        mnSuplier.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnSuplierActionPerformed(evt);
+            }
+        });
+        mnManager.add(mnSuplier);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnManager);
 
-        jMenu6.setBackground(new java.awt.Color(255, 255, 102));
-        jMenu6.setForeground(new java.awt.Color(0, 51, 51));
-        jMenu6.setText("   Statistical   ");
-        jMenuBar1.add(jMenu6);
+        mnReport.setBackground(new java.awt.Color(255, 255, 102));
+        mnReport.setForeground(new java.awt.Color(0, 51, 51));
+        mnReport.setText("   Statistical   ");
+
+        mnRevenueReport.setText("Revenue Report");
+        mnRevenueReport.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnRevenueReportActionPerformed(evt);
+            }
+        });
+        mnReport.add(mnRevenueReport);
+
+        mnDebtReport.setText("Debt Report");
+        mnDebtReport.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnDebtReportActionPerformed(evt);
+            }
+        });
+        mnReport.add(mnDebtReport);
+
+        mnDrugReport.setText("Drug Report");
+        mnDrugReport.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnDrugReportActionPerformed(evt);
+            }
+        });
+        mnReport.add(mnDrugReport);
+
+        jMenuBar1.add(mnReport);
 
         setJMenuBar(jMenuBar1);
 
@@ -427,30 +526,16 @@ public class MainFrame extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
-        // TODO add your handling code here:
         this.openEmployee();
     }//GEN-LAST:event_btnEmployeeActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLogoutActionPerformed
     {//GEN-HEADEREND:event_btnLogoutActionPerformed
-        for (JInternalFrame c : desktop.getAllFrames())
-        {
-            c.dispose();
-        }
-        ShareHelper.logoff();
-        new LoginJDialog(this, true).setVisible(true);
-        setMainStatus();
+       logout();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaleActionPerformed
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
-        saleInvoice = new SaleInvoiceJInternalFrame();
-        desktop.add(saleInvoice);
-        saleInvoice.setLocation(this.getWidth() / 2 - saleInvoice.getWidth() / 2, desktop.getHeight() / 2 - saleInvoice.getHeight() / 2);
-        saleInvoice.setVisible(true);
+        openSales();
     }//GEN-LAST:event_btnSaleActionPerformed
 
     private void btnSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupActionPerformed
@@ -464,20 +549,12 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_btnBranchActionPerformed
 
     private void btnDrugInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrugInfoActionPerformed
-
         openDrugInfo();
     }//GEN-LAST:event_btnDrugInfoActionPerformed
 
     private void btnStoreStatusActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStoreStatusActionPerformed
     {//GEN-HEADEREND:event_btnStoreStatusActionPerformed
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
-        DrugStatus = new StoreStatus();
-        desktop.add(DrugStatus);
-        DrugStatus.setLocation(this.getWidth() / 2 - DrugStatus.getWidth() / 2, desktop.getHeight() / 2 - DrugStatus.getHeight() / 2);
-        DrugStatus.setVisible(true);
+        openStatus();
     }//GEN-LAST:event_btnStoreStatusActionPerformed
 
     private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
@@ -487,20 +564,73 @@ public class MainFrame extends javax.swing.JFrame
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
 
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
-        StatisticJInternalFrame statisticJInternalFrame = new StatisticJInternalFrame(this);
-        desktop.add(statisticJInternalFrame);
-        statisticJInternalFrame.setLocation(this.getWidth() / 2 - statisticJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - statisticJInternalFrame.getHeight() / 2);
-        statisticJInternalFrame.setVisible(true);
+        openReport(0);
     }//GEN-LAST:event_btnReportActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
-    {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
+    private void mnChangePassActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnChangePassActionPerformed
+    {//GEN-HEADEREND:event_mnChangePassActionPerformed
         openChangePass();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnChangePassActionPerformed
+
+    private void mnLogoutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnLogoutActionPerformed
+    {//GEN-HEADEREND:event_mnLogoutActionPerformed
+        logout();
+    }//GEN-LAST:event_mnLogoutActionPerformed
+
+    private void mnSuplierActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnSuplierActionPerformed
+    {//GEN-HEADEREND:event_mnSuplierActionPerformed
+        openSupplier();
+    }//GEN-LAST:event_mnSuplierActionPerformed
+
+    private void mnDrugActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnDrugActionPerformed
+    {//GEN-HEADEREND:event_mnDrugActionPerformed
+        openDrugInfo();
+    }//GEN-LAST:event_mnDrugActionPerformed
+
+    private void mnExitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnExitActionPerformed
+    {//GEN-HEADEREND:event_mnExitActionPerformed
+        if(DialogHelper.confirm(this, "Exit program?")) System.exit(0);
+    }//GEN-LAST:event_mnExitActionPerformed
+
+    private void mnPurchaseActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnPurchaseActionPerformed
+    {//GEN-HEADEREND:event_mnPurchaseActionPerformed
+        openPurchaseInvoice();
+    }//GEN-LAST:event_mnPurchaseActionPerformed
+
+    private void mnSalesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnSalesActionPerformed
+    {//GEN-HEADEREND:event_mnSalesActionPerformed
+        openSales();
+    }//GEN-LAST:event_mnSalesActionPerformed
+
+    private void mnStatusActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnStatusActionPerformed
+    {//GEN-HEADEREND:event_mnStatusActionPerformed
+        openStatus();
+    }//GEN-LAST:event_mnStatusActionPerformed
+
+    private void mnEmployeeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnEmployeeActionPerformed
+    {//GEN-HEADEREND:event_mnEmployeeActionPerformed
+        openEmployee();
+    }//GEN-LAST:event_mnEmployeeActionPerformed
+
+    private void mnBranchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnBranchActionPerformed
+    {//GEN-HEADEREND:event_mnBranchActionPerformed
+       openBranch();
+    }//GEN-LAST:event_mnBranchActionPerformed
+
+    private void mnRevenueReportActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnRevenueReportActionPerformed
+    {//GEN-HEADEREND:event_mnRevenueReportActionPerformed
+        openReport(0);
+    }//GEN-LAST:event_mnRevenueReportActionPerformed
+
+    private void mnDebtReportActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnDebtReportActionPerformed
+    {//GEN-HEADEREND:event_mnDebtReportActionPerformed
+        openReport(1);
+    }//GEN-LAST:event_mnDebtReportActionPerformed
+
+    private void mnDrugReportActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnDrugReportActionPerformed
+    {//GEN-HEADEREND:event_mnDrugReportActionPerformed
+        openReport(2);
+    }//GEN-LAST:event_mnDrugReportActionPerformed
 
     //--------------------------------------------------------------------//
     //--------------------------------------------------------------------//
@@ -513,8 +643,6 @@ public class MainFrame extends javax.swing.JFrame
         this.setLocationRelativeTo(null);
         setIconImage(ShareHelper.APP_ICON.getImage());
         this.setVisible(true);
-
-        this.login();
 
         //Status panel
         new Timer(300, new ActionListener()
@@ -531,19 +659,32 @@ public class MainFrame extends javax.swing.JFrame
                 lblPosition.setText(pos.substring(0, dem<pos.length()?dem:pos.length()));
             }
         }).start();
+        
+        this.login();
     }
 
     public void setMainStatus()
     {
-        name=ShareHelper.USER.getName();
-        pos=ShareHelper.getUserPosition();
-        branch=ShareHelper.Branch.toString();
+        name=ShareHelper.USER==null?"":ShareHelper.USER.getName();
+        pos=ShareHelper.USER==null?"":ShareHelper.getUserPosition();
+        branch=ShareHelper.Branch==null?"":ShareHelper.Branch.toString();
     }
 
     void login()
     {
         new LoginJDialog(this, true).setVisible(true);
         setMainStatus();
+    }
+    
+    void logout()
+    {
+         for (JInternalFrame c : desktop.getAllFrames())
+        {
+            c.dispose();
+        }
+        ShareHelper.logoff();
+        setMainStatus();
+        login();
     }
 
     void openEmployee()
@@ -579,6 +720,17 @@ public class MainFrame extends javax.swing.JFrame
         supplierJInternalFrame.setLocation(this.getWidth() / 2 - supplierJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - supplierJInternalFrame.getHeight() / 2);
         supplierJInternalFrame.setVisible(true);
     }
+    private void openStatus()
+    {
+        for (JInternalFrame fr : desktop.getAllFrames())
+        {
+            fr.dispose();
+        }
+        DrugStatus = new StoreStatus();
+        desktop.add(DrugStatus);
+        DrugStatus.setLocation(this.getWidth() / 2 - DrugStatus.getWidth() / 2, desktop.getHeight() / 2 - DrugStatus.getHeight() / 2);
+        DrugStatus.setVisible(true);
+    }
 
     void openBranch()
     {
@@ -613,6 +765,17 @@ public class MainFrame extends javax.swing.JFrame
         drugJInternalFrame.setLocation(this.getWidth() / 2 - drugJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - drugJInternalFrame.getHeight() / 2);
         drugJInternalFrame.setVisible(true);
     }
+    private void openSales()
+    {
+        for (JInternalFrame fr : desktop.getAllFrames())
+        {
+            fr.dispose();
+        }
+        saleInvoice = new SaleInvoiceJInternalFrame();
+        desktop.add(saleInvoice);
+        saleInvoice.setLocation(this.getWidth() / 2 - saleInvoice.getWidth() / 2, desktop.getHeight() / 2 - saleInvoice.getHeight() / 2);
+        saleInvoice.setVisible(true);
+    }
 
     void openPurchaseInvoice()
     {
@@ -629,6 +792,18 @@ public class MainFrame extends javax.swing.JFrame
         desktop.add(purchaseInvoiceJInternalFrame);
         purchaseInvoiceJInternalFrame.setLocation(this.getWidth() / 2 - purchaseInvoiceJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - purchaseInvoiceJInternalFrame.getHeight() / 2);
         purchaseInvoiceJInternalFrame.setVisible(true);
+    }
+    
+    private void openReport(int pnl)
+    {
+        for (JInternalFrame fr : desktop.getAllFrames())
+        {
+            fr.dispose();
+        }
+        StatisticJInternalFrame statisticJInternalFrame = new StatisticJInternalFrame(this, pnl);
+        desktop.add(statisticJInternalFrame);
+        statisticJInternalFrame.setLocation(this.getWidth() / 2 - statisticJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - statisticJInternalFrame.getHeight() / 2);
+        statisticJInternalFrame.setVisible(true);
     }
 
     private void openChangePass()
@@ -695,34 +870,44 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton btnStoreStatus;
     private javax.swing.JButton btnSup;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblBranch;
     private javax.swing.JLabel lblPharName;
     private javax.swing.JLabel lblPosition;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JMenuItem mnBranch;
+    private javax.swing.JMenuItem mnChangePass;
+    private javax.swing.JMenuItem mnDebtReport;
+    private javax.swing.JMenuItem mnDrug;
+    private javax.swing.JMenuItem mnDrugReport;
+    private javax.swing.JMenuItem mnEmployee;
+    private javax.swing.JMenuItem mnExit;
+    private javax.swing.JMenu mnInvoice;
+    private javax.swing.JMenuItem mnLogout;
+    private javax.swing.JMenu mnManager;
+    private javax.swing.JMenuItem mnPurchase;
+    private javax.swing.JMenu mnReport;
+    private javax.swing.JMenuItem mnRevenueReport;
+    private javax.swing.JMenuItem mnSales;
+    private javax.swing.JMenuItem mnStatus;
+    private javax.swing.JMenuItem mnSuplier;
+    private javax.swing.JMenu mnSystem;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlStatus;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
+
+    
 
 }

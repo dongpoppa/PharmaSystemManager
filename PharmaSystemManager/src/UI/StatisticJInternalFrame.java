@@ -47,9 +47,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form StatisticJInternalFrame
      */
-    public StatisticJInternalFrame(JFrame frame) {
+    public StatisticJInternalFrame(JFrame frame, int pnl) {
         initComponents();
         ShareHelper.frame = frame;
+        pnlReport.setSelectedIndex(pnl);
         init();
     }
 
