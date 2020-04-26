@@ -15,11 +15,11 @@ import model.Employee;
  *
  * @author Admin
  */
-public class DoiMatKhauJDialog1 extends javax.swing.JDialog
+public class ChangePassJDialog extends javax.swing.JDialog
 {
 
     /** Creates new form DoiMatKhauJDialog */
-    public DoiMatKhauJDialog1(java.awt.Frame parent, boolean modal)
+    public ChangePassJDialog(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
@@ -45,6 +45,7 @@ public class DoiMatKhauJDialog1 extends javax.swing.JDialog
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pharma4U - Change Password");
 
         btnOK.setText("OK");
         btnOK.addActionListener(new java.awt.event.ActionListener()
@@ -158,17 +159,19 @@ public class DoiMatKhauJDialog1 extends javax.swing.JDialog
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(DoiMatKhauJDialog1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(DoiMatKhauJDialog1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(DoiMatKhauJDialog1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(DoiMatKhauJDialog1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePassJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -177,7 +180,7 @@ public class DoiMatKhauJDialog1 extends javax.swing.JDialog
         {
             public void run()
             {
-                DoiMatKhauJDialog1 dialog = new DoiMatKhauJDialog1(new javax.swing.JFrame(), true);
+                ChangePassJDialog dialog = new ChangePassJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter()
                 {
                     @Override

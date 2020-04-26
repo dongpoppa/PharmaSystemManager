@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame
     SupplierJInternalFrame supplierJInternalFrame;
     BranchJInternalFrame branchJInternalFrame;
     DrugJInternalFrame drugJInternalFrame;
-    StoreStatus DrugStatus;
+    StoreStatus drugStatus;
     SaleInvoiceJInternalFrame saleInvoice;
     PurchaseInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
     String name="", pos="", branch="";
@@ -678,10 +678,7 @@ public class MainFrame extends javax.swing.JFrame
     
     void logout()
     {
-         for (JInternalFrame c : desktop.getAllFrames())
-        {
-            c.dispose();
-        }
+        closeFrames();
         ShareHelper.logoff();
         setMainStatus();
         login();
@@ -689,126 +686,103 @@ public class MainFrame extends javax.swing.JFrame
 
     void openEmployee()
     {
+        closeFrames();
+        
         if (!ShareHelper.USER.isRole())
         {
             DialogHelper.alert(this, "You can't access here");
             return;
         }
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
         employeeJInternalFrame = new EmployeeJInternalFrame(this);
-        desktop.add(employeeJInternalFrame);
-        employeeJInternalFrame.setLocation(this.getWidth() / 2 - employeeJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - employeeJInternalFrame.getHeight() / 2);
-        employeeJInternalFrame.setVisible(true);
+        addFrame(employeeJInternalFrame);
     }
 
     void openSupplier()
     {
+        closeFrames();
         if (!ShareHelper.USER.isRole())
         {
             DialogHelper.alert(this, "You can't access here");
             return;
         }
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
         supplierJInternalFrame = new SupplierJInternalFrame(this);
-        desktop.add(supplierJInternalFrame);
-        supplierJInternalFrame.setLocation(this.getWidth() / 2 - supplierJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - supplierJInternalFrame.getHeight() / 2);
-        supplierJInternalFrame.setVisible(true);
+        addFrame(supplierJInternalFrame);
     }
+    
     private void openStatus()
     {
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
-        DrugStatus = new StoreStatus();
-        desktop.add(DrugStatus);
-        DrugStatus.setLocation(this.getWidth() / 2 - DrugStatus.getWidth() / 2, desktop.getHeight() / 2 - DrugStatus.getHeight() / 2);
-        DrugStatus.setVisible(true);
+        closeFrames();
+        drugStatus = new StoreStatus();
+        addFrame(drugStatus);
     }
 
     void openBranch()
     {
+        closeFrames();
         if (!ShareHelper.USER.isRole() || ShareHelper.USER.getStoreID() != null)
         {
             DialogHelper.alert(this, "You can't access here");
             return;
         }
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
         branchJInternalFrame = new BranchJInternalFrame(this);
-        desktop.add(branchJInternalFrame);
-        branchJInternalFrame.setLocation(this.getWidth() / 2 - branchJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - branchJInternalFrame.getHeight() / 2);
-        branchJInternalFrame.setVisible(true);
+        addFrame(branchJInternalFrame);
     }
 
     void openDrugInfo()
     {
+        closeFrames();
         if (!ShareHelper.USER.isRole())
         {
             DialogHelper.alert(this, "You can't access here");
             return;
         }
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
         drugJInternalFrame = new DrugJInternalFrame(this);
-        desktop.add(drugJInternalFrame);
-        drugJInternalFrame.setLocation(this.getWidth() / 2 - drugJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - drugJInternalFrame.getHeight() / 2);
-        drugJInternalFrame.setVisible(true);
+        addFrame(drugJInternalFrame);
     }
+    
     private void openSales()
     {
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
+        closeFrames();
         saleInvoice = new SaleInvoiceJInternalFrame();
-        desktop.add(saleInvoice);
-        saleInvoice.setLocation(this.getWidth() / 2 - saleInvoice.getWidth() / 2, desktop.getHeight() / 2 - saleInvoice.getHeight() / 2);
-        saleInvoice.setVisible(true);
+        addFrame(saleInvoice);
     }
 
     void openPurchaseInvoice()
     {
+        closeFrames();
         if (!ShareHelper.USER.isRole())
         {
             DialogHelper.alert(this, "You can't access here");
             return;
         }
-        for (JInternalFrame fr : desktop.getAllFrames())
-        {
-            fr.dispose();
-        }
+        
         purchaseInvoiceJInternalFrame = new PurchaseInvoiceJInternalFrame(this);
-        desktop.add(purchaseInvoiceJInternalFrame);
-        purchaseInvoiceJInternalFrame.setLocation(this.getWidth() / 2 - purchaseInvoiceJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - purchaseInvoiceJInternalFrame.getHeight() / 2);
-        purchaseInvoiceJInternalFrame.setVisible(true);
+        addFrame(purchaseInvoiceJInternalFrame);
     }
     
     private void openReport(int pnl)
     {
+        closeFrames();
+        StatisticJInternalFrame statisticJInternalFrame = new StatisticJInternalFrame(this, pnl);
+        addFrame(statisticJInternalFrame);
+    }
+    
+    void closeFrames(){
         for (JInternalFrame fr : desktop.getAllFrames())
         {
             fr.dispose();
         }
-        StatisticJInternalFrame statisticJInternalFrame = new StatisticJInternalFrame(this, pnl);
-        desktop.add(statisticJInternalFrame);
-        statisticJInternalFrame.setLocation(this.getWidth() / 2 - statisticJInternalFrame.getWidth() / 2, desktop.getHeight() / 2 - statisticJInternalFrame.getHeight() / 2);
-        statisticJInternalFrame.setVisible(true);
+    }
+    
+    void addFrame(JInternalFrame frame){
+        desktop.add(frame);
+        frame.setLocation(this.getWidth() / 2 - frame.getWidth() / 2, desktop.getHeight() / 2 - frame.getHeight() / 2);
+        frame.setVisible(true);
     }
 
     private void openChangePass()
     {
-        new DoiMatKhauJDialog1(this, true).setVisible(true);
+        new ChangePassJDialog(this, true).setVisible(true);
     }
 
     /**

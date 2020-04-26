@@ -81,6 +81,8 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
         tblGridView = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Pharma4U - Supplier Management");
+        setToolTipText("");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)

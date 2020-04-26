@@ -71,6 +71,8 @@ public class BranchJInternalFrame extends javax.swing.JInternalFrame {
         txtCity = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Pharma4U - Branch Management");
+        setToolTipText("");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)

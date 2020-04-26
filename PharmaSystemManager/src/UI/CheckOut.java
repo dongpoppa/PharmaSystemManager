@@ -46,7 +46,8 @@ public class CheckOut extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lblPassword = new javax.swing.JLabel();
         lblReason = new javax.swing.JLabel();
@@ -60,6 +61,7 @@ public class CheckOut extends javax.swing.JDialog {
         lblTerm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Pharma4U - Checkout");
         setAlwaysOnTop(true);
 
         lblPassword.setText("CASH");
@@ -68,16 +70,20 @@ public class CheckOut extends javax.swing.JDialog {
 
         btnConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/tick.png"))); // NOI18N
         btnConfirm.setText("Confirm");
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnConfirm.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnConfirmActionPerformed(evt);
             }
         });
 
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancle.png"))); // NOI18N
         btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelActionPerformed(evt);
             }
         });
@@ -89,15 +95,19 @@ public class CheckOut extends javax.swing.JDialog {
         txtTotal.setEnabled(false);
 
         txtCash.setText("0");
-        txtCash.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtCash.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtCashFocusLost(evt);
             }
         });
 
         txtDebit.setText("0");
-        txtDebit.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        txtDebit.addFocusListener(new java.awt.event.FocusAdapter()
+        {
+            public void focusLost(java.awt.event.FocusEvent evt)
+            {
                 txtDebitFocusLost(evt);
             }
         });

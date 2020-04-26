@@ -70,6 +70,7 @@ public class StoreStatus extends javax.swing.JInternalFrame
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Pharma4U - Store Status");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)

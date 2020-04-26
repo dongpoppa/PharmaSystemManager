@@ -92,6 +92,7 @@ public class DrugJInternalFrame extends javax.swing.JInternalFrame {
         jTextField1.setText("jTextField1");
 
         setClosable(true);
+        setTitle("Pharma4U - Drug Management");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)

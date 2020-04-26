@@ -113,6 +113,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         ListDrugs = new javax.swing.JList();
 
         setClosable(true);
+        setTitle("Pharma4U - Purchase Invoice");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener()
         {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
@@ -607,7 +608,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
     private void btnFindHistoryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFindHistoryActionPerformed
     {//GEN-HEADEREND:event_btnFindHistoryActionPerformed
         // TODO add your handling code here:
-        new FindHistoryJInternalFrame(ShareHelper.frame, true, this).setVisible(true);
+        new PurchaseInvoiceDetailJInternalFrame(ShareHelper.frame, true, this).setVisible(true);
     }//GEN-LAST:event_btnFindHistoryActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearActionPerformed

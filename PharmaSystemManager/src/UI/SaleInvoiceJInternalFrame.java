@@ -123,7 +123,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         btnPrint = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Sales Invoice");
+        setTitle("Pharma4U - Sales Invoice");
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Invoice Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP));
 

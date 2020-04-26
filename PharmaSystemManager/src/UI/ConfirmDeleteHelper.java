@@ -43,6 +43,7 @@ public class ConfirmDeleteHelper extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Pharma4U - Confirm Delete");
 
         lblPassword.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblPassword.setText("Password");
