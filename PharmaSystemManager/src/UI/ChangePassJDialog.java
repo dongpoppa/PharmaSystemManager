@@ -56,11 +56,11 @@ public class ChangePassJDialog extends javax.swing.JDialog
             }
         });
 
-        jLabel1.setText("Mật khẩu cũ");
+        jLabel1.setText("Old Password");
 
-        jLabel2.setText("Mật khẩu mới");
+        jLabel2.setText("New Password");
 
-        jLabel3.setText("Xác nhận mật khẩu");
+        jLabel3.setText("Re-confirm Password");
 
         btnExit.setText("Cancel");
         btnExit.addActionListener(new java.awt.event.ActionListener()
@@ -72,7 +72,7 @@ public class ChangePassJDialog extends javax.swing.JDialog
         });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setText("ĐỔI MẬT KHẨU");
+        jLabel4.setText("CHANGE PASSWORD");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +91,7 @@ public class ChangePassJDialog extends javax.swing.JDialog
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 140, Short.MAX_VALUE)
+                        .addGap(0, 116, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,11 +215,11 @@ public class ChangePassJDialog extends javax.swing.JDialog
             return;
         }
 
-        String matKhauCu = new String(txtOldPass.getPassword());
-        String matKhauMoi = new String(txtNewPass.getPassword());
-        String matKhauXacNhan = new String(txtConfPass.getPassword());
+        String oldPass = new String(txtOldPass.getPassword());
+        String newPass = new String(txtNewPass.getPassword());
+        String confirm = new String(txtConfPass.getPassword());
 
-        if (!matKhauMoi.equals(matKhauXacNhan))
+        if (!newPass.equals(confirm))
         {
             DialogHelper.alert(this, "Password miss-match");
             txtNewPass.requestFocus();
@@ -228,11 +228,11 @@ public class ChangePassJDialog extends javax.swing.JDialog
 
         try
         {
-            Employee nhanVien = dao.findById(ShareHelper.USER.getEmployeeID());
-            if (matKhauCu.equals(nhanVien.getPassword()))
+            Employee emp = dao.findById(ShareHelper.USER.getEmployeeID());
+            if (oldPass.equals(emp.getPassword()))
             {
-                nhanVien.setPassword(matKhauMoi);
-                dao.update(nhanVien);
+                emp.setPassword(newPass);
+                dao.update(emp);
                 DialogHelper.alert(this, "Password changed succesfully!");
                 this.dispose();
             }
