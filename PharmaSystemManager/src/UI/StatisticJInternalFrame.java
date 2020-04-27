@@ -61,8 +61,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
@@ -78,13 +77,11 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tab1_tblGridView = new javax.swing.JTable();
         jdcTo = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        tab1_cbxBranch = new javax.swing.JComboBox<>();
-        tab1_print = new javax.swing.JButton();
+        tab1_cbxBranch = new javax.swing.JComboBox<String>();
         tab1_report = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         pnlDebt = new javax.swing.JPanel();
         lblSupplier = new javax.swing.JLabel();
-        btnPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblGridView = new javax.swing.JTable();
         cboSupplier = new javax.swing.JComboBox();
@@ -92,41 +89,32 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         lblTotal = new javax.swing.JLabel();
         pnlDrugs1 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblDrug = new javax.swing.JTable();
         txtDrugName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbbDrugStatus = new javax.swing.JComboBox<>();
+        cbbDrugStatus = new javax.swing.JComboBox<String>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbbBranch = new javax.swing.JComboBox<>();
+        cbbBranch = new javax.swing.JComboBox<String>();
 
         setClosable(true);
         setTitle("Pharma4U - Statistical Report");
         setToolTipText("");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
-        {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
-            {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
         });
@@ -145,32 +133,25 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         jLabel5.setText("Date To");
 
         tab1_tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "Date", "Branch", "Drug name", "Quantity", "Amount"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
+        ) {
+            Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class
             };
-            boolean[] canEdit = new boolean []
-            {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -179,22 +160,11 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Branch");
 
-        tab1_cbxBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Branch" }));
-
-        tab1_print.setText("Print");
-        tab1_print.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                tab1_printActionPerformed(evt);
-            }
-        });
+        tab1_cbxBranch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Branch" }));
 
         tab1_report.setText("Report");
-        tab1_report.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        tab1_report.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tab1_reportActionPerformed(evt);
             }
         });
@@ -216,33 +186,29 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                                 .addComponent(tab1_lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6))
                             .addGroup(pnlRevenueLayout.createSequentialGroup()
-                                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tab1_report, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlRevenueLayout.createSequentialGroup()
-                                        .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel6))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tab1_cbxBranch, 0, 277, Short.MAX_VALUE)
-                                            .addComponent(jdcFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tab1_cbxBranch, 0, 277, Short.MAX_VALUE)
+                                    .addComponent(jdcFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlRevenueLayout.createSequentialGroup()
-                                        .addComponent(tab1_print, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(pnlRevenueLayout.createSequentialGroup()
-                                        .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel5))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jdcTo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                            .addComponent(tab1_txtDrugName)))))))
+                                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jdcTo, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                    .addComponent(tab1_txtDrugName)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(33, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRevenueLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(tab1_report, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311))
         );
         pnlRevenueLayout.setVerticalGroup(
             pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,11 +226,9 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(tab1_cbxBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tab1_txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tab1_print)
-                    .addComponent(tab1_report))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(tab1_report)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlRevenueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -284,53 +248,34 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         lblSupplier.setText("Supplier");
 
-        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
-        btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnPrintActionPerformed(evt);
-            }
-        });
-
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "ID", "Cash", "Debit", "Remain", "Due Date"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tblGridView);
 
-        cboSupplier.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cboSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSupplierActionPerformed(evt);
             }
         });
 
         btnDebtChart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chart.png"))); // NOI18N
         btnDebtChart.setText("Chart");
-        btnDebtChart.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnDebtChart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDebtChartActionPerformed(evt);
             }
         });
@@ -349,9 +294,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDebtChart, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(109, 109, 109))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDebtLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -364,7 +307,6 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlDebtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSupplier)
-                    .addComponent(btnPrint)
                     .addComponent(cboSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDebtChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -377,44 +319,28 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         pnlReport.addTab("Debt Report", pnlDebt);
 
         jButton5.setText("Report");
-        jButton5.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Print");
-        jButton6.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
         tblDrug.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "ID", "Name", "Batch No.", "Stored Qualtity", "Unit", "Imported Date", "MFG Date", "EXP Date", "Status"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
@@ -422,7 +348,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Drug Name");
 
-        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
+        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
 
         jLabel11.setText("Status");
 
@@ -448,12 +374,8 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugs1Layout.createSequentialGroup()
-                                .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(pnlDrugs1Layout.createSequentialGroup()
-                                        .addGap(90, 90, 90)
-                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(47, 47, 47))
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(137, 137, 137))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDrugs1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -473,8 +395,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pnlDrugs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -546,31 +467,14 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         this.fillToTableRevenue();
     }//GEN-LAST:event_tab1_reportActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton6ActionPerformed
-    {//GEN-HEADEREND:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPrintActionPerformed
-    {//GEN-HEADEREND:event_btnPrintActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPrintActionPerformed
-
-    private void tab1_printActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tab1_printActionPerformed
-    {//GEN-HEADEREND:event_tab1_printActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tab1_printActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDebtChart;
-    private javax.swing.JButton btnPrint;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbBranch;
     private javax.swing.JComboBox<String> cbbDrugStatus;
     private javax.swing.JComboBox cboSupplier;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -593,7 +497,6 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlRevenue;
     private javax.swing.JComboBox<String> tab1_cbxBranch;
     private javax.swing.JLabel tab1_lblTotal;
-    private javax.swing.JButton tab1_print;
     private javax.swing.JButton tab1_report;
     private javax.swing.JTable tab1_tblGridView;
     private javax.swing.JTextField tab1_txtDrugName;
