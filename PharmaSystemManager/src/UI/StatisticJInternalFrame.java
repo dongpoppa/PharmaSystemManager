@@ -582,7 +582,6 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         }
 
         String sql = "Select * from THUOCTRONGKHO JOIN Thuoc on thuoc.mathuoc=thuoctrongkho.mathuoc WHERE MADAILY like '" + branch + "' and tenThuoc like '%" + name + "%' " + status + " order by Tenthuoc";
-        System.out.println(sql);
 
         try {
             ResultSet rs = null;
@@ -638,8 +637,8 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         chartFrame.setVisible(true);
         chartFrame.setSize(800, 500);
     }
-    
-        //------------------------------------------------------------------------//
+
+    //------------------------------------------------------------------------//
     //------------------------------------------------------------------------//
     //----------------------------REVENUE REPORT------------------------------//
     //------------------------------------------------------------------------//
@@ -652,8 +651,8 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
             List<Branch> list = branchDAO.select();
             list.forEach((branch)
                     -> {
-                model.addElement(branch);
-            });
+                        model.addElement(branch);
+                    });
         } catch (Exception e) {
             e.printStackTrace();
             DialogHelper.alert(this, "Database access error!");
@@ -689,7 +688,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                     rs.getDouble(5)});
                 total += Double.parseDouble(rs.getString(5));
             }
-            tab1_lblTotal.setText(String.valueOf(total)+" VND");
+            tab1_lblTotal.setText(String.valueOf(total) + " VND");
             tab1_tblGridView.setAutoCreateColumnsFromModel(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
