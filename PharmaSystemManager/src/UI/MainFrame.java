@@ -642,7 +642,6 @@ public class MainFrame extends javax.swing.JFrame
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         setIconImage(ShareHelper.APP_ICON.getImage());
-        this.setVisible(true);
 
         //Status panel
         new Timer(300, new ActionListener()
@@ -660,7 +659,7 @@ public class MainFrame extends javax.swing.JFrame
             }
         }).start();
         
-        this.login();
+        this.openWelcome();
     }
 
     public void setMainStatus()
@@ -830,6 +829,7 @@ public class MainFrame extends javax.swing.JFrame
                 MainFrame frame = new MainFrame();
                 frame.setVisible(true);
                 ShareHelper.frame = frame;
+                frame.login();
             }
         });
     }
@@ -879,6 +879,11 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlStatus;
     // End of variables declaration//GEN-END:variables
+
+    private void openWelcome()
+    {
+        new WelcomeJDialog(this, true).setVisible(true);
+    }
 
     
 
