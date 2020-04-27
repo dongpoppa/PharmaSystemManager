@@ -677,9 +677,13 @@ public class MainFrame extends javax.swing.JFrame {
         if (ShareHelper.USER.isRole() && ShareHelper.USER.getStoreID() == null) {
             btnPurchase.setEnabled(false);
             btnSale.setEnabled(false);
+            btnDrugInfo.setEnabled(false);
+            btnStoreStatus.setEnabled(false);
         } else {
             btnPurchase.setEnabled(true);
             btnSale.setEnabled(true);
+            btnDrugInfo.setEnabled(true);
+            btnStoreStatus.setEnabled(true);
         }
         setMainStatus();
     }
