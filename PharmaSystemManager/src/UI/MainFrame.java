@@ -33,7 +33,7 @@ public class MainFrame extends javax.swing.JFrame
     SaleInvoiceJInternalFrame saleInvoice;
     PurchaseInvoiceJInternalFrame purchaseInvoiceJInternalFrame;
     String name="", pos="", branch="";
-    int dem=0;
+    int dem=0, max=0;
 
     /**
      * Creates new form MainFrame
@@ -653,7 +653,7 @@ public class MainFrame extends javax.swing.JFrame
             public void actionPerformed(ActionEvent e)
             {
                 lblTime.setText(sdf.format(new Date())+"   ");
-                if(dem<70) dem++; else dem=0;
+                if(dem<max+5) dem++; else dem=0;
                 lblPharName.setText(name.substring(0, dem<name.length()?dem:name.length()));
                 lblBranch.setText(branch.substring(0, dem<branch.length()?dem:branch.length()));
                 lblPosition.setText(pos.substring(0, dem<pos.length()?dem:pos.length()));
@@ -668,6 +668,8 @@ public class MainFrame extends javax.swing.JFrame
         name=ShareHelper.USER==null?"":ShareHelper.USER.getName();
         pos=ShareHelper.USER==null?"":ShareHelper.getUserPosition();
         branch=ShareHelper.Branch==null?"":ShareHelper.Branch.toString();
+        dem=0;
+        max=ShareHelper.Branch==null?0:ShareHelper.Branch.toString().length();
     }
 
     void login()

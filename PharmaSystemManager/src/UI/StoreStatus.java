@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JDesktopPane;
-import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
 import model.StoragedDrug;
 
