@@ -5,14 +5,13 @@
  */
 package UI;
 
-
 import DAO.DrugCategoryDAO;
 import helper.DialogHelper;
+import helper.UtilitiesHelper;
 import java.awt.Rectangle;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.DrugCategory;
-
 
 /**
  *
@@ -20,12 +19,11 @@ import model.DrugCategory;
  */
 public class DrugCategoryFrame extends javax.swing.JDialog {
 
-     int index = 0; // vị trí của nhân viên đang hiển thị trên form
+    int index = 0; // vị trí của nhân viên đang hiển thị trên form
     DrugCategoryDAO dao = new DrugCategoryDAO();
     DrugJInternalFrame frame = null;
-    
-    
-       public DrugCategoryFrame(java.awt.Frame parent, boolean modal, DrugJInternalFrame frame) {
+
+    public DrugCategoryFrame(java.awt.Frame parent, boolean modal, DrugJInternalFrame frame) {
         super(parent, modal);
         initComponents();
         this.frame = frame;
@@ -42,8 +40,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -56,7 +53,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
         lblEmail1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDecription = new javax.swing.JTextArea();
-        txtDrugName = new javax.swing.JTextField();
+        txtCategoryName = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
@@ -73,40 +70,32 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
 
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "Category ID", "Category name", "Category decription"
             }
-        )
-        {
-            boolean[] canEdit = new boolean []
-            {
+        ) {
+            boolean[] canEdit = new boolean [] {
                 false, false, false
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tblGridView.setRowHeight(30);
-        tblGridView.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblGridViewMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblGridView);
-        if (tblGridView.getColumnModel().getColumnCount() > 0)
-        {
+        if (tblGridView.getColumnModel().getColumnCount() > 0) {
             tblGridView.getColumnModel().getColumn(0).setResizable(false);
             tblGridView.getColumnModel().getColumn(1).setResizable(false);
             tblGridView.getColumnModel().getColumn(2).setResizable(false);
@@ -133,7 +122,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
         txtDecription.setRows(5);
         jScrollPane1.setViewportView(txtDecription);
 
-        txtDrugName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtCategoryName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -150,7 +139,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
                             .addComponent(txtID))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCategoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,7 +154,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDrugName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -175,66 +164,52 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
 
         btnInsert.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save.png"))); // NOI18N
-        btnInsert.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertActionPerformed(evt);
             }
         });
 
         btnUpdate.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/refesh.png"))); // NOI18N
-        btnUpdate.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
         btnNew.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/new.png"))); // NOI18N
-        btnNew.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/first.png"))); // NOI18N
-        btnFirst.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstActionPerformed(evt);
             }
         });
 
         btnPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/prev.png"))); // NOI18N
-        btnPrev.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevActionPerformed(evt);
             }
         });
 
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/next.png"))); // NOI18N
-        btnNext.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
             }
         });
 
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/last.png"))); // NOI18N
-        btnLast.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLastActionPerformed(evt);
             }
         });
@@ -330,7 +305,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.index = tblGridView.getRowCount() - 1;
         this.scroll();
-        this.edit(); 
+        this.edit();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -412,10 +387,8 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
-
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -451,12 +424,12 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblID;
     private javax.swing.JTable tblGridView;
+    private javax.swing.JTextField txtCategoryName;
     private javax.swing.JTextArea txtDecription;
-    private javax.swing.JTextField txtDrugName;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 
-      void init() {
+    void init() {
 //        setIconImage(ShareHelper.APP_ICON);
         setTitle("Medicine manager");
         load();
@@ -478,7 +451,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
             list = dao.select();
             for (DrugCategory drugCate : list) {
                 Object[] row = {
-                    drugCate.getDrugCategoryID(),drugCate.getDrugCategoryName(),drugCate.getDescription()
+                    drugCate.getDrugCategoryID(), drugCate.getDrugCategoryName(), drugCate.getDescription()
                 };
                 model.addRow(row);
             }
@@ -509,15 +482,15 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
 
     void setModel(DrugCategory model) {
         txtID.setText(model.getDrugCategoryID());
-        txtDrugName.setText(model.getDrugCategoryName());
+        txtCategoryName.setText(model.getDrugCategoryName());
         txtDecription.setText(model.getDescription());
     }
 
     DrugCategory getModel() {
         DrugCategory model = new DrugCategory();
-            model.setDrugCategoryID(txtID.getText());
-            model.setDrugCategoryName(txtDrugName.getText());
-            model.setDescription(txtDecription.getText());
+        model.setDrugCategoryID(txtID.getText());
+        model.setDrugCategoryName(txtCategoryName.getText());
+        model.setDescription(txtDecription.getText());
         return model;
     }
 
@@ -533,7 +506,7 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
     }
 
     void insert() {
-       
+        if (vld()) {
             DrugCategory model = getModel();
             try {
                 dao.insert(model);
@@ -545,8 +518,11 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
                 e.printStackTrace();
                 DialogHelper.alert(this, "Insert failed!");
             }
+        }
     }
-    void update() {    
+
+    void update() {
+        if (vld()) {
             DrugCategory model = getModel();
             try {
                 dao.update(model);
@@ -556,9 +532,10 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
             } catch (Exception e) {
                 DialogHelper.alert(this, "Update failed!");
             }
-        
+
+        }
     }
- 
+
     String getLastID() {
         String lastID = (String) tblGridView.getValueAt(tblGridView.getRowCount() - 1, 0);
         int num = Integer.parseInt(lastID.substring(2)) + 1;
@@ -572,5 +549,14 @@ public class DrugCategoryFrame extends javax.swing.JDialog {
         }
         return nextID;
     }
-    
+
+    boolean vld() {
+        if (UtilitiesHelper.checkNull(txtCategoryName, "Category name")) {
+            return false;
+        } else if (UtilitiesHelper.checkNull(txtDecription, "Decription")) {
+            return false;
+        }
+        return true;
+    }
+
 }

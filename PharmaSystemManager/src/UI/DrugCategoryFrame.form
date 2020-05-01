@@ -202,7 +202,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtDrugName" min="-2" pref="381" max="-2" attributes="0"/>
+                                  <Component id="txtCategoryName" min="-2" pref="381" max="-2" attributes="0"/>
                                   <Component id="lblFullName" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -223,7 +223,7 @@
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtID" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="txtDrugName" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtCategoryName" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="lblEmail1" min="-2" pref="28" max="-2" attributes="0"/>
@@ -283,7 +283,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="txtDrugName">
+            <Component class="javax.swing.JTextField" name="txtCategoryName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="14" style="0"/>
