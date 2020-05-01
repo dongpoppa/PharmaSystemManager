@@ -42,6 +42,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnChangePass">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/changePass.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Change password"/>
               </Properties>
               <Events>
@@ -50,6 +53,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnLogout">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/Logout_icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
               <Events>
@@ -60,6 +66,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnExit">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/Exit button.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
