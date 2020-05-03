@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +57,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     DefaultListModel modelList;
     DrugInfomation selectedDrug;
     String INVOICE_ID;
-    boolean history=false;
+    boolean history = false;
 
     public SaleInvoiceJInternalFrame(JFrame frame)
     {
@@ -160,6 +161,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             }
         });
         tblInvoice.setRowHeight(25);
+        tblInvoice.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblInvoice.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -595,8 +597,10 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
 
     private void tblInvoiceMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_tblInvoiceMouseClicked
     {//GEN-HEADEREND:event_tblInvoiceMouseClicked
-        if(!history)
-        getModel();
+        if (!history)
+        {
+            getModel();
+        }
     }//GEN-LAST:event_tblInvoiceMouseClicked
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -704,7 +708,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             return;
         }
         //Kiểm tra đang cập nhật hay thêm mới item
-        if (btnAddToCart.getText().equals("Update to cart"))
+        if (btnAddToCart.getText().equals("Update to invoice"))
         {
             modelInvoice.removeRow(selectedRow());
         }
@@ -867,7 +871,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             //INSERT HOADONBANHANG
             String sql1 = "{CALL sp_INSERT_HOADONBANHANG (?,?,?,?,?,?)}";
             call = connection.prepareCall(sql1);
-            call.setObject(1, new Date());
+            call.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
             call.setObject(2, ShareHelper.cash);
             call.setObject(3, ShareHelper.debit);
             call.setObject(4, 10);
@@ -897,8 +901,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
             //Rollback trans
             connection.rollback();
             DialogHelper.alert(this, "Failed! Check drugs quantity");
+            throw new SQLException();
+        } finally
+        {
+            if (connection != null)
+            {
+                connection.close();
+            }
         }
-        connection.close();
     }
 
     //In hóa đơn
@@ -939,7 +949,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         {
             c.setEnabled(status);
         }
-        history=!status;
+        history = !status;
         txtDC.setEditable(status);
         chkAll.setEnabled(status);
         listDrug.setEnabled(status);

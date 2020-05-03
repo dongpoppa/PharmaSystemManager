@@ -9,6 +9,7 @@ import helper.JdbcHelper;
 import helper.ShareHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -65,7 +66,8 @@ public class SaleInvoiceDAO {
         String date = null;
         try {
             while (resultSet.next()) {
-                date = String.valueOf(resultSet.getDate("NgayBan"));
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                return df.format(resultSet.getTimestamp("NgayBan"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
