@@ -58,6 +58,7 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     DrugInfomation selectedDrug;
     String INVOICE_ID;
     boolean history = false;
+    int index;
 
     public SaleInvoiceJInternalFrame(JFrame frame)
     {
@@ -692,25 +693,19 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
         txtQuantity.requestFocus();
     }
 
-    //Trả về vị trí lựa chọn trên bảng
-    int selectedRow()
-    {
-        return tblInvoice.getSelectedRow();
-    }
 
     //Lấy sản phẩm đưa vào giỏ hàng
     void addToCart()
     {
-        //Chỉ thêm khi số lượng lấy được là dương
-        if (txtQuantity.getValue() <= 0)
+        //Kiểm tra có thuốc nào đang chọn không
+        if(txtName.getText().equals(""))
         {
-            DialogHelper.alert(this, "Check quantity!");
             return;
         }
         //Kiểm tra đang cập nhật hay thêm mới item
         if (btnAddToCart.getText().equals("Update to invoice"))
         {
-            modelInvoice.removeRow(selectedRow());
+            modelInvoice.removeRow(index);
         }
         else
         {
@@ -761,13 +756,14 @@ public class SaleInvoiceJInternalFrame extends javax.swing.JInternalFrame
     //Lấy item từ giỏ hàng đưa lên textfield
     void getModel()
     {
+        index= tblInvoice.getSelectedRow();
         int max = dao.findMax(selectedDrug.getDrugNumber());
-        selectedDrug = dao.findById(modelInvoice.getValueAt(selectedRow(), 0).toString());
+        selectedDrug = dao.findById(modelInvoice.getValueAt(index, 0).toString());
         txtID.setText(selectedDrug.getDrugID());
         txtName.setText(selectedDrug.getDrugName());
         txtMan.setText(selectedDrug.getManufactured());
-        txtPrice.setText(modelInvoice.getValueAt(selectedRow(), 3).toString());
-        txtQuantity.setValue((Integer) modelInvoice.getValueAt(selectedRow(), 2));
+        txtPrice.setText(modelInvoice.getValueAt(index, 3).toString());
+        txtQuantity.setValue((Integer) modelInvoice.getValueAt(index, 2));
         lblUnit.setText(selectedDrug.getUnit());
         lblMax.setText(String.valueOf(max));
         txtQuantity.setMaximum(max);
