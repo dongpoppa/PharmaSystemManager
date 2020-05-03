@@ -891,7 +891,6 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
             this.InvoiceID = purchaseInvoiceDAO.lastPurchaseInvoiceID();
         } catch (Exception e) {
             DialogHelper.alert(this, "Insert failsed");
-            e.printStackTrace();
         }
     }
 
