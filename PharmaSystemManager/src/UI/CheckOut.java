@@ -134,6 +134,13 @@ public class CheckOut extends javax.swing.JDialog
         });
 
         chkDebit.setText("All Debit");
+        chkDebit.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                chkDebitItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,6 +226,11 @@ public class CheckOut extends javax.swing.JDialog
     {//GEN-HEADEREND:event_chkCashItemStateChanged
         fillBalance();
     }//GEN-LAST:event_chkCashItemStateChanged
+
+    private void chkDebitItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_chkDebitItemStateChanged
+    {//GEN-HEADEREND:event_chkDebitItemStateChanged
+        fillBalance();
+    }//GEN-LAST:event_chkDebitItemStateChanged
 
     /**
      * @param args the command line arguments
