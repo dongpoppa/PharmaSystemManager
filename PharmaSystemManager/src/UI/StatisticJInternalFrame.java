@@ -77,7 +77,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tab1_tblGridView = new javax.swing.JTable();
         jdcTo = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        tab1_cbxBranch = new javax.swing.JComboBox<String>();
+        tab1_cbxBranch = new javax.swing.JComboBox<>();
         tab1_report = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         pnlDebt = new javax.swing.JPanel();
@@ -93,10 +93,10 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
         tblDrug = new javax.swing.JTable();
         txtDrugName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbbDrugStatus = new javax.swing.JComboBox<String>();
+        cbbDrugStatus = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbbBranch = new javax.swing.JComboBox<String>();
+        cbbBranch = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Pharma4U - Statistical Report");
@@ -160,7 +160,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Branch");
 
-        tab1_cbxBranch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Branch" }));
+        tab1_cbxBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Branch" }));
 
         tab1_report.setText("Report");
         tab1_report.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +348,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Drug Name");
 
-        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
+        cbbDrugStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Drugs", "In-use Drugs", "Revoked Drugs" }));
 
         jLabel11.setText("Status");
 
@@ -688,8 +688,7 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
                     rs.getDouble(5)});
                 total += Double.parseDouble(rs.getString(5));
             }
-            tab1_lblTotal.setText(String.valueOf(total) + " VND");
-            tab1_tblGridView.setAutoCreateColumnsFromModel(true);
+            tab1_lblTotal.setText(String.valueOf(total) + "00 VND");
         } catch (SQLException ex) {
             ex.printStackTrace();
             DialogHelper.alert(this, "Database access error!");
