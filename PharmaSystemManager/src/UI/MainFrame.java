@@ -717,6 +717,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void openReport(int pnl) {
         closeFrames();
+        if (!ShareHelper.USER.isRole()) {
+            DialogHelper.alert(this, "You can't access here");
+            return;
+        }
         StatisticJInternalFrame statisticJInternalFrame = new StatisticJInternalFrame(this, pnl);
         addFrame(statisticJInternalFrame);
     }

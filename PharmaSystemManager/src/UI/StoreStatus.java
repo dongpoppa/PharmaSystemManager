@@ -146,20 +146,16 @@ public class StoreStatus extends javax.swing.JInternalFrame
 
         jLabel1.setText("Total");
 
-        txtTotal.setEditable(false);
         txtTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
-        txtInvoices.setEditable(false);
         txtInvoices.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel2.setText("Total invoice");
 
-        txtDebit.setEditable(false);
         txtDebit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
         jLabel7.setText("Total Debit");
 
-        txtCash.setEditable(false);
         txtCash.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("VND #,##0"))));
 
         jLabel8.setText("Total Cash");
@@ -284,15 +280,12 @@ public class StoreStatus extends javax.swing.JInternalFrame
 
         jLabel4.setText("Amount of type");
 
-        txtNoType.setEditable(false);
         txtNoType.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel5.setText("Amount of unit");
 
-        txtNoUnit.setEditable(false);
         txtNoUnit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        txtRevoke.setEditable(false);
         txtRevoke.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel6.setText("Total revoked drugs");

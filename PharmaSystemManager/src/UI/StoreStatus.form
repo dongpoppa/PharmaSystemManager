@@ -239,7 +239,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtTotal">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="VND #,##0" subtype="-1" type="4"/>
             </Property>
@@ -247,7 +246,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtInvoices">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
@@ -260,7 +258,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtDebit">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="VND #,##0" subtype="-1" type="4"/>
             </Property>
@@ -273,7 +270,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtCash">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="VND #,##0" subtype="-1" type="4"/>
             </Property>
@@ -499,7 +495,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtNoType">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
@@ -512,7 +507,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtNoUnit">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
@@ -520,7 +514,6 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtRevoke">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
