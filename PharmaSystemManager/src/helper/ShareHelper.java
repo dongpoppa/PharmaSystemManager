@@ -21,8 +21,7 @@ import model.Branch;
  *
  * @author rondw
  */
-public class ShareHelper
-{
+public class ShareHelper {
 
     /**
      * Ảnh biểu tượng của ứng dụng, xuất hiện trên mọi cửa sổ
@@ -33,8 +32,7 @@ public class ShareHelper
      */
     public static String status = null;
 
-    static
-    {
+    static {
         // Tải biểu tượng ứng dụng
         APP_ICON = new ImageIcon("src\\icon\\logo.png");
     }
@@ -45,23 +43,19 @@ public class ShareHelper
      * @param file là đối tượng file ảnh
      * @return chép được hay không
      */
-    public static boolean saveLogo(File file)
-    {
+    public static boolean saveLogo(File file) {
         File dir = new File("src\\avatars");
-        if (!dir.exists())
-        {
+        if (!dir.exists()) {
             dir.mkdirs();
         }
         File newFile = new File(dir, file.getName());
-        try
-        {
+        try {
             // Copy vào thư mục logos (đè nếu đã tồn tại)
             Path source = Paths.get(file.getAbsolutePath());
             Path destination = Paths.get(newFile.getAbsolutePath());
             Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
             return true;
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             return false;
         }
     }
@@ -117,8 +111,7 @@ public class ShareHelper
      *
      * @return
      */
-    public static String getStatus()
-    {
+    public static String getStatus() {
         return ShareHelper.USER.getEmployeeID() + " - " + DateHelper.DATE_FORMATER.format(DateHelper.now()) + " - " + ShareHelper.status;
     }
 
@@ -127,18 +120,12 @@ public class ShareHelper
      *
      * @return
      */
-    public static String getUserPosition()
-    {
-        if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0))
-        {
+    public static String getUserPosition() {
+        if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID() == null || ShareHelper.USER.getStoreID().length() == 0)) {
             return "Boss";
-        }
-        else if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID().length() > 0))
-        {
+        } else if (ShareHelper.USER.isRole() && (ShareHelper.USER.getStoreID().length() > 0)) {
             return "Manager";
-        }
-        else 
-        {
+        } else {
             return "Pharmacist";
         }
     }
@@ -146,8 +133,7 @@ public class ShareHelper
     /**
      * Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất
      */
-    public static void logoff()
-    {
+    public static void logoff() {
         ShareHelper.USER = null;
         ShareHelper.Branch = null;
     }
@@ -157,8 +143,7 @@ public class ShareHelper
      *
      * @return đăng nhập hay chưa
      */
-    public static boolean authenticated()
-    {
+    public static boolean authenticated() {
         return ShareHelper.USER != null;
     }
 }
