@@ -621,7 +621,6 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
             try {
                 dao.insert(model);
                 this.load();
-                this.clear();
                 DialogHelper.alert(this, "Saved!");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -632,6 +631,7 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
     }
 
     void update() {
+        System.out.println(vld());
         if (vld()) {
             Supplier model = getModel();
             try {
@@ -642,7 +642,6 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
                 DialogHelper.alert(this, "Fail to update!");
             }
         }
-
     }
 
     void delete() {
@@ -676,16 +675,22 @@ public class SupplierJInternalFrame extends javax.swing.JInternalFrame {
 
     boolean vld() {
         if (UtilitiesHelper.checkNull(txtName, "Supplier's name")) {
+            System.out.println("1");
             return false;
         } else if (UtilitiesHelper.checkNull(txtPhoneNo, "Phone")) {
+            System.out.println("2");
             return false;
         } else if (UtilitiesHelper.checkNull(txtEmail, "Email")) {
+            System.out.println("3");
             return false;
-        } else if (UtilitiesHelper.checkEmail(txtEmail)) {
+        } else if (!UtilitiesHelper.checkEmail(txtEmail)) {
+            System.out.println("4");
             return false;
         } else if (UtilitiesHelper.checkNull(txtAddress, "Address")) {
+            System.out.println("5");
             return false;
         } else if (UtilitiesHelper.checkNull(txtCity, "City")) {
+            System.out.println("6");
             return false;
         }
         return true;

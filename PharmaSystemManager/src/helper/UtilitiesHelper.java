@@ -29,9 +29,9 @@ public class UtilitiesHelper {
         if (c.getText().trim().isEmpty()) {
             DialogHelper.alert(c, m + " can not be empty!");
             c.requestFocus();
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean checkNull(JFormattedTextField c, String m) {
@@ -166,9 +166,9 @@ public class UtilitiesHelper {
         if (!txt.getText().matches("-?\\d+(.\\d+)?")) {
             DialogHelper.alert(txt, "This must be number!");
             txt.requestFocus();
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }//CLASS
