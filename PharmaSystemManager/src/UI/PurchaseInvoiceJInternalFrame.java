@@ -67,8 +67,7 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         pnlInvoice = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -114,28 +113,20 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Pharma4U - Purchase Invoice");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener()
-        {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt)
-            {
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt)
-            {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
         });
@@ -144,40 +135,31 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         tblGridView.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblGridView.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
-                "Drug ID", "Drug name", "Price", "Quantity", "Amount (Nghìn VNĐ)", "Select"
+            new String [] {
+                "Drug ID", "Drug name", "Quantity", "Price", "Amount (Nghìn VNĐ)", "Select"
             }
-        )
-        {
-            Class[] types = new Class []
-            {
+        ) {
+            Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
-            boolean[] canEdit = new boolean []
-            {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, true
             };
 
-            public Class getColumnClass(int columnIndex)
-            {
+            public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tblGridView.setRowHeight(25);
-        tblGridView.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        tblGridView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblGridViewMouseClicked(evt);
             }
         });
@@ -192,10 +174,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         txtTotalAmount.setEditable(false);
         txtTotalAmount.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        chkSelectAll.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        chkSelectAll.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chkSelectAllMouseClicked(evt);
             }
         });
@@ -204,10 +184,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblSelectAll.setText("Select all");
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancle.png"))); // NOI18N
-        btnDelete.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
@@ -262,10 +240,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnFindHistory.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnFindHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/plus.png"))); // NOI18N
         btnFindHistory.setText("Find history");
-        btnFindHistory.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnFindHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindHistoryActionPerformed(evt);
             }
         });
@@ -274,10 +250,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnClear.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cancle.png"))); // NOI18N
         btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
             }
         });
@@ -286,10 +260,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnCheckIn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCheckIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/save_invoice.png"))); // NOI18N
         btnCheckIn.setText("Save");
-        btnCheckIn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCheckIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCheckInActionPerformed(evt);
             }
         });
@@ -298,10 +270,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnPrint.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print.png"))); // NOI18N
         btnPrint.setText("Print");
-        btnPrint.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
             }
         });
@@ -314,10 +284,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblDrugInfo.setText("Drug Info");
 
         txtDrugInfo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtDrugInfo.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        txtDrugInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDrugInfoActionPerformed(evt);
             }
         });
@@ -338,10 +306,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         lblPurchasePrice.setText("Purchase Price");
 
         btnFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
-        btnFind.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFindActionPerformed(evt);
             }
         });
@@ -361,10 +327,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
         btnAddToInvoice.setForeground(new java.awt.Color(0, 0, 204));
         btnAddToInvoice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add_cart.png"))); // NOI18N
         btnAddToInvoice.setText("Add to invoice");
-        btnAddToInvoice.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAddToInvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddToInvoiceActionPerformed(evt);
             }
         });
@@ -547,10 +511,8 @@ public class PurchaseInvoiceJInternalFrame extends javax.swing.JInternalFrame {
 
         ListDrugs.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListDrugs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ListDrugs.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        ListDrugs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ListDrugsMouseClicked(evt);
             }
         });

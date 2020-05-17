@@ -646,16 +646,20 @@ public class StatisticJInternalFrame extends javax.swing.JInternalFrame {
     void fillToRevenueBranchCbx() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) tab1_cbxBranch.getModel();
         model.removeAllElements();
-        model.addElement("All branchs");
-        try {
-            List<Branch> list = branchDAO.select();
-            list.forEach((branch)
-                    -> {
-                        model.addElement(branch);
-                    });
-        } catch (Exception e) {
-            e.printStackTrace();
-            DialogHelper.alert(this, "Database access error!");
+        if (ShareHelper.getUserPosition().equalsIgnoreCase("Manager")) {
+            model.addElement(branchDAO.findById(ShareHelper.USER.getStoreID()).toString());
+        } else if (ShareHelper.getUserPosition().equalsIgnoreCase("Boss")) {
+            model.addElement("All branchs");
+            try {
+                List<Branch> list = branchDAO.select();
+                list.forEach((branch)
+                        -> {
+                    model.addElement(branch);
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                DialogHelper.alert(this, "Database access error!");
+            }
         }
     }
 
